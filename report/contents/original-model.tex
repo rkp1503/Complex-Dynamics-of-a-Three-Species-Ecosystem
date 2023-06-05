@@ -1,0 +1,55 @@
+\section{Original Model}\label{sec:original_model}
+In this section, we will go over the model that was featured in the paper written by Panja, Gayen, Kar, and Jana~\cite{PANJA2022100153}. The authors wanted to build a model of three species $X$, $Y$, $Z$ which contains three different types of species interactions. Namely nonlinear competition, predation, and commensalism.
+
+\subsection{Assumptions on species $X$}\label{subsec:assumptions_x}
+The authors have assumed that $X$ grows logistically at a rate of $r_x$ with a maximum capacity of $K_x$. The authors assumed that $X$ and $Y$ have a competition interaction with an interspecies competition coefficient $\alpha_{xy}$. The authors have also assumed that $X$ and $Z$ are in a commensalism interaction where $Z$ is a host of $X$ with a commensal coefficient $\delta$. From this, the authors have created the differential equation to represent the population of $X$:
+\begin{equation}
+    \diff[]{X}{T} = r_xX-\frac{r_x}{K_x}X^2-\frac{r_x\alpha_{xy}}{K_x}XY^2+\delta XZ
+    \label{eq:2.1}
+\end{equation}
+
+\subsection{Assumptions on species $Y$}\label{subsec:assumptions_y}
+The authors have assumed that $Y$ grows logistically at a rate of $r_y$ with a maximum capacity of $K_y$. The authors assumed that $Y$ and $X$ have a competition interaction with an interspecies competition coefficient $\alpha_{yx}$. The authors have also assumed that $Y$ and $Z$ are in a predation interaction where $Z$ preys on $Y$ via the Holling type II functional response with a half saturation constant $b$. $Z$ attacks $Y$ at a rate of $a$. Furthermore, as a result of being the prey to $Z$, $Y$ shows refuge behavior with a refuge rate of $p$. From this, the authors have created the differential equation to represent the population of $Y$:
+\begin{equation}
+    \diff[]{Y}{T} = r_yY-\frac{r_y}{K_y}Y^2-\frac{r_y\alpha_{yx}}{K_y}X^2Y-\frac{a\left(1-p\right)YZ}{b+\left(1-p\right)Y}
+    \label{eq:2.2}
+\end{equation}
+
+\subsection{Assumptions on species $Z$}\label{subsec:assumptions_z}
+The authors assumed that $Z$ grows as a result of being in a predation interaction with $Y$ via the Holling type II functional response with a half saturation constant $b$ and $c$ as the conservation rate of $Y$. Furthermore, the authors assume that the population of $Z$ decays at a rate of $e$. From this, the authors have created the differential equation to represent the population of $Z$:
+\begin{equation}
+    \diff[]{Z}{T} = \frac{ac\left(1-p\right)YZ}{b+\left(1-p\right)Y}-eZ
+    \label{eq:2.3}
+\end{equation}
+
+\subsection{Building the model}\label{subsec:model}
+From the assumptions, the governing equations for this model are:
+\begin{subequations}
+    \begin{align}
+        \diff[]{X}{T} &= r_xX-\frac{r_x}{K_x}X^2-\frac{r_x\alpha_{xy}}{K_x}XY^2+\delta XZ
+        \label{model:2.1a}\\
+        \diff[]{Y}{T} &= r_yY-\frac{r_y}{K_y}Y^2-\frac{r_y\alpha_{yx}}{K_y}X^2Y-\frac{a\left(1-p\right)YZ}{b+\left(1-p\right)Y}
+        \label{model:2.b}\\
+        \diff[]{Z}{T} &= \frac{ac\left(1-p\right)YZ}{b+\left(1-p\right)Y}-eZ
+        \label{model:2.1c}
+    \end{align}
+    \label{model:2.1}
+\end{subequations}
+and with the following substitutions:
+\begin{gather*}
+    T=\frac{t}{r_x},\ X=K_xx,\ Y=K_yy,\ Z=\frac{r_xK_y}{a}z\\
+    \alpha_{xy}=\frac{K_x}{K_y^2}\gamma_{12},\ \alpha_{yx}=\frac{K_y}{K_x^2}\gamma_{21},\ \delta=\frac{a}{K_y}\gamma\\
+    r=\frac{r_y}{r_x},\ b=K_yv_1,\ e=r_xv_2,\ c=\frac{r_xv_3}{a}\\
+\end{gather*}
+the authors have simplified and non-dimensionalized model (\ref{model:2.1}). This gives us the following model the authors have used throughout their paper:
+\begin{subequations}
+    \begin{align}
+        \diff[]{x}{t} &= x\left(1-x-\gamma_{12}y^2\right)+\gamma xz
+        \label{model:2.2a}\\
+        \diff[]{y}{t} &= ry\left(1-y-\gamma_{21}x^2\right)-\frac{\left(1-p\right)yz}{v_1+\left(1-p\right)y}
+        \label{model:2.2b}\\
+        \diff[]{z}{t} &= z\left(\frac{v_3\left(1-p\right)y}{v_1+\left(1-p\right)y}-v_2\right)
+        \label{model:2.2c}
+    \end{align}
+    \label{model:2.2}
+\end{subequations}
