@@ -1,0 +1,342 @@
+\section{Stability Analysis via Linearization}\label{sec:stability_analysis}
+In section~\ref{sec:identify_equilibria}, we have computed all possible equilibria in model (\ref{model:3.2}). In this section, we will use mathematical analysis to analyze the stability of each equilibria and determine the conditions for stability. In order to find the stability of each equilibrium point with the linearization method~\cite{book:2478639}, we will need the Jacobian matrix of (\ref{model:3.1}), which is:
+\begin{equation}
+    \textbf{J}=\begin{bmatrix}
+        j_{11} & j_{12} & j_{13}\\
+        j_{21} & j_{22} & j_{23}\\
+        0 & j_{32} & j_{33}
+    \end{bmatrix}
+    \label{eq:5.1}
+\end{equation}
+where
+\begin{align*}
+    j_{11} &= 1-2x+\gamma_{12}y^2-\gamma_{13}z\\
+    j_{12} &= 2\gamma_{12}xy\\
+    j_{13} &= -\gamma_{13}x\\
+    j_{21} &= 2\gamma_{21}r_1xy\\
+    j_{22} &= -\frac{v_1\left(1-p\right)z}{\left(v_1+\left(1-p\right)y\right)^2}+r_1\left(1-2y+\gamma_{21}x^2\right)\\
+    j_{23} &= -\frac{\left(1-p\right)y}{v_1+\left(1-p\right)y}\\
+    j_{32} &= \frac{v_1v_3\left(1-p\right)z}{\left(v_1+\left(1-p\right)y\right)^2}\\
+    j_{33} &= r_2\left(1-2\gamma_{31}z\right)+\frac{v_3\left(1-p\right)y}{v_1+\left(1-p\right)y}-v_2
+\end{align*}
+
+\subsection{Analyzing the trivial equilibrium}\label{subsec:stability_trivial_equilibrium}
+Plugging the trivial equilibrium into (\ref{eq:5.1}) yields:
+\begin{equation}
+    \textbf{J}\left(E_0\right)=\begin{bmatrix}
+        1 & 0 & 0\\
+        0 & r_1 & 0\\
+        0 & 0 & r_2-v_2
+    \end{bmatrix}
+    \label{eq:5.2}
+\end{equation}
+The characteristic equation for this Jacobian matrix is:
+\begin{equation}
+    -\left(\lambda-1\right)\left(\lambda-r_1\right)\left(\lambda-\left(r_2-v_2\right)\right)=0
+    \label{eq:5.3}
+\end{equation}
+Solving for the eigenvalues in equation (\ref{eq:5.3}), we get:
+\[
+\lambda=\left\{
+1,\
+r_1,\
+r_2-v_2
+\right\}
+\]
+Since we have a positive eigenvalue $\lambda=1$, we can conclude that the trivial equilibrium is unstable.
+
+\subsection{Analyzing the $x$-axial equilibrium}\label{subsec:stability_x_axial_equilibrium}
+Plugging the $x$-axial equilibrium into (\ref{eq:5.1}) yields:
+\begin{equation}
+    \textbf{J}\left(E_x\right)=\begin{bmatrix}
+        -1 & 0 & -\gamma_{13}\\
+        0 & r_1\left(\gamma_{12}+1\right) & 0\\
+        0 & 0 & r_2-v_2
+    \end{bmatrix}
+    \label{eq:5.4}
+\end{equation}
+The characteristic equation for this Jacobian matrix is:
+\begin{equation}
+    -\left(\lambda+1\right)\left(\lambda-r_1\left(\gamma_{12}+1\right)\right)\left(\lambda-\left(r_2-v_2\right)\right)=0
+    \label{eq:5.5}
+\end{equation}
+Solving for the eigenvalues in equation (\ref{eq:5.5}), we get:
+\[
+\lambda=\left\{
+-1, \
+r_2-v_2, \
+r_1\left(\gamma_{12}+1\right)
+\right\}
+\]
+Since the eigenvalue $\lambda=r_1\left(\gamma_{12}+1\right)$ is always positive, we can conclude that the $x$-axial equilibrium is unstable.
+
+\subsection{Analyzing the $y$-axial equilibrium}\label{subsec:stability_y_axial_equilibrium}
+Plugging the $y$-axial equilibrium into (\ref{eq:5.1}) yields:
+\begin{equation}
+    \textbf{J}\left(E_y\right)=\begin{bmatrix}
+        1+\gamma_{12} & 0 & 0\\
+        0 & -r_1 & j_{23}\\
+        0 & 0 & j_{33}
+    \end{bmatrix}
+    \label{eq:5.6}
+\end{equation}
+where
+\begin{align*}
+    j_{23} &= -\frac{1-p}{v_1+1-p}\\
+    j_{33} &= -v_3j_{23}+r_2-v_2
+\end{align*}
+The characteristic equation for this Jacobian matrix is:
+\begin{equation}
+    -\left(\lambda-\left(1+\gamma_{12}\right)\right)\left(\lambda+r_1\right)\left(\lambda-j_{33}\right)=0
+    \label{eq:5.7}
+\end{equation}
+Solving for the eigenvalues in equation (\ref{eq:5.7}), we get:
+\[
+\lambda=\left\{
+1+\gamma_{12}, \
+-r_1, \
+-v_3j_{23}+r_2-v_2
+\right\}
+\]
+Since the eigenvalue $\lambda=1+\gamma_{12}$ is always positive, we can conclude that the $y$-axial equilibrium is unstable.
+
+\subsection{Analyzing the $z$-axial equilibrium}\label{subsec:stability_z_axial_equilibrium}
+Plugging the $z$-axial equilibrium into (\ref{eq:5.1}) yields:
+\begin{equation}
+    \textbf{J}\left(E_z\right)=\begin{bmatrix}
+        j_{11} & 0 & 0\\
+        0 & j_{22} & 0\\
+        0 & j_{32} & v_2-r_2
+    \end{bmatrix}
+    \label{eq:5.8}
+\end{equation}
+where
+\begin{align*}
+    j_{11} &= \frac{\gamma_{13}\left(v_2-r_2\right)+\gamma_{31}r_2}{\gamma_{31}r_2}\\
+    j_{22} &= r_1+\frac{\left(1-p\right)\left(v_2-r_2\right)}{\gamma_{31}r_2v_1}\\
+    j_{32} &= \frac{v_3\left(r_2-v_2\right)\left(1-p\right)}{\gamma_{31}r_2v_1}
+\end{align*}
+The characteristic equation for this Jacobian matrix is:
+\begin{equation}
+    -\left(\lambda-j_{11}\right)\left(\lambda-j_{22}\right)\left(\lambda-j_{33}\right)=0
+    \label{eq:5.9}
+\end{equation}
+Solving for the eigenvalues in equation (\ref{eq:5.9}), we get:
+\[
+\lambda=\left\{
+j_{11}, \
+j_{22}, \
+j_{33}
+\right\}
+\]
+The first eigenvalue is negative when:
+\[
+\frac{\gamma_{31}r_2}{\gamma_{13}}<r_2-v_2
+\]
+The second eigenvalue is negative when:
+\[
+\frac{\gamma_{31}r_1r_2v_1}{1-p}<r_2-v_2
+\]
+The third eigenvalue is negative when $v_2<r_2$. Therefore we can say that the $z$-axial equilibrium is stable if:
+\[
+\frac{\gamma_{31}r_2}{\gamma_{13}}<r_2-v_2,\ \frac{\gamma_{31}r_1r_2v_1}{1-p}<r_2-v_2,\ 0<r_2-v_2
+\]
+
+\subsection{Analyzing the $xy$-boundary equilibrium}\label{subsec:stability_xy_boundary_equilibrium}
+Plugging the $xy$-boundary equilibrium into (\ref{eq:5.1}) yields:
+\begin{equation}
+    \textbf{J}\left(E_{xy}\right)=\begin{bmatrix}
+        j_{11} & j_{12} & j_{13}\\
+        j_{21} & j_{22} & j_{23}\\
+        0 & 0 & j_{33}
+    \end{bmatrix}
+    \label{eq:5.10}
+\end{equation}
+where
+\begin{align*}
+    j_{11} &= 1-2\hat{x}+\gamma_{12}\left(\hat{y}\right)^2\\
+    j_{12} &= 2\gamma_{12}\hat{x}\hat{y}\\
+    j_{13} &= -\gamma_{13}\hat{x}\\
+    j_{21} &= 2\gamma_{21}r_1\hat{x}\hat{y}\\
+    j_{22} &= r_1\left(1-2\hat{y}+\gamma_{21}\left(\hat{x}\right)^2\right)\\
+    j_{23} &= -\frac{\left(1-p\right)\hat{y}}{v_1+\left(1-p\right)\hat{y}}\\
+    j_{33} &= r_2+\frac{v_3\left(1-p\right)\hat{y}}{v_1+\left(1-p\right)\hat{y}}-v_2
+\end{align*}
+The characteristic equation for this Jacobian matrix is:
+\begin{equation}
+    -\left(j_{33}-\lambda\right)\left(\lambda^2-\left(j_{11}+j_{22}\right)\lambda+j_{11}j_{22}-j_{12}j_{21}\right)=0
+    \label{eq:5.11}
+\end{equation}
+Solving for the eigenvalues in equation (\ref{eq:5.11}), we get:
+\[
+\lambda=\left\{
+j_{33},\ 
+\frac{\left(j_{11}+j_{22}\right) \pm \sqrt{\left(j_{11}-j_{22}\right)^2+4j_{12}j_{21}}}{2}
+\right\}
+\]
+The first eigenvalue is negative when:
+\[
+\frac{v_3\left(1-p\right)\hat{y}}{v_1+\left(1-p\right)\hat{y}}<v_2-r_2
+\]
+The other two eigenvalues are negative when:
+\[
+4\gamma_{12}\gamma_{21}\left(\hat{x}\right)^2\left(\hat{y}\right)^2<\left(1-2\hat{x}+\gamma_{12}\left(\hat{y}\right)^2\right)\left(1-2\hat{y}+\gamma_{21}\left(\hat{x}\right)^2\right)
+\]
+Therefore we can say that the $xy$-boundary equilibrium is stable if:
+\[
+\frac{v_3\left(1-p\right)\hat{y}}{v_1+\left(1-p\right)\hat{y}}<v_2-r_2
+\]
+and
+\[
+4\gamma_{12}\gamma_{21}\left(\hat{x}\right)^2\left(\hat{y}\right)^2<\left(1-2\hat{x}+\gamma_{12}\left(\hat{y}\right)^2\right)\left(1-2\hat{y}+\gamma_{21}\left(\hat{x}\right)^2\right)
+\]
+
+\subsection{Analyzing the $xz$-boundary equilibrium}\label{subsec:stability_xz_boundary_equilibrium}
+Plugging the $xz$-boundary equilibrium into (\ref{eq:5.1}) yields:
+\begin{equation}
+    \textbf{J}\left(E_{xz}\right)=\begin{bmatrix}
+        j_{11} & 0 & j_{13}\\
+        0 & j_{22} & 0\\
+        0 & j_{32} & j_{33}
+    \end{bmatrix}
+    \label{eq:5.12}
+\end{equation}
+where
+\begin{align*}
+    j_{11} &= \frac{\gamma_{13}\left(r_2-v_2\right)-\gamma_{31}r_2}{\gamma_{31}r_2}\\
+    j_{13} &= \frac{\gamma_{13}\left(\gamma_{13}\left(r_2-v_2\right)-\gamma_{31}r_2\right)}{\gamma_{31}r_2}\\
+    j_{22} &= \frac{\gamma_{21}r_1\left(\gamma_{13}\left(r_2-v_2\right)-\gamma_{31}r_2\right)^2}{\gamma_{31}^2r_2^2}+r_1-\frac{\left(r_2-v_2\right)\left(1-p\right)}{\gamma_{31}r_2v_1}\\
+    j_{32} &= \frac{v_3\left(r_2-v_2\right)\left(1-p\right)}{\gamma_{31}r_2v_1}\\
+    j_{33} &= v_2-r_2
+\end{align*}
+The characteristic equation for this Jacobian matrix is:
+\begin{equation}
+    -\left(j_{11}-\lambda\right)\left(j_{22}-\lambda\right)\left(j_{33}-\lambda\right)=0
+    \label{eq:5.13}
+\end{equation}
+Solving for the eigenvalues in equation (\ref{eq:5.13}), we get:
+\[
+\lambda=\left\{
+j_{11},\ 
+j_{22},\ 
+j_{33}
+\right\}
+\]
+The first eigenvalue is negative when:
+\[
+r_2-v_2<\frac{\gamma_{31}r_2}{\gamma_{13}}
+\]
+The second eigenvalue is negative when:
+\[
+\frac{r_1v_1\left(\gamma_{21}\left(\gamma_{13}\left(r_2-v_2\right)-\gamma_{31}r_2\right)^2+\gamma_{31}^2r_2^2\right)}{\gamma_{31}r_2\left(1-p\right)}<r_2-v_2
+\]
+The third eigenvalue is negative when:
+\[
+r_2-v_2>0
+\]
+Therefore we can say that the $xz$-boundary equilibrium is stable if $0<r_2-v_2$, $\displaystyle r_2-v_2<\frac{\gamma_{31}r_2}{\gamma_{13}}$, and:
+\[
+\frac{r_1v_1\left(\gamma_{21}\left(\gamma_{13}\left(r_2-v_2\right)-\gamma_{31}r_2\right)^2+\gamma_{31}^2r_2^2\right)}{\gamma_{31}r_2\left(1-p\right)}<r_2-v_2
+\]
+
+\subsection{Analyzing the $yz$-boundary equilibrium}\label{subsec:stability_yz_boundary_equilibrium}
+Plugging the $yz$-boundary equilibrium into (\ref{eq:5.1}) yields:
+\begin{equation}
+    \textbf{J}=\begin{bmatrix}
+        j_{11} & 0 & 0\\
+        0 & j_{22} & j_{23}\\
+        0 & j_{32} & j_{33}
+    \end{bmatrix}
+    \label{eq:5.14}
+\end{equation}
+where
+\begin{align*}
+    j_{11} &= 1+\gamma_{12}\left(\bar{y}\right)^2-\gamma_{13}\bar{z}\\
+    j_{22} &= r_1\left(1-2\bar{y}\right)-\frac{v_1\left(1-p\right)\bar{z}}{\left(v_1+\left(1-p\right)\bar{y}\right)^2}\\
+    j_{23} &= -\frac{\left(1-p\right)\bar{y}}{v_1+\left(1-p\right)\bar{y}}\\
+    j_{32} &= \frac{v_1v_3\left(1-p\right)\bar{z}}{\left(v_1+\left(1-p\right)\bar{y}\right)^2}\\
+    j_{33} &= r_2\left(1-2\gamma_{31}\bar{z}\right)+\frac{v_3\left(1-p\right)\bar{y}}{v_1+\left(1-p\right)\bar{y}}-v_2
+\end{align*}
+The characteristic equation for this Jacobian matrix is:
+\begin{equation}
+    -\left(j_{11}-\lambda\right)\left(\lambda^2-\left(j_{22}+j_{33}\right)\lambda+j_{22}j_{33}-j_{23}j_{32}\right)=0
+    \label{eq:5.15}
+\end{equation}
+Solving for the eigenvalues in equation (\ref{eq:5.15}), we get:
+\[
+\lambda=\left\{
+j_{11},\ 
+\frac{\left(j_{22}+j_{33}\right)\pm\sqrt{\left(j_{22}-j_{33}\right)^2+4j_{23}j_{32}}}{2}
+\right\}
+\]
+The first eigenvalue is negative when:
+\[
+\frac{1+\gamma_{12}\bar{y}}{\gamma_{13}}<\bar{z}
+\]
+The other two eigenvalues are negative when:
+\[
+j_{23}j_{32}<j_{22}j_{33}
+\]
+Therefore we can say that the $xy$-boundary equilibrium is stable if:
+\[
+\frac{1+\gamma_{12}\bar{y}}{\gamma_{13}}<\bar{z},\quad 
+j_{23}j_{32}<j_{22}j_{33}
+\]
+where
+\begin{align*}
+    j_{22} &= -\frac{v_1\left(1-p\right)\bar{z}}{\left(v_1+\left(1-p\right)\bar{y}\right)^2}+r_1\left(1-2\bar{y}\right)\\
+    j_{23} &= -\frac{\left(1-p\right)\bar{y}}{v_1+\left(1-p\right)\bar{y}}\\
+    j_{32} &= \frac{v_1v_3\left(1-p\right)\bar{z}}{\left(v_1+\left(1-p\right)\bar{y}\right)^2}\\
+    j_{33} &= r_2\left(1-2\gamma_{31}\bar{z}\right)+\frac{v_3\left(1-p\right)\bar{y}}{v_1+\left(1-p\right)\bar{y}}-v_2
+\end{align*}
+
+\subsection{Analyzing the interior equilibrium}\label{subsec:stability_interior_equilibrium}
+Plugging the interior equilibrium into (\ref{eq:5.1}) yields:
+\begin{equation}
+    \textbf{J}=\begin{bmatrix}
+        j_{11} & j_{12} & j_{13}\\
+        j_{21} & j_{22} & j_{23}\\
+        0 & j_{32} & j_{33}
+    \end{bmatrix}
+    \label{eq:5.16}
+\end{equation}
+where
+\begin{align*}
+    j_{11} &= 1-2x^*+\gamma_{12}\left(y^*\right)^2-\gamma_{13}z^*\\
+    j_{12} &= 2\gamma_{12}x^*y^*\\
+    j_{13} &= -\gamma_{13}x^*\\
+    j_{21} &= 2\gamma_{21}r_1x^*y^*\\
+    j_{22} &= r_1\left(1-2y^*+\gamma_{21}\left(x^*\right)^2\right)-\frac{v_1\left(1-p\right)z^*}{\left(v_1+\left(1-p\right)y^*\right)^2}\\
+    j_{23} &= -\frac{\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\\
+    j_{32} &= \frac{v_1v_3\left(1-p\right)z^*}{\left(v_1+\left(1-p\right)y^*\right)^2}\\
+    j_{33} &= r_2\left(1-2\gamma_{31}z^*\right)+\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2
+\end{align*}
+The characteristic equation for this Jacobian matrix is:
+\begin{equation}
+    \lambda^3+J_2\lambda^2+J_1\lambda+J_0=0
+    \label{eq:5.17}
+\end{equation}
+where
+\begin{align*}
+    J_2 &= -\left(j_{11}+j_{22}+j_{33}\right)\\
+    J_1 &= j_{11}\left(j_{22}+j_{33}\right)+j_{22}j_{33}-\left(j_{12}j_{21}+j_{23}j_{32}\right)\\
+    J_0 &= -j_{13}j_{21}j_{32}+j_{12}j_{21}j_{33}+j_{11}j_{23}j_{32}-j_{11}j_{22}j_{33}
+\end{align*}
+By the Routh–Hurwitz stability criterion~\cite{routh1877treatise}, we can say that the interior equilibrium is stable if:
+\[
+J_2>0,\quad J_1>0,\quad J_0>0,\quad J_2J_1>J_0
+\]
+where
+\begin{align*}
+    J_2 &= -\left(j_{11}+j_{22}+j_{33}\right)\\
+    J_1 &= j_{11}\left(j_{22}+j_{33}\right)+j_{22}j_{33}-\left(j_{12}j_{21}+j_{23}j_{32}\right)\\
+    J_0 &= -j_{13}j_{21}j_{32}+j_{12}j_{21}j_{33}+j_{11}j_{23}j_{32}-j_{11}j_{22}j_{33}\\
+    j_{11} &= 1-2x^*+\gamma_{12}\left(y^*\right)^2-\gamma_{13}z^*\\
+    j_{12} &= 2\gamma_{12}x^*y^*\\
+    j_{13} &= -\gamma_{13}x^*\\
+    j_{21} &= 2\gamma_{21}r_1x^*y^*\\
+    j_{22} &= r_1\left(1-2y^*+\gamma_{21}\left(x^*\right)^2\right)-\frac{v_1\left(1-p\right)z^*}{\left(v_1+\left(1-p\right)y^*\right)^2}\\
+    j_{23} &= -\frac{\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\\
+    j_{32} &= \frac{v_1v_3\left(1-p\right)z^*}{\left(v_1+\left(1-p\right)y^*\right)^2}\\
+    j_{33} &= r_2\left(1-2\gamma_{31}z^*\right)+\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2
+\end{align*}
