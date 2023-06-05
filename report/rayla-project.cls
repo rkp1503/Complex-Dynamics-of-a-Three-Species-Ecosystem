@@ -7,18 +7,6 @@
 \LoadClass{article}
 
 %-----------------------------------------------------------------------------
-% Defining new commands
-%-----------------------------------------------------------------------------
-\newcommand{\myUniversity}[1]{\newcommand{\myUniversityLoc}{#1}}
-\newcommand{\myTitle}[1]{\newcommand{\myTitleLoc}{#1}}
-\newcommand{\myName}[1]{\newcommand{\myNameLoc}{#1}}
-\newcommand{\courseid}[1]{\newcommand{\courseidLoc}{#1}}
-\newcommand{\courseName}[1]{\newcommand{\courseNameLoc}{#1}}
-\newcommand{\professorName}[1]{\newcommand{\professorNameLoc}{#1}}
-\newcommand{\term}[1]{\newcommand{\termLoc}{#1}}
-\newcommand{\dueDate}[1]{\newcommand{\dueDateLoc}{#1}}
-
-%-----------------------------------------------------------------------------
 % 3rd party packages
 %-----------------------------------------------------------------------------
 \usepackage{amsmath}
@@ -26,6 +14,7 @@
 \usepackage{geometry}
 \usepackage{graphicx,epstopdf}
 \usepackage{hyperref}
+\usepackage{ifthen}
 \usepackage{lipsum}
 
 %-----------------------------------------------------------------------------
@@ -38,10 +27,19 @@
 % Setting figures directory
 %-----------------------------------------------------------------------------
 \graphicspath{{figures/}}
-    
+
 %-----------------------------------------------------------------------------
 % Custom Title Style
 %-----------------------------------------------------------------------------
+\newcommand{\myUniversity}[1]{\newcommand{\myUniversityLoc}{#1}}
+\newcommand{\myTitle}[1]{\newcommand{\myTitleLoc}{#1}}
+\newcommand{\myName}[1]{\newcommand{\myNameLoc}{#1}}
+\newcommand{\courseid}[1]{\newcommand{\courseidLoc}{#1}}
+\newcommand{\courseName}[1]{\newcommand{\courseNameLoc}{#1}}
+\newcommand{\professorName}[1]{\newcommand{\professorNameLoc}{#1}}
+\newcommand{\term}[1]{\newcommand{\termLoc}{#1}}
+\newcommand{\dueDate}[1]{\newcommand{\dueDateLoc}{#1}}
+    
 \renewcommand{\maketitle}{
     \thispagestyle{plain}
     \begin{center}
@@ -62,18 +60,16 @@
 %-----------------------------------------------------------------------------
 % Custom referencing
 %-----------------------------------------------------------------------------
-% Referencing Sections
-\newcommand{\secref}[1]{Section~\ref{#1}}
-% Referencing Appendicies
-\newcommand{\appref}[1]{Appendix~\ref{#1}}
-% Referencing an equation
-\renewcommand{\eqref}[1]{Equation~(\ref{#1})}
-% Referencing a system of equations
-\newcommand{\sysref}[1]{System~(\ref{#1})}
-% Referencing a figure
-\newcommand{\figref}[1]{Figure~\ref{#1}}
-% Referencing a table
-\newcommand{\tabref}[1]{Table~\ref{#1}}
+\DeclareRobustCommand{\myref}[2][]{%
+    \ifthenelse{\equal{#1}{Equation} \OR \equal{#1}{System} \OR \equal{#1}{Model} \OR \equal{#1}{Matrix}}
+    {#1~\eqref{#2}}
+    {#1~\ref{#2}}%
+}
+
+%-----------------------------------------------------------------------------
+% Inclusion of section number in equation numbering
+%-----------------------------------------------------------------------------
+\numberwithin{equation}{section}
 
 %-----------------------------------------------------------------------------
 % Bibliography settings
