@@ -1,0 +1,258 @@
+\section{Numerical Simulations}\label{sec:numerical_simulations}
+In section~\ref{sec:stability_analysis}, we used mathematical analysis to analyze the stability of each equilibria and determine the conditions for stability. In this section, we will support and verify the stable equilibria determined in section~\ref{sec:stability_analysis} through numerical simulations and compare the interior equilibrium of both models under same/similar parameters.
+
+\subsection{The $z$-axial equilibrium}\label{subsec:numsim_z_axial_equilibrium}
+In sections~\ref{subsec:z_axial_equilibrium} and~\ref{subsec:stability_z_axial_equilibrium}, we determined that the $z$-axial equilibrium
+\[
+E_z=\left(0,0,\frac{r_2-v_2}{\gamma_{31}r_2}\right)
+\]
+exists if the condition $r_2-v_2>0$ is satisfied and is stable if the following conditions are satisfied:
+\[
+r_2-v_2>0,\quad 
+r_2-v_2>\frac{\gamma_{31}r_2}{\gamma_{13}},\quad 
+r_2-v_2>\frac{\gamma_{31}r_1r_2v_1}{1-p}
+\]
+To satisfy the conditions above, lets consider the following set of parameters:
+\begin{equation}
+    \begin{dcases}
+        \begin{aligned}
+            r_1 &= 0.404\\
+            r_2 &= 0.903\\
+            p &= 0.182
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \gamma_{12} &= 0.639\\
+            \gamma_{21} &= 0.283\\
+            \gamma_{13} &= 0.301\\
+            \gamma_{31} &= 0.110
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            v_1 &= 0.645\\
+            v_2 &= 0.175\\
+            v_3 &= 0.145
+        \end{aligned}
+    \end{dcases} 
+    \label{params:6.1}
+\end{equation}
+Under this set of parameter values, the $z$-axial equilibrium is $E_z=(0,0,1.7343)$. This is further supported by Fig.~\ref{fig:z_axial}, which is the result of solving model (\ref{model:3.2}) under the set of parameters (\ref{params:6.1}).
+
+\subsection{The $xy$-boundary equilibrium}\label{subsec:numsim_xy_boundary_equilibrium}
+In sections~\ref{subsec:xy_boundary_equilibrium} and~\ref{subsec:stability_xy_boundary_equilibrium}, we determined that the $yz$-boundary equilibrium $E_{yz}=\left(\hat{x},\hat{y},0\right)$ exists where
+\[
+\hat{x}=1+\gamma_{12}\left(\hat{y}\right)^2
+\]
+and $y^*$ is a positive solution to the equation:
+\[
+\gamma_{12}^2\gamma_{21}\left(\hat{y}\right)^4+2\gamma_{12}\gamma_{21}\left(\hat{y}\right)^2-\hat{y}+\gamma_{21}+1=0
+\]
+if the following condition is satisfied for some value of $\beta>0$:
+\[
+\gamma_{12}<\frac1{\beta^2}\left(\sqrt{\frac{\beta-1}{\gamma_{21}}}-1\right)
+\]
+and the equilibrium is stable if:
+\[
+\frac{v_3\left(1-p\right)\hat{y}}{v_1+\left(1-p\right)\hat{y}}<v_2-r_2
+\]
+and
+\[
+4\gamma_{12}\gamma_{21}\left(\hat{x}\right)^2\left(\hat{y}\right)^2<\left(1-2\hat{x}+\gamma_{12}\left(\hat{y}\right)^2\right)\left(1-2\hat{y}+\gamma_{21}\left(\hat{x}\right)^2\right)
+\]
+To satisfy the conditions above, let $\beta=2$ and consider the following set of parameters:
+\begin{equation}
+    \begin{dcases}
+        \begin{aligned}
+            r_1 &= 0.978\\
+            r_2 &= 0.613\\
+            p &= 0.326
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \gamma_{12} &= 0.245\\
+            \gamma_{21} &= 0.015\\
+            \gamma_{13} &= 0.920\\
+            \gamma_{31} &= 0.696
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            v_1 &= 0.523\\
+            v_2 &= 0.951\\
+            v_3 &= 0.570
+        \end{aligned}
+    \end{dcases} 
+    \label{params:6.2}
+\end{equation}
+Under this set of parameter values, the $xy$-boundary equilibrium is $E_{xy}=(1.257,1.024,0)$. This is further supported by Fig.~\ref{fig:xy_boundary}, which is the result of solving model (\ref{model:3.2}) under the set of parameters (\ref{params:6.2}).
+
+\subsection{The $xz$-boundary equilibrium}\label{subsec:numsim_xz_boundary_equilibrium}
+In sections~\ref{subsec:xz_boundary_equilibrium})and~\ref{subsec:stability_xz_boundary_equilibrium}, we determined that the $xz$-boundary equilibrium
+\[
+E_{xz}=\left(1-\frac{\gamma_{13}\left(r_2-v_2\right)}{\gamma_{31}r_2},0,\frac{r_2-v_2}{\gamma_{31}r_2}\right)
+\]
+exists if the following conditions are satisfied:
+\[
+r_2-v_2>0,\quad \frac{\gamma_{31}r_2}{\gamma_{13}}>0
+\]
+and the equilibrium is stable if $0<r_2-v_2$, $\displaystyle r_2-v_2<\frac{\gamma_{31}r_2}{\gamma_{13}}$, and:
+\[
+\frac{r_1v_1\left(\gamma_{21}\left(\gamma_{13}\left(r_2-v_2\right)-\gamma_{31}r_2\right)^2+\gamma_{31}^2r_2^2\right)}{\gamma_{31}r_2\left(1-p\right)}<r_2-v_2
+\]
+To satisfy the conditions above, lets consider the following set of parameters:
+\begin{equation}
+    \begin{dcases}
+        \begin{aligned}
+            r_1 &= 0.102\\
+            r_2 &= 0.763\\
+            p &= 0.271
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \gamma_{12} &= 0.182\\
+            \gamma_{21} &= 0.301\\
+            \gamma_{13} &= 0.109\\
+            \gamma_{31} &= 0.198
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            v_1 &= 0.983\\
+            v_2 &= 0.186\\
+            v_3 &= 0.113
+        \end{aligned}
+    \end{dcases} 
+    \label{params:6.3}
+\end{equation}
+Under this set of parameter values, the $xz$-boundary equilibrium is $E_{xz}=(0.584,0,3.819)$. This is further supported by Fig.~\ref{fig:xz_boundary}, which is the result of solving model (\ref{model:3.2}) under the set of parameters (\ref{params:6.3}).
+
+\subsection{The $yz$-boundary equilibrium}\label{subsec:numsim_yz_boundary_equilibrium}
+In sections~\ref{subsec:yz_boundary_equilibrium} and~\ref{subsec:stability_yz_boundary_equilibrium}, we determined that the $yz$-boundary equilibrium $E_{yz}=\left(0,\bar{y},\bar{z}\right)$ exists where:
+\[
+\bar{z}=\frac{r_2-v_2}{\gamma_{31}r_2}+\frac{v_3\left(1-p\right)\bar{y}}{\gamma_{31}r_2\left(v_1+\left(1-p\right)\bar{y}\right)}
+\]
+with a condition that $r_2>v_2$ and $\bar{y}$ is a positive root to the equation:
+\begin{equation*}
+    Y_3\left(\bar{y}\right)^3+Y_2\left(\bar{y}\right)^2+Y_1\bar{y}+Y_0=0
+\end{equation*}
+where
+\begin{align*}
+    Y_3 &= -\gamma_{31}r_1r_2\left(1-p\right)^2\\
+    Y_2 &= \gamma_{31}r_1r_2\left(\left(1-p\right)-2v_1\right)\left(1-p\right)\\
+    Y_1 &= \gamma_{31}r_1r_2v_1\left(2\left(1-p\right)-v_1\right)+\left(v_2-v_3-r_2\right)\left(1-p\right)^2\\
+    Y_0 &= \gamma_{31}r_1r_2v_1^2+v_1\left(v_2-r_2\right)\left(1-p\right)
+\end{align*}
+with a condition that $1-p>2v_1$ and the equilibrium is stable if:
+\[
+\frac{1+\gamma_{12}\bar{y}}{\gamma_{13}}<\bar{z},\quad 
+j_{23}j_{32}<j_{22}j_{33}
+\]
+where
+\begin{align*}
+    j_{22} &= -\frac{v_1\left(1-p\right)\bar{z}}{\left(v_1+\left(1-p\right)\bar{y}\right)^2}+r_1\left(1-2\bar{y}\right)\\
+    j_{23} &= -\frac{\left(1-p\right)\bar{y}}{v_1+\left(1-p\right)\bar{y}}\\
+    j_{32} &= \frac{v_1v_3\left(1-p\right)\bar{z}}{\left(v_1+\left(1-p\right)\bar{y}\right)^2}\\
+    j_{33} &= r_2\left(1-2\gamma_{31}\bar{z}\right)+\frac{v_3\left(1-p\right)\bar{y}}{v_1+\left(1-p\right)\bar{y}}-v_2
+\end{align*}
+To satisfy the conditions above, lets consider the following set of parameters:
+\begin{equation}
+    \begin{dcases}
+        \begin{aligned}
+            r_1 &= 0.978\\
+            r_2 &= 0.310\\
+            p &= 0.843
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \gamma_{12} &= 0.002\\
+            \gamma_{21} &= 0.407\\
+            \gamma_{13} &= 0.859\\
+            \gamma_{31} &= 0.446
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            v_1 &= 0.872\\
+            v_2 &= 0.201\\
+            v_3 &= 0.959
+        \end{aligned}
+    \end{dcases} 
+    \label{params:6.4}
+\end{equation}
+Under this set of parameter values, the $yz$-boundary equilibrium is $E_{yz}=(0,0.74,1.603)$. This is further supported by Fig.~\ref{fig:yz_boundary}, which is the result of solving model (\ref{model:3.2}) under the set of parameters (\ref{params:6.4}).
+
+\subsection{The interior equilibrium}\label{subsec:numsim_interior_equilibrium}
+In sections~\ref{subsec:interior_equilibrium} and~\ref{subsec:stability_interior_equilibrium}, we determined that the interior equilibrium $E_{xyz}=\left(x^*,y^*,z^*\right)$ exists where:
+\[
+x^*=1+\gamma_{12}\left(y^*\right)^2-\gamma_{13}z^*
+\]
+and
+\[
+z^*=\frac{r_2-v_2}{\gamma_{31}r_2}+\frac{v_3\left(1-p\right)y^*}{\gamma_{31}r_2\left(v_1+\left(1-p\right)y^*\right)};\quad r_2>v_2
+\]
+and $y^*$ is a positive root to the equation:
+\begin{equation*}
+    \sum_{i=0}^6 Y_i\left(y^*\right)^i=0
+\end{equation*}
+where
+\begin{align*}
+    Y_6 &= \gamma_{12}^2\gamma_{21}\gamma_{31}^2r_1r_2^2\left(1-p\right)^2\\
+    Y_5 &= 2\gamma_{12}^2\gamma_{21}\gamma_{31}^2r_1r_2^2v_1\left(1-p\right)\\
+    Y_4 &= \gamma_{12}\gamma_{21}\gamma_{31}r_1r_2\left(2\gamma_{13}\left(v_2-r_2-v_3\right)\left(1-p\right)^2+\gamma_{31}r_2\left(\gamma_{12}v_1^2+2\left(1-p\right)^2\right)\right)\\
+    Y_3 &= \gamma_{31}r_1r_2\left(2\gamma_{12}\gamma_{13}\gamma_{21}v_1\left(2\left(v_2-r_2\right)-v_3\right)+\gamma_{31}r_2\left(4\gamma_{12}\gamma_{21}v_1-\left(1-p\right)\right)\right)\left(1-p\right)\\
+    Y_2 &= r_1\left(2\gamma_{12}\gamma_{13}\gamma_{21}\gamma_{31}r_2v_1^2\left(v_2-r_2\right)+\gamma_{13}^2\gamma_{21}\left(r_2-v_2+v_3\right)^2\left(1-p\right)^2+2\gamma_{13}\gamma_{21}\gamma_{31}r_2\left(v_2-r_2-v_3\right)\left(1-p\right)^2\right.\\
+    &\left.+\gamma_{21}\gamma_{31}^2r_2^2\left(2\gamma_{12}v_1^2+\left(1-p\right)^2\right)+\gamma_{31}^2r_2^2\left(\left(1-p\right)-2v_1\right)\left(1-p\right)\right)\\
+    Y_1 &= 2\gamma_{13}^2\gamma_{21}r_1v_1\left(r_2-v_2\right)\left(r_2-v_2+v_3\right)\left(1-p\right)+2\gamma_{13}\gamma_{21}\gamma_{31}r_1r_2v_1\left(2\left(v_2-r_2\right)-v_3\right)\left(1-p\right)\\
+    &+\gamma_{31}^2r_1r_2^2v_1\left(2\left(\gamma_{21}+1\right)\left(1-p\right)-v_1\right)+\gamma_{31}r_2\left(v_2-r_2-v_3\right)\left(1-p\right)^2\\
+    Y_0 &= v_1\left(\gamma_{13}^2\gamma_{21}r_1v_1\left(r_2-v_2\right)^2+\gamma_{31}^2r_1r_2^2v_1\left(\gamma_{21}+1\right)+\gamma_{31}r_2\left(2\gamma_{13}\gamma_{21}r_1v_1+\left(1-p\right)\right)\left(v_2-r_2\right)\right)
+\end{align*}
+and the equilibrium is stable if:
+\[
+J_2>0,\quad J_1>0,\quad J_0>0,\quad J_2J_1>J_0
+\]
+where
+\begin{align*}
+    J_2 &= -\left(j_{11}+j_{22}+j_{33}\right)\\
+    J_1 &= j_{11}\left(j_{22}+j_{33}\right)+j_{22}j_{33}-\left(j_{12}j_{21}+j_{23}j_{32}\right)\\
+    J_0 &= -j_{13}j_{21}j_{32}+j_{12}j_{21}j_{33}+j_{11}j_{23}j_{32}-j_{11}j_{22}j_{33}\\
+    j_{11} &= 1-2x^*+\gamma_{12}\left(y^*\right)^2-\gamma_{13}z^*\\
+    j_{12} &= 2\gamma_{12}x^*y^*\\
+    j_{13} &= -\gamma_{13}x^*\\
+    j_{21} &= 2\gamma_{21}r_1x^*y^*\\
+    j_{22} &= r_1\left(1-2y^*+\gamma_{21}\left(x^*\right)^2\right)-\frac{v_1\left(1-p\right)z^*}{\left(v_1+\left(1-p\right)y^*\right)^2}\\
+    j_{23} &= -\frac{\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\\
+    j_{32} &= \frac{v_1v_3\left(1-p\right)z^*}{\left(v_1+\left(1-p\right)y^*\right)^2}\\
+    j_{33} &= r_2\left(1-2\gamma_{31}z^*\right)+\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2
+\end{align*}
+To ensure that the interior equilibrium exist and is stable, lets consider the following set of parameters:
+\begin{equation}
+    \begin{dcases}
+        \begin{aligned}
+            r_1 &= 0.635\\
+            r_2 &= 0.742\\
+            p &= 0.853
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \gamma_{12} &= 0.142\\
+            \gamma_{21} &= 0.002\\
+            \gamma_{13} &= 0.148\\
+            \gamma_{31} &= 0.215
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            v_1 &= 0.090\\
+            v_2 &= 0.891\\
+            v_3 &= 0.980
+        \end{aligned}
+    \end{dcases} 
+    \label{params:6.5}
+\end{equation}
+Under this set of parameter values, the interior equilibrium is $E_{xyz}=(0.941,0.174,0.426)$. This is further supported by Figs.~\ref{fig:interior}-\ref{fig:phase_plane_yz} where Fig.~\ref{fig:interior} shows the time evolution of each species, Fig.~\ref{fig:phase_plane_3d} shows the phase portrait, and Figs.~\ref{fig:phase_plane_xy}-\ref{fig:phase_plane_yz} are phase planes when solving model (\ref{model:3.2}) using the set of parameters (\ref{params:6.5}).
