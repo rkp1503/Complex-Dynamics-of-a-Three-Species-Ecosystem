@@ -1,5 +1,5 @@
 \section{Stability Analysis via Linearization}\label{sec:stability_analysis}
-In section~\ref{sec:identify_equilibria}, we have computed all possible equilibria in model (\ref{model:3.2}). In this section, we will use mathematical analysis to analyze the stability of each equilibria and determine the conditions for stability. In order to find the stability of each equilibrium point with the linearization method~\cite{book:2478639}, we will need the Jacobian matrix of (\ref{model:3.1}), which is:
+In \myref[Section]{sec:identify_equilibria}, we have computed all possible equilibria in \myref[Model]{model:3.2}. In this section, we will use mathematical analysis to analyze the stability of each equilibria and determine the conditions for stability. In order to find the stability of each equilibrium point with the linearization method~\cite{book:2478639}, we will need the Jacobian matrix of \myref[Model]{model:3.1}, which is:
 \begin{equation}
     \textbf{J}=\begin{bmatrix}
         j_{11} & j_{12} & j_{13}\\
@@ -21,7 +21,7 @@ where
 \end{align*}
 
 \subsection{Analyzing the trivial equilibrium}\label{subsec:stability_trivial_equilibrium}
-Plugging the trivial equilibrium into (\ref{eq:5.1}) yields:
+Plugging the trivial equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_0\right)=\begin{bmatrix}
         1 & 0 & 0\\
@@ -35,7 +35,7 @@ The characteristic equation for this Jacobian matrix is:
     -\left(\lambda-1\right)\left(\lambda-r_1\right)\left(\lambda-\left(r_2-v_2\right)\right)=0
     \label{eq:5.3}
 \end{equation}
-Solving for the eigenvalues in equation (\ref{eq:5.3}), we get:
+Solving for the eigenvalues in \myref[Equation]{eq:5.3}, we get:
 \[
 \lambda=\left\{
 1,\
@@ -46,7 +46,7 @@ r_2-v_2
 Since we have a positive eigenvalue $\lambda=1$, we can conclude that the trivial equilibrium is unstable.
 
 \subsection{Analyzing the $x$-axial equilibrium}\label{subsec:stability_x_axial_equilibrium}
-Plugging the $x$-axial equilibrium into (\ref{eq:5.1}) yields:
+Plugging the $x$-axial equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_x\right)=\begin{bmatrix}
         -1 & 0 & -\gamma_{13}\\
@@ -60,7 +60,7 @@ The characteristic equation for this Jacobian matrix is:
     -\left(\lambda+1\right)\left(\lambda-r_1\left(\gamma_{12}+1\right)\right)\left(\lambda-\left(r_2-v_2\right)\right)=0
     \label{eq:5.5}
 \end{equation}
-Solving for the eigenvalues in equation (\ref{eq:5.5}), we get:
+Solving for the eigenvalues in \myref[Equation]{eq:5.5}, we get:
 \[
 \lambda=\left\{
 -1, \
@@ -71,7 +71,7 @@ r_1\left(\gamma_{12}+1\right)
 Since the eigenvalue $\lambda=r_1\left(\gamma_{12}+1\right)$ is always positive, we can conclude that the $x$-axial equilibrium is unstable.
 
 \subsection{Analyzing the $y$-axial equilibrium}\label{subsec:stability_y_axial_equilibrium}
-Plugging the $y$-axial equilibrium into (\ref{eq:5.1}) yields:
+Plugging the $y$-axial equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_y\right)=\begin{bmatrix}
         1+\gamma_{12} & 0 & 0\\
@@ -90,7 +90,7 @@ The characteristic equation for this Jacobian matrix is:
     -\left(\lambda-\left(1+\gamma_{12}\right)\right)\left(\lambda+r_1\right)\left(\lambda-j_{33}\right)=0
     \label{eq:5.7}
 \end{equation}
-Solving for the eigenvalues in equation (\ref{eq:5.7}), we get:
+Solving for the eigenvalues in \myref[Equation]{eq:5.7}, we get:
 \[
 \lambda=\left\{
 1+\gamma_{12}, \
@@ -101,7 +101,7 @@ Solving for the eigenvalues in equation (\ref{eq:5.7}), we get:
 Since the eigenvalue $\lambda=1+\gamma_{12}$ is always positive, we can conclude that the $y$-axial equilibrium is unstable.
 
 \subsection{Analyzing the $z$-axial equilibrium}\label{subsec:stability_z_axial_equilibrium}
-Plugging the $z$-axial equilibrium into (\ref{eq:5.1}) yields:
+Plugging the $z$-axial equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_z\right)=\begin{bmatrix}
         j_{11} & 0 & 0\\
@@ -121,7 +121,7 @@ The characteristic equation for this Jacobian matrix is:
     -\left(\lambda-j_{11}\right)\left(\lambda-j_{22}\right)\left(\lambda-j_{33}\right)=0
     \label{eq:5.9}
 \end{equation}
-Solving for the eigenvalues in equation (\ref{eq:5.9}), we get:
+Solving for the eigenvalues in \myref[Equation]{eq:5.9}, we get:
 \[
 \lambda=\left\{
 j_{11}, \
@@ -143,7 +143,7 @@ The third eigenvalue is negative when $v_2<r_2$. Therefore we can say that the $
 \]
 
 \subsection{Analyzing the $xy$-boundary equilibrium}\label{subsec:stability_xy_boundary_equilibrium}
-Plugging the $xy$-boundary equilibrium into (\ref{eq:5.1}) yields:
+Plugging the $xy$-boundary equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_{xy}\right)=\begin{bmatrix}
         j_{11} & j_{12} & j_{13}\\
@@ -167,7 +167,7 @@ The characteristic equation for this Jacobian matrix is:
     -\left(j_{33}-\lambda\right)\left(\lambda^2-\left(j_{11}+j_{22}\right)\lambda+j_{11}j_{22}-j_{12}j_{21}\right)=0
     \label{eq:5.11}
 \end{equation}
-Solving for the eigenvalues in equation (\ref{eq:5.11}), we get:
+Solving for the eigenvalues in \myref[Equation]{eq:5.11}, we get:
 \[
 \lambda=\left\{
 j_{33},\ 
@@ -192,7 +192,7 @@ and
 \]
 
 \subsection{Analyzing the $xz$-boundary equilibrium}\label{subsec:stability_xz_boundary_equilibrium}
-Plugging the $xz$-boundary equilibrium into (\ref{eq:5.1}) yields:
+Plugging the $xz$-boundary equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_{xz}\right)=\begin{bmatrix}
         j_{11} & 0 & j_{13}\\
@@ -214,7 +214,7 @@ The characteristic equation for this Jacobian matrix is:
     -\left(j_{11}-\lambda\right)\left(j_{22}-\lambda\right)\left(j_{33}-\lambda\right)=0
     \label{eq:5.13}
 \end{equation}
-Solving for the eigenvalues in equation (\ref{eq:5.13}), we get:
+Solving for the eigenvalues in \myref[Equation]{eq:5.13}, we get:
 \[
 \lambda=\left\{
 j_{11},\ 
@@ -240,7 +240,7 @@ Therefore we can say that the $xz$-boundary equilibrium is stable if $0<r_2-v_2$
 \]
 
 \subsection{Analyzing the $yz$-boundary equilibrium}\label{subsec:stability_yz_boundary_equilibrium}
-Plugging the $yz$-boundary equilibrium into (\ref{eq:5.1}) yields:
+Plugging the $yz$-boundary equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}=\begin{bmatrix}
         j_{11} & 0 & 0\\
@@ -262,7 +262,7 @@ The characteristic equation for this Jacobian matrix is:
     -\left(j_{11}-\lambda\right)\left(\lambda^2-\left(j_{22}+j_{33}\right)\lambda+j_{22}j_{33}-j_{23}j_{32}\right)=0
     \label{eq:5.15}
 \end{equation}
-Solving for the eigenvalues in equation (\ref{eq:5.15}), we get:
+Solving for the eigenvalues in \myref[Equation]{eq:5.15}, we get:
 \[
 \lambda=\left\{
 j_{11},\ 
@@ -291,7 +291,7 @@ where
 \end{align*}
 
 \subsection{Analyzing the interior equilibrium}\label{subsec:stability_interior_equilibrium}
-Plugging the interior equilibrium into (\ref{eq:5.1}) yields:
+Plugging the interior equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}=\begin{bmatrix}
         j_{11} & j_{12} & j_{13}\\
