@@ -1,0 +1,405 @@
+\section{Identifying Equilibria}\label{sec:identify_equilibria}
+In section~\ref{sec:modified_model}, we have modified some of the assumptions the authors have made and created model (\ref{model:3.2}) based on the new/modified assumptions. In this section, we will find all the equilibria present in our model. To find all the equilibria $\left(x^*,y^*,z^*\right)$ of this system, we will set all the equations in model (\ref{model:3.1}) equal to 0~\cite{book:2478639}.
+\begin{subequations}
+    \begin{align}
+        0 &= x^*\left(1-x^*+\gamma_{12}\left(y^*\right)^2\right)-\gamma_{13}x^*z^*
+        \label{eq:4.1a}\\
+        0 &= r_1y^*\left(1-y^*+\gamma_{21}\left(x^*\right)^2\right)-\frac{\left(1-p\right)y^*z^*}{v_1+\left(1-p\right)y^*}
+        \label{eq:4.1b}\\
+        0 &= r_2z^*\left(1-\gamma_{31}z^*\right)+z^*\left(\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2\right)
+        \label{eq:4.1c}
+    \end{align}
+    \label{eq:4.1}
+\end{subequations}
+
+\subsection{Case 1: The trivial equilibrium}\label{subsec:trivial_equilibrium}
+The trivial equilibrium is where $\left(x^*.y^*.z^*\right)=(0,0,0)$. To verify that the trivial equilibrium exists in model (\ref{model:3.2}), we will plug in $x^*=0$, $y^*=0$, and $z^*=0$ into the model and must conclude that each equation reduces to $0=0$. Plugging $x^*=0$, $y^*=0$, and $z^*=0$ into model (\ref{model:3.2}) yields:
+\begin{align*}
+    0 &= (0)\left(1-(0)+\gamma_{12}(0)^2\right)-\gamma_{13}(0)(0)\\
+    0 &= r_1(0)\left(1-(0)+\gamma_{21}(0)^2\right)-\frac{\left(1-p\right)(0)(0)}{v_1+\left(1-p\right)(0)}\\
+    0 &= r_2(0)\left(1-\gamma_{31}(0)\right)+(0)\left(\frac{v_3\left(1-p\right)(0)}{v_1+\left(1-p\right)(0)}-v_2\right)
+\end{align*}
+By inspection, we can see that each equation reduces to $0=0$. Thus, we can say that the trivial equilibrium exists:
+\[
+\fbox{$\displaystyle E_0=\left(0,0,0\right)$}
+\]
+
+\subsection{Case 2: The $x$-axial equilibrium}\label{subsec:x_axial_equilibrium}
+The $x$-axial equilibrium is an equilibrium where $x^*$ is non-zero and the other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $x^*$ where $x^*<0$. Thus, the conditions to impose when finding the $x$-axial equilibrium are $x^*>0$ and all other components are 0. To find the $x$-axial equilibrium of model (\ref{model:3.2}), we will plug in $y^*=0$ and $z^*=0$:
+\begin{align*}
+    0 &= x^*\left(1-x^*+\gamma_{12}(0)^2\right)-\gamma_{13}x^*(0)\\
+    0 &= r_1(0)\left(1-(0)+\gamma_{21}\left(x^*\right)^2\right)-\frac{\left(1-p\right)(0)(0)}{v_1+\left(1-p\right)(0)}\\
+    0 &= r_2(0)\left(1-\gamma_{31}(0)\right)+(0)\left(\frac{v_3\left(1-p\right)(0)}{v_1+\left(1-p\right)(0)}-v_2\right)
+\end{align*}
+which reduces to:
+\begin{equation}
+    0 = x^*\left(1-x^*\right)
+    \label{eq:4.2}
+\end{equation}
+Equation (\ref{eq:4.2}) yields solutions $x^*=\left\{0, 1\right\}$. However, due the condition $x^*>0$ we imposed, the only valid solution to consider is $x^*=1$. With this value of $x^*$, we have concluded that the $x$-axial equilibrium exists:
+\[
+\fbox{$\displaystyle E_x=\left(
+1,
+0,
+0
+\right)$}
+\]
+
+\subsection{Case 3: The $y$-axial equilibrium}\label{subsec:y_axial_equilibrium}
+The $y$-axial equilibrium is an equilibrium where $y^*$ is non-zero and the other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $y^*$ where $y^*<0$. Thus, the conditions to impose when finding the $y$-axial equilibrium are $y^*>0$ and all other components are 0. To find the $y$-axial equilibrium of model (\ref{model:3.2}), we will plug in $x^*=0$ and $z^*=0$:
+\begin{align*}
+    0 &= (0)\left(1-(0)+\gamma_{12}\left(y^*\right)^2\right)-\gamma_{13}(0)(0)\\
+    0 &= r_1y^*\left(1-y^*+\gamma_{21}(0)^20\right)-\frac{\left(1-p\right)y^*(0)}{v_1+\left(1-p\right)y^*}\\
+    0 &= r_2(0)\left(1-\gamma_{31}(0)\right)+(0)\left(\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2\right)
+\end{align*}
+which reduces to:
+\begin{equation}
+    r_1y^*\left(1-y^*\right)=0
+    \label{eq:4.3}
+\end{equation}
+Since all parameters are positive, Equation (\ref{eq:4.3}) yields solutions $y^*=\left\{0, 1\right\}$. However, due the condition $y^*>0$ we imposed, the only valid solution to consider is $y^*=1$. With this value of $y^*$, we have concluded that the $y$-axial equilibrium exists:
+\[
+\fbox{$\displaystyle E_y=\left(
+0,
+1,
+0
+\right)$}
+\]
+
+\subsection{Case 4: The $z$-axial equilibrium}\label{subsec:z_axial_equilibrium}
+The $z$-axial equilibrium is an equilibrium where $z^*$ is non-zero and the other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $z^*$ where $z^*<0$. Thus, the conditions to impose when finding the $z$-axial equilibrium are $z^*>0$ and all other components are 0. To find the $z$-axial equilibrium of model (\ref{model:3.2}), we will plug in $x^*=0$ and $y^*=0$:
+\begin{align*}
+    0 &= (0)\left(1-(0)+\gamma_{12}(0)^2\right)-\gamma_{13}(0)z^*\\
+    0 &= r_1(0)\left(1-(0)+\gamma_{21}(0)^2\right)-\frac{\left(1-p\right)(0)z^*}{v_1+\left(1-p\right)(0)}\\
+    0 &= r_2z^*\left(1-\gamma_{31}z^*\right)+z^*\left(\frac{v_3\left(1-p\right)(0)}{v_1+\left(1-p\right)(0)}-v_2\right)
+\end{align*}
+which reduces to:
+\begin{equation}
+    r_2z^*\left(1-\gamma_{31}z^*\right)-v_2z^*=0
+    \label{eq:4.4}
+\end{equation}
+Since all parameters are positive, Equation (\ref{eq:4.3}) yields solutions
+\[
+z^*=\left\{0, \frac{r_2-v_2}{\gamma_{31}r_2}\right\}
+\]
+However, due the condition $z^*>0$ we imposed, the only valid solution to consider is:
+\[
+z^*=\frac{r_2-v_2}{\gamma_{31}r_2}
+\]
+With this value of $z^*$, we have concluded that the $z$-axial equilibrium exists:
+\[
+\fbox{$\displaystyle E_z=\left(
+0,
+0,
+\frac{r_2-v_2}{\gamma_{31}r_2}
+\right)$}
+\]
+under the condition:
+\[
+r_2>v_2
+\]
+
+\subsection{Case 5: The $xy$-boundary equilibrium}\label{subsec:xy_boundary_equilibrium}
+The $xy$-boundary equilibrium is an equilibrium where $x^*$ and $y^*$ are non-zero and all other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $x^*$ and $y^*$ where $x^*<0$ and $y^*<0$. Thus, the conditions to impose when finding the $xy$-boundary equilibrium are $x^*>0$ and $y^*>0$ and all other components are 0. To find the $xy$-boundary equilibrium of model (\ref{model:3.2}), we will plug in $z^*=0$:
+\begin{align*}
+    0 &= x^*\left(1-x^*+\gamma_{12}\left(y^*\right)^2\right)-\gamma_{13}x^*(0)\\
+    0 &= r_1y^*\left(1-y^*+\gamma_{21}\left(x^*\right)^2\right)-\frac{\left(1-p\right)y^*(0)}{v_1+\left(1-p\right)y^*}\\
+    0 &= r_2(0)\left(1-\gamma_{31}(0)\right)+(0)\left(\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2\right)
+\end{align*}
+which reduces to:
+\begin{subequations}
+    \begin{align}
+        0 &= x^*\left(1-x^*+\gamma_{12}\left(y^*\right)^2\right)
+        \label{eq:4.5a}\\
+        0 &= r_1y^*\left(1-y^*+\gamma_{21}\left(x^*\right)^2\right)
+        \label{eq:4.5b}
+    \end{align}
+    \label{eq:4.5}
+\end{subequations}
+With the conditions $x^*>0$ and $y^*>0$ we imposed, the system (\ref{eq:4.5}) reduces to:
+\begin{subequations}
+    \begin{align}
+        0 &= 1-x^*+\gamma_{12}\left(y^*\right)^2
+        \label{eq:4.6a}\\
+        0 &= 1-y^*+\gamma_{21}\left(x^*\right)^2
+        \label{eq:4.6b}
+    \end{align}
+    \label{eq:4.6}
+\end{subequations}
+We can solve for $x^*$ in Equation (\ref{eq:4.6a}):
+\begin{equation}
+    x^*=1+\gamma_{12}\left(y^*\right)^2
+    \label{eq:4.7}
+\end{equation}
+and plug Equation (\ref{eq:4.7}) into Equation (\ref{eq:4.6b}) to get:
+\begin{equation}
+    \gamma_{12}^2\gamma_{21}\left(y^*\right)^4+2\gamma_{12}\gamma_{21}\left(y^*\right)^2-y^*+\left(\gamma_{21}+1\right)=0
+    \label{eq:4.8}
+\end{equation}
+There isn't a nice closed-form solution to Equation (\ref{eq:4.8}) so we will show that there exist a $y^*$ such that Equation (\ref{eq:4.8}) is satisfied. To do this, we will use the intermediate value theorem~\cite{book:2946356}. Let
+\[
+f\left(y^*\right)=\gamma_{12}^2\gamma_{21}\left(y^*\right)^4+2\gamma_{12}\gamma_{21}\left(y^*\right)^2-y^*+\left(\gamma_{21}+1\right)
+\]
+Here, we can see that $f(0)=\gamma_{21}+1$. Since all parameters are positive, this means that $f(0)>0$. Let $f(\beta)<0$ for some value of $\beta$. $f\left(\beta\right)<0$ implies:
+\[
+\gamma_{12}<\frac1{\beta^2}\left(\sqrt{\frac{\beta-1}{\gamma_{21}}}-1\right)
+\]
+Therefore we can say that the $xy$-boundary equilibrium $E_{xy}=\left(\hat{x},\hat{y},0\right)$ exists where
+\[
+\hat{x}=1+\gamma_{12}\left(\hat{y}\right)^2
+\]
+and $y^*$ is a positive solution to the equation:
+\[
+\gamma_{12}^2\gamma_{21}\left(\hat{y}\right)^4+2\gamma_{12}\gamma_{21}\left(\hat{y}\right)^2-\hat{y}+\gamma_{21}+1=0
+\]
+if the following condition is satisfied for some value of $\beta>0$:
+\[
+\gamma_{12}<\frac1{\beta^2}\left(\sqrt{\frac{\beta-1}{\gamma_{21}}}-1\right)
+\]
+
+\subsection{Case 6: The $xz$-boundary equilibrium}\label{subsec:xz_boundary_equilibrium}
+The $xz$-boundary equilibrium is an equilibrium where $x^*$ and $z^*$ are non-zero and all other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $x^*$ and $z^*$ where $x^*<0$ and $z^*<0$. Thus, the conditions to impose when finding the $xz$-boundary equilibrium are $x^*>0$ and $z^*>0$ and all other components are 0. To find the $xz$-boundary equilibrium of model (\ref{model:3.2}), we will plug in $y^*=0$:
+\begin{align*}
+    0 &= x^*\left(1-x^*+\gamma_{12}(0)^2\right)-\gamma_{13}x^*z^*\\
+    0 &= r_1(0)\left(1-(0)+\gamma_{21}\left(x^*\right)^2\right)-\frac{\left(1-p\right)(0)z^*}{v_1+\left(1-p\right)(0)}\\
+    0 &= r_2z^*\left(1-\gamma_{31}z^*\right)+z^*\left(\frac{v_3\left(1-p\right)(0)}{v_1+\left(1-p\right)(0)}-v_2\right)
+\end{align*}
+which reduces to:
+\begin{subequations}
+    \begin{align}
+        0 &= x^*\left(1-x^*\right)-\gamma_{13}x^*z^*
+        \label{eq:4.9a}\\
+        0 &= r_2z^*\left(1-\gamma_{31}z^*\right)-v_2z^*
+        \label{eq:4.9b}
+    \end{align}
+    \label{eq:4.9}
+\end{subequations}
+With the conditions $x^*>0$ and $z^*>0$ we imposed, the system (\ref{eq:4.9}) reduces to:
+\begin{subequations}
+    \begin{align}
+        0 &= 1-x^*-\gamma_{13}z^*
+        \label{eq:4.10a}\\
+        0 &= r_2\left(1-\gamma_{31}z^*\right)-v_2
+        \label{eq:4.10b}
+    \end{align}
+    \label{eq:4.10}
+\end{subequations}
+We can solve for $z^*$ in Equation (\ref{eq:4.10b}):
+\begin{equation}
+    z^*=\frac{r_2-v_2}{\gamma_{31}r_2}
+    \label{eq:4.11}
+\end{equation}
+To ensure that $z^*>0$, we need to impose the condition $r_2>v_2$. Plugging Equation (\ref{eq:4.11}) into Equation (\ref{eq:4.10a}), we get:
+\begin{equation}
+    1-x^*-\gamma_{13}\left(\frac{r_2-v_2}{\gamma_{31}r_2}\right)=0
+    \label{eq:4.12}
+\end{equation}
+Solving for $x^*$ in Equation (\ref{eq:4.12}), we get:
+\begin{equation}
+    x^*=1-\frac{\gamma_{13}\left(r_2-v_2\right)}{\gamma_{31}r_2}
+    \label{eq:4.13}
+\end{equation}
+To ensure that $x^*>0$, we need to impose the condition
+\[
+\frac{\gamma_{31}r_2}{\gamma_{13}}>0
+\]
+With Equation (\ref{eq:4.13}), $y^*=0$, and Equation (\ref{eq:4.11}), we can conclude that the $xz$-boundary equilibrium exists:
+\[
+\fbox{$\displaystyle E_{xz}=\left(
+1-\frac{\gamma_{13}\left(r_2-v_2\right)}{\gamma_{31}r_2},
+0,
+\frac{r_2-v_2}{\gamma_{31}r_2}
+\right)$}
+\]
+under the conditions:
+\[
+r_2>v_2,\quad \frac{\gamma_{31}r_2}{\gamma_{13}}>0
+\]
+
+\subsection{Case 7: The $yz$-boundary equilibrium}\label{subsec:yz_boundary_equilibrium}
+The $yz$-boundary equilibrium is an equilibrium where $y^*$ and $z^*$ are non-zero and all other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $y^*$ and $z^*$ where $y^*<0$ and $z^*<0$. Thus, the conditions to impose when finding the $yz$-boundary equilibrium are $y^*>0$ and $z^*>0$ and all other components are 0. To find the $yz$-boundary equilibrium of model (\ref{model:3.2}), we will plug in $x^*=0$:
+\begin{align*}
+    0 &= (0)\left(1-(0)+\gamma_{12}\left(y^*\right)^2\right)-\gamma_{13}(0)z^*\\
+    0 &= r_1y^*\left(1-y^*+\gamma_{21}(0)^2\right)-\frac{\left(1-p\right)y^*z^*}{v_1+\left(1-p\right)y^*}\\
+    0 &= r_2z^*\left(1-\gamma_{31}z^*\right)+z^*\left(\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2\right)
+\end{align*}
+which reduces to:
+\begin{subequations}
+    \begin{align}
+        0 &= r_1y^*\left(1-y^*\right)-\frac{\left(1-p\right)y^*z^*}{v_1+\left(1-p\right)y^*}
+        \label{eq:4.14a}\\
+        0 &= r_2z^*\left(1-\gamma_{31}z^*\right)+z^*\left(\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2\right)
+        \label{eq:4.14b}
+    \end{align}
+    \label{eq:4.14}
+\end{subequations}
+With the conditions $y^*>0$ and $z^*>0$ we imposed, the system (\ref{eq:4.14}) reduces to:
+\begin{subequations}
+    \begin{align}
+        0 &= r_1\left(1-y^*\right)-\frac{\left(1-p\right)z^*}{v_1+\left(1-p\right)y^*}
+        \label{eq:4.15a}\\
+        0 &= r_2\left(1-\gamma_{31}z^*\right)+\left(\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2\right)
+        \label{eq:4.15b}
+    \end{align}
+    \label{eq:4.15}
+\end{subequations}
+We can solve for $z^*$ in Equation (\ref{eq:4.15b}):
+\begin{equation}
+    z^*=\frac{r_2-v_2}{\gamma_{31}r_2}+\frac{v_3\left(1-p\right)y^*}{\gamma_{31}r_2\left(v_1+\left(1-p\right)y^*\right)}
+    \label{eq:4.16}
+\end{equation}
+To ensure that $z^*>0$, we need to impose the condition $r_2>v_2$. To solve for $y^*$, we will plug in Equation (\ref{eq:4.16}) into Equation (\ref{eq:4.15a}) to get the equation:
+\begin{equation}
+    \frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{\gamma_{31}r_2\left(v_1+\left(1-p\right)y^*\right)^2}=0
+    \label{eq:4.17}
+\end{equation}
+where
+\begin{align*}
+    Y_3 &= -\gamma_{31}r_1r_2\left(1-p\right)^2\\
+    Y_2 &= \gamma_{31}r_1r_2\left(\left(1-p\right)-2v_1\right)\left(1-p\right)\\
+    Y_1 &= \gamma_{31}r_1r_2v_1\left(2\left(1-p\right)-v_1\right)+\left(v_2-v_3-r_2\right)\left(1-p\right)^2\\
+    Y_0 &= \gamma_{31}r_1r_2v_1^2+v_1\left(v_2-r_2\right)\left(1-p\right)
+\end{align*}
+Note that we can eliminate one value of $y^*$ form Equation (\ref{eq:4.17}):
+\[
+\left(v_1+\left(1-p\right)y^*\right)^2\neq0 \implies y^*\neq-\frac{v_1}{1-p}
+\]
+and simplify Equation (\ref{eq:4.17}) to:
+\begin{equation}
+    Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0=0
+    \label{eq:4.18}
+\end{equation}
+With a third degree polynomial with complex coefficients, it will be difficult to derive the closed-form solutions to Equation (\ref{eq:4.18}). However, we don't need to find the exact form of the $y^*$ component in this equilibrium. It is sufficient to show that a positive solution to Equation (\ref{eq:4.18}) exists. This is because if $y^*=0$, then it will lead to the $z$-axial equilibrium and if $y^*<0$ or if $y^*$ is complex, then we ignore it since it biologically does not make sense. Going through the coefficients of Equation (\ref{eq:4.18}), we can immediately see that $Y_3<0$. For $Y_2$, we can place a condition to determine when its positive or negative. In particular, we can say that
+\[
+\begin{dcases}
+    Y_2<0 &\text{if}\quad 1-p<2v_1\\
+    Y_2>0 &\text{if}\quad 1-p>2v_1
+\end{dcases}
+\]
+For $Y_1$, we have:
+\[
+\begin{dcases}
+    Y_1<0 &\text{if}\quad \frac{\gamma_{31}r_1r_2v_1\left(2\left(1-p\right)-v_1\right)}{\left(r_2-v_2+v_3\right)\left(1-p\right)^2}<1\\
+    Y_1>0 &\text{if}\quad \frac{\gamma_{31}r_1r_2v_1\left(2\left(1-p\right)-v_1\right)}{\left(r_2-v_2+v_3\right)\left(1-p\right)^2}>1
+\end{dcases}
+\]
+and for $Y_0$, we have:
+\[
+\begin{dcases}
+    Y_0<0 &\text{if}\quad \frac{\gamma_{31}r_1r_2v_1}{\left(r_2-v_2\right)\left(1-p\right)}<1\\
+    Y_0>0 &\text{if}\quad \frac{\gamma_{31}r_1r_2v_1}{\left(r_2-v_2\right)\left(1-p\right)}>1
+\end{dcases}
+\]
+Note that we had to impose a condition on $z^*$, which was $r_2>v_2$. With this condition, we can rewrite one our conditions on $Y_0$:
+\[
+\begin{dcases}
+    Y_0<0 &\text{if}\quad \frac{\gamma_{31}r_1r_2v_1}{1-p}<r_2-v_2\\
+    Y_0>0 &\text{if}\quad \frac{\gamma_{31}r_1r_2v_1}{1-p}>0
+\end{dcases}
+\]
+and for $Y_1$, the conditions can be rewritten as:
+\[
+\begin{dcases}
+    Y_1<0 &\text{if}\quad \frac{\gamma_{31}r_1r_2v_1\left(2\left(1-p\right)-v_1\right)}{\left(1-p\right)^2}<r_2-v_2+v_3\\
+    Y_1>0 &\text{if}\quad 1-p>\frac{v_1}2
+\end{dcases}
+\]
+By Descartes' rule of signs~\cite{10.2307/1967494}, we can say that Equation (\ref{eq:4.18}) has at least one positive solution if $Y_3<0$ and $Y_2,Y_1,Y_0>0$. This means that we must impose the conditions:
+\[
+1-p>2v_1,\quad 1-p>\frac{v_1}2,\quad \frac{\gamma_{31}r_1r_2v_1}{1-p}>0
+\]
+Since all parameters are positive, the third condition is always fulfilled. Also, we know that $2v_1>v_1/2$ so the second condition is redundant. Therefore, we can say that the $yz$-boundary equilibrium $E_{yz}=\left(0,\bar{y},\bar{z}\right)$ exists where:
+\[
+\bar{z}=\frac{r_2-v_2}{\gamma_{31}r_2}+\frac{v_3\left(1-p\right)\bar{y}}{\gamma_{31}r_2\left(v_1+\left(1-p\right)\bar{y}\right)}
+\]
+with a condition that $r_2>v_2$ and $\bar{y}$ is a positive root to the equation:
+\begin{equation*}
+    Y_3\left(\bar{y}\right)^3+Y_2\left(\bar{y}\right)^2+Y_1\bar{y}+Y_0=0
+\end{equation*}
+where
+\begin{align*}
+    Y_3 &= -\gamma_{31}r_1r_2\left(1-p\right)^2\\
+    Y_2 &= \gamma_{31}r_1r_2\left(\left(1-p\right)-2v_1\right)\left(1-p\right)\\
+    Y_1 &= \gamma_{31}r_1r_2v_1\left(2\left(1-p\right)-v_1\right)+\left(v_2-v_3-r_2\right)\left(1-p\right)^2\\
+    Y_0 &= \gamma_{31}r_1r_2v_1^2+v_1\left(v_2-r_2\right)\left(1-p\right)
+\end{align*}
+with a condition that $1-p>2v_1$.
+
+\subsection{Case 8: The interior equilibrium}\label{subsec:interior_equilibrium}
+The interior equilibrium is an equilibrium where all the components of the equilibrium are non-zero. Since we are talking about population densities, having non-zero components that are also negative would not make sense. Thus, the conditions to impose when finding the interior equilibrium are when the components are positive. To find the interior equilibrium of model (\ref{model:3.2}), we know that $x^*,y^*,z^*\neq0$. So we can reduce the model to:
+\begin{subequations}
+    \begin{align}
+        0 &= 1-x^*+\gamma_{12}\left(y^*\right)^2-\gamma_{13}z^*
+        \label{eq:4.21a}\\
+        0 &= r_1\left(1-y^*+\gamma_{21}\left(x^*\right)^2\right)-\frac{\left(1-p\right)z^*}{v_1+\left(1-p\right)y^*}
+        \label{eq:4.21b}\\
+        0 &= r_2\left(1-\gamma_{31}z^*\right)+\left(\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2\right)
+        \label{eq:4.21c}
+    \end{align}
+    \label{eq:4.21}
+\end{subequations}
+We can solve for $x^*$ in Equation (\ref{eq:4.21a}):
+\begin{equation}
+    x^*=1+\gamma_{12}\left(y^*\right)^2-\gamma_{13}z^*
+    \label{eq:4.22}
+\end{equation}
+To ensure that $x^*>0$, we will need to impose the condition:
+\[
+z^*<\frac{1+\gamma_{12}\left(y^*\right)^2}{\gamma_{13}}
+\]
+We can also solve for $z^*$ in Equation (\ref{eq:4.21c}):
+\begin{equation}
+    z^*=\frac{r_2-v_2}{\gamma_{31}r_2}+\frac{v_3\left(1-p\right)y^*}{\gamma_{31}r_2\left(v_1+\left(1-p\right)y^*\right)}
+    \label{eq:4.23}
+\end{equation}
+To ensure that $z^*>0$, we will need to impose the condition $r_2>v_2$. With Equation (\ref{eq:4.22}) and Equation (\ref{eq:4.23}), we can plug them into Equation (\ref{eq:4.21b}) to obtain the following Equation:
+\begin{equation}
+    \frac{1}{\gamma_{13}^2r_2^2\left(v_1+\left(1-p\right)y^*\right)^2}\sum_{i=0}^6 Y_i\left(y^*\right)^i=0
+    \label{eq:4.24}
+\end{equation}
+where
+\begin{align*}
+    Y_6 &= \gamma_{12}^2\gamma_{21}\gamma_{31}^2r_1r_2^2\left(1-p\right)^2\\
+    Y_5 &= 2\gamma_{12}^2\gamma_{21}\gamma_{31}^2r_1r_2^2v_1\left(1-p\right)\\
+    Y_4 &= \gamma_{12}\gamma_{21}\gamma_{31}r_1r_2\left(2\gamma_{13}\left(v_2-r_2-v_3\right)\left(1-p\right)^2+\gamma_{31}r_2\left(\gamma_{12}v_1^2+2\left(1-p\right)^2\right)\right)\\
+    Y_3 &= \gamma_{31}r_1r_2\left(2\gamma_{12}\gamma_{13}\gamma_{21}v_1\left(2\left(v_2-r_2\right)-v_3\right)+\gamma_{31}r_2\left(4\gamma_{12}\gamma_{21}v_1-\left(1-p\right)\right)\right)\left(1-p\right)\\
+    Y_2 &= r_1\left(2\gamma_{12}\gamma_{13}\gamma_{21}\gamma_{31}r_2v_1^2\left(v_2-r_2\right)+\gamma_{13}^2\gamma_{21}\left(r_2-v_2+v_3\right)^2\left(1-p\right)^2+2\gamma_{13}\gamma_{21}\gamma_{31}r_2\left(v_2-r_2-v_3\right)\left(1-p\right)^2\right.\\
+    &\left.+\gamma_{21}\gamma_{31}^2r_2^2\left(2\gamma_{12}v_1^2+\left(1-p\right)^2\right)+\gamma_{31}^2r_2^2\left(\left(1-p\right)-2v_1\right)\left(1-p\right)\right)\\
+    Y_1 &= 2\gamma_{13}^2\gamma_{21}r_1v_1\left(r_2-v_2\right)\left(r_2-v_2+v_3\right)\left(1-p\right)+2\gamma_{13}\gamma_{21}\gamma_{31}r_1r_2v_1\left(2\left(v_2-r_2\right)-v_3\right)\left(1-p\right)\\
+    &+\gamma_{31}^2r_1r_2^2v_1\left(2\left(\gamma_{21}+1\right)\left(1-p\right)-v_1\right)+\gamma_{31}r_2\left(v_2-r_2-v_3\right)\left(1-p\right)^2\\
+    Y_0 &= v_1\left(\gamma_{13}^2\gamma_{21}r_1v_1\left(r_2-v_2\right)^2+\gamma_{31}^2r_1r_2^2v_1\left(\gamma_{21}+1\right)+\gamma_{31}r_2\left(2\gamma_{13}\gamma_{21}r_1v_1+\left(1-p\right)\right)\left(v_2-r_2\right)\right)
+\end{align*}
+
+Note that we can eliminate one value of $y^*$ form Equation (\ref{eq:4.24}):
+\[
+\left(v_1+\left(1-p\right)y^*\right)^2\neq0 \implies y^*\neq-\frac{v_1}{1-p}
+\]
+and simplify Equation (\ref{eq:4.24}) to:
+\begin{equation}
+    \sum_{i=0}^6 Y_i\left(y^*\right)^i=0
+    \label{eq:4.25}
+\end{equation}
+What we are left with is an equation in the form of a polynomial of degree 6. The solutions to Equation (\ref{eq:4.25}) cannot be analytically solved. However, we don't need to find the exact form of the $y^*$ component in this equilibrium. It is sufficient to show that a positive solution to Equation (\ref{eq:4.25}) exists. To do this, we will use Descartes' rule of signs. From the coefficients, we can conclude that $Y_5,Y_6>0$ since all parameters are positive. Then, to ensure that Equation (\ref{eq:4.25}) has at least one positive solution, we will need an odd number of sign changes after the fifth degree term. For simplicity, we will make all the other coefficients negative. Thus, we can say that the interior equilibrium $E_{xyz}=\left(x^*,y^*,z^*\right)$ exists where:
+\[
+x^*=1+\gamma_{12}\left(y^*\right)^2-\gamma_{13}z^*
+\]
+and
+\[
+z^*=\frac{r_2-v_2}{\gamma_{31}r_2}+\frac{v_3\left(1-p\right)y^*}{\gamma_{31}r_2\left(v_1+\left(1-p\right)y^*\right)};\quad r_2>v_2
+\]
+and $y^*$ is a positive root to the equation:
+\begin{equation*}
+    \sum_{i=0}^6 Y_i\left(y^*\right)^i=0
+\end{equation*}
+where $Y_0<0$, $Y_1<0$, $Y_2<0$, $Y_3<0$, $Y_4<0$ and 
+\begin{align*}
+    Y_6 &= \gamma_{12}^2\gamma_{21}\gamma_{31}^2r_1r_2^2\left(1-p\right)^2\\
+    Y_5 &= 2\gamma_{12}^2\gamma_{21}\gamma_{31}^2r_1r_2^2v_1\left(1-p\right)\\
+    Y_4 &= \gamma_{12}\gamma_{21}\gamma_{31}r_1r_2\left(2\gamma_{13}\left(v_2-r_2-v_3\right)\left(1-p\right)^2+\gamma_{31}r_2\left(\gamma_{12}v_1^2+2\left(1-p\right)^2\right)\right)\\
+    Y_3 &= \gamma_{31}r_1r_2\left(2\gamma_{12}\gamma_{13}\gamma_{21}v_1\left(2\left(v_2-r_2\right)-v_3\right)+\gamma_{31}r_2\left(4\gamma_{12}\gamma_{21}v_1-\left(1-p\right)\right)\right)\left(1-p\right)\\
+    Y_2 &= r_1\left(2\gamma_{12}\gamma_{13}\gamma_{21}\gamma_{31}r_2v_1^2\left(v_2-r_2\right)+\gamma_{13}^2\gamma_{21}\left(r_2-v_2+v_3\right)^2\left(1-p\right)^2+2\gamma_{13}\gamma_{21}\gamma_{31}r_2\left(v_2-r_2-v_3\right)\left(1-p\right)^2\right.\\
+    &\left.+\gamma_{21}\gamma_{31}^2r_2^2\left(2\gamma_{12}v_1^2+\left(1-p\right)^2\right)+\gamma_{31}^2r_2^2\left(\left(1-p\right)-2v_1\right)\left(1-p\right)\right)\\
+    Y_1 &= 2\gamma_{13}^2\gamma_{21}r_1v_1\left(r_2-v_2\right)\left(r_2-v_2+v_3\right)\left(1-p\right)+2\gamma_{13}\gamma_{21}\gamma_{31}r_1r_2v_1\left(2\left(v_2-r_2\right)-v_3\right)\left(1-p\right)\\
+    &+\gamma_{31}^2r_1r_2^2v_1\left(2\left(\gamma_{21}+1\right)\left(1-p\right)-v_1\right)+\gamma_{31}r_2\left(v_2-r_2-v_3\right)\left(1-p\right)^2\\
+    Y_0 &= v_1\left(\gamma_{13}^2\gamma_{21}r_1v_1\left(r_2-v_2\right)^2+\gamma_{31}^2r_1r_2^2v_1\left(\gamma_{21}+1\right)+\gamma_{31}r_2\left(2\gamma_{13}\gamma_{21}r_1v_1+\left(1-p\right)\right)\left(v_2-r_2\right)\right)
+\end{align*}
