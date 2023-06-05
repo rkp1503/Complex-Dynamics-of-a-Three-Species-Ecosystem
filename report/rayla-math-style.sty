@@ -1,0 +1,29 @@
+%-----------------------------------------------------------------------------
+% Author: Rayla Kurosaki
+% GitHub: https://github.com/rkp1503
+%-----------------------------------------------------------------------------
+
+%-----------------------------------------------------------------------------
+% 3rd Party Packages
+%-----------------------------------------------------------------------------
+\usepackage{float}
+\usepackage{mathtools}
+
+%-----------------------------------------------------------------------------
+% Derivative Notations
+%-----------------------------------------------------------------------------
+% Operator derivative
+\newcommand{\opdiff}[1]{\ensuremath{\mathrm{d}#1}}
+% General derivative (Leibniz's notation)
+\newcommand{\diff}[3][]{
+    \ifthenelse
+    {\equal{#1}{}}
+    {\ensuremath{\frac{\opdiff{#2}}{\opdiff{#3}}}}
+    {\ensuremath{\frac{\mathrm{d}^{#1}#2}{\mathrm{d}#3^{#1}}}}
+    }
+% General non-mixed partial derivative (Leibniz's notation)
+\newcommand{\pdiff}[3][]{
+    \ifthenelse{\equal{#1}{}}
+    {\ensuremath{\frac{\partial#2}{\partial#3}}}
+    {\ensuremath{\frac{\partial^{#1}#2}{\partial#3^{#1}}}}
+}
