@@ -52,8 +52,8 @@
 <div>
     <h2 id="license">License</h2>
     <p>This repository has two (2) different licenses.</p>
-    <p>The paper/report in this repository <a href="report\main.pdf"><code>main.pdf</code></a> is protected under the <b><i>Creative Commons Attribution 4.0 International license</i></b>. See <a href="LICENSE-CC-BY-4">LICENSE-CC-BY-4</a> for more information.</p>
-    <p>All the code in this repository are protected under the <b><i>MIT license</i></b>. See <a href="LICENSE-MIT">LICENSE-MIT</a> for more information.</p>
+    <p>The paper/report in this repository <a href="report\main.pdf"><code>main.pdf</code></a> is protected under the <b><i>Creative Commons Attribution 4.0 International license</i></b>. See <a href="LICENSE-CC-BY-4"><code>LICENSE-CC-BY-4</code></a> for more information.</p>
+    <p>All the code in this repository are protected under the <b><i>MIT license</i></b>. See <a href="LICENSE-MIT"><code>LICENSE-MIT</code></a> for more information.</p>
     <p align="right">(<a href="#readme-top">back to top</a>)</p>
 </div>
 
