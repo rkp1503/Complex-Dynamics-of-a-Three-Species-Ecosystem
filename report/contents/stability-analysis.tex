@@ -1,5 +1,5 @@
-\section{Stability Analysis via Linearization}\label{sec:stability_analysis}
-In \myref[Section]{sec:identify_equilibria}, we have computed all possible equilibria in \myref[Model]{model:3.2}. In this section, we will use mathematical analysis to analyze the stability of each equilibria and determine the conditions for stability. In order to find the stability of each equilibrium point with the linearization method~\cite{book:2478639}, we will need the Jacobian matrix of \myref[Model]{model:3.1}, which is:
+\chapter{Stability Analysis}\label{chapter:stability_analysis}
+In \myref[Chapter]{chapter:identify_equilibria}, we have computed all possible equilibria in \myref[Model]{model:3.2}. In this section, we will use mathematical analysis to analyze the stability of each equilibria and determine the conditions for stability. In order to find the stability of each equilibrium point~\cite{book:2478639}, we will need the Jacobian matrix of \myref[Model]{model:3.1}, which is:
 \begin{equation}
     \textbf{J}=\begin{bmatrix}
         j_{11} & j_{12} & j_{13}\\
@@ -20,7 +20,7 @@ where
     j_{33} &= r_2\left(1-2\gamma_{31}z\right)+\frac{v_3\left(1-p\right)y}{v_1+\left(1-p\right)y}-v_2
 \end{align*}
 
-\subsection{Analyzing the trivial equilibrium}\label{subsec:stability_trivial_equilibrium}
+\section{Analyzing the trivial equilibrium}\label{sec:stability_trivial_equilibrium}
 Plugging the trivial equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_0\right)=\begin{bmatrix}
@@ -45,7 +45,7 @@ r_2-v_2
 \]
 Since we have a positive eigenvalue $\lambda=1$, we can conclude that the trivial equilibrium is unstable.
 
-\subsection{Analyzing the $x$-axial equilibrium}\label{subsec:stability_x_axial_equilibrium}
+\section{Analyzing the $x$-axial equilibrium}\label{sec:stability_x_axial_equilibrium}
 Plugging the $x$-axial equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_x\right)=\begin{bmatrix}
@@ -70,7 +70,7 @@ r_1\left(\gamma_{12}+1\right)
 \]
 Since the eigenvalue $\lambda=r_1\left(\gamma_{12}+1\right)$ is always positive, we can conclude that the $x$-axial equilibrium is unstable.
 
-\subsection{Analyzing the $y$-axial equilibrium}\label{subsec:stability_y_axial_equilibrium}
+\section{Analyzing the $y$-axial equilibrium}\label{sec:stability_y_axial_equilibrium}
 Plugging the $y$-axial equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_y\right)=\begin{bmatrix}
@@ -100,7 +100,7 @@ Solving for the eigenvalues in \myref[Equation]{eq:5.7}, we get:
 \]
 Since the eigenvalue $\lambda=1+\gamma_{12}$ is always positive, we can conclude that the $y$-axial equilibrium is unstable.
 
-\subsection{Analyzing the $z$-axial equilibrium}\label{subsec:stability_z_axial_equilibrium}
+\section{Analyzing the $z$-axial equilibrium}\label{sec:stability_z_axial_equilibrium}
 Plugging the $z$-axial equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_z\right)=\begin{bmatrix}
@@ -142,7 +142,7 @@ The third eigenvalue is negative when $v_2<r_2$. Therefore we can say that the $
 \frac{\gamma_{31}r_2}{\gamma_{13}}<r_2-v_2,\ \frac{\gamma_{31}r_1r_2v_1}{1-p}<r_2-v_2,\ 0<r_2-v_2
 \]
 
-\subsection{Analyzing the $xy$-boundary equilibrium}\label{subsec:stability_xy_boundary_equilibrium}
+\section{Analyzing the $xy$-boundary equilibrium}\label{sec:stability_xy_boundary_equilibrium}
 Plugging the $xy$-boundary equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_{xy}\right)=\begin{bmatrix}
@@ -191,7 +191,7 @@ and
 4\gamma_{12}\gamma_{21}\left(\hat{x}\right)^2\left(\hat{y}\right)^2<\left(1-2\hat{x}+\gamma_{12}\left(\hat{y}\right)^2\right)\left(1-2\hat{y}+\gamma_{21}\left(\hat{x}\right)^2\right)
 \]
 
-\subsection{Analyzing the $xz$-boundary equilibrium}\label{subsec:stability_xz_boundary_equilibrium}
+\section{Analyzing the $xz$-boundary equilibrium}\label{sec:stability_xz_boundary_equilibrium}
 Plugging the $xz$-boundary equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}\left(E_{xz}\right)=\begin{bmatrix}
@@ -239,7 +239,7 @@ Therefore we can say that the $xz$-boundary equilibrium is stable if $0<r_2-v_2$
 \frac{r_1v_1\left(\gamma_{21}\left(\gamma_{13}\left(r_2-v_2\right)-\gamma_{31}r_2\right)^2+\gamma_{31}^2r_2^2\right)}{\gamma_{31}r_2\left(1-p\right)}<r_2-v_2
 \]
 
-\subsection{Analyzing the $yz$-boundary equilibrium}\label{subsec:stability_yz_boundary_equilibrium}
+\section{Analyzing the $yz$-boundary equilibrium}\label{sec:stability_yz_boundary_equilibrium}
 Plugging the $yz$-boundary equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}=\begin{bmatrix}
@@ -290,7 +290,7 @@ where
     j_{33} &= r_2\left(1-2\gamma_{31}\bar{z}\right)+\frac{v_3\left(1-p\right)\bar{y}}{v_1+\left(1-p\right)\bar{y}}-v_2
 \end{align*}
 
-\subsection{Analyzing the interior equilibrium}\label{subsec:stability_interior_equilibrium}
+\section{Analyzing the interior equilibrium}\label{sec:stability_interior_equilibrium}
 Plugging the interior equilibrium into \myref[Matrix]{eq:5.1} yields:
 \begin{equation}
     \textbf{J}=\begin{bmatrix}
