@@ -1,5 +1,5 @@
-\section{Identifying Equilibria}\label{sec:identify_equilibria}
-In \myref[Section]{sec:modified_model}, we have modified some of the assumptions the authors have made and created \myref[Model]{model:3.2} based on the new/modified assumptions. In this section, we will find all the equilibria present in our model. To find all the equilibria $\left(x^*,y^*,z^*\right)$ of this system, we will set all the equations in \myref[Model]{model:3.1} equal to 0~\cite{book:2478639}.
+\chapter{Identifying Equilibria}\label{chapter:identify_equilibria}
+In \myref[Chapter]{chapter:modified_model}, we have modified some of the assumptions the authors have made and created \myref[Model]{model:3.2} based on the new/modified assumptions. In this section, we will find all the equilibria present in our model. To find all the equilibria $\left(x^*,y^*,z^*\right)$ of this system, we will set all the equations in \myref[Model]{model:3.1} equal to 0~\cite{book:2478639}.
 \begin{subequations}
     \begin{align}
         0 &= x^*\left(1-x^*+\gamma_{12}\left(y^*\right)^2\right)-\gamma_{13}x^*z^*
@@ -12,7 +12,7 @@ In \myref[Section]{sec:modified_model}, we have modified some of the assumptions
     \label{eq:4.1}
 \end{subequations}
 
-\subsection{Case 1: The trivial equilibrium}\label{subsec:trivial_equilibrium}
+\section{Case 1: The trivial equilibrium}\label{sec:trivial_equilibrium}
 The trivial equilibrium is where $\left(x^*.y^*.z^*\right)=(0,0,0)$. To verify that the trivial equilibrium exists in \myref[Model]{model:3.2}, we will plug in $x^*=0$, $y^*=0$, and $z^*=0$ into the model and must conclude that each equation reduces to $0=0$. Plugging $x^*=0$, $y^*=0$, and $z^*=0$ into \myref[Model]{model:3.2} yields:
 \begin{align*}
     0 &= (0)\left(1-(0)+\gamma_{12}(0)^2\right)-\gamma_{13}(0)(0)\\
@@ -24,7 +24,7 @@ By inspection, we can see that each equation reduces to $0=0$. Thus, we can say 
 \fbox{$\displaystyle E_0=\left(0,0,0\right)$}
 \]
 
-\subsection{Case 2: The $x$-axial equilibrium}\label{subsec:x_axial_equilibrium}
+\section{Case 2: The $x$-axial equilibrium}\label{sec:x_axial_equilibrium}
 The $x$-axial equilibrium is an equilibrium where $x^*$ is non-zero and the other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $x^*$ where $x^*<0$. Thus, the conditions to impose when finding the $x$-axial equilibrium are $x^*>0$ and all other components are 0. To find the $x$-axial equilibrium of \myref[Model]{model:3.2}, we will plug in $y^*=0$ and $z^*=0$:
 \begin{align*}
     0 &= x^*\left(1-x^*+\gamma_{12}(0)^2\right)-\gamma_{13}x^*(0)\\
@@ -45,7 +45,7 @@ which reduces to:
 \right)$}
 \]
 
-\subsection{Case 3: The $y$-axial equilibrium}\label{subsec:y_axial_equilibrium}
+\section{Case 3: The $y$-axial equilibrium}\label{sec:y_axial_equilibrium}
 The $y$-axial equilibrium is an equilibrium where $y^*$ is non-zero and the other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $y^*$ where $y^*<0$. Thus, the conditions to impose when finding the $y$-axial equilibrium are $y^*>0$ and all other components are 0. To find the $y$-axial equilibrium of \myref[Model]{model:3.2}, we will plug in $x^*=0$ and $z^*=0$:
 \begin{align*}
     0 &= (0)\left(1-(0)+\gamma_{12}\left(y^*\right)^2\right)-\gamma_{13}(0)(0)\\
@@ -66,7 +66,7 @@ Since all parameters are positive, \myref[Equation]{eq:4.3} yields solutions $y^
 \right)$}
 \]
 
-\subsection{Case 4: The $z$-axial equilibrium}\label{subsec:z_axial_equilibrium}
+\section{Case 4: The $z$-axial equilibrium}\label{sec:z_axial_equilibrium}
 The $z$-axial equilibrium is an equilibrium where $z^*$ is non-zero and the other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $z^*$ where $z^*<0$. Thus, the conditions to impose when finding the $z$-axial equilibrium are $z^*>0$ and all other components are 0. To find the $z$-axial equilibrium of \myref[Model]{model:3.2}, we will plug in $x^*=0$ and $y^*=0$:
 \begin{align*}
     0 &= (0)\left(1-(0)+\gamma_{12}(0)^2\right)-\gamma_{13}(0)z^*\\
@@ -99,7 +99,7 @@ under the condition:
 r_2>v_2
 \]
 
-\subsection{Case 5: The $xy$-boundary equilibrium}\label{subsec:xy_boundary_equilibrium}
+\section{Case 5: The $xy$-boundary equilibrium}\label{sec:xy_boundary_equilibrium}
 The $xy$-boundary equilibrium is an equilibrium where $x^*$ and $y^*$ are non-zero and all other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $x^*$ and $y^*$ where $x^*<0$ and $y^*<0$. Thus, the conditions to impose when finding the $xy$-boundary equilibrium are $x^*>0$ and $y^*>0$ and all other components are 0. To find the $xy$-boundary equilibrium of \myref[Model]{model:3.2}, we will plug in $z^*=0$:
 \begin{align*}
     0 &= x^*\left(1-x^*+\gamma_{12}\left(y^*\right)^2\right)-\gamma_{13}x^*(0)\\
@@ -157,7 +157,7 @@ if the following condition is satisfied for some value of $\beta>0$:
 \gamma_{12}<\frac1{\beta^2}\left(\sqrt{\frac{\beta-1}{\gamma_{21}}}-1\right)
 \]
 
-\subsection{Case 6: The $xz$-boundary equilibrium}\label{subsec:xz_boundary_equilibrium}
+\section{Case 6: The $xz$-boundary equilibrium}\label{sec:xz_boundary_equilibrium}
 The $xz$-boundary equilibrium is an equilibrium where $x^*$ and $z^*$ are non-zero and all other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $x^*$ and $z^*$ where $x^*<0$ and $z^*<0$. Thus, the conditions to impose when finding the $xz$-boundary equilibrium are $x^*>0$ and $z^*>0$ and all other components are 0. To find the $xz$-boundary equilibrium of \myref[Model]{model:3.2}, we will plug in $y^*=0$:
 \begin{align*}
     0 &= x^*\left(1-x^*+\gamma_{12}(0)^2\right)-\gamma_{13}x^*z^*\\
@@ -216,7 +216,7 @@ under the conditions:
 r_2>v_2,\quad \frac{\gamma_{31}r_2}{\gamma_{13}}>0
 \]
 
-\subsection{Case 7: The $yz$-boundary equilibrium}\label{subsec:yz_boundary_equilibrium}
+\section{Case 7: The $yz$-boundary equilibrium}\label{sec:yz_boundary_equilibrium}
 The $yz$-boundary equilibrium is an equilibrium where $y^*$ and $z^*$ are non-zero and all other components of the equilibrium are 0. Since we are talking about population densities, it does not make sense to consider values of $y^*$ and $z^*$ where $y^*<0$ and $z^*<0$. Thus, the conditions to impose when finding the $yz$-boundary equilibrium are $y^*>0$ and $z^*>0$ and all other components are 0. To find the $yz$-boundary equilibrium of \myref[Model]{model:3.2}, we will plug in $x^*=0$:
 \begin{align*}
     0 &= (0)\left(1-(0)+\gamma_{12}\left(y^*\right)^2\right)-\gamma_{13}(0)z^*\\
@@ -325,7 +325,7 @@ where
 \end{align*}
 with a condition that $1-p>2v_1$.
 
-\subsection{Case 8: The interior equilibrium}\label{subsec:interior_equilibrium}
+\section{Case 8: The interior equilibrium}\label{sec:interior_equilibrium}
 The interior equilibrium is an equilibrium where all the components of the equilibrium are non-zero. Since we are talking about population densities, having non-zero components that are also negative would not make sense. Thus, the conditions to impose when finding the interior equilibrium are when the components are positive. To find the interior equilibrium of \myref[Model]{model:3.2}, we know that $x^*,y^*,z^*\neq0$. So we can reduce the model to:
 \begin{subequations}
     \begin{align}
