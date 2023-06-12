@@ -1,25 +1,23 @@
 %-----------------------------------------------------------------------------
-% Author: Rayla Kurosaki
+% Author: Ramsey (Rayla) Phuc
+% Alias: Rayla Kurosaki
 % GitHub: https://github.com/rkp1503
 %-----------------------------------------------------------------------------
-\documentclass{rayla-project}
+\documentclass{rayla-thesis-dissertation}
 \usepackage{rayla-math-style}
 
 %-----------------------------------------------------------------------------
 % Project Information
 %-----------------------------------------------------------------------------
-\myUniversity{
-    Rochester Institute of Technology\\
-    College of Science\\
-    School of Mathematical Sciences
-    }
+\myUniversity{Rochester Institute of Technology}
+\myCollege{College of Science}
+\myDepartment{School of Mathematical and Statistics}
+\myLogo{rit_logo.png}
+% \myLogo{logo.eps}
 \myTitle{Complex Dynamics of a Three Species Ecosystem}
 \myName{Ramsey (Rayla) Phuc}
-\courseid{MATH-761.01}
-\courseName{Mathematical Biology}
-\professorName{Dr. Ephraim Agyingi}
-\term{2022/08/22 - 2022/12/05}
-\dueDate{2022/12/12}
+\myAdvisor{Dr. Ephraim Agyingi}
+\submissionDate{\today}
 
 %----------------------------------------------------------------------------- 
 % Start of Document
@@ -27,6 +25,9 @@
 \begin{document}
 
     \maketitle
+
+    \newpage
+    \tableofcontents
 
     %-------------------------------------------------------------------------
     % Abstract
@@ -38,6 +39,53 @@
     %-------------------------------------------------------------------------
     % Body
     %-------------------------------------------------------------------------
+    % \tableofcontents
+    % \section{Introduction}
+
+    % \section{Original Model}
+
+    % \section{Model 1}
+    % \subsection{Constructing the Model}
+    % \subsubsection{Model Properties}
+    % \subsubsection{Property 1: Nonnegative solutions for nonnegative initial conditions}
+    % \subsubsection{Property 2: Uniformly bounded}
+    % \subsubsection{Property 3: Survival condition for Species Z}
+    % \subsection{Analysis}
+    % \subsubsection{Kolmogorov Analysis}
+    % \subsubsection{Local Stability Analysis}
+    % \subsubsection{Transcritical Bifurcation}
+    % \subsubsection{Persistence of the System}
+    % \subsection{Numerical Simulation}
+
+    % \section{Model 2}
+    % \subsection{Constructing the Model}
+    % \subsection{Positivity and Boundedness of Solutions}
+    % \subsection{Equilibrium Points and  Stability Analysis}
+    % \subsubsection{Equilibrium Points}
+    % \subsubsection{Local Stability Analysis}
+    % \subsection{Hopf Bifurcation}
+    % \subsubsection{Stability and Direction}
+
+    % \section{Proposed/Modified Model}
+    % \subsection{Constructing the Model}
+    % \subsubsection{New/Modified Assumptions}
+    % \subsubsection{Model Properties}
+    % \subsubsection{Property 1: Nonnegative solutions for nonnegative initial conditions?}
+    % \subsubsection{Property 2: Uniformly bounded?}
+    % \subsubsection{Property 3: Survival condition for Species Z?}
+
+    % \section{The Existance of Equilibria}
+
+    % \section{Limit Cycle Analysis}
+
+    % \section{Bifurcation Analysis of Identified Equilibria}
+
+    % \section{Stability Analysis}
+    % \subsection{Local Stability}
+    % \subsection{Global Stability}
+
+    % \section{Numerical Analysis and Simulations}
+
     \input{contents/introduction.tex}
     \input{contents/original-model.tex}
     \input{contents/modified-model.tex}
@@ -50,7 +98,7 @@
     %-------------------------------------------------------------------------
     \newpage
     % \nocite{*}
-    \printbibliography[title={Bibliography}]
+    \printbibliography[heading=bibintoc, title={Bibliography}]
 
     %-------------------------------------------------------------------------
     % Appendix
