@@ -1,16 +1,16 @@
-\section{Revised/Modified Model}\label{sec:modified_model}
+\chapter{Revised/Modified Model}\label{chapter:modified_model}
 In \myref[Section]{sec:original_model}, we discussed the model the authors used in their paper and the assumptions that were used to construct it. In this section, we will modify some of the initial assumptions that the authors have made when creating their model to obtain a new model that we will analyze throughout this paper.
 
-\subsection{Modification 1: The interaction between species $X$ and $Y$}\label{subsec:modification_1}
+\section{Modification 1: The interaction between species $X$ and $Y$}\label{sec:modification_1}
 The original model assumes that species $X$ and $Y$ are in a competition interaction. Instead of considering an interaction that negatively impacts both species, lets consider an interaction that benefits both species. Thus, we will assume that species $X$ and $Y$ are in a mutualism interaction.
 
-\subsection{Modification 2: The interaction between species $X$ and $Z$}\label{subsec:modification_2}
+\section{Modification 2: The interaction between species $X$ and $Z$}\label{sec:modification_2}
 The original model assumes that species $X$ and $Z$ are in a commensalism interaction where species $X$ is benefiting from species $Z$. Instead of considering an interaction where species $X$ gets positively impacted, lets consider an interaction where species $X$ gets negatively impacted while being in an interaction with species $Z$. Thus, we will assume that species $X$ and $Z$ are in an amensalism interaction.
 
-\subsection{Modification 3: The growth rate of species $Z$}\label{subsec:modification_3}
+\section{Modification 3: The growth rate of species $Z$}\label{sec:modification_3}
 The original model assumes that species $Z$ grows solely due to being in a predation interaction with species $Y$. Here, we will assume that species $Z$ not only grows due to being in a predation interaction with species $Y$, but also grows logistically with a rate of $r_z$ with a capacity of $K_z$.
 
-\subsection{Building the modified model}\label{subsec:modified_model}
+\section{Building the modified model}\label{sec:modified_model}
 With these modified assumptions, the authors' original model become:
 \begin{subequations}
     \begin{align}
@@ -41,23 +41,3 @@ we can simplify and non-dimensionalize \myref[Model]{model:3.1}. This gives us t
     \end{align}
     \label{model:3.2}
 \end{subequations}
-
-% \begin{table*}[b]
-%     \centering
-%     \begin{tabular}{l|l}\hline
-%         Variable & Description \\ \hline
-%         $X,Y$ & Densities of two logistically growing competing species.\\
-%         $Z$ & Density of a species which preys on $Y$ ($Z$ eats $Y$)\\
-%         $r_x,r_y$ & Intrinsic growth rate of species $X$ and $Y$ respectively\\
-%         $\alpha_{12},\alpha_{21}$ & Inter-species competition between two species $X$ and $Y$ respectively\\
-%         $a_x,a_y$ & Attack rate of species $Z$ on species $X$ and $Y$ respectively.\\
-%         $p_x,p_y$ & Refuge rate of species $X$ and $Y$ respectively.\\
-%         $c_x,c_y$ & Conservation rate of species $X$ and $Y$ respectively.\\
-%         $b$ & Half saturation constant for Holling type II function.\\
-%         $e$ & Death rate of $Z$ species.\\\hline
-%     \end{tabular}
-%     \caption{Caption}
-%     \label{tab:3.1}
-% \end{table*}
-
-% \lipsum[1]
