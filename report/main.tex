@@ -1,17 +1,19 @@
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 % Author: Ramsey (Rayla) Phuc
 % Alias: Rayla Kurosaki
 % GitHub: https://github.com/rkp1503
-%-----------------------------------------------------------------------------
+% 
+% Co-author: Ephraim Agyingi
+% ----------------------------------------------------------------------------
 \documentclass{rayla-thesis-dissertation}
 \usepackage{rayla-math-style}
 
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 % Project Information
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 \myUniversity{Rochester Institute of Technology}
 \myCollege{College of Science}
-\myDepartment{School of Mathematical and Statistics}
+\myDepartment{School of Mathematics and Statistics}
 \myLogo{rit_logo.png}
 % \myLogo{logo.eps}
 \myTitle{Complex Dynamics of a Three Species Ecosystem}
@@ -19,9 +21,9 @@
 \myAdvisor{Dr. Ephraim Agyingi}
 \submissionDate{\today}
 
-%----------------------------------------------------------------------------- 
+% ---------------------------------------------------------------------------- 
 % Start of Document
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 \begin{document}
 
     \maketitle
@@ -29,82 +31,38 @@
     \newpage
     \tableofcontents
 
-    %-------------------------------------------------------------------------
+    % ------------------------------------------------------------------------
     % Abstract
-    %-------------------------------------------------------------------------
+    % ------------------------------------------------------------------------
     \begin{abstract}
-        This paper investigates the dynamics of a model system by modifying key assumptions to explore alternative ecological interactions. The original model, outlined in the paper \cite{PANJA2022100153}, initially assumes a competition interaction between species $X$ and $Y$. However, we consider the implications of assuming a mutualism interaction instead. Additionally, we modify the assumption of a commensalism interaction between species $X$ and $Z$ to examine the consequences of an amensalism interaction. Furthermore, the model is expanded by assuming a logistic growth pattern for species Z. Through these modifications, we determine the new equilibrium points and conduct a comprehensive analysis of their characteristics. Numerical computations are performed to assess the stability or instability of the newly derived equilibrium points. The obtained results offer valuable insights into the dynamics and stability of the modified model, shedding light on the consequences of mutualism and amensalism interactions in the examined ecological system. This research contributes to a deeper understanding of the interrelationships between species interactions and population dynamics in ecological systems.
+        \lipsum[1]
+        % This paper investigates the dynamics of a model system by modifying key assumptions to explore alternative ecological interactions. The original model, outlined in the paper \cite{GAKKHAR201654}, initially assumes a competition interaction between species $X$ and $Y$. However, we consider the implications of assuming a mutualism interaction instead. Additionally, we modify the assumption of a commensalism interaction between species $X$ and $Z$ to examine the consequences of an amensalism interaction. Furthermore, the model is expanded by assuming a logistic growth pattern for species Z. Through these modifications, we determine the new equilibrium points and conduct a comprehensive analysis of their characteristics. Numerical computations are performed to assess the stability or instability of the newly derived equilibrium points. The obtained results offer valuable insights into the dynamics and stability of the modified model, shedding light on the consequences of mutualism and amensalism interactions in the examined ecological system. This research contributes to a deeper understanding of the interrelationships between species interactions and population dynamics in ecological systems.
     \end{abstract}
 
-    %-------------------------------------------------------------------------
+    % ------------------------------------------------------------------------
     % Body
-    %-------------------------------------------------------------------------
-    % \tableofcontents
-    % \section{Introduction}
-
-    % \section{Original Model}
-
-    % \section{Model 1}
-    % \subsection{Constructing the Model}
-    % \subsubsection{Model Properties}
-    % \subsubsection{Property 1: Nonnegative solutions for nonnegative initial conditions}
-    % \subsubsection{Property 2: Uniformly bounded}
-    % \subsubsection{Property 3: Survival condition for Species Z}
-    % \subsection{Analysis}
-    % \subsubsection{Kolmogorov Analysis}
-    % \subsubsection{Local Stability Analysis}
-    % \subsubsection{Transcritical Bifurcation}
-    % \subsubsection{Persistence of the System}
-    % \subsection{Numerical Simulation}
-
-    % \section{Model 2}
-    % \subsection{Constructing the Model}
-    % \subsection{Positivity and Boundedness of Solutions}
-    % \subsection{Equilibrium Points and  Stability Analysis}
-    % \subsubsection{Equilibrium Points}
-    % \subsubsection{Local Stability Analysis}
-    % \subsection{Hopf Bifurcation}
-    % \subsubsection{Stability and Direction}
-
-    % \section{Proposed/Modified Model}
-    % \subsection{Constructing the Model}
-    % \subsubsection{New/Modified Assumptions}
-    % \subsubsection{Model Properties}
-    % \subsubsection{Property 1: Nonnegative solutions for nonnegative initial conditions?}
-    % \subsubsection{Property 2: Uniformly bounded?}
-    % \subsubsection{Property 3: Survival condition for Species Z?}
-
-    % \section{The Existance of Equilibria}
-
-    % \section{Limit Cycle Analysis}
-
-    % \section{Bifurcation Analysis of Identified Equilibria}
-
-    % \section{Stability Analysis}
-    % \subsection{Local Stability}
-    % \subsection{Global Stability}
-
-    % \section{Numerical Analysis and Simulations}
-
+    % ------------------------------------------------------------------------
     \input{contents/introduction.tex}
-    \input{contents/original-model.tex}
-    \input{contents/modified-model.tex}
-    \input{contents/identifying-equilibria.tex}
-    \input{contents/stability-analysis.tex}
-    \input{contents/numerical-simulations.tex}
+    \input{contents/proposed-model.tex}
+    \input{contents/model-properties.tex}
+    \input{contents/equilibria-analysis.tex}
+    % \input{contents/numerical-simulations.tex}
 
-    %-------------------------------------------------------------------------
+    % ------------------------------------------------------------------------
     % Bibliography
-    %-------------------------------------------------------------------------
+    % ------------------------------------------------------------------------
     \newpage
     % \nocite{*}
     \printbibliography[heading=bibintoc, title={Bibliography}]
+    % Filter by type
+    % \printbibliography[heading=subbibintoc,title={Articles},type=article]
+    % \printbibliography[heading=subbibintoc,title={Books},type=book]
 
-    %-------------------------------------------------------------------------
+    % ------------------------------------------------------------------------
     % Appendix
-    %-------------------------------------------------------------------------
-    \newpage
-    \appendix
-    \input{appendices/figures.tex}
+    % ------------------------------------------------------------------------
+    % \newpage
+    % \appendix
+    % \input{appendices/figures.tex}
 
 \end{document}
