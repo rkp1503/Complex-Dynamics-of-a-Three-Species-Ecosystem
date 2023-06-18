@@ -10,8 +10,8 @@
 %-----------------------------------------------------------------------------
 % 3rd party packages
 %-----------------------------------------------------------------------------
-\usepackage{amsmath}
-\usepackage[backend=biber,style=numeric,sorting=ynt]{biblatex}
+\usepackage{amsmath, amsthm, mathtools}
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage{geometry}
@@ -19,6 +19,7 @@
 \usepackage{hyperref}
 \usepackage{ifthen}
 \usepackage{lipsum}
+\usepackage{parskip}
 
 %-----------------------------------------------------------------------------
 % Defining new commands
@@ -37,6 +38,7 @@
 %-----------------------------------------------------------------------------
 \geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
 \setlength\parindent{0pt}
+\allowdisplaybreaks
 
 %-----------------------------------------------------------------------------
 % Setting figures directory
@@ -94,15 +96,34 @@
 % Custom referencing
 %-----------------------------------------------------------------------------
 \DeclareRobustCommand{\myref}[2][]{%
-    \ifthenelse{\equal{#1}{Equation} \OR \equal{#1}{System} \OR \equal{#1}{Model} \OR \equal{#1}{Matrix}}
+    \ifthenelse{\equal{#1}{Equation} \OR \equal{#1}{System} \OR \equal{#1}{Model} \OR \equal{#1}{Matrix} \OR \equal{#1}{Theorem}}
     {#1~\eqref{#2}}
     {#1~\ref{#2}}%
 }
+
+
+% Theorem Styles
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{main}{Main Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{define}{Definition}
+\theoremstyle{remark}
+\newtheorem*{notation}{Notation}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{remark}
+\newtheorem{example}{\textbf{Example}}%[section]
 
 %-----------------------------------------------------------------------------
 % Inclusion of chapter number in equation numbering
 %-----------------------------------------------------------------------------
 \numberwithin{equation}{chapter}
+\numberwithin{theorem}{chapter}
 
 %-----------------------------------------------------------------------------
 % Bibliography settings
