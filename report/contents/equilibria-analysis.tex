@@ -1,0 +1,784 @@
+% ----------------------------------------------------------------------------
+% Author: Ramsey (Rayla) Phuc
+% Alias: Rayla Kurosaki
+% GitHub: https://github.com/rkp1503
+% 
+% Co-author: Ephraim Agyingi
+% ----------------------------------------------------------------------------
+\chapter{Equilibria analysis}\label{ch:equilibria-analysis}
+In \myref[Chapter]{ch:proposed-model}, we have modified some of the assumptions the previous authors have made to create \myref[Model]{model:rayla-ephraim}. In addition, we have proved that \myref[Model]{model:rayla-ephraim} only has non-negative solutions for any set of non-negative initial conditions via \myref[Theorem]{thm:positiveness}. In this chapter, we will identify, classify, and determine the stability of all the equilibria points that exists in \myref[Model]{model:rayla-ephraim}. 
+
+\section{Identifying Equilibria}
+We will start by identifying all the equilibria of \myref[Model]{model:rayla-ephraim}, which is done by setting all the equations equal to 0 and solving for each variable~\cite{Strogatz9780813349107}. Thus, we have to solve for $x^*,\ y^*,\ z^*$ in the following system of equations:
+
+\begin{subequations}\label{system:model-0}
+    \begin{align}
+        0 &= x^*\left(1-x^*+\varphi_{xy}\left(y^*\right)^2\right)-\varphi_{xz}x^*z^* \label{eq:model-0-x}\\
+        0 &= r_{yx}y^*\left(1-y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1\left(1-p\right)y^*z^*}{u_2+\left(1-p\right)y^*} \label{eq:model-0-y}\\
+        0 &= r_{zx}z^*\left(1-z^*\right)+z^*\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right) \label{eq:model-0-z}
+    \end{align}
+\end{subequations}
+
+\begin{theorem}\label{thm:eq-trivial-exist}
+    The trivial equilibrium point $E_0=\left(0,\ 0,\ 0\right)$ always exist.
+\end{theorem}
+\begin{proof}
+    The trivial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*=y^*=z^*=0$. Plugging in $x^*=0,\ y^*=0,\ z^*=0$ into \myref[System]{system:model-0}, we can see that each equation reduces to $0=0$. Thus, we have proved that the trivial equilibrium point $E_0=\left(0,\ 0,\ 0\right)$ always exist.
+\end{proof}
+
+\begin{theorem}\label{thm:eq-axial-x-exist}
+    The $x$-axial equilibrium point $E_x=\left(1,\ 0,\ 0\right)$ always exist.
+\end{theorem}
+\begin{proof}
+    The $x$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*\neq0$ and $y^*=z^*=0$. Since we are dealing with populations, we should not consider values where $x^*<0$. Thus, a more appropriate constraint is $x^*>0$. Plugging in $y^*=0,\ z^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-y} and \myref[Equation]{eq:model-0-z} reduces to $0=0$ while \myref[Equation]{eq:model-0-x} reduces to
+
+    \begin{equation*}
+        x^*\left(1-x^*\right)=0
+    \end{equation*}
+
+    which has solutions $x^*=\left\{0,1\right\}$. With the constraint $x^*>0$, we have proved that the $x$-axial equilibrium point $E_x=\left(1,\ 0,\ 0\right)$ always exist.
+\end{proof}
+
+\begin{theorem}\label{thm:eq-axial-y-exist}
+    The $y$-axial equilibrium point $E_y=\left(0,\ 1,\ 0\right)$ always exist.
+\end{theorem}
+\begin{proof}
+    The $y$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $y^*>0$ and $x^*=z^*=0$. Plugging in $x^*=0,\ z^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-x} and \myref[Equation]{eq:model-0-z} reduces to $0=0$ while \myref[Equation]{eq:model-0-y} reduces to
+
+    \begin{equation*}
+        r_{yx}y^*\left(1-y^*\right)=0
+    \end{equation*}
+
+    which has solutions $y^*=\left\{0,1\right\}$. With the cosntraint $y^*>0$, we have proved that the $y$-axial equilibrium point $E_y=\left(0,\ 1,\ 0\right)$ always exist.
+\end{proof}
+
+\begin{theorem}\label{thm:eq-axial-z-exist}
+    The $z$-axial equilibrium point $E_z=\left(0,\ 0,\ z^*\right)$ exist where
+    
+    \begin{equation*}
+        z^* = 1-\frac{u_4}{r_{zx}}
+    \end{equation*}
+
+    under the condition where $r_{zx}>u_4$.
+\end{theorem}
+\begin{proof}
+    The $z$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $z^*>0$ and $x^*=y^*=0$. Plugging in $x^*=0,\ y^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-x} and \myref[Equation]{eq:model-0-z} reduces to $0=0$ while \myref[Equation]{eq:model-0-y} reduces to
+
+    \begin{equation*}
+        r_{zx}z^*\left(1-z^*\right)-u_4z^*=0
+    \end{equation*}
+
+    which has solutions
+    
+    \begin{equation*}
+        z^*=\left\{0,1-\frac{u_4}{r_{zx}}\right\}
+    \end{equation*}
+    
+    With the cosntraint $z^*>0$, we have proved that the $z$-axial equilibrium point $E_z=\left(0,\ 0,\ z^*\right)$ exist where
+    
+    \begin{equation*}
+        z^* = 1-\frac{u_4}{r_{zx}}
+    \end{equation*}
+
+    under the condition where $r_{zx}>u_4$.
+\end{proof}
+
+\begin{theorem}\label{thm:eq-boundary-xy-exist}
+    The $xy$-boundary equilibrium point $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where $x^*=1+\varphi_{xy}\left(y^*\right)^2$ and 
+    
+    \begin{equation*}
+        \varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
+    \end{equation*}
+    
+    for some $\beta\in\left(1, \infty\right)$.
+\end{theorem}
+\begin{proof}
+    The $xy$-boundary equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*>0,\ y^*>0$ and $z^*=0$. Plugging in $z^*=0$ into \myref[System]{system:model-0}, we can see that \myref[Equation]{eq:model-0-z} reduces to $0=0$ which leaves us with the following system to solve:
+
+    \begin{subequations}\label{system:xy-boundary}
+        \begin{align}
+            0 &= 1-x^*+\varphi_{xy}\left(y^*\right)^2 \label{eq:xy-boundary-x}\\
+            0 &= 1-y^*+\varphi_{yx}\left(x^*\right)^2 \label{eq:xy-boundary-y}
+        \end{align}
+    \end{subequations}
+
+    Solving for $x^*$ in \myref[Equation]{eq:xy-boundary-x} we obtain $x^*=1+\varphi_{xy}\left(y^*\right)^2$. We can plug this into \myref[Equation]{eq:xy-boundary-y} to obtain the following equation in terms of $y^*$:
+
+    \begin{equation*}
+        \varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0
+    \end{equation*}
+
+    There is no nice, closed-form solution for $y^*$ but it is sufficient to show that a positive solution $y^*>0$ exists. First, lets treat the equation above as a function of $y^*$:
+
+    \begin{equation*}
+        f\left(y^*\right)=\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1
+    \end{equation*}
+
+    Note that $f\left(y^*\right)$ is continuous for all $y^*>0$ and $f(0)=\varphi_{yx}+1>0$. By the Intermediate Value Theorem~\cite{STEWART9781337613927}, we can say that there exist a value $\beta\in\left(0,\infty\right)$ such that $f(\beta)=0$. Thus, a solution to $f\left(y^*\right)=0$ exists if for some $\beta\in\left(0,\infty\right)$, $f\left(\beta\right)<0$, or:
+
+    \begin{equation}\label{eq:xy-eq-condition}
+        \varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
+    \end{equation}
+
+    Note that if $\beta\in(0, 1]$, then the right hand side of \myref[Equation]{eq:xy-eq-condition} will be negative implying that $\varphi_{yx}<0$. However, since all parameters are positive, we cannot have $\beta$ fall in this range. Therefore, we know that $\beta\in\left(1,\infty\right)$. With this, we have proved that the $xy$-boundary equilibrium point $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where $x^*=1+\varphi_{xy}\left(y^*\right)^2$ and 
+    
+    \begin{equation*}
+        \varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
+    \end{equation*}
+    
+    for some $\beta\in\left(1, \infty\right)$.
+\end{proof}
+
+\begin{theorem}\label{thm:eq-boundary-xz-exist}
+    The $xz$-boundary equilibrium point $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where 
+    
+    \begin{equation*}
+        x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad z^*=1-\frac{u_4}{r_{zx}}
+    \end{equation*}
+    
+    provided that the conditions
+    
+    \begin{equation*}
+        \varphi_{xz}<\frac{r_{zx}}{r_{zx}-u_4},\quad r_{zx}>u_4
+    \end{equation*}
+    
+    have been satisfied.
+\end{theorem}
+\begin{proof}
+    The $xz$-boundary equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*>0,\ z^*>0$ and $y^*=0$. Plugging in $y^*=0$ into \myref[System]{system:model-0}, we can see that \myref[Equation]{eq:model-0-y} reduces to $0=0$ which leaves us with the following system to solve:
+
+    \begin{subequations}\label{system:xz-boundary}
+        \begin{align}
+            0 &= 1-x^*-\varphi_{xz}z^* \label{eq:xz-boundary-x}\\
+            0 &= r_{zx}\left(1-z^*\right)-u_4 \label{eq:xz-boundary-z}
+        \end{align}
+    \end{subequations}
+
+    Solving for $z^*$ in \myref[Equation]{eq:xz-boundary-z} we obtain
+    
+    \begin{equation*}
+        z^*=1-\frac{u_4}{r_{zx}}
+    \end{equation*}
+    
+    Here, we know that $z^*>0$ so this solution we found implies $r_{zx}>u_4$. We can plug this solution of $z^*$ into \myref[Equation]{eq:xz-boundary-x} and solve for $x^*$, which yields 
+    
+    \begin{equation*}
+        x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right)
+    \end{equation*}
+    
+    Since $x^*>0$, this implies that
+    
+    \begin{equation*}
+        \varphi_{xz}<\frac{r_{zx}}{r_{zx}-u_4}
+    \end{equation*}
+    
+    Therefore, we have proved that the $xz$-boundary equilibrium point $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where 
+    
+    \begin{equation*}
+        x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad z^*=1-\frac{u_4}{r_{zx}}
+    \end{equation*}
+    
+    provided that the conditions
+    
+    \begin{equation*}
+        \varphi_{xz}<\frac{r_{zx}}{r_{zx}-u_4},\quad r_{zx}>u_4
+    \end{equation*}
+    
+    have been satisfied.
+\end{proof}
+
+\begin{theorem}\label{thm:eq-boundary-yz-exist}
+    The $yz$-boundary equilibrium point $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
+    
+    \begin{equation*}
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+
+    and $y^*$ is a positive solution to 
+
+    \begin{equation*}
+        \frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}\left(u_2+\left(1-p\right)y^*\right)^2}=0
+    \end{equation*}
+
+    where:
+
+    \begin{align*}
+        Y_3 &= -r_{yx}r_{zx}\left(1-p\right)^2\\
+        Y_2 &= r_{yx}r_{zx}\left(1-p\right)\left(\left(1-p\right)-2u_2\right)\\
+        Y_1 &= r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)+u_1\left(u_3+\left(u_4-r_{zx}\right)\right)\left(1-p\right)^2\\
+        Y_0 &= u_2\left(r_{yx}r_{zx}u_2-u_1\left(r_{zx}-u_4\right)\left(1-p\right)\right)
+    \end{align*}
+
+    provided that the following conditions are saitsfied:
+    
+    \begin{equation*}
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad 1>\frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    The $yz$-boundary equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $y^*>0,\ z^*>0$ and $x^*=0$. Plugging in $x^*=0$ into \myref[System]{system:model-0}, we can see that \myref[Equation]{eq:model-0-x} reduces to $0=0$ which leaves us with the following system to solve:
+
+    \begin{subequations}\label{system:yz-boundary}
+        \begin{align}
+            0 &= r_{yx}\left(1-y^*\right)-\frac{u_1\left(1-p\right)z^*}{u_2+\left(1-p\right)y^*} \label{eq:yz-boundary-y}\\
+            0 &= r_{zx}\left(1-z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4 \label{eq:yz-boundary-z}
+        \end{align}
+    \end{subequations}
+
+    Solving for $z^*$ in \myref[Equation]{eq:yz-boundary-z}, we get
+    
+    \begin{equation*}
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+    
+    $z^*$ is positive when
+
+    \begin{equation*}
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)}
+    \end{equation*}
+
+    We can then substitute this value of $z^*$ into \myref[Equation]{eq:yz-boundary-y} to obtain the following equation in $y^*$:
+
+    \begin{equation}\label{eq:yz-Y-vars}
+        \frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}\left(u_2+\left(1-p\right)y^*\right)^2}=0
+    \end{equation}
+
+    where:
+
+    \begin{align*}
+        Y_3 &= -r_{yx}r_{zx}\left(1-p\right)^2\\
+        Y_2 &= r_{yx}r_{zx}\left(1-p\right)\left(\left(1-p\right)-2u_2\right)\\
+        Y_1 &= r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)+u_1\left(u_3+\left(u_4-r_{zx}\right)\right)\left(1-p\right)^2\\
+        Y_0 &= u_2\left(r_{yx}r_{zx}u_2-u_1\left(r_{zx}-u_4\right)\left(1-p\right)\right)
+    \end{align*}
+
+    It will be difficult to find an analytical solution for $y^*$ in terms of the parameters. Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:yz-Y-vars}. Since all of the coefficients of \myref[Equation]{eq:yz-Y-vars} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}. By Descartes' rule of signs, we can say that \myref[Equation]{eq:yz-Y-vars} will have at least one positive solution if $Y_0<0$, or:
+    
+    \begin{equation*}
+        1>\frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}
+    \end{equation*}
+
+    Thus we have proved that the $yz$-boundary equilibrium point $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
+    
+    \begin{equation*}
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+
+    and $y^*$ is a positive solution to 
+
+    \begin{equation*}
+        \frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}\left(u_2+\left(1-p\right)y^*\right)^2}=0
+    \end{equation*}
+
+    where:
+
+    \begin{align*}
+        Y_3 &= -r_{yx}r_{zx}\left(1-p\right)^2\\
+        Y_2 &= r_{yx}r_{zx}\left(1-p\right)\left(\left(1-p\right)-2u_2\right)\\
+        Y_1 &= r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)+u_1\left(u_3+\left(u_4-r_{zx}\right)\right)\left(1-p\right)^2\\
+        Y_0 &= u_2\left(r_{yx}r_{zx}u_2-u_1\left(r_{zx}-u_4\right)\left(1-p\right)\right)
+    \end{align*}
+
+    provided that the following conditions are saitsfied:
+    
+    \begin{equation*}
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad 1>\frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}\label{thm:eq-interior-exist}
+    The interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exist under.
+\end{theorem}
+\begin{proof}
+    The interior equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*>0,\ y^*>0,\ z^*>0$. Essentially, we are solving \myref[Model]{model:rayla-ephraim} for non-trivial solutions. We can reduce the model to:
+
+    \begin{subequations}\label{system:interior}
+        \begin{align}
+            0 &= 1-x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^* \label{eq:interior-x}\\
+            0 &= r_{yx}\left(1-y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1\left(1-p\right)z^*}{u_2+\left(1-p\right)y^*} \label{eq:interior-y}\\
+            0 &= r_{zx}\left(1-z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4 \label{eq:interior-z}
+        \end{align}
+    \end{subequations}
+
+    Solving for $x^*$ in \myref[Equation]{eq:interior-x} yields:
+
+    \begin{equation*}
+        x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*
+    \end{equation*}
+
+    and $x^*$ is positive when:
+
+    \begin{equation*}
+        \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*
+    \end{equation*}
+
+    Solving for $z^*$ in \myref[Equation]{eq:interior-z} yields:
+
+    \begin{equation*}
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+    
+    and $z^*$ is positive when
+
+    \begin{equation*}
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)}
+    \end{equation*}
+
+    We can then plug in our equations for $x^*$ and $z^*$ into \myref[Equation]{eq:interior-y} to get the following equation in $y^*$:
+
+    \begin{equation}\label{eq:interior-Y}
+        \frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
+    \end{equation}
+
+    where
+
+    \begin{align*}
+        Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
+        Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
+        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)-r_{zx}\left(1-p\right)^3\right)\\
+        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}+u_3+u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_3+u_4-r_{zx}\right)+r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2\right.\\
+        &\left.-3r_{zx}^2u_2\left(1-p\right)+2r_{zx}r_{zx}\varphi_{xy}\varphi_{yx}\left(3r_{zx}^2\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-u_3\right)\right)\right)\\
+        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
+        &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
+        &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
+        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
+        &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
+        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
+    \end{align*}
+
+    It will be difficult to find an analytical solution for $y^*$ in terms of the parameters. Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:interior-Y}. Since all of the coefficients of \myref[Equation]{eq:interior-Y} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}. By Descartes' rule of signs, we can say that \myref[Equation]{eq:interior-Y} will have at least one positive solution if $Y_0<0$. Thus we have proved that the trivial equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
+    
+    \begin{equation*}
+        x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+
+    and $y^*$ is a positive solution to 
+
+    \begin{equation*}
+        \frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
+    \end{equation*}
+
+    where:
+
+    \begin{align*}
+        Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
+        Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
+        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)-r_{zx}\left(1-p\right)^3\right)\\
+        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}+u_3+u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_3+u_4-r_{zx}\right)+r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2\right.\\
+        &\left.-3r_{zx}^2u_2\left(1-p\right)+2r_{zx}r_{zx}\varphi_{xy}\varphi_{yx}\left(3r_{zx}^2\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-u_3\right)\right)\right)\\
+        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
+        &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
+        &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
+        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
+        &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
+        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
+    \end{align*}
+
+    provided that the following conditions are saitsfied:
+    
+    \begin{equation*}
+        \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad Y_0<0
+    \end{equation*}
+\end{proof}
+
+\section{Classifying Equilibria}
+\section{Bifurcation Analysis}
+\section{Stability Analysis}
+In order to compute the stability of these equilibrium points, we will use linear stability analysis~\cite{Strogatz9780813349107} and the Routh-Hurwitz stability criterion~\cite{YANG2002615621}. Both methods requires the Jacobian of \myref[Model]{model:rayla-ephraim}, which is:
+
+\begin{equation}\label{matrix:jacobian-model}
+    \textbf{J}\left(E\right) = \begin{bmatrix}
+        j_{11} & j_{12} & j_{13}\\
+        j_{21} & j_{22} & j_{23}\\
+        0 & j_{32} & j_{33}
+    \end{bmatrix}
+\end{equation}
+
+    % \begin{equation}\label{matrix:jacobian-model}
+    %     \textbf{J}\left(E\right) = \begin{bmatrix}
+    %         1-2x+\varphi_{xy}y^2-\varphi_{xz}z & 2\varphi_{xy}xy & -\varphi_{xz}x\\
+    %         2r_{yx}\varphi_{yx}xy & r_{yx}\left(1-2y+\varphi_{yx}x^2\right)-\frac{u_1u_2\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2} & -\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\\
+    %         0 & \frac{u_2u_3\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2} & r_{zx}\left(1-2z\right)+\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4
+    %     \end{bmatrix}
+    % \end{equation}
+
+where
+
+\begin{align*}
+    j_{11} &= 1-2x+\varphi_{xy}y^2-\varphi_{xz}z\\
+    j_{12} &= 2\varphi_{xy}xy\\
+    j_{13} &= -\varphi_{xz}x\\
+    j_{21} &= 2r_{yx}\varphi_{yx}xy\\
+    j_{22} &= r_{yx}\left(1-2y+\varphi_{yx}x^2\right)-\frac{u_1u_2\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2}\\
+    j_{23} &= -\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\\
+    j_{32} &= \frac{u_2u_3\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2}\\
+    j_{33} &= r_{zx}\left(1-2z\right)+\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4
+\end{align*}
+
+\begin{theorem}\label{thm:eq-trivial-stability}
+    The trivial equilibrium $E_0$ is unstable.
+\end{theorem}
+\begin{proof}
+    The jacobian at the trivial equilibrium is:
+
+    \begin{equation}\label{matrix:jacobian-trivial}
+        \textbf{J}\left(E_0\right) = \begin{bmatrix}
+            1 & 0 & 0\\
+            0 & r_{yx} & 0\\
+            0 & 0 & r_{xz}-u_4
+        \end{bmatrix}
+    \end{equation}
+
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-trivial} are $\lambda=\left\{1,\ r_{yx},\ r_{xz}-u_4\right\}$. Here we can see that teh eigenvalue $\lambda_1=1$ is positive, thus proving that the trivial equilibrium is unstable.
+\end{proof}
+
+\begin{theorem}\label{thm:eq-axial-x-stability}
+    The $x$-axial equilibrium $E_x$ is unstable.
+\end{theorem}
+\begin{proof}
+    The jacobian at the $x$-axial equilibrium is:
+
+    \begin{equation}\label{matrix:jacobian-axial-x}
+        \textbf{J}\left(E_x\right) = \begin{bmatrix}
+            -1 & 0 & -\varphi_{xz}\\
+            0 & r_{yx}\left(\varphi_{yx}+1\right) & 0\\
+            0 & 0 & r_{xz}-u_4
+        \end{bmatrix}
+    \end{equation}
+
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-axial-x} are $\lambda=\left\{-1,\ r_{yx}\left(\varphi_{yx}+1\right),\ r_{xz}-u_4\right\}$. Here we can see that the eigenvalue $\lambda_2=r_{yx}\left(\varphi_{yx}+1\right)$ is positive, thus proving that the $x$-axial equilibrium is unstable.
+\end{proof}
+
+\begin{theorem}\label{thm:eq-axial-y-stability}
+    The $y$-axial equilibrium $E_y$ is unstable.
+\end{theorem}
+\begin{proof}
+    The jacobian at the $y$-axial equilibrium is:
+
+    \begin{equation}\label{matrix:jacobian-axial-y}
+        \textbf{J}\left(E_y\right) = \begin{bmatrix}
+            1+\varphi_{xy} & 0 & 0\\
+            0 & -r_{yx} & -\frac{u_1\left(1-p\right)}{u_2+\left(1-p\right)}\\
+            0 & 0 & r_{zx}+\frac{u_3\left(1-p\right)}{u_2+\left(1-p\right)}-u_4
+        \end{bmatrix}
+    \end{equation}
+
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-axial-y} are:
+    
+    \begin{equation*}
+        \lambda=\left\{1+\varphi_{xy},\ -r_{yx},\ r_{zx}+\frac{u_3\left(1-p\right)}{u_2+\left(1-p\right)}-u_4\right\}
+    \end{equation*}
+    
+    Here we can see that the eigenvalue $\lambda_1=1+\varphi_{xy}y^2$ is positive, thus proving that the $y$-axial equilibrium is unstable.
+\end{proof}
+
+\begin{theorem}\label{thm:eq-axial-z-stability}
+    The $z$-axial equilibrium $E_z$ is locally stable when:
+
+    \begin{equation*}
+        \frac{u_4}{r_{zx}}+\varphi_{xz}<1,\quad \frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)}<1,\quad \frac{u_4}{r_{zx}}<\frac{1}{2}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the $z$-axial equilibrium is:
+
+    \begin{equation}\label{matrix:jacobian-axial-z}
+        \textbf{J}\left(E_z\right) = \begin{bmatrix}
+            1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right) & 0 & 0\\
+            0 & r_{yx}-\frac{u_1\left(1-p\right)}{u_2}\left(1-\frac{u_4}{r_{zx}}\right) & 0\\
+            0 & \frac{u_3\left(1-p\right)}{u_2}\left(1-\frac{u_4}{r_{zx}}\right) & r_{zx}\left(1-2\left(1-\frac{u_4}{r_{zx}}\right)\right)
+        \end{bmatrix}
+    \end{equation}
+
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-axial-z} are:
+    
+    \begin{equation*}
+        \lambda=\left\{1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\ r_{yx}-\frac{u_1\left(1-p\right)}{u_2}\left(1-\frac{u_4}{r_{zx}}\right),\ r_{zx}\left(1-2\left(1-\frac{u_4}{r_{zx}}\right)\right)\right\}
+    \end{equation*}
+    
+    With these eigenvalues, this means that the $z$-axial equilibrium $E_z$ is locally stable when:
+
+    \begin{equation*}
+        \frac{u_4}{r_{zx}}+\varphi_{xz}<1,\quad \frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)}<1,\quad \frac{u_4}{r_{zx}}<\frac{1}{2}
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}\label{thm:eq-boundary-xy-stability}
+    The $xy$-boundary equilibrium $E_{xy}$ is locally stable when:
+
+    \begin{align*}
+        0 &< -j_{11}-j_{22}-j_{33}\\
+        0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}\\
+        0 &< j_{33}\left(j_{12}j_{21}-j_{11}j_{22}\right)
+    \end{align*}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1-2x+\varphi_{xy}\left(y\right)^2\\
+        j_{12} &= 2\varphi_{xy}x^*y^*\\
+        j_{13} &= -\varphi_{xz}x^*\\
+        j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x\right)^2\right)\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{33} &= r_{zx}+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the $xy$-boundary equilibrium in terms of $x^*$ and $y^*$ is:
+
+    \begin{equation}\label{matrix:jacobian-boundary-xy}
+        \textbf{J}\left(E_{xy}\right) = \begin{bmatrix}
+            j_{11} & j_{12} & 0\\
+            j_{21} & j_{22} & j_{23}\\
+            0 & 0 & j_{33}
+        \end{bmatrix}
+    \end{equation}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1-2x+\varphi_{xy}\left(y\right)^2\\
+        j_{12} &= 2\varphi_{xy}x^*y^*\\
+        j_{13} &= -\varphi_{xz}x^*\\
+        j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x\right)^2\right)\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{33} &= r_{zx}+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+
+    The characteristic equation to \myref[Matrix]{matrix:jacobian-boundary-xy} is:
+
+    \begin{equation*}\label{eq:char-eq-xy}
+        \lambda^3+C_2\lambda^2+C_1\lambda+C_0=0
+    \end{equation*}
+
+    where
+    
+    \begin{align*}
+        C_2 &= -j_{11}-j_{22}-j_{33}\\
+        C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}\\
+        C_0 &= j_{33}\left(j_{12}j_{21}-j_{11}j_{22}\right)
+    \end{align*}
+
+    By the Routh-Hurwitz stability criterion, the equilibrium will be stable if $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$. Thus, the $xy$-boundary equilibrium $E_{xy}$ is locally stable when:
+
+    \begin{align*}
+        0 &< -j_{11}-j_{22}-j_{33}\\
+        0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}\\
+        0 &< j_{33}\left(j_{12}j_{21}-j_{11}j_{22}\right)
+    \end{align*}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1-2x+\varphi_{xy}\left(y\right)^2\\
+        j_{12} &= 2\varphi_{xy}x^*y^*\\
+        j_{13} &= -\varphi_{xz}x^*\\
+        j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x\right)^2\right)\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{33} &= r_{zx}+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+\end{proof}
+
+\begin{theorem}\label{thm:eq-boundary-xz-stability}
+    The $xz$-boundary equilibrium $E_{xz}$ is locally stable when:
+
+    \begin{equation*}
+        z^*>\frac{1-2x^*}{\varphi_{xz}},\ z^*>\frac{r_{yx}u_2\left(1+\varphi_{yx}\left(x^*\right)^2\right)}{u_1\left(1-p\right)},\ z^*>\frac{r_{zx}-u_4}{2r_{zx}}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the $xz$-boundary equilibrium in terms of $x^*$ and $z^*$ is:
+
+    \begin{equation}\label{matrix:jacobian-boundary-xz}
+        \textbf{J}\left(E_{xz}\right) = \begin{bmatrix}
+            j_{11} & 0 & j_{13}\\
+            0 & j_{22} & 0\\
+            0 & j_{32} & j_{33}
+        \end{bmatrix}
+    \end{equation}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1-2x^*-\varphi_{xz}z^*\\
+        j_{13} &= -\varphi_{xz}x^*\\
+        j_{22} &= r_{yx}\left(1+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1\left(1-p\right)z^*}{u_2}\\
+        j_{32} &= \frac{u_3\left(1-p\right)z^*}{u_2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)-u_4
+    \end{align*}
+
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-boundary-xz} are:
+    
+    \begin{equation*}
+        \lambda=\left\{j_{11},\ j_{22},\ j_{33}\right\}
+    \end{equation*}
+    
+    With these eigenvalues, this means that the $xz$-boundary equilibrium $E_{xz}$ is locally stable when:
+
+    \begin{equation*}
+        z^*>\frac{1-2x^*}{\varphi_{xz}},\ z^*>\frac{r_{yx}u_2\left(1+\varphi_{yx}\left(x^*\right)^2\right)}{u_1\left(1-p\right)},\ z^*>\frac{r_{zx}-u_4}{2r_{zx}}
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}\label{thm:eq-boundary-yz-stability}
+    The $yz$-boundary equilibrium $E_{yz}$ is locally stable when:
+
+    \begin{align*}
+        0 &< -j_{11}-j_{22}-j_{33}\\
+        0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
+        0 &< j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)
+    \end{align*}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+        j_{22} &= r_{yx}\left(1-2y^*\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y\right)^2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the $xz$-boundary equilibrium in terms of $x^*$ and $z^*$ is:
+
+    \begin{equation}\label{matrix:jacobian-boundary-yz}
+        \textbf{J}\left(E_{yz}\right) = \begin{bmatrix}
+            j_{11} & 0 & 0\\
+            0 & j_{22} & j_{23}\\
+            0 & j_{32} & j_{33}
+        \end{bmatrix}
+    \end{equation}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+        j_{22} &= r_{yx}\left(1-2y^*\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y\right)^2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+
+    The characteristic equation to \myref[Matrix]{matrix:jacobian-boundary-xy} is:
+
+    \begin{equation*}\label{eq:char-eq-yz}
+        \lambda^3+C_2\lambda^2+C_1\lambda+C_0=0
+    \end{equation*}
+
+    where
+    
+    \begin{align*}
+        C_2 &= -j_{11}-j_{22}-j_{33}\\
+        C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
+        C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)
+    \end{align*}
+
+    By the Routh-Hurwitz stability criterion, the equilibrium will be stable if $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$. Thus, the $yz$-boundary equilibrium $E_{yz}$ is locally stable when:
+
+    \begin{align*}
+        0 &< -j_{11}-j_{22}-j_{33}\\
+        0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
+        0 &< -j_{11}j_{22}j_{33}
+    \end{align*}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+        j_{22} &= r_{yx}\left(1-2y^*\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y\right)^2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+\end{proof}
+
+\begin{theorem}\label{thm:eq-interior-stability}
+    The interior equilibrium $E_{xyz}$ is locally stable when:
+
+    \begin{align*}
+        0 &< -j_{11}-j_{22}-j_{33}\\
+        0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
+        0 &< j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)
+    \end{align*}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1-2x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+        j_{12} &= 2\varphi_{xy}x^*y^*\\
+        j_{13} &= -\varphi_{xz}x^*\\
+        j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the interior equilibrium is:
+
+    \begin{equation}\label{matrix:jacobian-interior}
+        \textbf{J}\left(E_{xyz}\right) = \begin{bmatrix}
+            1-2x+\varphi_{xy}y^2-\varphi_{xz}z & 2\varphi_{xy}xy & -\varphi_{xz}x\\
+            2r_{yx}\varphi_{yx}xy & r_{yx}\left(1-2y+\varphi_{yx}x^2\right)-\frac{u_1u_2\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2} & -\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\\
+            0 & \frac{u_2u_3\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2} & r_{zx}\left(1-2z\right)+\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4
+        \end{bmatrix}
+    \end{equation}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1-2x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+        j_{12} &= 2\varphi_{xy}x^*y^*\\
+        j_{13} &= -\varphi_{xz}x^*\\
+        j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+
+    The characteristic equation to \myref[Matrix]{matrix:jacobian-interior} is:
+
+    \begin{equation*}\label{eq:char-eq-interior}
+        \lambda^3+C_2\lambda^2+C_1\lambda+C_0=0
+    \end{equation*}
+
+    where
+    
+    \begin{align*}
+        C_2 &= -j_{11}-j_{22}-j_{33}\\
+        C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
+        C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)
+    \end{align*}
+
+    By the Routh-Hurwitz stability criterion, the equilibrium will be stable if $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$. Thus, the interior equilibrium $E_{xyz}$ is locally stable when:
+
+    \begin{align*}
+        0 &< -j_{11}-j_{22}-j_{33}\\
+        0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
+        0 &< j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)
+    \end{align*}
+
+    where
+    
+    \begin{align*}
+        j_{11} &= 1-2x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+        j_{12} &= 2\varphi_{xy}x^*y^*\\
+        j_{13} &= -\varphi_{xz}x^*\\
+        j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+\end{proof}
+
+\section{Bifurcation Analysis}
+\section{Limit Cycle Analysis}
