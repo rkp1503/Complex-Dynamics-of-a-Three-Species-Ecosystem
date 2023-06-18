@@ -1,15 +1,15 @@
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 % Supported entry types
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 article, book, mvbook, inbook, bookinbook, suppbook, booklet, collection, 
 mvcollection, incollection, suppcollection, manual, misc, online, patent, 
 periodical, suppperiodical, proceedings, mvproceedings, inproceedings, 
 reference, mvreference, inreference, report, set, thesis, unpublished, custom, 
 conference, electronic, masterthesis, phdthesis, techreport
 
-%-----------------------------------------------------------------------------
-% Supported entry fields (The printed information depends on the bibliography style)
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
+% Supported entry fields (The printed information depends on the bibliography 
+% ----------------------------------------------------------------------------
 abstract, addendum, afterword, annotate, author, authortype, bookauthor, 
 bookpagination, booksubtitle, booktitle, chapter, commentator, date, doi, 
 edition, editor, editortype, eid, entrysubtype, eprint, eprinttype, 
@@ -23,9 +23,9 @@ shortauthor, shortedition, shorthand, shorthandintro, shortjournal,
 shortseries, shorttitle, subtitle, title, translator, type, url, venue, 
 version, volume, year
 
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 % Bibliography sorting options
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 nty: sort by name, title, year
 nyt: sort by name, year, title
 nyvt: sort by name, year, volume, title
@@ -34,79 +34,13 @@ anyvt: sort by alphabetic label, name, year, volume, title
 ydnt: sort by year (descending), name, title
 none: entries are processed in citation order
 
-%-----------------------------------------------------------------------------
-% Citations
-%-----------------------------------------------------------------------------
-% Equilibrium Points
-% Linearization
-% Jacobian Matrix
-% Eigenvalue
-% Stability Theory
-@book{book:2478639,
-    title = {Nonlinear dynamics and chaos : with applications to physics, biology, chemistry, and engineering},
-    author = {Strogatz, Steven Henry},
-    publisher = {CRC Press},
-    isbn = {9780813349107,0813349109},
-    year = {2018},
-    series = {},
-    edition = {Second edition},
-    volume = {},
-    url = {http://gen.lib.rus.ec/book/index.php?md5=1D7C9CA22A793FE3A34C21B28DB3AB14}
-}
-
-% Descartes' rule of signs
-@article{10.2307/1967494,
-    ISSN = {0003486X},
-    URL = {http://www.jstor.org/stable/1967494},
-    author = {D. R. Curtiss},
-    journal = {Annals of Mathematics},
-    number = {4},
-    pages = {251--278},
-    publisher = {Annals of Mathematics},
-    title = {Recent Extentions of Descartes' Rule of Signs},
-    urldate = {2022-12-06},
-    volume = {19},
-    year = {1918}
-}
-
-% Routh–Hurwitz stability criterion
-@book{routh1877treatise,
-    title={A Treatise on the Stability of a Given State of Motion: Particularly Steady Motion},
-    author={Routh, E.J.},
-    lccn={02013331},
-    url={https://books.google.com/books?id=xLQEAAAAYAAJ},
-    year={1877},
-    publisher={Macmillan and Company}
-}
-
-% Intermediate value theorem
-@book{book:2946356,
-    title = {Calculus: Early Transcendentals},
-    author = {James Stewart},
-    publisher = {Cengage Learning},
-    isbn = {1337613924,9781337613927},
-    year = {2020},
-    series = {},
-    edition = {9},
-    volume = {}
-}
-
-% Base Paper 1
-@article{PANJA2022100153,
-    title = {Complex dynamics of a three species predator–prey model with two nonlinearly competing species},
-    journal = {Results in Control and Optimization},
-    volume = {8},
-    pages = {100153},
-    year = {2022},
-    issn = {2666-7207},
-    doi = {https://doi.org/10.1016/j.rico.2022.100153},
-    url = {https://www.sciencedirect.com/science/article/pii/S2666720722000327},
-    author = {Prabir Panja and Sailen Gayen and Tridib Kar and Dipak Kumar Jana},
-    keywords = {Prey, Predator, Nonlinear competition, Commensalism, Hopf bifurcation},
-    abstract = {In this paper, a three species predator–prey model has been proposed incorporating nonlinear Lotka–Volterra competition between two competing species x and y. It is assumed that the growth rate of x increases due to its commensalism on z, but predator z species consumes y species as prey following Holling type II functional response. Moreover the prey refuge behavior has been considered on y species. Positivity and boundedness of solutions are shown analytically. Different equilibrium points are determined and the stability of the system has been checked around these equilibrium points. Hopf bifurcation analysis has been done with respect to the nonlinear relationship competition parameters γ12 and γ21 and other parameters p,v1,v2 and v3 respectively. Also, the Transcritical bifurcation analysis of the system with respect to γ12 and γ21 have been done. From the analysis, it can be concluded that the nonlinear relationship coefficients between two species x and y may control the instability of the proposed system. Finally, some numerical simulation results have been presented to study the actual dynamics of the proposed model.}
-}
-
-% Base Paper 1
+% ----------------------------------------------------------------------------
+% Citations (Articles)
+% ----------------------------------------------------------------------------
+% 3 species model
+% prey–predation, competition and commensalism
+% Holling-type II functional response
+% prey refuge
 @article{GAKKHAR201654,
     title = {A three species dynamical system involving prey–predation, competition and commensalism},
     journal = {Applied Mathematics and Computation},
@@ -117,57 +51,27 @@ none: entries are processed in citation order
     doi = {https://doi.org/10.1016/j.amc.2015.09.036},
     url = {https://www.sciencedirect.com/science/article/pii/S0096300315012722},
     author = {Sunita Gakkhar and Komal Gupta},
-    keywords = {Holling-type II response, Commensalism, Refuge, Persistence, Hopf bifurcation},
-    abstract = {In this paper, a three species dynamical system is explored. The system consisting of two logistically growing competing species and the third species acts as a predator as well as host. It is predating over second species with Holling type II functional response, while first species is benefited from the third species. In addition, the prey species move into a refuge to avoid high predation. The essential mathematical features of the proposed model are studied in terms of boundedness, persistence, local stability and bifurcation. The existence of transcritical bifurcations have been established about two axial points. It has been observed that survival of all three species may be possible due to commensalism. Numerical simulations have been performed to show the Hopf bifurcation about interior equilibrium point. The existence of period-2 solution is observed. Further, the bifurcations of codimension-2 have also been investigated.}
+    keywords = {Biology, Holling-type II response, Commensalism, Refuge, Persistence, Hopf bifurcation}
 }
 
-@book{brauer_castillo-chávez_2012, 
-    place={New York}, 
-    title={Mathematical models in population biology and Epidemiology}, 
-    publisher={Springer}, 
-    author={Brauer, Fred and Castillo-Chávez, Carlos}, 
-    year={2012}
+% 3 species model
+% prey–predation, nonlinear competition and commensalism
+% Holling-type II functional response
+% prey refuge
+@article{PANJA2022100153,
+    title = {Complex dynamics of a three species predator–prey model with two nonlinearly competing species},
+    journal = {Results in Control and Optimization},
+    volume = {8},
+    pages = {100153},
+    year = {2022},
+    issn = {2666-7207},
+    doi = {https://doi.org/10.1016/j.rico.2022.100153},
+    url = {https://www.sciencedirect.com/science/article/pii/S2666720722000327},
+    author = {Prabir Panja and Sailen Gayen and Tridib Kar and Dipak Kumar Jana},
+    keywords = {Biology, Prey, Predator, Nonlinear competition, Commensalism, Hopf bifurcation}
 }
 
-@article{doi:10.1086/282272,
-    author = {Rosenzweig, M. L. and MacArthur, R. H.},
-    title = {Graphical Representation and Stability Conditions of Predator-Prey Interactions},
-    journal = {The American Naturalist},
-    volume = {97},
-    number = {895},
-    pages = {209-223},
-    year = {1963},
-    doi = {10.1086/282272},
-    URL = {https://doi.org/10.1086/282272},
-    eprint = {https://doi.org/10.1086/282272},
-    abstract = { The general nature of the predator-prey interaction has been depicted as a graph of predator versus prey densities from which conditions for stability of the interaction are predicted. An example of a three-species interaction is also presented. Variations of the graph are introduced, and it is shown that an otherwise unstable interaction may be stabilized by the presence of either an inviolable prey hiding place, or extremely low predation pressure at moderate predator and high prey densities, or another predator-limiting resource. Stability is always conferred when the predator is severely limited at its equilibrium density by one of its resources other than its supply of prey. Predators should tend to be limited at their equilibrium densities by more than one of their resources. When either of the two foregoing situations pertains, regular predator-prey oscillations should not be observable. The stability of the interaction close to equilibrium was found to depend exclusively, in the mathematically-continuous model, upon the slopes of two lines in the graph at equilibrium. Stability can be asymptotic rather than oscillatory in type. An equation for the period of oscillatory interactions is also advanced. The effects of Natural Selection on the isoclines, and thus the stability, is not clear-cut. Selection of the prey tends to stabilize the interaction; the opposite is true for selection on the predator. }
-}
-
-@book{hassell2020dynamics,
-    title={The Dynamics of Arthopod Predator-Prey Systems. (MPB-13), Volume 13},
-    author={Hassell, M.P.},
-    isbn={9780691209968},
-    lccn={78051169},
-    series={Monographs in Population Biology},
-    url={https://books.google.com/books?id=kf3RDwAAQBAJ},
-    year={2020},
-    publisher={Princeton University Press}
-}
-
-@article{FREEDMAN1977257,
-    title = {Mathematical analysis of some three-species food-chain models},
-    journal = {Mathematical Biosciences},
-    volume = {33},
-    number = {3},
-    pages = {257-276},
-    year = {1977},
-    issn = {0025-5564},
-    doi = {https://doi.org/10.1016/0025-5564(77)90142-0},
-    url = {https://www.sciencedirect.com/science/article/pii/0025556477901420},
-    author = {H.I. Freedman and Paul Waltman},
-    abstract = {The paper is basically concerned with the question of persistence of all species in a three-level food chain. A general model is introduced and the equilibria analyzed. Boundedness and stability criteria are established. Three special cases of the model are analyzed, showing the applicability of the theory, and in certain cases extensions are given. The special cases include Lotka-Volterra (where we are able to give necessary and sufficient conditions for persistence), Lotka-Volterra predation with a carrying capacity at the lowest level, and a mixed Lotka-Volterra and Holling predation (at different levels) with a carrying capacity at the lowest level.}
-}
-
+% 4 species model (2-2 prey-predator)
 @article{JANA2021100942,
     title = {Behavioural analysis of two prey-two predator model},
     journal = {Ecological Complexity},
@@ -178,24 +82,243 @@ none: entries are processed in citation order
     doi = {https://doi.org/10.1016/j.ecocom.2021.100942},
     url = {https://www.sciencedirect.com/science/article/pii/S1476945X21000350},
     author = {Abhijit Jana and Sankar Kumar Roy},
-    keywords = {Logistic growth model, Functional response, Hopf-bifurcation, Second additive compound matrix, Poincaré-Bendixon criterion, Li-Muldowney geometrical approach},
-    abstract = {To deal with real-life diversity of our ecosystem, this paper analyzes two prey-two predator model including both Type-I and Type-II functional responses. The interior equilibrium point of the proposed model is calculated; and behaviour of the model around that point is studied. Local stability at an interior equilibrium point is discussed; and possibility of Hopf-bifurcation with probable direction is studied. A generalized form of the Poincaré-Bendixon criterion is applied to establish the sufficient conditions for global stability of the proposed model surrounding at an interior equilibrium point. Numerical simulations are also conducted in support of our work. Conclusions of our findings and some probable future directions are also included at the end.}
+    keywords = {Biology, Logistic growth model, Functional response, Hopf-bifurcation, Second additive compound matrix, Poincaré-Bendixon criterion, Li-Muldowney geometrical approach}
 }
 
-@article{doi:10.1080/02286203.2020.1839168,
-    author = {Abhijit Jana and Sankar Kumar Roy},
-    title = {Holling-Tanner prey-predator model with Beddington-DeAngelis functional response including delay},
-    journal = {International Journal of Modelling and Simulation},
-    volume = {42},
-    number = {1},
-    pages = {86-100},
-    year  = {2022},
-    publisher = {Taylor & Francis},
-    doi = {10.1080/02286203.2020.1839168},
-    URL = {https://doi.org/10.1080/02286203.2020.1839168},
-    eprint = {https://doi.org/10.1080/02286203.2020.1839168}
+% 3 species model
+% 2 different types of prey
+% Crowley–Martin type functional response
+@article{MENG2014810,
+    title = {Stability in a predator–prey model with Crowley–Martin function and stage structure for prey},
+    journal = {Applied Mathematics and Computation},
+    volume = {232},
+    pages = {810-819},
+    year = {2014},
+    issn = {0096-3003},
+    doi = {https://doi.org/10.1016/j.amc.2014.01.139},
+    url = {https://www.sciencedirect.com/science/article/pii/S0096300314001854},
+    author = {Xin-You Meng and Hai-Feng Huo and Hong Xiang and Qi-yu Yin},
+    keywords = {Biology, Stability, Persistence, Stage structure, Crowley–Martin}
 }
 
+% 2 species model
+% prey refuge
+@article{GHOSH2017110,
+    title = {Prey-predator dynamics with prey refuge providing additional food to predator},
+    journal = {Chaos, Solitons & Fractals},
+    volume = {96},
+    pages = {110-119},
+    year = {2017},
+    issn = {0960-0779},
+    doi = {https://doi.org/10.1016/j.chaos.2017.01.010},
+    url = {https://www.sciencedirect.com/science/article/pii/S0960077917300164},
+    author = {Joydev Ghosh and Banshidhar Sahoo and Swarup Poria},
+    keywords = {Biology, Prey refuge, Additional food, Hopf bifurcation, Unique limit cycle}
+}
+
+@article{ALIDOUSTI2020109688,
+    title = {Dynamic behavior of a fractional order prey-predator model with group defense},
+    journal = {Chaos, Solitons & Fractals},
+    volume = {134},
+    pages = {109688},
+    year = {2020},
+    issn = {0960-0779},
+    doi = {https://doi.org/10.1016/j.chaos.2020.109688},
+    url = {https://www.sciencedirect.com/science/article/pii/S0960077920300904},
+    author = {Javad Alidousti and Elham Ghafari},
+    keywords = {Biology, Prey-predator model, Stability analysis, Caputo derivative, Bifurcation, Chaos, Periodic solution}
+}
+
+% % No obtainable source...
+% % 2 species model
+% @article{article:10.1086/282272,
+%     author    = {Rosenzweig, M. L. and MacArthur, R. H.},
+%     title     = {Graphical Representation and Stability Conditions of Predator-Prey Interactions},
+%     journal   = {The American Naturalist},
+%     volume    = {97},
+%     number    = {895},
+%     pages     = {209-223},
+%     year      = {1963},
+%     doi       = {10.1086/282272},
+%     URL       = {https://doi.org/10.1086/282272},
+%     keywords  = {Biology}
+% }
+
+% % No obtainable source...
+% % 2 species model
+% @article{article:0025-5564,
+%     title     = {Mathematical analysis of some three-species food-chain models},
+%     author    = {H.I. Freedman and Paul Waltman},
+%     year      = {1977},
+%     journal   = {Mathematical Biosciences},
+%     issn      = {0025-5564},
+%     volume    = {33},
+%     number    = {3},
+%     pages     = {257-276},
+%     doi       = {https://doi.org/10.1016/0025-5564(77)90142-0},
+%     url       = {https://www.sciencedirect.com/science/article/pii/0025556477901420},
+%     keywords  = {Biology}
+% }
+
+% % No obtainable source...
+% @article{doi:10.1080/02286203.2020.1839168,
+%     author = {Abhijit Jana and Sankar Kumar Roy},
+%     title = {Holling-Tanner prey-predator model with Beddington-DeAngelis functional response including delay},
+%     journal = {International Journal of Modelling and Simulation},
+%     volume = {42},
+%     number = {1},
+%     pages = {86-100},
+%     year  = {2022},
+%     publisher = {Taylor & Francis},
+%     doi = {10.1080/02286203.2020.1839168},
+%     URL = {https://doi.org/10.1080/02286203.2020.1839168},
+%     eprint = {https://doi.org/10.1080/02286203.2020.1839168}
+% }
+
+% Precise classification of fixed points for a system of 3 equations.
+@inproceedings{STUMPF201106,
+    title = {Research in Nonlinear Dynamics Triggered by R&D Experiences},
+    author = {Stumpf, Peter and Sütő, Zoltán and Nagy, I.},
+    year = {2011},
+    month = {06},
+    pages = {},
+    URL = {https://www.researchgate.net/publication/257304665_Research_in_Nonlinear_Dynamics_Triggered_by_RD_Experiences},
+    keywords = {Mathematics}
+}
+
+% Descartes' rule of signs
+@article{WANG2004525526,
+    ISSN = {00029890, 19300972},
+    URL = {http://www.jstor.org/stable/4145072},
+    author = {Xiaoshen Wang},
+    journal = {The American Mathematical Monthly},
+    number = {6},
+    pages = {525--526},
+    publisher = {Mathematical Association of America},
+    title = {A Simple Proof of Descartes's Rule of Signs},
+    volume = {111},
+    year = {2004},
+    keywords = {Mathematics}
+}
+
+% @article{CURTISS1918251278,
+%     title = {Recent Extentions of Descartes' Rule of Signs},
+%     author = {D. R. Curtiss},
+%     publisher = {Annals of Mathematics},
+%     journal = {Annals of Mathematics},
+%     ISSN = {0003486X},
+%     year = {1918},
+%     volume = {19},
+%     pages = {251--278},
+%     URL = {http://www.jstor.org/stable/1967494},
+%     number = {4},
+%     keywords = {Mathematics}
+% }
+
+@article{YANG2002615621,
+    title = {Generalized form of Hurwitz-Routh criterion and Hopf bifurcation of higher order},
+    journal = {Applied Mathematics Letters},
+    volume = {15},
+    number = {5},
+    pages = {615-621},
+    year = {2002},
+    issn = {0893-9659},
+    doi = {https://doi.org/10.1016/S0893-9659(02)80014-3},
+    url = {https://www.sciencedirect.com/science/article/pii/S0893965902800143},
+    author = {Xiaojing Yang},
+    keywords = {Hurwitz-Routh criterion, Semistable polynomial, Hopf bifurcation.}
+}
+
+% ----------------------------------------------------------------------------
+% Citations (Books)
+% ----------------------------------------------------------------------------
+% Equilibrium Points (Page 19)
+% Linearization (Page 151)
+% Eigenvalue (Page xxx)
+% Stability Theory (Page xxx)
+@book{Strogatz9780813349107,
+    title     = {Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering},
+    author    = {Steven H. Strogatz},
+    publisher = {Westview Press; CRC Press},
+    isbn      = {9780813349107},
+    year      = {2015},
+    series    = {},
+    edition   = {2},
+    volume    = {},
+    pages     = {19, 151},
+    keywords  = {Mathematics}
+}
+
+% % Routh–Hurwitz stability criterion (Page xxx)
+% @book{book:02013331,
+%     title     = {A Treatise on the Stability of a Given State of Motion: Particularly Steady Motion},
+%     author    = {Routh, E.J.},
+%     publisher = {Macmillan and Company},
+%     lccn      = {02013331},
+%     year      = {1877},
+%     url       = {https://books.google.com/books?id=xLQEAAAAYAAJ},
+%     pages     = {},
+%     keywords  = {Mathematics}
+% }
+
+% Routh–Hurwitz stability criterion (Page 222?)
+@book{Gopal9780070668799,
+    title     = {Control Systems: Principles and Design},
+    author    = {M. Gopal},
+    publisher = {Tata McGraw Hill Publishing Co. Ltd.},
+    isbn      = {9780070668799},
+    year      = {2008},
+    series    = {},
+    edition   = {Third edition},
+    volume    = {},
+    pages     = {},
+    keywords  = {Mathematics}
+}
+
+% Intermediate value theorem (Page 122)
+@book{STEWART9781337613927,
+    title     = {Calculus: Early Transcendentals},
+    author    = {James Stewart},
+    publisher = {Cengage Learning},
+    isbn      = {9781337613927},
+    year      = {2020},
+    series    = {},
+    edition   = {9},
+    volume    = {},
+    pages     = {122},
+    keywords  = {Mathematics}
+}
+
+% Referencing 2-species population models
+@book{BRAUER9781461416852,
+    title     = {Mathematical Models in Population Biology and Epidemiology},
+    author    = {Fred Brauer, Carlos Castillo-Chavez (auth.)},
+    publisher = {Springer-Verlag New York},
+    isbn      = {9781461416852},
+    year      = {2012},
+    series    = {Texts in Applied Mathematics 40},
+    edition   = {2},
+    volume    = {},
+    keywords  = {Biology}
+}
+
+% % Referencing 2-species population models...?
+% @book{book:9780691209968,
+%     title     = {The Dynamics of Arthopod Predator-Prey Systems. (MPB-13), Volume 13},
+%     author    = {Hassell, M.P.},
+%     year      = {2020},
+%     series    = {Monographs in Population Biology},
+%     isbn      = {9780691209968},
+%     lccn      = {78051169},
+%     url       = {https://books.google.com/books?id=kf3RDwAAQBAJ},
+%     publisher = {Princeton University Press},
+%     keywords  = {Biology}
+% }
+
+
+% ----------------------------------------------------------------------------
+% Citations (Other)
+% ----------------------------------------------------------------------------
 @article{rackauckas2017differentialequations,
     title    = {Differential{E}quations.jl--a performant and feature-rich ecosystem for solving differential equations in {J}ulia},
     author   = {Rackauckas, Christopher and Nie, Qing},
