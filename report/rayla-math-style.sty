@@ -1,18 +1,24 @@
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 % Author: Rayla Kurosaki
 % GitHub: https://github.com/rkp1503
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 % 3rd Party Packages
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 \usepackage{caption,subcaption}
-\usepackage{float}
-\usepackage{mathtools}
+% \usepackage{float}
 
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
+% Functions
+% ----------------------------------------------------------------------------
+\renewcommand{\ln}[1]{\ensuremath{\text{ln}\abs{#1}}}
+\newcommand{\abs}[1]{\ensuremath{\left| #1 \right|}}
+\renewcommand{\exp}[1]{\ensuremath{\text{exp}\left( #1 \right)}}
+
+% ----------------------------------------------------------------------------
 % Derivative Notations
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 % Operator derivative
 \newcommand{\opdiff}[1]{\ensuremath{\mathrm{d}#1}}
 % General derivative (Leibniz's notation)
@@ -28,3 +34,181 @@
     {\ensuremath{\frac{\partial#2}{\partial#3}}}
     {\ensuremath{\frac{\partial^{#1}#2}{\partial#3^{#1}}}}
 }
+
+% ----------------------------------------------------------------------------
+% Misc
+% ----------------------------------------------------------------------------
+\newcommand{\eval}[3]{\ensuremath{\left.#1\right]_{#2}^{#3}}}
+
+
+%----------------------------------------------------------------------------------
+% Math Stuff
+%----------------------------------------------------------------------------------
+% %\DeclareMathOperator{\sin}{sin}
+% %\DeclareMathOperator{\cos}{cos}
+% %\DeclareMathOperator{\tan}{tan}
+% %\DeclareMathOperator{\cot}{cot}
+% %\DeclareMathOperator{\sec}{sec}
+% %\DeclareMathOperator{\csc}{csc}
+% %\DeclareMathOperator{\sinh}{sinh}
+% %\DeclareMathOperator{\cosh}{cosh}
+% %\DeclareMathOperator{\tanh}{tanh}
+% %\DeclareMathOperator{\coth}{coth}
+% \DeclareMathOperator{\sech}{sech}
+% \DeclareMathOperator{\csch}{csch}
+% %\DeclareMathOperator{\arcsin}{arcsin}
+% %%\DeclareMathOperator{\arccos}{arccos}
+% %\DeclareMathOperator{\arctan}{arctan}
+% \DeclareMathOperator{\arccot}{arccot}
+% \DeclareMathOperator{\arcsec}{arcsec}
+% \DeclareMathOperator{\arccsc}{arccsc}
+% \DeclareMathOperator{\arcsinh}{arcsinh}
+% \DeclareMathOperator{\arccosh}{arccosh}
+% \DeclareMathOperator{\arctanh}{arctanh}
+% \DeclareMathOperator{\arccoth}{arccoth}
+% \DeclareMathOperator{\arcsech}{arcsech}
+% \DeclareMathOperator{\arccsch}{arccsch}
+
+% \theoremstyle{plain}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{corollary}{Corollary}[theorem]
+% \newtheorem*{main}{Main Theorem}
+% \newtheorem{lemma}{Lemma}
+% \newtheorem{claim}{Claim}
+% \newtheorem{proposition}{Proposition}
+% \theoremstyle{definition}
+% \newtheorem{define}{Definition}
+% \theoremstyle{remark}
+% \newtheorem*{notation}{Notation}
+% \theoremstyle{remark}
+% \newtheorem*{remark}{Remark}
+% \theoremstyle{remark}
+% \newtheorem{example}{\textbf{Example}}%[section]
+% \numberwithin{theorem}{section}
+
+%----------------------------------------------------------------------------------
+% Math Symbols
+%----------------------------------------------------------------------------------
+% %%%%%%%%%%%%%%% General Sets and Notations %%%%%%%%%%%%%%%
+% \newcommand{\bbC}{\ensuremath{\mathbb{C}}}% Complex Numbers
+% \newcommand{\bbH}{\ensuremath{\mathbb{H}}}% Quaternions
+% \newcommand{\bbN}{\ensuremath{\mathbb{N}}}% Natural Numbers
+% \newcommand{\bbO}{\ensuremath{\mathbb{O}}}% Octonians
+% \newcommand{\bbQ}{\ensuremath{\mathbb{Q}}}% Rational Numbers
+% \newcommand{\bbR}{\ensuremath{\mathbb{R}}}% Real Numbers
+% \newcommand{\bbS}{\ensuremath{\mathbb{S}}}% Sedenions
+% \newcommand{\bbZ}{\ensuremath{\mathbb{Z}}}% Integers
+% \newcommand{\Laplace}[1]{\ensuremath{\mathcal{L}[#1]}}% Laplace Transform
+
+% \newcommand{\Setbb}[1]{\ensuremath{\mathbb{#1}}}
+% \newcommand{\Setds}[1]{\ensuremath{\mathds{#1}}}
+% \newcommand{\Set}[1]{\ensuremath{\mathcal{#1}}}% Generic Set
+
+% %\newcommand{\power}[1]{\ensuremath{\mathcal{P}(#1)}}% Power set
+% \newcommand{\pset}[1]{\ensuremath{\mathcal{P}(#1)}}% Power set
+
+% %%%%%%%%%%%%%%% Linear Algebra Sets and Notations %%%%%%%%%%%%%%%
+% \newcommand{\deter}[1]{\text{det}(\ensuremath{#1})}% Determinant
+% \newcommand{\rref}[1]{\text{rref}(\ensuremath{#1})}% Reduced Row Echelon form
+
+% %%%%%%%%%%%%%%% Abstract Algebra Sets and Notations %%%%%%%%%%%%%%%
+% \newcommand{\closure}[1]{\ensuremath{\overline{\Set{#1}}}}% Closure
+% \newcommand{\kernel}[1]{\text{ker}(\ensuremath{#1})}% Kernel
+% \newcommand{\normal}{\trianglelefteq}% Normal
+% \newcommand{\iso}{\cong}% Isomorphism
+% \newcommand{\niso}{\ncong}% Not isomorphic
+% \newcommand{\sgrp}{\ensuremath{\leq}}% Subgroup
+% \newcommand{\nmlsgrp}{\ensuremath{\trianglelefteq}}% Normal Subgroup
+% \newcommand{\image}[1]{\text{im}(\ensuremath{#1})}% image
+% \newcommand{\Aut}[1]{\text{Aut}\ensuremath{(#1)}}% Automorphism
+% \newcommand{\Inn}[1]{\text{Inn}\ensuremath{(#1)}}% inner Automorphism group
+% \newcommand{\order}[1]{\ensuremath{\abs{#1}}}% order
+% \newcommand{\stab}[2]{\ensuremath{\text{Stab}_{#1}(#2)}}% Stabilizer
+% \newcommand{\Syl}[2]{\ensuremath{\text{Syl}_{#1}(#2)}}% Sylow Subgroup
+% \newcommand{\Nsg}[2]{\ensuremath{\text{N}_{#1}(#2)}}% Normal Subgroup
+% \newcommand{\Cent}[2]{\ensuremath{\text{C}_{#1}(#2)}}% Centralizer
+% \newcommand{\Aff}[1]{\ensuremath{\text{Af}(#1)}}% Affine Group
+
+% %%%%%%%%%%%%%%% Real Variables Sets and Notations %%%%%%%%%%%%%%%
+% \newcommand{\fieldF}{\ensuremath{\mathrm{F}}}% Field
+% \newcommand{\Inf}[1]{\text{inf}(#1)}% Infimum
+% \newcommand{\Sup}[1]{\text{sup}(#1)}% Supremum
+% \newcommand{\mespace}[1]{\ensuremath{\overline{#1}}}% Metric Space
+% \newcommand{\diam}[1]{\text{diam}(#1)}% Diameter
+% \newcommand{\Ext}[1]{\text{Ext}(\Set{#1})}% Exterior
+% \newcommand{\ubar}[1]{\ensuremath{\underaccent{\bar}{#1}}}% Under Bar Symbol
+
+% %%%%%%%%%%%%%%% Differentials %%%%%%%%%%%%%%%
+% \newcommand{\dif}[2]{D_{#1}\left(#2\right)}
+% \newcommand{\pd}[2]{\partial_{#1}\left(#2\right)}
+
+% %%%%%%%%%%%%%%% Other Symbols %%%%%%%%%%%%%%%
+% \newcommand{\abs}[1]{\ensuremath{\left| #1 \right|}}% Absolute Value | |
+% \newcommand{\norm}[1]{\ensuremath{\abs{\abs{#1}}}}% for norms, better than || ||
+% \newcommand{\floor}[1]{\ensuremath{\left\lfloor #1 \right\rfloor}}% Floor function
+% \newcommand{\ceil}[1]{\ensuremath{\left\lceil #1 \right\rceil}}% Ceiling function
+% \newcommand{\ndv}{\mathbin\nmid} %% for non divisible, \mathbin adds space before and after the symbol
+% \newcommand{\dv}{\mathbin\mid} %% for divide also \mathbin makes it binary symbol
+% \newcommand{\nZ}[1][n]{\ensuremath{\bbZ/#1\bbZ}}  %%quotient Z over nZ
+
+% %%%%%%%%%%%%%%% Miscellaneous %%%%%%%%%%%%%%%
+% \newcommand{\polyZ}[1][x]{\mathds{Z}\left[#1\right]} %%for polynomial ring over integers
+% \newcommand{\bbZw}{\mathds{Z}[\omega]} %% eisenstein integers
+% \newcommand{\bbZi}{\mathds{Z}[i]} %%gaussian integers
+% \newcommand{\bbZp}{\mathds{Z}_p} %%prime field
+% \newcommand{\rel}[1][R]{\ensuremath{\mathcal{#1}}}
+% \newcommand{\Zn}[1][p]{\mathds{Z}_{#1}}
+% \newcommand{\cyc}[1][]{\ensuremath{\left\langle #1 \right\rangle}}
+% \newcommand{\Id}[1][]{\ensuremath{\langle #1 \rangle}}
+% \newcommand{\Ker}[1][]{\ensuremath{\text{Ker}(#1)}}
+% \newcommand{\xvec} {\mathbf{x}_{1}, \mathbf{x}_{2}, \ldots , \mathbf{x}_{n}}
+% \newcommand{\yvec} {\mathbf{y}_{1}, \mathbf{y}_{2}, \ldots , \mathbf{y}_{n}}
+% \newcommand{\vvec} {\mathbf{v}_{1}, \mathbf{v}_{2}, \ldots , \mathbf{v}_{m}}
+% \newcommand{\Sstirl}[2][n]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}} %%second stirling number
+% \newcommand{\Fstirl}[2][n]{\genfrac{[}{]}{0pt}{}{#1}{#2}} %%first stirling number
+% \newcommand{\prob}[1][]{\ensuremath{\textsf{Pr}[#1]}}
+% \newcommand{\legen}[2][p]{\ensuremath{\left(\frac{#2}{#1}\right)}} %%Legendre symbol
+% \newcommand{\jacob}[2][n]{\ensuremath{\left\langle\frac{#2}{#1}\right\rangle}} %%Jacobi symbol
+% \newcommand{\fCF}[2][n]{[#2_{0};#2_{1},#2_{2}, \ldots #2_{#1}]} %%(finite continued fractions)
+% \newcommand{\iCF}[1][a]{[#1_{0};#1_{1},#1_{2}, \ldots]} %%(infinite continued fractions)
+% \newcommand{\St}[1][x]{\ensuremath{\text{Stab}\left(#1\right)}} %% (stabilizer)
+% \newcommand{\Orb}[1][x]{\ensuremath{\text{Orb}\left(#1\right)}} %% (orbit)
+% \newcommand{\GL}[2][n]{\ensuremath{\text{GL}(#1,#2)}} %% General Linear Group
+% \newcommand{\magn}[1]{\ensuremath{\displaystyle \left| #1 \right|}} % Magnitude
+% \renewcommand{\arg}[1]{\text{arg}\ensuremath{\left(#1\right)}}
+% \renewcommand{\bar}[1]{\ensuremath{\overline{#1}}}
+% \renewcommand{\Re}[1]{\ensuremath{\text{Re}\left(#1\right)}}
+% \newcommand{\blank}{\ensuremath{\rule{1cm}{0.15mm}}}
+% \newcommand{\Units}[1]{\text{ #1}}
+% \renewcommand{\Re}[1]{\ensuremath{\text{Re}\left(#1\right)}}
+% \renewcommand{\Im}[1]{\ensuremath{\text{Im}\left(#1\right)}}
+% \newcommand{\evalAt}[2]{\ensuremath{\left[#1\right]_{#2}}}
+% \newcommand{\evalInt}[3]{\ensuremath{\left[#1\right]_{#2}^{#3}}}
+% \renewcommand{\circled}[1]{\tikz[baseline=(char.base)]{
+%             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+% \newcommand{\utilde}[1]{\ensuremath{{\underaccent{\tilde}{#1}}}}
+% \newcommand{\diff}[1]{\ensuremath{\mathrm{d}#1}}
+% \newcommand{\ddiff}[2]{\ensuremath{\mathrm{d}^{#1}#2}}
+% \newcommand{\tdiff}[1]{\ensuremath{\dot #1}}
+% \newcommand{\ttdiff}[1]{\ensuremath{\ddot #1}}
+% \newcommand{\tttdiff}[1]{\ensuremath{\dddot #1}}
+% \renewcommand{\vec}[1]{\ensuremath{\vv{#1}}}
+% \renewcommand{\l}{\ensuremath{\ell}}
+% \newcommand{\erf}[1]{\ensuremath{\text{erf}(#1)}}
+% \newcommand{\erfc}[1]{\ensuremath{\text{erfc}(#1)}}
+% \newcommand{\Res}[2]{\ensuremath{\text{Res}(#1,\ #2)}}
+	
+%----------------------------------------------------------------------------------
+% Other random stuff
+%----------------------------------------------------------------------------------
+
+% \def\cross{%
+% % \mathbin{%
+%     \text{%
+%       \raise 1ex\hbox{%
+%         \rlap{\vrule height.2pt depth.2pt width .75ex}%
+%         \hbox to .75ex{\hss\vrule height .5ex depth 1ex\hss}%
+%       }%
+%     }%  
+% % }%
+% }
