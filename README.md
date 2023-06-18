@@ -2,6 +2,8 @@
 *** Author: Ramsey (Rayla) Phuc
 *** Alias: Rayla Kurosaki
 *** GitHub: https://github.com/rkp1503
+
+*** Co-author: Ephraim Agyingi
 -->
 
 <!DOCTYPE html>
@@ -61,9 +63,16 @@
 <!-- Contact -->
 <div>
     <h2 id="contact">Contact</h2>
-    <p>Name: Ramsey (Rayla) Phuc</p>
-    <p>Alias: Rayla Kurosaki</p>
-    <p>GitHub: <a href="https://github.com/rkp1503">https://github.com/rkp1503</a></p>
+    <ul>
+        <li>
+            Author: Ramsey (Rayla) Phuc
+            <ul>
+                <li>Alias: Rayla Kurosaki</li>
+                <li>GitHub: <a href="https://github.com/rkp1503">https://github.com/rkp1503</a></li>
+            </ul>
+        </li>
+        <li>Co-author: Ephraim Agyingi</li>
+    </ul>
     <p>Project Link: <a href="https://github.com/rkp1503/Complex-Dynamics-of-a-Three-Species-Ecosystem">https://github.com/rkp1503/Complex-Dynamics-of-a-Three-Species-Ecosystem</a></p>
     <p align="right">(<a href="#readme-top">back to top</a>)</p>
 </div>
