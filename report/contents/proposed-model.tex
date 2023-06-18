@@ -1,0 +1,135 @@
+% ----------------------------------------------------------------------------
+% Author: Ramsey (Rayla) Phuc
+% Alias: Rayla Kurosaki
+% GitHub: https://github.com/rkp1503
+% 
+% Co-author: Ephraim Agyingi
+% ----------------------------------------------------------------------------
+\chapter{Proposed Model}\label{ch:proposed-model}
+In this chapter, we will breifly introduce the desired problem to model and make some assumptions. Then we will construct a non-dimensionalized model from the assumptions. Finally, we will show some important properties the model has.
+
+\section{Problem Statement and Assumptions}
+Consider an ecosystem which involves three species, $X,\ Y,\ Z$. Species $X,\ Y,\ Z$ grows logistically at their respective intrinsic growth rate $r_x>0,\ r_y>0,\ r_z>0$ with their respective carrying capacity $K_x>0,\ K_y>0,\ K_z>0$ and species $Z$ dies at a rate of $e$. We will also assume that each pairing of species has a unique interaction with one another. In particular, we will model an ecosystem where mutualism, predation, and amensalism are present. % Provide a real life example of this type of interaction if possible.
+
+We will assume that species $X,\ Y$ are in a mutualism relationship. Members from both species will interact with one another that will help both species in some way. As a result, each species will be affected by one another in some way. To illustrate this, we will let $\alpha_{xy} > 0$ be the inter-species mutualism coefficient where species $X$ is being affected by species $Y$ and $\alpha_{yx} > 0$ be the inter-species mutualism coefficient where species $Y$ is being affected by species $X$.
+
+We will assume that species $Y,\ Z$ are in a predation relationship where species $Z$ preys on species $Y$ with the Holling type II response and with an attack rate of $a$. As a result of this, a proportion $0 \leq p \leq 1$ of species $Y$ will take refuge into species $Z$ with a conservation rate of $c$. 
+
+We will assume that species $X,\ Z$ are in an amensalism relationship where species $X$ is the species being benefited and species $Z$ is not being affected. In this relationship, species $X$ is beign benefited at a rate of $\delta_{xz} \geq 0$, which we will call the amensalism coefficient. 
+
+\section{Building the Model of this Ecosystem}\label{sec:building-the-model-of-this-ecosystem}
+With these assumptions, the governing system of equations that accurately describes this type of ecosystem are:
+\begin{subequations}\label{model:rayla-ephraim-d}
+    \begin{align}
+        \diff[]{X}{T} &= r_xX\left(1-\frac{X}{K_x}+\frac{\alpha_{xy}Y^2}{K_x}\right)-\delta_{xz}XZ
+        \label{eq:rayla-ephraim-d-x}\\
+        \diff[]{Y}{T} &= r_yY\left(1-\frac{Y}{K_y}+\frac{\alpha_{yx}X^2}{K_y}\right)-\frac{a\left(1-p\right)YZ}{b+\left(1-p\right)Y}
+        \label{eq:rayla-ephraim-d-y}\\
+        \diff[]{Z}{T} &= r_zZ\left(1-\frac{Z}{K_z}\right)+Z\left(\frac{ac\left(1-p\right)Y}{b+\left(1-p\right)Y}-e\right)
+        \label{eq:rayla-ephraim-d-z}
+    \end{align}
+\end{subequations}
+
+with the initial conditions $X(0) \geq 0,\ Y(0) \geq 0,\ Z(0) \geq 0$. Then using the following substitutions:
+
+\begin{gather*}
+    X=K_xx,\ Y=K_yy,\ Z=K_zz,\ T=\frac{1}{r_x}t,\ r_{yx}=\frac{r_y}{r_x},\ r_{zx}=\frac{r_z}{r_x}\\
+    \varphi_{xy}=\frac{\alpha_{xy}K_y^2}{K_x},\ \varphi_{yx}=\frac{\alpha_{yx}K_x^2}{K_y},\ \varphi_{xz}=\frac{\delta_{xz}K_z}{r_x},\ u_1=\frac{aK_z}{r_xK_y},\ u_2=\frac{b}{K_y},\ u_3=\frac{ac}{r_x},\ u_4=\frac{e}{r_x}
+\end{gather*}
+
+we can simplify and non-dimensionalize \myref[Model]{model:rayla-ephraim-d}. This gives us the following model we will work on throughout this paper:
+\begin{subequations}\label{model:rayla-ephraim}
+    \begin{align}
+        \diff[]{x}{t} &= x\left(1-x+\varphi_{xy}y^2\right)-\varphi_{xz}xz
+        \label{eq:rayla-ephraim-x}\\
+        \diff[]{y}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}
+        \label{eq:rayla-ephraim-y}\\
+        \diff[]{z}{t} &= r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)
+        \label{eq:rayla-ephraim-z}
+    \end{align}
+\end{subequations}
+
+with the initial conditions $x(0) \geq 0,\ y(0) \geq 0,\ z(0) \geq 0$.
+
+\section{Unique properties of the Proposed Model}
+When creating a model that encapsulates an ecosystem, we need to make sure that it makes sense. In biology, a negative population does not make sense. To show that \myref[Model]{model:rayla-ephraim} makes sense, we will need to show that for any non-negative starting populations, \myref[Model]{model:rayla-ephraim} will provide a non-negative solution. This is shown in \myref[Theorem]{thm:positiveness}.
+
+\begin{theorem}\label{thm:positiveness}
+    For any set of intiial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} only has non-negative solutions.
+\end{theorem}
+\begin{proof}
+    Starting with \myref[Equation]{eq:rayla-ephraim-x}, we can factor out an $x$:
+    \begin{equation*}
+        \diff[]{x}{t} = x\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)
+    \end{equation*}
+    From here, we can perform separation of variables:
+    \begin{equation*}
+        \frac{1}{x}\ \opdiff{x} = \left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
+    \end{equation*}
+    We can then integrate both sides from $t=0$ to $t=\tau$ for some time $\tau>0$:
+    \begin{equation*}
+        \int_0^\tau \frac{1}{x}\ \opdiff{x} = \int_0^\tau \left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
+    \end{equation*}
+    The left hand side evaluates to:
+    \begin{equation*}
+        \ln{x(\tau)}-\ln{x(0)} = \int_0^\tau \left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
+    \end{equation*}
+    Solving for $x(\tau)$ yields:
+    \begin{equation*}
+        x(\tau) = x(0)\ \exp{\int_0^\tau \left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}}
+    \end{equation*}
+    Note that on the right hand side, we have an exponential function. Since $x(0) > 0$, this means that will never be negative. Thus, we can conclude that $x(\tau) \geq 0$. From \myref[Equation]{eq:rayla-ephraim-y}, we can factor out an $y$:
+    \begin{equation*}
+        \diff[]{y}{t} = y\left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)
+    \end{equation*}
+    From here, we can perform separation of variables:
+    \begin{equation*}
+        \frac{1}{y}\ \opdiff{y} = \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}
+    \end{equation*}
+    We can then integrate both sides from 0 to $\tau$:
+    \begin{equation*}
+        \int_0^\tau \frac{1}{y}\ \opdiff{y} = \int_0^\tau \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}
+    \end{equation*}
+    The left hand side evaluates to:
+    \begin{equation*}
+        \ln{y(\tau)}-\ln{y(0)} = \int_0^\tau \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}
+    \end{equation*}
+    Solving for $x(\tau)$ yields:
+    \begin{equation*}
+        y(\tau) = y(0)\ \exp{\int_0^\tau \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}}
+    \end{equation*}
+    Note that on the right hand side, we have an exponential function. Since $y(0) > 0$, this means that will never be negative. Thus, we can conclude that $y(\tau) \geq 0$. From \myref[Equation]{eq:rayla-ephraim-z}, we can factor out an $z$:
+    \begin{equation*}
+        \diff[]{z}{t} = z\left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)
+    \end{equation*}
+    From here, we can perform separation of variables:
+    \begin{equation*}
+        \frac{1}{z}\ \opdiff{z} = \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}
+    \end{equation*}
+    We can then integrate both sides from 0 to $\tau$:
+    \begin{equation*}
+        \int_0^\tau \frac{1}{z}\ \opdiff{z} = \int_0^\tau \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}
+    \end{equation*}
+    The left hand side evaluates to:
+    \begin{equation*}
+        \ln{z(\tau)}-\ln{z(0)} = \int_0^\tau \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}
+    \end{equation*}
+    Solving for $x(\tau)$ yields:
+    \begin{equation*}
+        z(\tau) = z(0)\ \exp{\int_0^\tau \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}}
+    \end{equation*}
+    Note that on the right hand side, we have an exponential function. Since $z(0) > 0$, this means that will never be negative. Thus, we can conclude that $z(\tau) \geq 0$. Since we have shown that $x(\tau) \geq 0,\ y(\tau) \geq 0,\ z(\tau) \geq 0$ for some time $\tau > 0$, this implies that \myref[Model]{model:rayla-ephraim} will have non-negative solutions for non-negative initial conditions.
+\end{proof}
+
+Even though we have shown that \myref[Model]{model:rayla-ephraim} will always be non-negative for any set of non-negative initial conditions though \myref[Theorem]{thm:positiveness}, that is not enough to show that \myref[Model]{model:rayla-ephraim} makes sense. Populations have not just a lower limit, but also an upper limit. A population cannot just grow infinitely in size. After some time, a population will get to the point where it cannot grow any further. Thus, we will need to show that out model is uniformly boundeded. This is shown in \myref[Theorem]{thm:bounded}.
+
+\begin{theorem}\label{thm:bounded}
+    For any set of intiial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} is bounded above uniformly.
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        V &= x^2+y^2+z^2\\
+        \diff{V}{t} &= -2x^2\left(x-1\right)-2x\left(\phi_1 y^2-\phi_2xz\right)-2r_1y^2\left(y-1\right)-2y\left(\frac{{u_1(1-p)z^2}}{{u_2+(1-p)y}}-\phi_3x^2y\right)\\
+        &-2r_2z^2\left(z-1\right)-2z^2\left(u_4-\frac{{u_3(1-p)yz}}{{u_2+(1-p)y}}\right)
+    \end{align*}
+\end{proof}
