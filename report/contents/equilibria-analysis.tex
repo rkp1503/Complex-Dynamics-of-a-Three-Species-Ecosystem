@@ -62,7 +62,7 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     under the condition where $r_{zx}>u_4$.
 \end{theorem}
 \begin{proof}
-    The $z$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $z^*>0$ and $x^*=y^*=0$. Plugging in $x^*=0,\ y^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-x} and \myref[Equation]{eq:model-0-z} reduces to $0=0$ while \myref[Equation]{eq:model-0-y} reduces to
+    The $z$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $z^*>0$ and $x^*=y^*=0$. Plugging in $x^*=0,\ y^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-x} and \myref[Equation]{eq:model-0-y} reduces to $0=0$ while \myref[Equation]{eq:model-0-z} reduces to
 
     \begin{equation*}
         r_{zx}z^*\left(1-z^*\right)-u_4z^*=0
@@ -84,7 +84,13 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
 \end{proof}
 
 \begin{theorem}\label{thm:eq-boundary-xy-exist}
-    The $xy$-boundary equilibrium point $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where $x^*=1+\varphi_{xy}\left(y^*\right)^2$ and 
+    The $xy$-boundary equilibrium point $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where $x^*=1+\varphi_{xy}\left(y^*\right)^2$ and $y^*$ is a positive solution to
+
+    \begin{equation*}
+        \varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0
+    \end{equation*}
+
+    which can be acheived under the following condition
     
     \begin{equation*}
         \varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
@@ -120,7 +126,13 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         \varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
     \end{equation}
 
-    Note that if $\beta\in(0, 1]$, then the right hand side of \myref[Equation]{eq:xy-eq-condition} will be negative implying that $\varphi_{yx}<0$. However, since all parameters are positive, we cannot have $\beta$ fall in this range. Therefore, we know that $\beta\in\left(1,\infty\right)$. With this, we have proved that the $xy$-boundary equilibrium point $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where $x^*=1+\varphi_{xy}\left(y^*\right)^2$ and 
+    Note that if $\beta\in(0, 1]$, then the right hand side of \myref[Equation]{eq:xy-eq-condition} will be negative implying that $\varphi_{yx}<0$. However, since all parameters are positive, we cannot have $\beta$ fall in this range. Therefore, we know that $\beta\in\left(1,\infty\right)$. With this, we have proved that the $xy$-boundary equilibrium point $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where $x^*=1+\varphi_{xy}\left(y^*\right)^2$ and $y^*$ is a positive solution to
+
+    \begin{equation*}
+        \varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0
+    \end{equation*}
+
+    which can be acheived under the following condition
     
     \begin{equation*}
         \varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
@@ -205,14 +217,14 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \begin{align*}
         Y_3 &= -r_{yx}r_{zx}\left(1-p\right)^2\\
         Y_2 &= r_{yx}r_{zx}\left(1-p\right)\left(\left(1-p\right)-2u_2\right)\\
-        Y_1 &= r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)+u_1\left(u_3+\left(u_4-r_{zx}\right)\right)\left(1-p\right)^2\\
-        Y_0 &= u_2\left(r_{yx}r_{zx}u_2-u_1\left(r_{zx}-u_4\right)\left(1-p\right)\right)
+        Y_1 &= u_1\left(u_4-u_3-r_{zx}\right)\left(1-p\right)^2+r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)\\
+        Y_0 &= u_2\left(r_{yx}r_{zx}u_2+u_1\left(u_4-r_2\right)\left(1-p\right)\right)
     \end{align*}
 
-    provided that the following conditions are saitsfied:
+    provided that the following conditions are satisfied:
     
     \begin{equation*}
-        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad 1>\frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad \frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}<1
     \end{equation*}
 \end{theorem}
 \begin{proof}
@@ -248,14 +260,14 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \begin{align*}
         Y_3 &= -r_{yx}r_{zx}\left(1-p\right)^2\\
         Y_2 &= r_{yx}r_{zx}\left(1-p\right)\left(\left(1-p\right)-2u_2\right)\\
-        Y_1 &= r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)+u_1\left(u_3+\left(u_4-r_{zx}\right)\right)\left(1-p\right)^2\\
-        Y_0 &= u_2\left(r_{yx}r_{zx}u_2-u_1\left(r_{zx}-u_4\right)\left(1-p\right)\right)
+        Y_1 &= u_1\left(u_4-u_3-r_{zx}\right)\left(1-p\right)^2+r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)\\
+        Y_0 &= u_2\left(r_{yx}r_{zx}u_2+u_1\left(u_4-r_2\right)\left(1-p\right)\right)
     \end{align*}
 
     It will be difficult to find an analytical solution for $y^*$ in terms of the parameters. Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:yz-Y-vars}. Since all of the coefficients of \myref[Equation]{eq:yz-Y-vars} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}. By Descartes' rule of signs, we can say that \myref[Equation]{eq:yz-Y-vars} will have at least one positive solution if $Y_0<0$, or:
     
     \begin{equation*}
-        1>\frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}
+        \frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}} < 1
     \end{equation*}
 
     Thus we have proved that the $yz$-boundary equilibrium point $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
@@ -275,19 +287,52 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \begin{align*}
         Y_3 &= -r_{yx}r_{zx}\left(1-p\right)^2\\
         Y_2 &= r_{yx}r_{zx}\left(1-p\right)\left(\left(1-p\right)-2u_2\right)\\
-        Y_1 &= r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)+u_1\left(u_3+\left(u_4-r_{zx}\right)\right)\left(1-p\right)^2\\
-        Y_0 &= u_2\left(r_{yx}r_{zx}u_2-u_1\left(r_{zx}-u_4\right)\left(1-p\right)\right)
+        Y_1 &= u_1\left(u_4-u_3-r_{zx}\right)\left(1-p\right)^2+r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)\\
+        Y_0 &= u_2\left(r_{yx}r_{zx}u_2+u_1\left(u_4-r_2\right)\left(1-p\right)\right)
     \end{align*}
 
     provided that the following conditions are saitsfied:
     
     \begin{equation*}
-        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad 1>\frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad \frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}<1
     \end{equation*}
 \end{proof}
 
 \begin{theorem}\label{thm:eq-interior-exist}
-    The interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exist under.
+    The interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
+    
+    \begin{equation*}
+        x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+
+    and $y^*$ is a positive solution to 
+
+    \begin{equation*}
+        \frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
+    \end{equation*}
+
+    where:
+
+    \begin{align*}
+        Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
+        Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
+        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)-r_{zx}\left(1-p\right)^3\right)\\
+        Y_3 &= r_{yx}\left(1-p\right)\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
+            &\left.-2\varphi_{xy}\varphi_{yx}r_{zx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-r_{zx}\right)\right)\\
+        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
+            &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
+            &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
+        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
+            &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
+        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
+    \end{align*}
+
+    provided that the following conditions are saitsfied:
+    
+    \begin{equation*}
+        \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad Y_0<0
+    \end{equation*}
 \end{theorem}
 \begin{proof}
     The interior equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*>0,\ y^*>0,\ z^*>0$. Essentially, we are solving \myref[Model]{model:rayla-ephraim} for non-trivial solutions. We can reduce the model to:
@@ -337,17 +382,17 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
         Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
         Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)-r_{zx}\left(1-p\right)^3\right)\\
-        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}+u_3+u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_3+u_4-r_{zx}\right)+r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2\right.\\
-        &\left.-3r_{zx}^2u_2\left(1-p\right)+2r_{zx}r_{zx}\varphi_{xy}\varphi_{yx}\left(3r_{zx}^2\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-u_3\right)\right)\right)\\
+        Y_3 &= r_{yx}\left(1-p\right)\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
+            &\left.-2\varphi_{xy}\varphi_{yx}r_{zx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-r_{zx}\right)\right)\\
         Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
-        &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
-        &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
+            &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
+            &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
         Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
-        &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
+            &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
         Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
     \end{align*}
 
-    It will be difficult to find an analytical solution for $y^*$ in terms of the parameters. Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:interior-Y}. Since all of the coefficients of \myref[Equation]{eq:interior-Y} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}. By Descartes' rule of signs, we can say that \myref[Equation]{eq:interior-Y} will have at least one positive solution if $Y_0<0$. Thus we have proved that the trivial equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
+    It will be difficult to find an analytical solution for $y^*$ in terms of the parameters. Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:interior-Y}. Since all of the coefficients of \myref[Equation]{eq:interior-Y} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}. By Descartes' rule of signs, we can say that \myref[Equation]{eq:interior-Y} will have at least one positive solution if $Y_0<0$. Thus we have proved that the interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
     
     \begin{equation*}
         x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
@@ -366,13 +411,13 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
         Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
         Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)-r_{zx}\left(1-p\right)^3\right)\\
-        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}+u_3+u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_3+u_4-r_{zx}\right)+r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2\right.\\
-        &\left.-3r_{zx}^2u_2\left(1-p\right)+2r_{zx}r_{zx}\varphi_{xy}\varphi_{yx}\left(3r_{zx}^2\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-u_3\right)\right)\right)\\
+        Y_3 &= r_{yx}\left(1-p\right)\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
+            &\left.-2\varphi_{xy}\varphi_{yx}r_{zx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-r_{zx}\right)\right)\\
         Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
-        &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
-        &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
+            &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
+            &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
         Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
-        &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
+            &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
         Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
     \end{align*}
 
@@ -395,14 +440,6 @@ In order to compute the stability of these equilibrium points, we will use linea
         0 & j_{32} & j_{33}
     \end{bmatrix}
 \end{equation}
-
-    % \begin{equation}\label{matrix:jacobian-model}
-    %     \textbf{J}\left(E\right) = \begin{bmatrix}
-    %         1-2x+\varphi_{xy}y^2-\varphi_{xz}z & 2\varphi_{xy}xy & -\varphi_{xz}x\\
-    %         2r_{yx}\varphi_{yx}xy & r_{yx}\left(1-2y+\varphi_{yx}x^2\right)-\frac{u_1u_2\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2} & -\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\\
-    %         0 & \frac{u_2u_3\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2} & r_{zx}\left(1-2z\right)+\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4
-    %     \end{bmatrix}
-    % \end{equation}
 
 where
 
@@ -431,7 +468,7 @@ where
         \end{bmatrix}
     \end{equation}
 
-    The eigenvalues of \myref[Matrix]{matrix:jacobian-trivial} are $\lambda=\left\{1,\ r_{yx},\ r_{xz}-u_4\right\}$. Here we can see that teh eigenvalue $\lambda_1=1$ is positive, thus proving that the trivial equilibrium is unstable.
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-trivial} are $\lambda=\left\{1,\ r_{yx},\ r_{xz}-u_4\right\}$. Here we can see that the eigenvalue $\lambda_1=1$ is positive, thus proving that the trivial equilibrium is unstable.
 \end{proof}
 
 \begin{theorem}\label{thm:eq-axial-x-stability}
@@ -478,7 +515,10 @@ where
     The $z$-axial equilibrium $E_z$ is locally stable when:
 
     \begin{equation*}
-        \frac{u_4}{r_{zx}}+\varphi_{xz}<1,\quad \frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)}<1,\quad \frac{u_4}{r_{zx}}<\frac{1}{2}
+        \frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} < 1,\quad
+        \frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)} < 1,\quad
+        \frac{u_4}{r_{zx}} < \frac{1}{2}
+        % \frac{u_4}{r_{zx}}+\varphi_{xz}<1,\quad \frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)}<1,\quad \frac{u_4}{r_{zx}}<\frac{1}{2}
     \end{equation*}
 \end{theorem}
 \begin{proof}
@@ -501,7 +541,7 @@ where
     With these eigenvalues, this means that the $z$-axial equilibrium $E_z$ is locally stable when:
 
     \begin{equation*}
-        \frac{u_4}{r_{zx}}+\varphi_{xz}<1,\quad \frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)}<1,\quad \frac{u_4}{r_{zx}}<\frac{1}{2}
+        \frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} < 1,\quad \frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)}<1,\quad \frac{u_4}{r_{zx}}<\frac{1}{2}
     \end{equation*}
 \end{proof}
 
@@ -517,12 +557,10 @@ where
     where
     
     \begin{align*}
-        j_{11} &= 1-2x+\varphi_{xy}\left(y\right)^2\\
+        j_{11} &= 1-2x+\varphi_{xy}\left(y^*\right)^2\\
         j_{12} &= 2\varphi_{xy}x^*y^*\\
-        j_{13} &= -\varphi_{xz}x^*\\
         j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
-        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x\right)^2\right)\\
-        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)\\
         j_{33} &= r_{zx}+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
     \end{align*}
 \end{theorem}
@@ -540,11 +578,11 @@ where
     where
     
     \begin{align*}
-        j_{11} &= 1-2x+\varphi_{xy}\left(y\right)^2\\
+        j_{11} &= 1-2x+\varphi_{xy}\left(y^*\right)^2\\
         j_{12} &= 2\varphi_{xy}x^*y^*\\
         j_{13} &= -\varphi_{xz}x^*\\
         j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
-        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x\right)^2\right)\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)\\
         j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
         j_{33} &= r_{zx}+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
     \end{align*}
@@ -574,12 +612,10 @@ where
     where
     
     \begin{align*}
-        j_{11} &= 1-2x+\varphi_{xy}\left(y\right)^2\\
+        j_{11} &= 1-2x+\varphi_{xy}\left(y^*\right)^2\\
         j_{12} &= 2\varphi_{xy}x^*y^*\\
-        j_{13} &= -\varphi_{xz}x^*\\
         j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
-        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x\right)^2\right)\\
-        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)\\
         j_{33} &= r_{zx}+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
     \end{align*}
 \end{proof}
@@ -780,5 +816,4 @@ where
     \end{align*}
 \end{proof}
 
-\section{Bifurcation Analysis}
 \section{Limit Cycle Analysis}
