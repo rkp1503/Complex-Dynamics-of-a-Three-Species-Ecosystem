@@ -13,15 +13,15 @@ function equilibrium_exist(param_vals)
     r₂₁, r₃₁, p, ϕ₁₂, ϕ₂₁, ϕ₁₃, u₁, u₂, u₃, u₄ = param_vals
     x, y, z = analytical_solution(param_vals)
     cond1 = y > (u₂*(u₄-r₃₁))/((u₃-u₄+r₃₁)*(1-p))
-    cond2 = ((r₁*u₂)/(u₁*(1-p)))+(u₄/r₃₁) < 1
+    cond2 = (r₂₁*r₃₁*u₂)/(u₁*(r₃₁-u₄)*(1-p)) > 1
     return all([cond1, cond2])
 end;
 
 function equilibrium_stable(param_vals)
-    r₁, r₃₁, p, ϕ₁₂, ϕ₂₁, ϕ₁₃, u₁, u₂, u₃, u₄ = param_vals
+    r₂₁, r₃₁, p, ϕ₁₂, ϕ₂₁, ϕ₁₃, u₁, u₂, u₃, u₄ = param_vals
     x, y, z = analytical_solution(param_vals)
     j₁₁ = 1+ϕ₁₂*y^2-ϕ₁₃*z
-    j₂₂ = r₁*(1-2*y)-((u₁*u₂*(1-p)*z)/(u₂+(1-p)*y)^2)
+    j₂₂ = r₂₁*(1-2*y)-((u₁*u₂*(1-p)*z)/(u₂+(1-p)*y)^2)
     j₂₃ = -((u₁*(1-p)*y)/(u₂+(1-p)*y))
     j₃₂ = ((u₂*u₃*(1-p)*z)/(u₂+(1-p)*y)^2)
     j₃₃ = r₃₁*(1-2*z)-u₄+((u₃*(1-p)*y)/(u₂+(1-p)*y))
@@ -36,20 +36,20 @@ function equilibrium_stable(param_vals)
 end;
 
 function analytical_solution(param_vals)
-    r₁, r₃₁, p, ϕ₁₂, ϕ₂₁, ϕ₁₃, u₁, u₂, u₃, u₄ = param_vals
+    r₂₁, r₃₁, p, ϕ₁₂, ϕ₂₁, ϕ₁₃, u₁, u₂, u₃, u₄ = param_vals
     y = -1
     z = -1
-    Y₀ = u₂*(r₁*r₃₁*u₂+u₁*(u₄-r₃₁)*(1-p))
-    Y₁ = r₁*r₃₁*u₂*(2*(1-p)-u₂)+u₁*(u₃+u₄-r₃₁)*(1-p)^2
-    Y₂ = r₁*r₃₁*((1-p)-2*u₂)*(1-p)
-    Y₃ = -r₁*r₃₁*(1-p)^2
+    Y₀ = u₂*(r₂₁*r₃₁*u₂+u₁*(u₄-r₃₁)*(1-p))
+    Y₁ = r₂₁*r₃₁*u₂*(2*(1-p)-u₂)+u₁*(u₄-u₃-r₃₁)*(1-p)^2
+    Y₂ = r₂₁*r₃₁*((1-p)-2*u₂)*(1-p)
+    Y₃ = -r₂₁*r₃₁*(1-p)^2
     coeff = [Y₀, Y₁, Y₂, Y₃]
-    if Y₀ < 0
+    if Y₀ > 0
         poly_roots = roots(Polynomial(coeff, :y))
         for root in poly_roots
             if (real(root) > 0) && (imag(root) == 0)
                 y = real(root)
-                z = 1+(((u₃*(1-p)*y)/(u₂+(1-p)*y))-u₄)/r₃₁
+                z = 1+((((u₃*(1-p)*y)/(u₂+(1-p)*y))-u₄)/r₃₁)
                 break
             end
         end
