@@ -151,9 +151,12 @@ begin
 	)
 end;
 
+# ╔═╡ ee4d84f6-858e-401f-821c-8a17c564ad35
+md"""## Previous Models"""
+
 # ╔═╡ 2d4534c9-239c-4c2d-b311-e903ed1c20c3
 md"""
-## Gakkhar's and Gupta's Model
+### Gakkhar's and Gupta's Model
 ${
 \begin{align*}
 	\frac{\textrm{d}x}{\textrm{d}t} &= x\left[1-x-\beta_{12}y\right]+\delta xz\\
@@ -178,7 +181,7 @@ function model_gg(D, variables, parameters)
 end;
 
 # ╔═╡ bcc0cf84-84a1-4c58-83f2-7e0ed17d0c06
-md""" ### Non-trivial Equilibrium"""
+md""" #### Non-trivial Equilibrium"""
 
 # ╔═╡ 8045aed1-55b0-4e32-bb23-9642bcb51900
 sol_gg = let
@@ -190,12 +193,14 @@ sol_gg = let
 	params_dict_gg = OrderedCollections.OrderedDict(zip(params_var, set₁))
 	
 	sol_gg = utils.solve_model(model_gg, D, vars_dict, params_dict_gg, t, tₘₐₓ)
-	display(last(sol_gg.u))
+	E_x, E_y, E_z = last(sol_gg.u)
+	println((E_x, E_y, E_z))
+	
 	sol_gg
-end
+end;
 
 # ╔═╡ 51ac0b8d-254b-49c1-85a7-80513a6304d6
-md"""### Time Evolution"""
+md"""#### Time Evolution"""
 
 # ╔═╡ ec24948a-ed39-4d21-85a9-2592ed5c474c
 let
@@ -208,7 +213,7 @@ end
 
 # ╔═╡ d3ed6a0d-1451-431f-9567-2b6d083771b1
 md"""
-## Gayen's, Jana's, Kar's, and Panja's Model
+### Gayen's, Jana's, Kar's, and Panja's Model
 ${
 \begin{align*}
 	\frac{\textrm{d}x}{\textrm{d}t} &= x\left[1-x-\gamma_{12}y^2\right]+\gamma xz\\
@@ -233,7 +238,7 @@ function model_gjkp(D, variables, parameters)
 end;
 
 # ╔═╡ f5488179-665f-49db-9052-407bfe77d034
-md""" ### Non-trivial Equilibrium"""
+md"""#### Non-trivial Equilibrium"""
 
 # ╔═╡ 22c924b4-9116-4422-81d9-a2ac6355f854
 sol_gjkp = let
@@ -245,12 +250,14 @@ sol_gjkp = let
 	params_dict_gjkp = OrderedCollections.OrderedDict(zip(params_var, set₁))
 	
 	sol_gjkp = utils.solve_model(model_gjkp, D, vars_dict, params_dict_gjkp, t, tₘₐₓ)
-	display(last(sol_gjkp.u))
+	E_x, E_y, E_z = last(sol_gjkp.u)
+	println((E_x, E_y, E_z))
+	
 	sol_gjkp
-end
+end;
 
 # ╔═╡ ccab53b9-d3ae-4d02-95be-95b1ca33637c
-md"""### Time Evolution"""
+md"""#### Time Evolution"""
 
 # ╔═╡ 08e3c6fa-dc07-4279-a783-6cae9191e156
 let
@@ -326,7 +333,7 @@ ${
 z^* = 1-\frac{u_4}{r_{zx}}
 }$
 
-provided that the following condition is saitsfied:
+provided that the following condition is satisfied:
 
 ${
 r_{zx} > u_4
@@ -348,7 +355,7 @@ ${
 \varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1 = 0
 }$
 
-provided that the following condition is saitsfied:
+provided that the following condition is satisfied:
 
 ${
 \varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1 < 0
@@ -371,7 +378,7 @@ x^* = 1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad
 z^* = 1-\frac{u_4}{r_{zx}}
 }$
 
-provided that the following conditions are saitsfied:
+provided that the following conditions are satisfied:
 
 ${
 \varphi_{xz} < \frac{r_{zx}}{r_{zx}-u_4},\quad
@@ -450,7 +457,7 @@ ${
 \end{align*}
 }$
 
-provided that the following conditions are saitsfied:
+provided that the following conditions are satisfied:
 
 ${
 z^* < \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}},\quad
@@ -716,9 +723,9 @@ md"""
 
 # ╔═╡ af7c3889-862e-42d7-94dc-e187db2ddca0
 let
-	param_vals_xyz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
+	# param_vals_xyz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
 
-	# param_vals_xyz = collect(values(params_dict))
+	param_vals_xyz = collect(values(params_dict))
 	
 	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xyz))
 	
@@ -732,7 +739,12 @@ let
 end
 
 # ╔═╡ 79af8a82-cf55-4e34-9ee4-ecd74eaca803
-sol = utils.solve_model(model, D, vars_dict, params_dict, t, tₘₐₓ)
+sol = let
+	sol = utils.solve_model(model, D, vars_dict, params_dict, t, tₘₐₓ)
+	E_x, E_y, E_z = last(sol.u)
+	println((E_x, E_y, E_z))
+	sol
+end
 
 # ╔═╡ 75b2dc3d-b8ce-4db2-9b6c-c10bf81b53bd
 md"""
@@ -761,7 +773,6 @@ let
 	zaxis = "Species Z"
 	
 	utils.my_3D_phase_portrait(sol, title, xaxis, yaxis, zaxis)
-	# utils.my_phase_portrait(sol, title, xaxis, yaxis, Tuple(collect(keys(vars_dict))), zaxis)
 end
 
 # ╔═╡ 1dfa0afd-8e8b-40f7-a51f-62b765b6fa35
@@ -770,14 +781,14 @@ md"""
 """
 
 # ╔═╡ 3f14562d-7ef0-44a1-9549-c201134d9930
-let
-	title = "2D Phase Portrait: Species X and Species Y"
-	xaxis = "Species X"
-	yaxis = "Species Y"
+# let
+# 	title = "2D Phase Portrait: Species X and Species Y"
+# 	xaxis = "Species X"
+# 	yaxis = "Species Y"
 
-	utils.my_2D_phase_portrait(sol'[:, 1], sol'[:, 2], title, xaxis, yaxis)
-	# utils.my_phase_portrait(sol, title, xaxis, yaxis, (x, y))
-end
+# 	utils.my_2D_phase_portrait(sol'[:, 1], sol'[:, 2], title, xaxis, yaxis)
+# 	# utils.my_phase_portrait(sol, title, xaxis, yaxis, (x, y))
+# end
 
 # ╔═╡ b17a7814-6b58-4ab1-b8fa-5add4b707598
 md"""
@@ -785,14 +796,14 @@ md"""
 """
 
 # ╔═╡ d79ea54d-9211-40ea-8c30-14c78e0b418e
-let
-	title = "2D Phase Portrait: Species X and Species Z"
-	xaxis = "Species X"
-	yaxis = "Species Z"
+# let
+# 	title = "2D Phase Portrait: Species X and Species Z"
+# 	xaxis = "Species X"
+# 	yaxis = "Species Z"
 
-	utils.my_2D_phase_portrait(sol'[:, 1], sol'[:, 3], title, xaxis, yaxis)
-	# utils.my_phase_portrait(sol, title, xaxis, yaxis, (x, z))
-end
+# 	utils.my_2D_phase_portrait(sol'[:, 1], sol'[:, 3], title, xaxis, yaxis)
+# 	# utils.my_phase_portrait(sol, title, xaxis, yaxis, (x, z))
+# end
 
 # ╔═╡ 9ad67942-1d2f-438e-b38f-9e5a8d2b7eb7
 md"""
@@ -800,14 +811,14 @@ md"""
 """
 
 # ╔═╡ 11e77b07-9b09-4dd8-a9e5-7e1ceb612507
-let
-	title = "2D Phase Portrait: Species Y and Species Z"
-	xaxis = "Species Y"
-	yaxis = "Species Z"
+# let
+# 	title = "2D Phase Portrait: Species Y and Species Z"
+# 	xaxis = "Species Y"
+# 	yaxis = "Species Z"
 
-	utils.my_2D_phase_portrait(sol'[:, 2], sol'[:, 3], title, xaxis, yaxis)
-	# utils.my_phase_portrait(sol, title, xaxis, yaxis, (y, z))
-end
+# 	utils.my_2D_phase_portrait(sol'[:, 2], sol'[:, 3], title, xaxis, yaxis)
+# 	# utils.my_phase_portrait(sol, title, xaxis, yaxis, (y, z))
+# end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -2853,6 +2864,7 @@ version = "1.4.1+0"
 # ╟─2c5593ff-6683-476f-b007-a01ed022c1b1
 # ╟─95015822-5c1c-4a52-b682-4926a921687c
 # ╠═92ea7a8b-967d-47c5-8e7f-d2ec80071c20
+# ╟─ee4d84f6-858e-401f-821c-8a17c564ad35
 # ╟─2d4534c9-239c-4c2d-b311-e903ed1c20c3
 # ╠═70604282-c212-4df8-8c84-d7a5849edecc
 # ╟─bcc0cf84-84a1-4c58-83f2-7e0ed17d0c06
@@ -2887,25 +2899,25 @@ version = "1.4.1+0"
 # ╟─03ce581b-5750-4b97-85e9-0d06b5408b6d
 # ╟─10cad625-39f0-4f0e-ac0b-3b241a1afe01
 # ╟─dafd3320-ac82-485d-8d4e-41f07b8a8ff5
-# ╟─7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
+# ╠═7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
 # ╟─01d76dbb-b853-4774-b9f3-04109b5e74b5
-# ╟─73dc6e38-2610-4bbe-82f4-12a4f87ee694
+# ╠═73dc6e38-2610-4bbe-82f4-12a4f87ee694
 # ╟─4891b616-2415-4c63-8ee1-5cf05b9e1319
-# ╟─47a19c48-b349-4324-852a-7d8c274a2b35
+# ╠═47a19c48-b349-4324-852a-7d8c274a2b35
 # ╟─2d77daef-3784-4b6c-a478-091b9b78397a
-# ╟─95c25479-b27f-4771-8e23-2da9d06a6097
+# ╠═95c25479-b27f-4771-8e23-2da9d06a6097
 # ╟─30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
 # ╠═af7c3889-862e-42d7-94dc-e187db2ddca0
-# ╠═79af8a82-cf55-4e34-9ee4-ecd74eaca803
+# ╟─79af8a82-cf55-4e34-9ee4-ecd74eaca803
 # ╟─75b2dc3d-b8ce-4db2-9b6c-c10bf81b53bd
 # ╠═516591f4-a8a5-46e6-9bf4-7e7653208d18
 # ╟─629a0107-705e-4316-ab11-a7017ce4d5ab
 # ╠═4f73f30a-9083-4717-8f74-65318e4fadac
 # ╟─1dfa0afd-8e8b-40f7-a51f-62b765b6fa35
-# ╠═3f14562d-7ef0-44a1-9549-c201134d9930
+# ╟─3f14562d-7ef0-44a1-9549-c201134d9930
 # ╟─b17a7814-6b58-4ab1-b8fa-5add4b707598
-# ╠═d79ea54d-9211-40ea-8c30-14c78e0b418e
+# ╟─d79ea54d-9211-40ea-8c30-14c78e0b418e
 # ╟─9ad67942-1d2f-438e-b38f-9e5a8d2b7eb7
-# ╠═11e77b07-9b09-4dd8-a9e5-7e1ceb612507
+# ╟─11e77b07-9b09-4dd8-a9e5-7e1ceb612507
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
