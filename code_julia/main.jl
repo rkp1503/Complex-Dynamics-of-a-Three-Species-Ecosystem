@@ -21,9 +21,6 @@ begin
 	import Plots
 	import PlutoUI
 	import Polynomials
-	
-	# import Roots
-	# import Symbolics
 
 	#=========================================================================
 	Unregisted (custom) packages
@@ -327,7 +324,8 @@ The $y$-axial equilibrium exists where $E_y = \left(0,\ 1,\ 0\right)$.
 # ╔═╡ d88e3abf-358c-4d7a-b92b-fd2fdde1f862
 md"""
 #### The $z$-axial equilibrium
-The $z$-axial equilibrium $E_z = \left(0,\ 0,\ z^*\right)$ exists where
+
+The $z$-axial equilibrium $E_z=\left(0,\ 0,\ z^*\right)$ exist where
 
 ${
 z^* = 1-\frac{u_4}{r_{zx}}
@@ -343,125 +341,120 @@ r_{zx} > u_4
 # ╔═╡ 9138389a-1bf9-4500-bb39-4f78822b705b
 md"""
 #### The $xy$-boundary equilibrium
-The $xy$-boundary equilibrium $E_{xy} = \left(x^*,\ y^*,\ 0\right)$ exists where
+
+The $xy$-boundary equilibrium $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where
 
 ${
-x^* = 1+\varphi_{xy}\left(y^*\right)^2
+x^*=1+\varphi_{xy}\left(y^*\right)^2
 }$
 
-and $y^*$ is a positive solution to 
+and $y^*$ is a positive solution to
 
 ${
-\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1 = 0
+\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0
 }$
 
-provided that the following condition is satisfied:
+which can be acheived under the following condition for some $\beta\in\left(1, \infty\right)$
 
 ${
-\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1 < 0
-}$
-
-or equivalently
-
-${
-\varphi_{yx} < \frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2};\quad \beta > 1
+\varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
 }$
 """
 
 # ╔═╡ 469de768-454e-43fe-8cea-867ce81b8635
 md"""
 #### The $xz$-boundary equilibrium
-The $xz$-boundary equilibrium $E_{xz} = \left(x^*,\ 0,\ z^*\right)$ exists where
+The $xz$-boundary equilibrium $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where 
 
 ${
-x^* = 1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad 
-z^* = 1-\frac{u_4}{r_{zx}}
+x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad 
+z^*=1-\frac{u_4}{r_{zx}}
 }$
 
-provided that the following conditions are satisfied:
+provided that the conditions have been satisfied:
 
 ${
-\varphi_{xz} < \frac{r_{zx}}{r_{zx}-u_4},\quad
-r_{zx} > u_4
+\frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1,\quad
+r_{zx}>u_4
 }$
 """
 
 # ╔═╡ 346de199-7840-4ff7-960e-aed213f519c1
 md"""
 #### The $yz$-boundary equilibrium
-The $yz$-boundary equilibrium $E_{yz} = \left(0,\ y^*,\ z^*\right)$ exists where
+The $yz$-boundary equilibrium point $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
 
 ${
-z^* = 1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
 }$
 
-and $y^*$ is a solution to
+and $y^*$ is a positive solution to 
 
 ${
-\frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}\left(u_2+\left(1-p\right)y^*\right)^2} = 0
+\frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}\left(u_2+\left(1-p\right)y^*\right)^2}=0
 }$
 
-where
+where:
 
 ${
 \begin{align*}
 	Y_3 &= -r_{yx}r_{zx}\left(1-p\right)^2\\
 	Y_2 &= r_{yx}r_{zx}\left(1-p\right)\left(\left(1-p\right)-2u_2\right)\\
-	Y_1 &= r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)+u_1\left(u_3+\left(u_4-r_{zx}\right)\right)\left(1-p\right)^2\\
-	Y_0 &= u_2\left(r_{yx}r_{zx}u_2-u_1\left(r_{zx}-u_4\right)\left(1-p\right)\right)
+	Y_1 &= u_1\left(u_4-u_3-r_{zx}\right)\left(1-p\right)^2+r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)\\
+	Y_0 &= u_2\left(r_{yx}r_{zx}u_2+u_1\left(u_4-r_2\right)\left(1-p\right)\right)
 \end{align*}
 }$
 
 provided that the following conditions are satisfied:
 
 ${
-y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
-1>\frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}
+y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-u_4+r_{zx}\right)\left(1-p\right)},\quad 
+1 > \frac{u_1\left(r_2-u_4\right)\left(1-p\right)}{r_{yx}r_{zx}u_2}
 }$
 """
 
 # ╔═╡ 84f6ed77-bbc1-4831-8133-508454147f20
 md"""
 #### The interior equilibrium
-The interior equilibrium $E_{xyz} = \left(x^*,\ y^*,\ z^*\right)$ exists where
+The interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
 
 ${
-x^* = 1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad 
-z^* = 1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad 
+z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
 }$
 
 and $y^*$ is a positive solution to 
 
 ${
-\frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3} = 0
+\frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
 }$
 
-where
+where:
 
 ${
 \begin{align*}
 	Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
 	Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
-	Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
-	Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)\right.\\
-		&\left.-r_{zx}\left(1-p\right)^3\right)\\
-	Y_3 &= r_{yx}\left(1-p\right)\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
-		&\left.-2\varphi_{xy}\varphi_{yx}r_{zx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-r_{zx}\right)\right)\\
-	Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
-		&\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
-		&+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
-	Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
-		&\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
-	Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)\right.\right.\\
-		&\left.\left.+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
+	Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3r_{zx}u_2^2\varphi_{xy}\right)\left(1-p\right)\\
+	Y_4 &= r_{yx}r_{zx}\left(-r_{zx}\left(1-p\right)^3-2\varphi_{xy}\varphi_{yx}u_2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)-3r_{zx}\right)\left(1-p\right)^2\right.\\
+	&\left.+r_{zx}u_2^3\varphi_{xy}^2\varphi_{yx}\right)\\
+	Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
+	&\left.-2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}\right)\right)\\
+	Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2\right.\right.\\
+	&\left.\left.-4u_3u_4\right)-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2\\
+	&-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
+	Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2\right.\right.\\
+	&\left.\left.-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)\right.\right.\\
+	&\left.\left.+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
+	Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
 \end{align*}
 }$
 
-provided that the following conditions are satisfied:
+provided that the following conditions are saitsfied:
 
 ${
-z^* < \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}},\quad
-y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad 
+\frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad
+y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
 Y_0 < 0
 }$
 """
@@ -635,9 +628,9 @@ md"""
 
 # ╔═╡ 7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
 let
-	# param_vals_z = utils.generate_valid_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "z axial")
+	param_vals_z = [0.007, 1.136, 0.874, 0.318, 0.416, 1.59, 1.655, 0.791, 0.994, 0.356]
+	
 	param_vals_z = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "z axial")
-	# param_vals_z = [0.02, 1.838, 0.299, 0.178, 1.976, 1.382, 0.295, 1.175, 1.97, 0.384]
 	
 	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_z))
 	
@@ -657,9 +650,9 @@ md"""
 
 # ╔═╡ 73dc6e38-2610-4bbe-82f4-12a4f87ee694
 let
-	param_vals_xy = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xy boundary")
+	param_vals_xy = [0.049, 0.467, 0.645, 0.024, 0.163, 0.031, 0.31, 0.978, 0.9, 1.004]
 	
-	# param_vals_xy = [0.978, 0.613, 0.326, 0.245, 0.015, 0.920, 0.696, 0.523, 0.951, 0.570]
+	param_vals_xy = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xy boundary")
 	
 	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xy))
 	
@@ -679,9 +672,9 @@ md"""
 
 # ╔═╡ 47a19c48-b349-4324-852a-7d8c274a2b35
 let
-	param_vals_xz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xz boundary")
+	param_vals_xz = [0.199, 1.494, 0.482, 0.449, 0.993, 1.152, 1.671, 0.663, 1.556, 1.04]
 	
-	# param_vals_xz = [0.102, 0.763, 0.271, 0.182, 0.301, 0.109, 0.198, 0.983, 0.186, 0.113]
+	param_vals_xz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xz boundary")
 	
 	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xz))
 	
@@ -701,9 +694,9 @@ md"""
 
 # ╔═╡ 95c25479-b27f-4771-8e23-2da9d06a6097
 let
-	# param_vals_yz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz boundary")
+	param_vals_yz = [1.219, 0.452, 0.589, 0.047, 1.587, 1.908, 1.658, 1.812, 1.473, 0.289]
 	
-	param_vals_yz = [1.924, 1.091, 0.066, 0.19, 1.707, 1.883, 1.643, 0.745, 1.753, 0.071]
+	param_vals_yz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz boundary")
 	
 	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_yz))
 	
@@ -723,9 +716,9 @@ md"""
 
 # ╔═╡ af7c3889-862e-42d7-94dc-e187db2ddca0
 let
-	# param_vals_xyz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
-
 	param_vals_xyz = collect(values(params_dict))
+	
+	param_vals_xyz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
 	
 	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xyz))
 	
@@ -2899,13 +2892,13 @@ version = "1.4.1+0"
 # ╟─03ce581b-5750-4b97-85e9-0d06b5408b6d
 # ╟─10cad625-39f0-4f0e-ac0b-3b241a1afe01
 # ╟─dafd3320-ac82-485d-8d4e-41f07b8a8ff5
-# ╠═7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
+# ╟─7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
 # ╟─01d76dbb-b853-4774-b9f3-04109b5e74b5
-# ╠═73dc6e38-2610-4bbe-82f4-12a4f87ee694
+# ╟─73dc6e38-2610-4bbe-82f4-12a4f87ee694
 # ╟─4891b616-2415-4c63-8ee1-5cf05b9e1319
-# ╠═47a19c48-b349-4324-852a-7d8c274a2b35
+# ╟─47a19c48-b349-4324-852a-7d8c274a2b35
 # ╟─2d77daef-3784-4b6c-a478-091b9b78397a
-# ╠═95c25479-b27f-4771-8e23-2da9d06a6097
+# ╟─95c25479-b27f-4771-8e23-2da9d06a6097
 # ╟─30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
 # ╠═af7c3889-862e-42d7-94dc-e187db2ddca0
 # ╟─79af8a82-cf55-4e34-9ee4-ecd74eaca803
