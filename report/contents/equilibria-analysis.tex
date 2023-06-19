@@ -59,7 +59,11 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         z^* = 1-\frac{u_4}{r_{zx}}
     \end{equation*}
 
-    under the condition where $r_{zx}>u_4$.
+    provided that the following condition is satisfied:
+    
+    \begin{equation*}
+        r_{zx} > u_4
+    \end{equation*}
 \end{theorem}
 \begin{proof}
     The $z$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $z^*>0$ and $x^*=y^*=0$. Plugging in $x^*=0,\ y^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-x} and \myref[Equation]{eq:model-0-y} reduces to $0=0$ while \myref[Equation]{eq:model-0-z} reduces to
@@ -74,13 +78,17 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         z^*=\left\{0,1-\frac{u_4}{r_{zx}}\right\}
     \end{equation*}
     
-    With the cosntraint $z^*>0$, we have proved that the $z$-axial equilibrium point $E_z=\left(0,\ 0,\ z^*\right)$ exist where
+    With the constraint $z^*>0$, we have proved that the $z$-axial equilibrium point $E_z=\left(0,\ 0,\ z^*\right)$ exist where
     
     \begin{equation*}
         z^* = 1-\frac{u_4}{r_{zx}}
     \end{equation*}
 
-    under the condition where $r_{zx}>u_4$.
+    provided that the following condition is satisfied:
+    
+    \begin{equation*}
+        r_{zx} > u_4
+    \end{equation*}
 \end{proof}
 
 \begin{theorem}\label{thm:eq-boundary-xy-exist}
@@ -145,16 +153,16 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     The $xz$-boundary equilibrium point $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where 
     
     \begin{equation*}
-        x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad z^*=1-\frac{u_4}{r_{zx}}
+        x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad
+        z^*=1-\frac{u_4}{r_{zx}}
     \end{equation*}
     
-    provided that the conditions
+    provided that the conditions have been satisfied.
     
     \begin{equation*}
-        \varphi_{xz}<\frac{r_{zx}}{r_{zx}-u_4},\quad r_{zx}>u_4
+        \frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1,\quad 
+        r_{zx}>u_4
     \end{equation*}
-    
-    have been satisfied.
 \end{theorem}
 \begin{proof}
     The $xz$-boundary equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*>0,\ z^*>0$ and $y^*=0$. Plugging in $y^*=0$ into \myref[System]{system:model-0}, we can see that \myref[Equation]{eq:model-0-y} reduces to $0=0$ which leaves us with the following system to solve:
@@ -181,7 +189,7 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     Since $x^*>0$, this implies that
     
     \begin{equation*}
-        \varphi_{xz}<\frac{r_{zx}}{r_{zx}-u_4}
+        \frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1
     \end{equation*}
     
     Therefore, we have proved that the $xz$-boundary equilibrium point $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where 
@@ -190,13 +198,12 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad z^*=1-\frac{u_4}{r_{zx}}
     \end{equation*}
     
-    provided that the conditions
+    provided that the conditions have been satisfied.
     
     \begin{equation*}
-        \varphi_{xz}<\frac{r_{zx}}{r_{zx}-u_4},\quad r_{zx}>u_4
+        \frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1,\quad 
+        r_{zx}>u_4
     \end{equation*}
-    
-    have been satisfied.
 \end{proof}
 
 \begin{theorem}\label{thm:eq-boundary-yz-exist}
@@ -224,7 +231,8 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     provided that the following conditions are satisfied:
     
     \begin{equation*}
-        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad \frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}<1
+        y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-u_4+r_{zx}\right)\left(1-p\right)},\quad 
+        1 > \frac{u_1\left(r_2-u_4\right)\left(1-p\right)}{r_{yx}r_{zx}u_2}
     \end{equation*}
 \end{theorem}
 \begin{proof}
@@ -246,7 +254,7 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     $z^*$ is positive when
 
     \begin{equation*}
-        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)}
+        y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-u_4+r_{zx}\right)\left(1-p\right)}
     \end{equation*}
 
     We can then substitute this value of $z^*$ into \myref[Equation]{eq:yz-boundary-y} to obtain the following equation in $y^*$:
@@ -264,10 +272,10 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         Y_0 &= u_2\left(r_{yx}r_{zx}u_2+u_1\left(u_4-r_2\right)\left(1-p\right)\right)
     \end{align*}
 
-    It will be difficult to find an analytical solution for $y^*$ in terms of the parameters. Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:yz-Y-vars}. Since all of the coefficients of \myref[Equation]{eq:yz-Y-vars} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}. By Descartes' rule of signs, we can say that \myref[Equation]{eq:yz-Y-vars} will have at least one positive solution if $Y_0<0$, or:
+    It will be difficult to find an analytical solution for $y^*$ in terms of the parameters. Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:yz-Y-vars}. Since all of the coefficients of \myref[Equation]{eq:yz-Y-vars} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}. By Descartes' rule of signs, we can say that \myref[Equation]{eq:yz-Y-vars} will have at least one positive solution if $Y_0>0$, or:
     
     \begin{equation*}
-        \frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}} < 1
+        1 > \frac{u_1\left(r_2-u_4\right)\left(1-p\right)}{r_{yx}r_{zx}u_2}
     \end{equation*}
 
     Thus we have proved that the $yz$-boundary equilibrium point $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
@@ -291,10 +299,11 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         Y_0 &= u_2\left(r_{yx}r_{zx}u_2+u_1\left(u_4-r_2\right)\left(1-p\right)\right)
     \end{align*}
 
-    provided that the following conditions are saitsfied:
+    provided that the following conditions are satisfied:
     
     \begin{equation*}
-        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad \frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}<1
+        y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-u_4+r_{zx}\right)\left(1-p\right)},\quad 
+        1 > \frac{u_1\left(r_2-u_4\right)\left(1-p\right)}{r_{yx}r_{zx}u_2}
     \end{equation*}
 \end{proof}
 
@@ -302,7 +311,8 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     The interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
     
     \begin{equation*}
-        x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+        x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad 
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
     \end{equation*}
 
     and $y^*$ is a positive solution to 
@@ -316,22 +326,24 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \begin{align*}
         Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
         Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
-        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
-        Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)-r_{zx}\left(1-p\right)^3\right)\\
-        Y_3 &= r_{yx}\left(1-p\right)\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
-            &\left.-2\varphi_{xy}\varphi_{yx}r_{zx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-r_{zx}\right)\right)\\
-        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
-            &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
-            &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
-        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
-            &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
-        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
+        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3r_{zx}u_2^2\varphi_{xy}\right)\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\left(-r_{zx}\left(1-p\right)^3-2\varphi_{xy}\varphi_{yx}u_2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)-3r_{zx}\right)\left(1-p\right)^2+r_{zx}u_2^3\varphi_{xy}^2\varphi_{yx}\right)\\
+        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
+        &\left.-2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}\right)\right)\\
+        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2-4u_3u_4\right)\right.\\
+        &\left.-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
+        &+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
+        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.c \right.\\
+        &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
+        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
 
     provided that the following conditions are saitsfied:
     
     \begin{equation*}
-        \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad Y_0<0
+        \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
+        Y_0 < 0
     \end{equation*}
 \end{theorem}
 \begin{proof}
@@ -380,22 +392,23 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \begin{align*}
         Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
         Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
-        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
-        Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)-r_{zx}\left(1-p\right)^3\right)\\
-        Y_3 &= r_{yx}\left(1-p\right)\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
-            &\left.-2\varphi_{xy}\varphi_{yx}r_{zx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-r_{zx}\right)\right)\\
-        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
-            &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
-            &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
-        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
-            &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
-        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
+        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3r_{zx}u_2^2\varphi_{xy}\right)\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\left(-r_{zx}\left(1-p\right)^3-2\varphi_{xy}\varphi_{yx}u_2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)-3r_{zx}\right)\left(1-p\right)^2+r_{zx}u_2^3\varphi_{xy}^2\varphi_{yx}\right)\\
+        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
+        &\left.-2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}\right)\right)\\
+        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2-4u_3u_4\right)\right.\\
+        &\left.-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
+        &+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
+        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.c \right.\\
+        &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
+        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
 
     It will be difficult to find an analytical solution for $y^*$ in terms of the parameters. Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:interior-Y}. Since all of the coefficients of \myref[Equation]{eq:interior-Y} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}. By Descartes' rule of signs, we can say that \myref[Equation]{eq:interior-Y} will have at least one positive solution if $Y_0<0$. Thus we have proved that the interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
     
     \begin{equation*}
-        x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+        x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad 
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
     \end{equation*}
 
     and $y^*$ is a positive solution to 
@@ -409,22 +422,24 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \begin{align*}
         Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
         Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
-        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
-        Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)-r_{zx}\left(1-p\right)^3\right)\\
-        Y_3 &= r_{yx}\left(1-p\right)\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
-            &\left.-2\varphi_{xy}\varphi_{yx}r_{zx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-r_{zx}\right)\right)\\
-        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
-            &\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
-            &+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
-        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
-            &\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
-        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
+        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3r_{zx}u_2^2\varphi_{xy}\right)\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\left(-r_{zx}\left(1-p\right)^3-2\varphi_{xy}\varphi_{yx}u_2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)-3r_{zx}\right)\left(1-p\right)^2+r_{zx}u_2^3\varphi_{xy}^2\varphi_{yx}\right)\\
+        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
+        &\left.-2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}\right)\right)\\
+        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2-4u_3u_4\right)\right.\\
+        &\left.-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
+        &+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
+        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.c \right.\\
+        &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
+        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
 
     provided that the following conditions are saitsfied:
     
     \begin{equation*}
-        \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad Y_0<0
+        \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
+        Y_0 < 0
     \end{equation*}
 \end{proof}
 
