@@ -51,10 +51,10 @@ md"""
 # Complex Dynamics of a Three Species Ecosystem
 
 Author: Ramsey (Rayla) Phuc
+- Alias: Rayla Kurosaki
+- GitHub: https://github.com/rkp1503
 
-Alias: Rayla Kurosaki
-
-GitHub: https://github.com/rkp1503
+Co-Author: Ephraim Agyingi
 """
 
 # ╔═╡ 2c5593ff-6683-476f-b007-a01ed022c1b1
@@ -80,58 +80,48 @@ begin
 	=========================================================================#
 	ModelingToolkit.@variables t x(t) y(t) z(t)
 	vars_dict = OrderedCollections.OrderedDict(
-		# Initial size of X 
+		# Density of species X 
 		x => 0.7, 
-		# Initial size of Y
+		# Density of species Y
 		y => 0.4, 
-		# Initial size of Z
+		# Density of species Z
 		z => 0.2
 	)
 	#=========================================================================
 	Parameters the user can modify.
-	=========================================================================#
-	ModelingToolkit.@parameters r, p, γ₁₂, γ₂₁, γ₁₃, v₁, v₂, v₃
+	Indicies for species X,Y,Z are 1,2,3 respectively.
+	=========================================================================#	
 	# Setting parameter values.
-	params_dict_original = OrderedCollections.OrderedDict(
-		# Ratio of intrinsic growth rate of Y to X.
-		r => 0.5,
-		# Refuge rate of Y.
-		p => 0.4,
-		# Inter-species competition coefficient of Y on X.
-		γ₁₂ => 0.4,
-		# Inter-species competition coefficient of X on Y.
-		γ₂₁ => 0.1,
-		# Commensal coefficient of X over Z.
-		γ₁₃ => 0.04,
-		# Half saturation constant for Holling type II function.
-		v₁ => 0.14,
-		# Natural death rate of Z.
-		v₂ => 0.32009,
-		# Conservation rate of Y.
-		v₃ => 0.5
-	)
-	ModelingToolkit.@parameters r₁, r₂, γ₃₁
+	ModelingToolkit.@parameters r₂₁, r₃₁, p, φ₁₂, φ₂₁, φ₁₃, u₁, u₂, u₃, u₄
 	params_dict = OrderedCollections.OrderedDict(
-		# Ratio of intrinsic growth rate of Y to X.
-		r₁ => 0.6353,
-		# Ratio of intrinsic growth rate of Z to X.
-		r₂ => 0.742,
-		# Refuge rate of Y.
-		p => 0.853,
-		# Inter-species competition coefficient of Y on X.
-		γ₁₂ => 0.142,
-		# Inter-species competition coefficient of X on Y.
-		γ₂₁ => 0.002,
-		# Commensal coefficient of X over Z.
-		γ₁₃ => 0.148,
-		# Commensal coefficient of X over Z.
-		γ₃₁ => 0.215,
-		# Half saturation constant for Holling type II function.
-		v₁ => 0.090,
-		# Natural death rate of Z.
-		v₂ => 0.891,
-		# Conservation rate of Y.
-		v₃ => 0.980
+		# Ratio of intrinsic growth rate of species Y to species X
+		r₂₁ => 0.5,
+    	# Ratio of intrinsic growth rate of species Z to species X
+		# r₃₁ => 0.25,
+		r₃₁ => 0.12,
+    	# Refuge rate of species Y
+		# p => 0.4,
+		p => 0.3,
+    	# Scaled inter-species mutualism coefficient of species Y on species X
+		# φ₁₂ => 0.4,
+		φ₁₂ => 0.6,
+    	# Scaled inter-species mutualism coefficient of species X on species Y
+		# φ₂₁ => 0.1,
+		φ₂₁ => 0.15,
+		# Scaled commensal coefficient of species Z on species X
+		# φ₁₃ => 0.04,
+		φ₁₃ => 0.4,
+		# Scaled attack rate of species Z on species Y
+		# u₁ => 0.2,
+		u₁ => 0.6,
+		# Scaled half saturation constant for Holling type II function
+		# u₂ => 0.14,
+		u₂ => 0.08,
+		# Scaled conservation rate of species Y
+		u₃ => 0.5,
+		# Scaled death rate of species Z
+		# u₄ => 0.32009
+		u₄ => 0.5
 	)
 	# Number of days to model.
 	tₘₐₓ = 500
@@ -153,7 +143,7 @@ begin
 	=========================================================================#
 	# Differential Operator
 	D = ModelingToolkit.Differential(t)
-	# Setting the LHS of equations to 0.
+	# Setting the LHS of model to 0.
 	D₀ = OrderedCollections.OrderedDict(
 		D(x) => 0,
 		D(y) => 0,
@@ -161,136 +151,124 @@ begin
 	)
 end;
 
-# ╔═╡ fb1d76b0-a568-4d36-b9c0-8eeb1b7d029f
-# ╠═╡ disabled = true
-#=╠═╡
+# ╔═╡ 2d4534c9-239c-4c2d-b311-e903ed1c20c3
 md"""
-## Original Model
+## Gakkhar's and Gupta's Model
 ${
 \begin{align*}
-	\frac{\textrm{d}x}{\textrm{d}t} &= x\left(1-x-\gamma_{12}y^2\right)+\gamma_{13}xz\\
-	\frac{\textrm{d}y}{\textrm{d}t} &= ry\left(1-y-\gamma_{21}x^2\right)-\frac{\left(1-p\right)yz}{v_1+\left(1-p\right)y}\\
-	\frac{\textrm{d}z}{\textrm{d}t} &= z\left(\frac{v_3\left(1-p\right)y}{v_1+\left(1-p\right)y} - v_2\right)
+	\frac{\textrm{d}x}{\textrm{d}t} &= x\left[1-x-\beta_{12}y\right]+\delta xz\\
+	\frac{\textrm{d}y}{\textrm{d}t} &= ry\left[1-y-\beta_{21}x\right]-\frac{\left(1-p\right)yz}{w_1+\left(1-p\right)y}\\
+	\frac{\textrm{d}z}{\textrm{d}t} &= z\left[-w_2+\frac{w_3\left(1-p\right)y}{w_1+\left(1-p\right)y}\right]
 \end{align*}
 }$
 """
-  ╠═╡ =#
 
-# ╔═╡ 4bb29ac9-3db1-4c3f-a03e-b65c33ef0702
-# ╠═╡ disabled = true
-#=╠═╡
-function model_original(D, variables, parameters)
+# ╔═╡ 70604282-c212-4df8-8c84-d7a5849edecc
+function model_gg(D, variables, parameters)
 	# Unpack variables
 	x, y, z = variables
 	# Unpack parameters
-	r, p, γ₁₂, γ₂₁, γ₁₃, v₁, v₂, v₃ = parameters
+	r, p, β₁₂, β₂₁, β, w₁, w₂, w₃ = parameters
 	equations = [
-		D(x) ~ x*(1-x-γ₁₂*y^2)+γ₁₃*x*z,
-		D(y) ~ r*y*(1-y-γ₂₁*x^2)-(((1-p)*y*z)/(v₁+(1-p)*y)),
-		D(z) ~ z*(((v₃*(1-p)*y)/(v₁+(1-p)*y))-v₂)
+		D(x) ~ x*(1-x-β₁₂*y)+β*x*z,
+		D(y) ~ r*y*(1-y-β₂₁*x)-(((1-p)*y*z)/(w₁+(1-p)*y)),
+		D(z) ~ z*(((w₃*(1-p)*y)/(w₁+(1-p)*y))-w₂)
 	]
 	return equations
 end;
-  ╠═╡ =#
 
-# ╔═╡ f49d185e-6770-4bf0-8704-2d1df720b1f1
-# ╠═╡ disabled = true
-#=╠═╡
-md"""
-### The Existence of Equilibria
-#### The trivial equilibrium
-#### The $x$-axial equilibrium
-#### The $y$-axial equilibrium
-#### The $z$-axial equilibrium
-#### The $xy$-boundary equilibrium
-#### The $xz$-boundary equilibrium
-#### The $yz$-boundary equilibrium
-#### The interior equilibrium
-"""
-  ╠═╡ =#
+# ╔═╡ bcc0cf84-84a1-4c58-83f2-7e0ed17d0c06
+md""" ### Non-trivial Equilibrium"""
 
-# ╔═╡ ec1a8b4e-1374-4440-ba8f-7af3362ab68b
-# ╠═╡ disabled = true
-#=╠═╡
-md"""
-### Stability analysis of Equilibria
-#### The trivial equilibrium
-#### The $x$-axial equilibrium
-#### The $y$-axial equilibrium
-#### The $z$-axial equilibrium
-#### The $xy$-boundary equilibrium
-#### The $xz$-boundary equilibrium
-#### The $yz$-boundary equilibrium
-#### The interior equilibrium
-"""
-  ╠═╡ =#
+# ╔═╡ 8045aed1-55b0-4e32-bb23-9642bcb51900
+sol_gg = let
+	ModelingToolkit.@parameters r p β₁₂ β₂₁ δ w₁ w₂ w₃
 
-# ╔═╡ 74a702fb-7b59-4c8e-8562-6eccac946598
-# ╠═╡ disabled = true
-#=╠═╡
-md"""
-### Numerical Simulations
+	params_var = [r, p, β₁₂, β₂₁, δ, w₁, w₂, w₃]
+	set₁ = [0.5, 0.4, 0.4, 0.1, 0.04, 0.14, 0.32009, 0.5]
+	
+	params_dict_gg = OrderedCollections.OrderedDict(zip(params_var, set₁))
+	
+	sol_gg = utils.solve_model(model_gg, D, vars_dict, params_dict_gg, t, tₘₐₓ)
+	display(last(sol_gg.u))
+	sol_gg
+end
 
-#### Numerically solve the model
-"""
-  ╠═╡ =#
+# ╔═╡ 51ac0b8d-254b-49c1-85a7-80513a6304d6
+md"""### Time Evolution"""
 
-# ╔═╡ b64eef7a-a776-4d63-ae30-c17e73aa137d
-# ╠═╡ disabled = true
-#=╠═╡
-sol_original = utils.solve_model(model_original, D, vars_dict, params_dict_original, t, tₘₐₓ)
-  ╠═╡ =#
-
-# ╔═╡ a43f9cdb-5d3d-469a-ba1d-9c169b50796b
-# ╠═╡ disabled = true
-#=╠═╡
-md"""
-#### Time evolution of each species
-"""
-  ╠═╡ =#
-
-# ╔═╡ 3a08a38e-0b71-40b1-87a9-3159464fd42d
-# ╠═╡ disabled = true
-#=╠═╡
+# ╔═╡ ec24948a-ed39-4d21-85a9-2592ed5c474c
 let
 	title = "Time Evolution of Each Species"
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	utils.my_plot(sol_original, title, xaxis, yaxis, legend_dict)
+	utils.my_plot(sol_gg, title, xaxis, yaxis, legend_dict)
 end
-  ╠═╡ =#
 
-# ╔═╡ e6f5a493-3b03-40b4-b260-6dab092589bb
-# ╠═╡ disabled = true
-#=╠═╡
+# ╔═╡ d3ed6a0d-1451-431f-9567-2b6d083771b1
 md"""
-#### 3D Phase Portrait
+## Gayen's, Jana's, Kar's, and Panja's Model
+${
+\begin{align*}
+	\frac{\textrm{d}x}{\textrm{d}t} &= x\left[1-x-\gamma_{12}y^2\right]+\gamma xz\\
+	\frac{\textrm{d}y}{\textrm{d}t} &= ry\left[1-y-\gamma_{21}x^2\right]-\frac{\left(1-p\right)yz}{v_1+\left(1-p\right)y}\\
+	\frac{\textrm{d}z}{\textrm{d}t} &= z\left[-v_2+\frac{v_3\left(1-p\right)y}{v_1+\left(1-p\right)y}\right]
+\end{align*}
+}$
 """
-  ╠═╡ =#
 
-# ╔═╡ 708289e6-d93b-41f7-be29-e13780609abe
-# ╠═╡ disabled = true
-#=╠═╡
-let
-	title = "3D Phase Portrait"
-	xaxis = "Species X"
-	yaxis = "Species Y"
-	zaxis = "Species Z"
+# ╔═╡ c7f93709-6b1f-4f13-a6b7-15f85cf33b73
+function model_gjkp(D, variables, parameters)
+	# Unpack variables
+	x, y, z = variables
+	# Unpack parameters
+	r, p, γ₁₂, γ₂₁, γ, v₁, v₂, v₃ = parameters
+	equations = [
+		D(x) ~ x*(1-x-γ₁₂*y^2)+γ*x*z,
+		D(y) ~ r*y*(1-y-γ₂₁*x^2)-(((1-p)*y*z)/(v₁+(1-p)*y)),
+		D(z) ~ z*(((v₃*(1-p)*y)/(v₁+(1-p)*y))-v₂)
+	]
+	return equations
+end;
 
-	utils.my_3D_phase_portrait(sol_original, title, xaxis, yaxis, zaxis)
-	# utils.my_phase_portrait(sol_original, title, xaxis, yaxis, Tuple(collect(keys(vars_dict))), zaxis)
+# ╔═╡ f5488179-665f-49db-9052-407bfe77d034
+md""" ### Non-trivial Equilibrium"""
+
+# ╔═╡ 22c924b4-9116-4422-81d9-a2ac6355f854
+sol_gjkp = let
+	ModelingToolkit.@parameters r p γ₁₂ γ₂₁ γ v₁ v₂ v₃
+
+	params_var = [r, p, γ₁₂, γ₂₁, γ, v₁, v₂, v₃]
+	set₁ = [0.5, 0.4, 0.4, 0.1, 0.04, 0.14, 0.32009, 0.5]
+	
+	params_dict_gjkp = OrderedCollections.OrderedDict(zip(params_var, set₁))
+	
+	sol_gjkp = utils.solve_model(model_gjkp, D, vars_dict, params_dict_gjkp, t, tₘₐₓ)
+	display(last(sol_gjkp.u))
+	sol_gjkp
 end
-  ╠═╡ =#
+
+# ╔═╡ ccab53b9-d3ae-4d02-95be-95b1ca33637c
+md"""### Time Evolution"""
+
+# ╔═╡ 08e3c6fa-dc07-4279-a783-6cae9191e156
+let
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+	
+	utils.my_plot(sol_gjkp, title, xaxis, yaxis, legend_dict)
+end
 
 # ╔═╡ 43595148-152f-46e4-b36d-4ccae72e315d
 md"""
-## Modified Model
+## Proposed Model
 ${
 \begin{align*}
-	\frac{\textrm{d}x}{\textrm{d}t} &= x\left(1-x+\gamma_{12}y^2\right)-\gamma_{13}xz\\
-	\frac{\textrm{d}y}{\textrm{d}t} &= r_1y\left(1-y+\gamma_{21}x^2\right)-\frac{\left(1-p\right)yz}{v_1+\left(1-p\right)y}\\
-	\frac{\textrm{d}z}{\textrm{d}t} &= r_2z\left(1-\gamma_{31}z\right)+z\left(\frac{v_3\left(1-p\right)y}{v_1+\left(1-p\right)y}-v_2\right)
+	\frac{\textrm{d}x}{\textrm{d}t} &= x\left(1-x+\varphi_{xy}y^2\right)-\varphi_{xz}xz\\
+	\frac{\textrm{d}y}{\textrm{d}t} &= r_{yx}y\left(1-y+\varphi_{yz}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}\\
+	\frac{\textrm{d}z}{\textrm{d}t} &= r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)
 \end{align*}
 }$
 """
@@ -300,11 +278,11 @@ function model(D, variables, parameters)
 	# Unpack variables
 	x, y, z = variables
 	# Unpack parameters
-	r₁, r₂, p, γ₁₂, γ₂₁, γ₁₃, γ₃₁, v₁, v₂, v₃ = parameters
+	r₂₁, r₃₁, p, φ₁₂, φ₂₁, φ₁₃, u₁, u₂, u₃, u₄ = parameters
 	equations = [
-		D(x) ~ x*(1-x+γ₁₂*y^2)-γ₁₃*x*z,
-		D(y) ~ r₁*y*(1-y+γ₂₁*x^2)-(((1-p)*y*z)/(v₁+(1-p)*y)),
-		D(z) ~ r₂*z*(1-γ₃₁*z)+z*(((v₃*(1-p)*y)/(v₁+(1-p)*y))-v₂)
+		D(x) ~ x*(1-x+φ₁₂*y^2)-φ₁₃*x*z,
+		D(y) ~ r₂₁*y*(1-y+φ₂₁*x^2)-((u₁*(1-p)*y*z)/(u₂+(1-p)*y)),
+		D(z) ~ r₃₁*z*(1-z)+z*(((u₃*(1-p)*y)/(u₂+(1-p)*y))-u₄)
 	]
 	return equations
 end;
@@ -314,9 +292,9 @@ md"""
 ### The Existence of Equilibria
 ${
 \begin{align*}
-	0 &= x^*\left(1-x^*+\gamma_{12}\left(y^*\right)^2\right)-\gamma_{13}x^*z^*\\
-	0 &= r_1y^*\left(1-y^*+\gamma_{21}\left(x^*\right)^2\right)-\frac{\left(1-p\right)y^*z^*}{v_1+\left(1-p\right)y^*}\\
-	0 &= r_2z^*\left(1-\gamma_{31}z^*\right)+z^*\left(\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2\right)
+	0 &= x^*\left(1-x^*+\varphi_{xy}\left(y^*\right)^2\right)-\varphi_{xz}x^*z^*\\
+	0 &= r_{yx}y^*\left(1-y+\varphi_{yz}\left(x^*\right)^2\right)-\frac{u_1\left(1-p\right)y^*z^*}{u_2+\left(1-p\right)y^*}\\
+	0 &= r_{zx}z^*\left(1-z^*\right)+z^*\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
 \end{align*}
 }$
 """
@@ -324,240 +302,162 @@ ${
 # ╔═╡ 2898dd41-0747-4ebc-8e69-71f9898f708f
 md"""
 #### The trivial equilibrium
-${
-E_0 = \left(0,\ 0,\ 0\right)
-}$
+The trivial equilibrium $E_0 = \left(0,\ 0,\ 0\right)$ exists.
 """
-
-# ╔═╡ 4ac7561c-1392-4590-a90a-c433a77342f1
-
 
 # ╔═╡ 65a9ebdb-a16f-4a4f-8f9d-bb4f7e2180eb
 md"""
 #### The $x$-axial equilibrium
-${
-E_x = \left(1,\ 0,\ 0\right)
-}$
+The $x$-axial equilibrium exists where $E_x = \left(1,\ 0,\ 0\right)$.
 """
-
-# ╔═╡ 3e15e6d0-2482-48d9-a56b-d2bc3b8ce269
-
 
 # ╔═╡ ac52aca6-61e0-42c2-89cc-dac5a1b42f6d
 md"""
 #### The $y$-axial equilibrium
-${
-E_y = \left(0,\ 1,\ 0\right)
-}$
+The $y$-axial equilibrium exists where $E_y = \left(0,\ 1,\ 0\right)$.
 """
-
-# ╔═╡ efbc423f-61b3-4c5d-a1ad-2870b48aab76
-
 
 # ╔═╡ d88e3abf-358c-4d7a-b92b-fd2fdde1f862
 md"""
 #### The $z$-axial equilibrium
+The $z$-axial equilibrium $E_z = \left(0,\ 0,\ z^*\right)$ exists where
+
 ${
-E_z = \left(0,\ 0,\ z^*\right)
+z^* = 1-\frac{u_4}{r_{zx}}
 }$
 
-where
+provided that the following condition is saitsfied:
 
 ${
-z^* = \frac{r_2-v_2}{\gamma_{31}r_2}
-}$
-
-provided that
-
-${
-z^* > 0 \Longleftrightarrow r_2 > v_2
+r_{zx} > u_4
 }$
 """
-
-# ╔═╡ 994e35f8-9a7d-4b6a-890d-b469114b975e
-
 
 # ╔═╡ 9138389a-1bf9-4500-bb39-4f78822b705b
 md"""
 #### The $xy$-boundary equilibrium
-${
-E_{xy} = \left(x^*,\ y^*,\ 0\right);\quad 
-}$
-
-where
+The $xy$-boundary equilibrium $E_{xy} = \left(x^*,\ y^*,\ 0\right)$ exists where
 
 ${
-x^* = 1+\gamma_{12}\left(y^*\right)^2
+x^* = 1+\varphi_{xy}\left(y^*\right)^2
 }$
 
 and $y^*$ is a positive solution to 
 
 ${
-\gamma_{12}^2\gamma_{21}\left(y^*\right)^4+2\gamma_{12}\gamma_{21}\left(y^*\right)^2-y^*+\gamma_{21}+1 = 0
+\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1 = 0
 }$
 
-which can be acheived under the following condition
+provided that the following condition is saitsfied:
 
 ${
-\gamma_{12}^2\gamma_{21}\left(y^*\right)^4+2\gamma_{12}\gamma_{21}\left(y^*\right)^2-y^*+\gamma_{21}+1 < 0
+\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1 < 0
 }$
 
 or equivalently
 
 ${
-\gamma_{21} < \frac{\beta-1}{\left(\gamma_{12}\beta^2+1\right)^2};\quad \beta > 1
+\varphi_{yx} < \frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2};\quad \beta > 1
 }$
 """
-
-# ╔═╡ 4a374c56-57ad-4fb5-9133-8aa243dbe4e8
-
 
 # ╔═╡ 469de768-454e-43fe-8cea-867ce81b8635
 md"""
 #### The $xz$-boundary equilibrium
+The $xz$-boundary equilibrium $E_{xz} = \left(x^*,\ 0,\ z^*\right)$ exists where
+
 ${
-E_{xz} = \left(x^*,\ 0,\ z^*\right)
+x^* = 1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad 
+z^* = 1-\frac{u_4}{r_{zx}}
 }$
 
-where
+provided that the following conditions are saitsfied:
 
 ${
-x^* = 1-\frac{\gamma_{13}\left(r_2-v_2\right)}{\gamma_{31}r_2}
-}$
-
-provided that
-
-${
-x^* > 0 \Longleftrightarrow \frac{\gamma_{31}r_2}{\gamma_{13}} > r_2-v_2
-}$
-
-and
-
-${
-z^* = \frac{r_2-v_2}{\gamma_{31}r_2}
-}$
-
-provided that
-
-${
-z^* > 0 \Longleftrightarrow r_2 > v_2
+\varphi_{xz} < \frac{r_{zx}}{r_{zx}-u_4},\quad
+r_{zx} > u_4
 }$
 """
-
-# ╔═╡ e2d90dd6-cfba-4418-88d5-56bf2929b55b
-
 
 # ╔═╡ 346de199-7840-4ff7-960e-aed213f519c1
 md"""
 #### The $yz$-boundary equilibrium
-${
-E_{yz} = \left(0,\ y^*,\ z^*\right)
-}$
-
-where
+The $yz$-boundary equilibrium $E_{yz} = \left(0,\ y^*,\ z^*\right)$ exists where
 
 ${
-z^* = \frac{1}{\gamma_{31}r_2}\left(r_2-v_2+\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\right)
-}$
-
-provided that
-
-${
-z^* > 0 \Longleftrightarrow y^* > \frac{v_1\left(r_2-v_2\right)}{\left(v_2-r_2-v_3\right)\left(1-p\right)}
+z^* = 1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
 }$
 
 and $y^*$ is a solution to
 
 ${
-\frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{\gamma_{31}r_2\left(v_1+\left(1-p\right)y^*\right)^2} = 0
+\frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}\left(u_2+\left(1-p\right)y^*\right)^2} = 0
 }$
 
 where
 
 ${
 \begin{align*}
-    Y_3 &= -\gamma_{31}r_1r_2\left(1-p\right)^2\\
-    Y_2 &= \gamma_{31}r_1r_2\left(\left(1-p\right)-2v_1\right)\left(1-p\right)\\
-    Y_1 &= \gamma_{31}r_1r_2v_1\left(2\left(1-p\right)-v_1\right)+\left(v_2-v_3-r_2\right)\left(1-p\right)^2\\
-    Y_0 &= \gamma_{31}r_1r_2v_1^2+v_1\left(v_2-r_2\right)\left(1-p\right)
+	Y_3 &= -r_{yx}r_{zx}\left(1-p\right)^2\\
+	Y_2 &= r_{yx}r_{zx}\left(1-p\right)\left(\left(1-p\right)-2u_2\right)\\
+	Y_1 &= r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)+u_1\left(u_3+\left(u_4-r_{zx}\right)\right)\left(1-p\right)^2\\
+	Y_0 &= u_2\left(r_{yx}r_{zx}u_2-u_1\left(r_{zx}-u_4\right)\left(1-p\right)\right)
 \end{align*}
 }$
 
-which can be achieved provided that
+provided that the following conditions are satisfied:
 
 ${
-Y_0 > 0 \Longleftrightarrow \frac{\gamma_{31}r_1r_2v_1}{1-p} > r_2-v_2
+y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
+1>\frac{r_{yx}u_2}{u_1\left(1-p\right)}+\frac{u_4}{r_{zx}}
 }$
 """
-
-# ╔═╡ 98f13342-525b-47b1-8848-b667e5da646a
-
 
 # ╔═╡ 84f6ed77-bbc1-4831-8133-508454147f20
 md"""
 #### The interior equilibrium
+The interior equilibrium $E_{xyz} = \left(x^*,\ y^*,\ z^*\right)$ exists where
+
 ${
-E_{xyz} = \left(x^*,\ y^*,\ z^*\right)
+x^* = 1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad 
+z^* = 1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
 }$
 
-where
+and $y^*$ is a positive solution to 
 
 ${
-x^* = 1+\gamma_{12}\left(y^*\right)^2-\gamma_{13}z^*
-}$
-
-provided that
-
-${
-x^* > 0 \Longleftrightarrow z^* < \frac{1+\gamma_{12}\left(y^*\right)^2}{\gamma_{13}}
-}$
-
-and
-
-${
-z^* = \frac{1}{\gamma_{31}r_2}\left(r_2-v_2+\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\right)
-}$
-
-provided that
-
-${
-z^* > 0 \Longleftrightarrow y^* > \frac{v_1\left(r_2-v_2\right)}{\left(v_2-r_2-v_3\right)\left(1-p\right)}
-}$
-
-and $y$ is a solution to
-
-${
-\frac{1}{\gamma_{13}^2r_2^2\left(v_1+\left(1-p\right)y^*\right)^2}\sum_{i=0}^6 Y_i\left(y^*\right)^i = 0
+\frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3} = 0
 }$
 
 where
 
 ${
 \begin{align*}
-    Y_6 &= \gamma_{12}^2\gamma_{21}\gamma_{31}^2r_1r_2^2\left(1-p\right)^2\\
-    Y_5 &= 2\gamma_{12}^2\gamma_{21}\gamma_{31}^2r_1r_2^2v_1\left(1-p\right)\\
-    Y_4 &= \gamma_{12}\gamma_{21}\gamma_{31}r_1r_2\left(2\gamma_{13}\left(v_2-r_2-v_3\right)\left(1-p\right)^2+\gamma_{31}r_2\left(\gamma_{12}v_1^2+2\left(1-p\right)^2\right)\right)\\
-    Y_3 &= \gamma_{31}r_1r_2\left(2\gamma_{12}\gamma_{13}\gamma_{21}v_1\left(2\left(v_2-r_2\right)-v_3\right)+\gamma_{31}r_2\left(4\gamma_{12}\gamma_{21}v_1-\left(1-p\right)\right)\right)\left(1-p\right)\\
-    Y_2 &= r_1\left(2\gamma_{12}\gamma_{13}\gamma_{21}\gamma_{31}r_2v_1^2\left(v_2-r_2\right)+\gamma_{13}^2\gamma_{21}\left(r_2-v_2+v_3\right)^2\left(1-p\right)^2\right.\\
-    &\left.+2\gamma_{13}\gamma_{21}\gamma_{31}r_2\left(v_2-r_2-v_3\right)\left(1-p\right)^2+\gamma_{21}\gamma_{31}^2r_2^2\left(2\gamma_{12}v_1^2+\left(1-p\right)^2\right)\right.\\
-    &\left.+\gamma_{31}^2r_2^2\left(\left(1-p\right)-2v_1\right)\left(1-p\right)\right)\\
-    Y_1 &= 2\gamma_{13}^2\gamma_{21}r_1v_1\left(r_2-v_2\right)\left(r_2-v_2+v_3\right)\left(1-p\right)\\
-    &+2\gamma_{13}\gamma_{21}\gamma_{31}r_1r_2v_1\left(2\left(v_2-r_2\right)-v_3\right)\left(1-p\right)+\gamma_{31}^2r_1r_2^2v_1\left(2\left(\gamma_{21}+1\right)\left(1-p\right)-v_1\right)\\
-    &+\gamma_{31}r_2\left(v_2-r_2-v_3\right)\left(1-p\right)^2\\
-    Y_0 &= v_1\left(\gamma_{13}^2\gamma_{21}r_1v_1\left(r_2-v_2\right)^2+\gamma_{31}^2r_1r_2^2v_1\left(\gamma_{21}+1\right)\right.\\
-    &\left.+\gamma_{31}r_2\left(2\gamma_{13}\gamma_{21}r_1v_1+\left(1-p\right)\right)\left(v_2-r_2\right)\right)
+	Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
+	Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
+	Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3\varphi_{xy}r_{zx}u_2^2\right)\left(1-p\right)\\
+	Y_4 &= r_{yx}r_{zx}\left(u_2\varphi_{xy}\varphi_{yx}\left(2\left(3r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(3u_4-2u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)\right.\\
+		&\left.-r_{zx}\left(1-p\right)^3\right)\\
+	Y_3 &= r_{yx}\left(1-p\right)\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
+		&\left.-2\varphi_{xy}\varphi_{yx}r_{zx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-r_{zx}\right)\right)\\
+	Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)\left(r_{zx}+u_3-u_4\right)\right.\\
+		&\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
+		&+2r_{yx}r_{zx}u_2^3\varphi_{xy}\varphi_{yx}\left(r_{zx}+\varphi_{xz}\left(u_4-r_{zx}\right)\right)\\
+	Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+2u_3\right)\left(u_4-r_{zx}\right)\right.\right.\\
+		&\left.\left.+2r_{zx}\varphi_{xz}\varphi_{yx}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}^2\left(1+\varphi_{yx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2\right)\\
+	Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{xz}^2\varphi_{yx}\left(r_{zx}-u_4\right)^2+2r_{zx}\varphi_{xz}\varphi_{yx}\left(u_4-r_{zx}\right)\right.\right.\\
+		&\left.\left.+r_{zx}^2\left(1+\varphi_{yx}\right)\right)\right)
 \end{align*}
 }$
 
-which can be achieved provided that
+provided that the following conditions are saitsfied:
 
 ${
-Y_0 < 0 \Longleftrightarrow \frac{\gamma_{13}^2\gamma_{21}\left(r_2-v_2\right)}{\gamma_{31}r_2}+\frac{\gamma_{31}r_2\left(\gamma_{21}+1\right)}{r_2-v_2} < 2\gamma_{13}\gamma_{21}+\frac{1-p}{r_1v_1}
+z^* < \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}},\quad
+y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad 
+Y_0 < 0
 }$
 """
-
-# ╔═╡ 9d4f2ba8-3d43-4d4c-93ab-27380746744b
-
 
 # ╔═╡ 12d2aa23-b10e-4e9a-b36d-d35139b8c85e
 md"""
@@ -574,14 +474,14 @@ where
 
 ${
 \begin{align*}
-    j_{11} &= 1-2x_i^*+\gamma_{12}\left(y_i^*\right)^2-\gamma_{13}z_i^*\\
-    j_{12} &= 2\gamma_{12}x_i^*y_i^*\\
-    j_{13} &= -\gamma_{13}x_i^*\\
-    j_{21} &= 2\gamma_{21}r_1x_i^*y_i^*\\
-    j_{22} &= -\frac{v_1\left(1-p\right)z_i^*}{\left(v_1+\left(1-p\right)y_i^*\right)^2}+r_1\left(1-2y_i^*+\gamma_{21}\left(x_i^*\right)^2\right)\\
-    j_{23} &= -\frac{\left(1-p\right)y_i^*}{v_1+\left(1-p\right)y_i^*}\\
-    j_{32} &= \frac{v_1v_3\left(1-p\right)z_i^*}{\left(v_1+\left(1-p\right)y_i^*\right)^2}\\
-    j_{33} &= r_2\left(1-2\gamma_{31}z_i^*\right)+\frac{v_3\left(1-p\right)y_i^*}{v_1+\left(1-p\right)y_i^*}-v_2
+	j_{11} &= 1-2x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+	j_{12} &= 2\varphi_{xy}x^*y^*\\
+	j_{13} &= -\varphi_{xz}x^*\\
+	j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+	j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+	j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+	j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+	j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
 \end{align*}
 }$
 """
@@ -589,360 +489,132 @@ ${
 # ╔═╡ 70ff0be5-d743-4494-859c-32459fee8662
 md"""
 #### The trivial equilibrium
-${
-\textbf{J}\left(E_0\right)=\begin{bmatrix}
-        1 & 0 & 0\\
-        0 & r_1 & 0\\
-        0 & 0 & r_2-v_2
-    \end{bmatrix}
-}$
 
-${
-p\left(\lambda\right) = \left(1-\lambda\right)\left(r_1-\lambda\right)\left(r_2-v_2-\lambda\right) = 0
-}$
-
-${
-\implies \lambda = \left\{1,\ r_1,\ r_2-v_2\right\}
-}$
-
-${
-\lambda_1=1\not\leq0 \implies \text{Instability}
-}$
+The trivial equilibrium $E_0$ is unstable.
 """
-
-# ╔═╡ 232578b3-2cf1-4157-a6c4-cbe6f03041f8
-
 
 # ╔═╡ ebc1c843-2c3f-40b3-8ae7-20d298078ece
 md"""
 #### The $x$-axial equilibrium
-${
-\textbf{J}\left(E_x\right)=\begin{bmatrix}
-        -1 & 0 & -\gamma_{13}\\
-        0 & r_1\left(\gamma_{21}+1\right) & 0\\
-        0 & 0 & r_2-v_2
-    \end{bmatrix}
-}$
-
-${
-p\left(\lambda\right) = \left(-1-\lambda\right)\left(r_1\left(\gamma_{21}+1\right)-\lambda\right)\left(r_2-v_2-\lambda\right) = 0
-}$
-
-${
-\implies \lambda = \left\{-1,\ r_1\left(\gamma_{21}+1\right),\ r_2-v_2\right\}
-}$
-
-${
-\lambda_2=r_1\left(\gamma_{21}+1\right)\not\leq0 \implies \text{Instability}
-}$
+The $x$-axial equilibrium $E_x$ is unstable.
 """
-
-# ╔═╡ 710b3fa3-2754-4923-b16b-887376316b1d
-
 
 # ╔═╡ 7fdb98e8-765a-46bd-98cf-6b784c8bbe1d
 md"""
 #### The $y$-axial equilibrium
-${
-\textbf{J}\left(E_y\right)=\begin{bmatrix}
-        \gamma_{12}+1 & 0 & 0\\
-        0 & -r_1 & -\frac{1-p}{v_1+1-p}\\
-        0 & 0 & r_2-v_2+\frac{v_3(1-p)}{v_1+1-p}
-    \end{bmatrix}
-}$
-
-${
-p\left(\lambda\right) = \left(\gamma_{12}+1-\lambda\right)\left(-r_1-\lambda\right)\left(r_2-v_2+\frac{v_3(1-p)}{v_1+1-p}-\lambda\right) = 0
-}$
-
-${
-\implies \lambda = \left\{\gamma_{12}+1,\ -r_1,\ r_2-v_2+\frac{v_3(1-p)}{v_1+1-p}\right\}
-}$
-
-${
-\lambda_1=\gamma_{12}+1\not\leq0 \implies \text{Instability}
-}$
+The $y$-axial equilibrium $E_y$ is unstable.
 """
-
-# ╔═╡ acad7d8e-cf60-43fd-9946-3c60cbf81a5c
-
 
 # ╔═╡ ccd855c9-c615-49cf-9474-0f563156f9ff
 md"""
 #### The $z$-axial equilibrium
-${
-\textbf{J}\left(E_z\right)=\begin{bmatrix}
-        j_{11} & 0 & 0\\
-        0 & j_{22} & 0\\
-        0 & J_{32} & j_{33}
-    \end{bmatrix}
-}$
-
-where
+The $z$-axial equilibrium $E_z$ is locally stable when:
 
 ${
-\begin{align*}
-    j_{11} &= 1-\gamma_{13}\left(\frac{r_2-v_2}{\gamma_{31}r_2}\right)\\
-    j_{22} &= r_1-\frac{1-p}{v_1}\left(\frac{r_2-v_2}{\gamma_{31}r_2}\right)\\
-    j_{32} &= v_3\left(\frac{1-p}{v_1}\left(\frac{r_2-v_2}{\gamma_{31}r_2}\right)\right)\\
-    j_{33} &= v_2-r_2
-\end{align*}
-}$
-
-${
-p\left(\lambda\right) = \left(j_{11}-\lambda\right)\left(j_{22}-\lambda\right)\left(j_{33}-\lambda\right) = 0
-}$
-
-${
-\implies \lambda = \left\{j_{11},\ j_{22},\ j_{33}\right\}
-}$
-
-${
-\lambda_1 = j_{11} < 0 \implies \frac{\gamma_{31}r_2}{r_2-v_2} < \gamma_{13}
-}$
-
-${
-\lambda_2 = j_{22} < 0 \implies \frac{\gamma_{31}r_2}{r_2-v_2} < \frac{1-p}{r_1v_1}
-}$
-
-${
-\lambda_3 = j_{33} < 0 \implies v_2 < r_2
-}$
-
-${
-\left.
-\begin{align*}
-	\frac{\gamma_{31}r_2}{r_2-v_2} &< \gamma_{13}\\
-	\frac{\gamma_{31}r_2}{r_2-v_2} &< \frac{1-p}{r_1v_1}\\
-	v_2 &< r_2
-\end{align*}
-\right\} \implies \text{Stability}
+\begin{equation*}
+	\frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} < 1,\quad 
+	\frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)} < 1,\quad 
+	\frac{u_4}{r_{zx}} < \frac{1}{2}
+\end{equation*}
 }$
 """
-
-# ╔═╡ 2e3cfad3-8166-43ed-bec2-074195e24c68
-
 
 # ╔═╡ db843b09-9faa-4c02-9676-a42413db8a6c
 md"""
 #### The $xy$-boundary equilibrium
+The $xy$-boundary equilibrium $E_{xy}$ is locally stable when:
+
 ${
-\textbf{J}\left(E_{xy}\right)=\begin{bmatrix}
-        j_{11} & j_{12} & j_{13}\\
-        j_{21} & j_{22} & j_{23}\\
-        0 & 0 & j_{33}
-    \end{bmatrix}
+\begin{align*}
+	0 &< -j_{11}-j_{22}-j_{33}\\
+	0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}\\
+	0 &< j_{33}\left(j_{12}j_{21}-j_{11}j_{22}\right)
+\end{align*}
 }$
 
 where
 
 ${
 \begin{align*}
-    j_{11} &= -\left(1+\gamma_{12}\left(y^*\right)^2\right)\\
-    j_{12} &= 2\gamma_{12}y^*\left(1+\gamma_{12}\left(y^*\right)^2\right)\\
-    j_{13} &= -\gamma_{13}\left(1+\gamma_{12}\left(y^*\right)^2\right)\\
-    j_{21} &= 2\gamma_{21}r_1y^*\left(1+\gamma_{12}\left(y^*\right)^2\right)\\
-    j_{22} &= r_1\left(1-y^*\right)+\gamma_{21}r_1\left(1+\gamma_{12}\left(y^*\right)^2\right)^2\\
-    j_{23} &= -\frac{\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\\
-    j_{33} &= r_2-v_2+v_3\left(\frac{\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\right)
+	j_{11} &= 1-2x+\varphi_{xy}\left(y\right)^2\\
+	j_{12} &= 2\varphi_{xy}x^*y^*\\
+	j_{13} &= -\varphi_{xz}x^*\\
+	j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+	j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x\right)^2\right)\\
+	j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+	j_{33} &= r_{zx}+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
 \end{align*}
-}$
-
-${
-\begin{align*}
-    p\left(\lambda\right) &= \lambda^3+\left(-j_{11}-j_{22}-j_{33}\right)\lambda^2+\left(j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}\right)\lambda\\
-	&+\left(j_{33}\left(j_{12}j_{21}-j_{11}j_{22}\right)\right) = 0
-\end{align*}
-}$
-
-${
-\begin{align*}
-	C_2 &= -j_{11}-j_{22}-j_{33}\\
-	C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}\\
-	C_0 &= j_{33}\left(j_{12}j_{21}-j_{11}j_{22}\right)
-\end{align*}
-}$
-
-${
-\left.
-\begin{align*}
-	C_2 &> 0\\
-	C_1 &> 0\\
-	C_0 &> 0\\
-	C_2C_1 &> C_0
-\end{align*}
-\right\} \implies \text{Stability}
 }$
 """
-
-# ╔═╡ a40a9806-fdf5-46fa-9725-8bda9c8fac76
-
 
 # ╔═╡ 00d43aff-6d46-4dd2-832f-6779d9a18b88
 md"""
 #### The $xz$-boundary equilibrium
-${
-\textbf{J}\left(E_{xz}\right)=\begin{bmatrix}
-        j_{11} & 0 & j_{13}\\
-        0 & j_{22} & 0\\
-        0 & j_{32} & j_{33}
-    \end{bmatrix}
-}$
-
-where
+The $xz$-boundary equilibrium $E_{xz}$ is locally stable when:
 
 ${
-\begin{align*}
-    j_{11} &= -\left(1-\frac{\gamma_{13}\left(r_2-v_2\right)}{\gamma_{31}r_2}\right)\\
-    j_{13} &= -\gamma_{13}\left(1-\frac{\gamma_{13}\left(r_2-v_2\right)}{\gamma_{31}r_2}\right)\\
-    j_{22} &= r_1\left(1+\gamma_{21}\right)\left(1-\frac{\gamma_{13}\left(r_2-v_2\right)}{\gamma_{31}r_2}\right)^2-\frac{\left(1-p\right)\left(r_2-v_2\right)}{\gamma_{31}r_2v_1}\\
-    j_{32} &= v_3\left(\frac{\left(1-p\right)\left(r_2-v_2\right)}{\gamma_{31}r_2v_1}\right)\\
-    j_{33} &= v_2-r_2
-\end{align*}
-}$
-
-${
-p\left(\lambda\right) = \left(j_{11}-\lambda\right)\left(j_{22}-\lambda\right)\left(j_{33}-\lambda\right) = 0
-}$
-
-${
-\implies \lambda = \left\{j_{11},\ j_{22},\ j_{33}\right\}
-}$
-
-${
-\lambda_1 = j_{11} < 0 \implies \frac{1}{\gamma_{13}} < \frac{r_2-v_2}{\gamma_{31}r_2}
-}$
-
-${
-\lambda_2 = j_{22} < 0 \implies \left(1-\frac{\gamma_{13}\left(r_2-v_2\right)}{\gamma_{31}r_2}\right)^2 < \frac{\left(1-p\right)\left(r_2-v_2\right)}{\gamma_{31}r_1r_2v_1\left(1+\gamma_{21}\right)}
-}$
-
-${
-\lambda_3 = j_{33} < 0 \implies v_2 < r_2
-}$
-
-${
-\left.
-\begin{align*}
-	\frac{1}{\gamma_{13}} &< \frac{r_2-v_2}{\gamma_{31}r_2}\\
-	\frac{r_2-v_2}{\gamma_{31}r_2} &< \frac{1}{\gamma_{13}}\left(1\mp\sqrt{\frac{\left(1-p\right)\left(r_2-v_2\right)}{\gamma_{31}r_1r_2v_1\left(1+\gamma_{21}\right)}}\right)\\
-	v_2 &< r_2
-\end{align*}
-\right\} \implies \text{Stability}
+\begin{equation*}
+	z^* > \frac{1-2x^*}{\varphi_{xz}},\quad 
+	z^* > \frac{r_{yx}u_2\left(1+\varphi_{yx}\left(x^*\right)^2\right)}{u_1\left(1-p\right)},\quad 
+	z^* > \frac{r_{zx}-u_4}{2r_{zx}}
+\end{equation*}
 }$
 """
-
-# ╔═╡ 742115da-0ab0-4ee3-8cca-2e52eef8bf92
-
 
 # ╔═╡ ca2cfabe-5bf9-4180-a874-a7b52c6b99ff
 md"""
 #### The $yz$-boundary equilibrium
+The $yz$-boundary equilibrium $E_{yz}$ is locally stable when:
+
 ${
-\textbf{J}\left(E_{yz}\right)=\begin{bmatrix}
-        j_{11} & 0 & 0\\
-        0 & j_{22} & j_{23}\\
-        0 & j_{32} & j_{33}
-    \end{bmatrix}
+\begin{align*}
+	0 &< -j_{11}-j_{22}-j_{33}\\
+	0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
+	0 &< j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)
+\end{align*}
 }$
 
 where
 
 ${
 \begin{align*}
-    j_{11} &= 1-\frac{\gamma_{13}}{\gamma_{31}r_2}\left(r_2-v_2+\frac{v_3\left(1-p\right)y^*}{\left(v_1+\left(1-p\right)y^*\right)}\right)+\gamma_{12}\left(y^*\right)^2\\
-    j_{22} &= r_1\left(1-2y^*\right)-\frac{v_1\left(1-p\right)}{\gamma_{31}r_2\left(v_1+\left(1-p\right)y^*\right)^2}\left(r_2-v_2+\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\right)\\
-    j_{23} &= -\frac{\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\\
-    j_{32} &= v_3\left(\frac{v_1\left(1-p\right)}{\gamma_{31}r_2\left(v_1+\left(1-p\right)y^*\right)^2}\left(r_2-v_2+\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\right)\right)\\
-    j_{33} &= -\left(r_2-v_2+\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\right)
+	j_{11} &= 1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+	j_{22} &= r_{yx}\left(1-2y^*\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+	j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+	j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y\right)^2}\\
+	j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
 \end{align*}
-}$
-
-${
-\begin{align*}
-    p\left(\lambda\right) &= \lambda^3+\left(-j_{11}-j_{22}-j_{33}\right)\lambda^2+\left(j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\right)\lambda\\
-	&+\left(j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)\right) = 0
-\end{align*}
-}$
-
-${
-\begin{align*}
-	C_2 &= -j_{11}-j_{22}-j_{33}\\
-	C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
-	C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)\\
-\end{align*}
-}$
-
-${
-\left.
-\begin{align*}
-	C_2 &> 0\\
-	C_1 &> 0\\
-	C_0 &> 0\\
-	C_2C_1 &> C_0
-\end{align*}
-\right\} \implies \text{Stability}
 }$
 """
-
-# ╔═╡ 511c0175-a1a1-41b7-87e7-bb46f0a7b35b
-
 
 # ╔═╡ 03ce581b-5750-4b97-85e9-0d06b5408b6d
 md"""
 #### The interior equilibrium
+The interior equilibrium $E_{xyz}$ is locally stable when:
+
 ${
-\textbf{J}\left(E_{xyz}\right)=\begin{bmatrix}
-        j_{11} & j_{12} & j_{13}\\
-        j_{21} & j_{22} & j_{23}\\
-        0 & j_{32} & j_{33}
-    \end{bmatrix}
+\begin{align*}
+	0 &< -j_{11}-j_{22}-j_{33}\\
+	0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
+	0 &< j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)
+\end{align*}
 }$
 
 where
 
 ${
 \begin{align*}
-    j_{11} &= 1-2x^*+\gamma_{12}\left(y^*\right)^2-\gamma_{13}z^*\\
-    j_{12} &= 2\gamma_{12}x^*y^*\\
-    j_{13} &= -\gamma_{13}x^*\\
-    j_{21} &= 2\gamma_{21}r_1x^*y^*\\
-    j_{22} &= -\frac{v_1\left(1-p\right)z^*}{\left(v_1+\left(1-p\right)y^*\right)^2}+r_1\left(1-2y^*+\gamma_{21}\left(x^*\right)^2\right)\\
-    j_{23} &= -\frac{\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}\\
-    j_{32} &= \frac{v_1v_3\left(1-p\right)z^*}{\left(v_1+\left(1-p\right)y^*\right)^2}\\
-    j_{33} &= r_2\left(1-2\gamma_{31}z^*\right)+\frac{v_3\left(1-p\right)y^*}{v_1+\left(1-p\right)y^*}-v_2
+	j_{11} &= 1-2x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+	j_{12} &= 2\varphi_{xy}x^*y^*\\
+	j_{13} &= -\varphi_{xz}x^*\\
+	j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+	j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+	j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+	j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+	j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
 \end{align*}
-}$
-
-${
-\begin{align*}
-    p\left(\lambda\right) &= \lambda^3+\left(-j_{11}-j_{22}-j_{33}\right)\lambda^2+\left(j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\right)\lambda\\
-	&+\left(j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)\right) = 0
-\end{align*}
-}$
-
-${
-\begin{align*}
-	C_2 &= -j_{11}-j_{22}-j_{33}\\
-	C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
-	C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)\\
-\end{align*}
-}$
-
-${
-\left.
-\begin{align*}
-	C_2 &> 0\\
-	C_1 &> 0\\
-	C_0 &> 0\\
-	C_2C_1 &> C_0
-\end{align*}
-\right\} \implies \text{Stability}
 }$
 """
-
-# ╔═╡ 3d5e618d-a5ac-4593-bb9c-f00e9a3db83a
-
 
 # ╔═╡ 10cad625-39f0-4f0e-ac0b-3b241a1afe01
 md"""
@@ -956,20 +628,18 @@ md"""
 
 # ╔═╡ 7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
 let
-	# utils.success_rate(model, D, vars_dict, params_dict, t, tₘₐₓ, "z axial")
-	# utils.analyze(model, D, vars_dict, params_dict, t, tₘₐₓ, "z axial")
-	# param_values = utils.generate_valid_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "z axial")
+	# param_vals_z = utils.generate_valid_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "z axial")
+	param_vals_z = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "z axial")
+	# param_vals_z = [0.02, 1.838, 0.299, 0.178, 1.976, 1.382, 0.295, 1.175, 1.97, 0.384]
 	
-	param_values = [0.404, 0.903, 0.182, 0.639, 0.283, 0.301, 0.110, 0.645, 0.175, 0.145]
-	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_values))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_z))
 	
 	sol_z = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
-
+	
 	title = "Time Evolution of Each Species"
 	xaxis = "Time in Days"
 	yaxis = "Population size"
-
+	
 	utils.my_plot(sol_z, title, xaxis, yaxis, legend_dict)
 end
 
@@ -980,13 +650,11 @@ md"""
 
 # ╔═╡ 73dc6e38-2610-4bbe-82f4-12a4f87ee694
 let
-	# utils.success_rate(model, D, vars_dict, params_dict, t, tₘₐₓ, "xy boundary")
-	# utils.analyze(model, D, vars_dict, params_dict, t, tₘₐₓ, "xy boundary")
-	# param_values = utils.generate_valid_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xy boundary")
+	param_vals_xy = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xy boundary")
 	
-	param_values = [0.978, 0.613, 0.326, 0.245, 0.015, 0.920, 0.696, 0.523, 0.951, 0.570]
+	# param_vals_xy = [0.978, 0.613, 0.326, 0.245, 0.015, 0.920, 0.696, 0.523, 0.951, 0.570]
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_values))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xy))
 	
 	sol_xy = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 
@@ -1004,13 +672,11 @@ md"""
 
 # ╔═╡ 47a19c48-b349-4324-852a-7d8c274a2b35
 let
-	# utils.success_rate(model, D, vars_dict, params_dict, t, tₘₐₓ, "xz boundary")
-	# utils.analyze(model, D, vars_dict, params_dict, t, tₘₐₓ, "xz boundary")
-	# param_values = utils.generate_valid_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xz boundary")
+	param_vals_xz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xz boundary")
 	
-	param_values = [0.102, 0.763, 0.271, 0.182, 0.301, 0.109, 0.198, 0.983, 0.186, 0.113]
+	# param_vals_xz = [0.102, 0.763, 0.271, 0.182, 0.301, 0.109, 0.198, 0.983, 0.186, 0.113]
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_values))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xz))
 	
 	sol_xy = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 
@@ -1028,21 +694,19 @@ md"""
 
 # ╔═╡ 95c25479-b27f-4771-8e23-2da9d06a6097
 let
-	# utils.success_rate(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz boundary")
-	# utils.analyze(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz boundary")
-	# param_values = utils.generate_valid_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz boundary")
+	# param_vals_yz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz boundary")
 	
-	param_values = [0.978, 0.310, 0.843, 0.002, 0.407, 0.859, 0.446, 0.872, 0.201, 0.959]
+	param_vals_yz = [1.924, 1.091, 0.066, 0.19, 1.707, 1.883, 1.643, 0.745, 1.753, 0.071]
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_values))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_yz))
 	
-	sol_xy = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	sol_yz = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 	
 	title = "Time Evolution of Each Species"
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict)
+	utils.my_plot(sol_yz, title, xaxis, yaxis, legend_dict)
 end
 
 # ╔═╡ 30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
@@ -1052,13 +716,11 @@ md"""
 
 # ╔═╡ af7c3889-862e-42d7-94dc-e187db2ddca0
 let
-	# utils.success_rate(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
-	# utils.analyze(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
-	# param_values = utils.generate_valid_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
+	param_vals_xyz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
+
+	# param_vals_xyz = collect(values(params_dict))
 	
-	param_values = collect(values(params_dict))
-	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_values))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xyz))
 	
 	sol_xyz = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 	
@@ -3191,52 +2853,38 @@ version = "1.4.1+0"
 # ╟─2c5593ff-6683-476f-b007-a01ed022c1b1
 # ╟─95015822-5c1c-4a52-b682-4926a921687c
 # ╠═92ea7a8b-967d-47c5-8e7f-d2ec80071c20
-# ╟─fb1d76b0-a568-4d36-b9c0-8eeb1b7d029f
-# ╠═4bb29ac9-3db1-4c3f-a03e-b65c33ef0702
-# ╟─f49d185e-6770-4bf0-8704-2d1df720b1f1
-# ╟─ec1a8b4e-1374-4440-ba8f-7af3362ab68b
-# ╟─74a702fb-7b59-4c8e-8562-6eccac946598
-# ╟─b64eef7a-a776-4d63-ae30-c17e73aa137d
-# ╟─a43f9cdb-5d3d-469a-ba1d-9c169b50796b
-# ╟─3a08a38e-0b71-40b1-87a9-3159464fd42d
-# ╟─e6f5a493-3b03-40b4-b260-6dab092589bb
-# ╟─708289e6-d93b-41f7-be29-e13780609abe
+# ╟─2d4534c9-239c-4c2d-b311-e903ed1c20c3
+# ╠═70604282-c212-4df8-8c84-d7a5849edecc
+# ╟─bcc0cf84-84a1-4c58-83f2-7e0ed17d0c06
+# ╟─8045aed1-55b0-4e32-bb23-9642bcb51900
+# ╟─51ac0b8d-254b-49c1-85a7-80513a6304d6
+# ╟─ec24948a-ed39-4d21-85a9-2592ed5c474c
+# ╟─d3ed6a0d-1451-431f-9567-2b6d083771b1
+# ╠═c7f93709-6b1f-4f13-a6b7-15f85cf33b73
+# ╟─f5488179-665f-49db-9052-407bfe77d034
+# ╟─22c924b4-9116-4422-81d9-a2ac6355f854
+# ╟─ccab53b9-d3ae-4d02-95be-95b1ca33637c
+# ╟─08e3c6fa-dc07-4279-a783-6cae9191e156
 # ╟─43595148-152f-46e4-b36d-4ccae72e315d
 # ╠═46bc4906-a2b1-4025-843f-09f3d0e226b4
 # ╟─157dd6f0-e175-44ca-917d-5aadf65f70a1
 # ╟─2898dd41-0747-4ebc-8e69-71f9898f708f
-# ╠═4ac7561c-1392-4590-a90a-c433a77342f1
 # ╟─65a9ebdb-a16f-4a4f-8f9d-bb4f7e2180eb
-# ╠═3e15e6d0-2482-48d9-a56b-d2bc3b8ce269
 # ╟─ac52aca6-61e0-42c2-89cc-dac5a1b42f6d
-# ╠═efbc423f-61b3-4c5d-a1ad-2870b48aab76
 # ╟─d88e3abf-358c-4d7a-b92b-fd2fdde1f862
-# ╠═994e35f8-9a7d-4b6a-890d-b469114b975e
 # ╟─9138389a-1bf9-4500-bb39-4f78822b705b
-# ╠═4a374c56-57ad-4fb5-9133-8aa243dbe4e8
 # ╟─469de768-454e-43fe-8cea-867ce81b8635
-# ╠═e2d90dd6-cfba-4418-88d5-56bf2929b55b
 # ╟─346de199-7840-4ff7-960e-aed213f519c1
-# ╠═98f13342-525b-47b1-8848-b667e5da646a
 # ╟─84f6ed77-bbc1-4831-8133-508454147f20
-# ╠═9d4f2ba8-3d43-4d4c-93ab-27380746744b
 # ╟─12d2aa23-b10e-4e9a-b36d-d35139b8c85e
 # ╟─70ff0be5-d743-4494-859c-32459fee8662
-# ╠═232578b3-2cf1-4157-a6c4-cbe6f03041f8
 # ╟─ebc1c843-2c3f-40b3-8ae7-20d298078ece
-# ╠═710b3fa3-2754-4923-b16b-887376316b1d
 # ╟─7fdb98e8-765a-46bd-98cf-6b784c8bbe1d
-# ╠═acad7d8e-cf60-43fd-9946-3c60cbf81a5c
 # ╟─ccd855c9-c615-49cf-9474-0f563156f9ff
-# ╠═2e3cfad3-8166-43ed-bec2-074195e24c68
 # ╟─db843b09-9faa-4c02-9676-a42413db8a6c
-# ╠═a40a9806-fdf5-46fa-9725-8bda9c8fac76
 # ╟─00d43aff-6d46-4dd2-832f-6779d9a18b88
-# ╠═742115da-0ab0-4ee3-8cca-2e52eef8bf92
 # ╟─ca2cfabe-5bf9-4180-a874-a7b52c6b99ff
-# ╠═511c0175-a1a1-41b7-87e7-bb46f0a7b35b
 # ╟─03ce581b-5750-4b97-85e9-0d06b5408b6d
-# ╠═3d5e618d-a5ac-4593-bb9c-f00e9a3db83a
 # ╟─10cad625-39f0-4f0e-ac0b-3b241a1afe01
 # ╟─dafd3320-ac82-485d-8d4e-41f07b8a8ff5
 # ╟─7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
@@ -3247,17 +2895,17 @@ version = "1.4.1+0"
 # ╟─2d77daef-3784-4b6c-a478-091b9b78397a
 # ╟─95c25479-b27f-4771-8e23-2da9d06a6097
 # ╟─30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
-# ╟─af7c3889-862e-42d7-94dc-e187db2ddca0
-# ╟─79af8a82-cf55-4e34-9ee4-ecd74eaca803
+# ╠═af7c3889-862e-42d7-94dc-e187db2ddca0
+# ╠═79af8a82-cf55-4e34-9ee4-ecd74eaca803
 # ╟─75b2dc3d-b8ce-4db2-9b6c-c10bf81b53bd
-# ╟─516591f4-a8a5-46e6-9bf4-7e7653208d18
+# ╠═516591f4-a8a5-46e6-9bf4-7e7653208d18
 # ╟─629a0107-705e-4316-ab11-a7017ce4d5ab
-# ╟─4f73f30a-9083-4717-8f74-65318e4fadac
+# ╠═4f73f30a-9083-4717-8f74-65318e4fadac
 # ╟─1dfa0afd-8e8b-40f7-a51f-62b765b6fa35
-# ╟─3f14562d-7ef0-44a1-9549-c201134d9930
+# ╠═3f14562d-7ef0-44a1-9549-c201134d9930
 # ╟─b17a7814-6b58-4ab1-b8fa-5add4b707598
-# ╟─d79ea54d-9211-40ea-8c30-14c78e0b418e
+# ╠═d79ea54d-9211-40ea-8c30-14c78e0b418e
 # ╟─9ad67942-1d2f-438e-b38f-9e5a8d2b7eb7
-# ╟─11e77b07-9b09-4dd8-a9e5-7e1ceb612507
+# ╠═11e77b07-9b09-4dd8-a9e5-7e1ceb612507
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
