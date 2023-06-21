@@ -11,7 +11,7 @@ In this chapter, we will breifly introduce the desired problem to model and make
 \section{Problem Statement and Assumptions}
 Consider an ecosystem which involves three species, $X,\ Y,\ Z$. Species $X,\ Y,\ Z$ grows logistically at their respective intrinsic growth rate $r_x>0,\ r_y>0,\ r_z>0$ with their respective carrying capacity $K_x>0,\ K_y>0,\ K_z>0$ and species $Z$ dies at a rate of $e$. We will also assume that each pairing of species has a unique interaction with one another. In particular, we will model an ecosystem where mutualism, predation, and amensalism are present. % Provide a real life example of this type of interaction if possible.
 
-We will assume that species $X,\ Y$ are in a mutualism relationship. Members from both species will interact with one another that will help both species in some way. As a result, each species will be affected by one another in some way. To illustrate this, we will let $\alpha_{xy} > 0$ be the inter-species mutualism coefficient where species $X$ is being affected by species $Y$ and $\alpha_{yx} > 0$ be the inter-species mutualism coefficient where species $Y$ is being affected by species $X$.
+We will assume that species $X,\ Y$ are in a non-linear mutualism relationship. Members from both species will interact with one another that will help both species in some way. As a result, each species will be affected by one another in some way. To illustrate this, we will let $\alpha_{xy} > 0$ be the inter-species mutualism coefficient where species $X$ is being affected by species $Y$ and $\alpha_{yx} > 0$ be the inter-species mutualism coefficient where species $Y$ is being affected by species $X$.
 
 We will assume that species $Y,\ Z$ are in a predation relationship where species $Z$ preys on species $Y$ with the Holling type II response and with an attack rate of $a$. As a result of this, a proportion $0 \leq p \leq 1$ of species $Y$ will take refuge into species $Z$ with a conservation rate of $c$. 
 
@@ -124,12 +124,48 @@ When creating a model that encapsulates an ecosystem, we need to make sure that 
 Even though we have shown that \myref[Model]{model:rayla-ephraim} will always be non-negative for any set of non-negative initial conditions though \myref[Theorem]{thm:positiveness}, that is not enough to show that \myref[Model]{model:rayla-ephraim} makes sense. Populations have not just a lower limit, but also an upper limit. A population cannot just grow infinitely in size. After some time, a population will get to the point where it cannot grow any further. Thus, we will need to show that out model is uniformly boundeded. This is shown in \myref[Theorem]{thm:bounded}.
 
 \begin{theorem}\label{thm:bounded}
-    For any set of intiial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} is bounded above uniformly.
+    For any set of initial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} is bounded above uniformly.
 \end{theorem}
 \begin{proof}
+    % \begin{align*}
+    %     V &= ax^2+by^2+cz^2\\
+    %     \diff[]{V}{t} &= 2a\diff[]{x}{t}+2b\diff[]{y}{t}+2c\diff[]{z}{t}\\
+    %     \diff[]{V}{t} &= 2a\left(x\left(1-x+\varphi_{xy}y^2\right)-\varphi_{xz}xz\right)\\
+    %     & +2b\left(r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}\right)\\
+    %     & +2c\left(r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\\
+    %     \diff[]{V}{t} &= 2ax-2ax^2+2a\varphi_{xy}xy^2-2a\varphi_{xz}xz+2br_{yx}y-2br_{yx}y^2+2br_{yx}\varphi_{yx}x^2y-\frac{2bu_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}+2cr_{zx}z\\
+    %     &-2cr_{zx}z^2+\frac{2cu_3\left(1-p\right)yz}{u_2+\left(1-p\right)y}-2cu_4z
+    %     % &= 2a\left(x\left(1-x+\varphi_{xy}y^2\right)-\varphi_{xz}xz\right)+2b\left(r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}\right)+2c\left(r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)
+    % \end{align*}
+    Here, we will start by placing an upper bound for \myref[Equation]{eq:rayla-ephraim-d-z}:
+    \begin{equation*}
+        \diff[]{z}{t} \leq r_{zx}z\left(1-z\right)+z\left(u_3-u_4\right)
+    \end{equation*}
+    From here, we can perform separation of variables:\
+    \begin{equation*}
+        \frac{1}{z\left(u_3-u_4+r_{zx}-r_{zx}z\right)}\ \opdiff{z} \leq \opdiff{t}
+    \end{equation*}
+    Interating both sides, we obtain the following inequality:
+    \begin{equation*}
+        z(t) < \frac{\left(u_3-u_4+r_{zx}\right)z_0}{\exp{\left(u_4-u_3-r_{zx}\right)t}+r_{zx}z_0}
+    \end{equation*}
+    from which we can conclude that:
+    \begin{equation*}
+        \lim_{t\to\infty} \frac{\left(u_3-u_4+r_{zx}\right)z_0}{\exp{\left(u_4-u_3-r_{zx}\right)t}+r_{zx}z_0} = 1+\frac{u_3-u_4}{r_{zx}}
+    \end{equation*}
+    thus proving that $z$ is bounded above uniformly. Now consider the following function:
+    \begin{equation*}
+        f_1 = y + \frac{u_1}{u_3}z
+    \end{equation*}
+    The derivative of this function wirht respect to $t$ is:
+    \begin{equation*}
+        \diff[]{f_1}{t} = \diff[]{y}{t} + \frac{u_1}{u_3}\diff[]{z}{t}
+    \end{equation*}
     \begin{align*}
-        V &= x^2+y^2+z^2\\
-        \diff{V}{t} &= -2x^2\left(x-1\right)-2x\left(\phi_1 y^2-\phi_2xz\right)-2r_1y^2\left(y-1\right)-2y\left(\frac{{u_1(1-p)z^2}}{{u_2+(1-p)y}}-\phi_3x^2y\right)\\
-        &-2r_2z^2\left(z-1\right)-2z^2\left(u_4-\frac{{u_3(1-p)yz}}{{u_2+(1-p)y}}\right)
+        \diff[]{f_1}{t} &= \diff[]{y}{t} + \frac{u_1}{u_3}\diff[]{z}{t}\\
+        \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}+\frac{u_1}{u_3}\left(r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\\
+        \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}+\frac{r_{zx}u_1z\left(1-z\right)}{u_3}+\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}-\frac{u_1u_4z}{u_3}\\
+        \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)+\frac{r_{zx}u_1z\left(1-z\right)}{u_3}-\frac{u_1u_4z}{u_3}\\
+        \diff[]{f_1}{t} &< r_{yx}y\left(1-y+\varphi_{yx}x^2\right)+\frac{r_{zx}u_1z\left(1-z\right)}{u_3}
     \end{align*}
 \end{proof}
