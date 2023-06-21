@@ -26,24 +26,6 @@ function equilibrium_stable(param_vals)
     j₂₁ = 2*r₂₁*ϕ₂₁*x*y
     j₂₂ = r₂₁*(1-2*y+ϕ₂₁*x^2)
     j₃₃ = r₃₁-u₄+((u₃*(1-p)*y)/(u₂+(1-p)*y))
-    # if method == "RHC"
-    #     C₂ = -j₁₁-j₂₂-j₃₃
-    #     C₁ = j₁₁*j₂₂+j₁₁*j₃₃+j₂₂*j₃₃-j₁₂*j₂₁
-    #     C₀ = j₃₃*(j₁₂*j₂₁-j₁₁*j₂₂)
-    #     cond1 = C₂ > 0
-    #     cond2 = C₁ > 0
-    #     cond3 = C₀ > 0
-    #     cond4 = C₂*C₁ > C₀
-    #     return all([cond1, cond2, cond3, cond4])
-    # else
-    #     λ₁ = j₃₃
-    #     λ₂ = (j₁₁+j₂₂+sqrt((j₁₁-j₂₂)^2+4*j₁₂*j₂₁))/2
-    #     λ₃ = (j₁₁+j₂₂-sqrt((j₁₁-j₂₂)^2+4*j₁₂*j₂₁))/2
-    #     cond1 = λ₁ < 0
-    #     cond2 = λ₂ < 0
-    #     cond3 = λ₃ < 0
-    #     return all([cond1, cond2, cond3])
-    # end
     C₂ = -j₁₁-j₂₂-j₃₃
     C₁ = j₁₁*j₂₂+j₁₁*j₃₃+j₂₂*j₃₃-j₁₂*j₂₁
     C₀ = j₃₃*(j₁₂*j₂₁-j₁₁*j₂₂)
