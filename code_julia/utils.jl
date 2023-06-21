@@ -42,7 +42,7 @@ function solve_model(model, D, vars_dict, params_dict, t, tₘₐₓ)
     return solve(prob, Rodas5P(), reltol=TOL_1, abstol=TOL_1)
 end;
 
-function my_plot(sol, title, xaxis, yaxis, legend_dict; normalize=1)
+function my_plot(sol, title, xaxis, yaxis, legend_dict; detailed=false, param_vals=[], normalize=1)
     figure = plot(title=title, xaxis=xaxis, yaxis=yaxis,
         # legend=:outertopright,
         # background_color_inside="#DDDDDD",
@@ -59,6 +59,10 @@ function my_plot(sol, title, xaxis, yaxis, legend_dict; normalize=1)
         plot!(figure, sol.t, sol'[:, i]/normalize, 
             label=label, linecolor=color, linewidth=1.5
             )
+        if detailed
+            upper_bounds = get_upper_bounds(param_vals)
+            plot!(figure, sol.t, [upper_bounds[i] for _ in sol.t]/normalize, label="", linecolor=color, linewidth=1.5, linestyle=:dash)
+        end
     end
     return figure
 end;
@@ -112,6 +116,14 @@ function my_phase_portrait(sol, title, xaxis, yaxis, variables; zaxis="")
         linewidth=1.5
         )
     return figure
+end;
+
+function get_upper_bounds(param_vals)
+    r₂₁, r₃₁, p, ϕ₁₂, ϕ₂₁, ϕ₁₃, u₁, u₂, u₃, u₄ = param_vals
+    x_ub = 0
+    y_ub = 0
+    z_ub = 1+((u₃-u₄)/r₃₁)
+    return [x_ub, y_ub, z_ub]
 end;
 
 
