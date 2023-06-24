@@ -22,7 +22,8 @@ def xy_boundary(vars_dict: dict[sym.core.Symbol, float], params_dict: dict[sym.c
         r_yx, r_zx, p, phi_xy, phi_yx, phi_xz, u_1, u_2, u_3, u_4 = params_symb[0] if len(params_symb) == 1 else params_symb
         eq_vals_temp[0] = 1+phi_xy*y**2
         pass
-    return dict(zip([x, y, z], eq_vals_temp))
+    return dict(zip([x, y, z], [x, y, 0]))
+    # return dict(zip([x, y, z], eq_vals_temp))
 
 
 def yz_boundary(vars_dict, params_dict, eq_vals_temp):
@@ -30,7 +31,8 @@ def yz_boundary(vars_dict, params_dict, eq_vals_temp):
     params_symb = list(params_dict.keys())
     r_yx, r_zx, p, phi_xy, phi_yx, phi_xz, u_1, u_2, u_3, u_4 = params_symb[0] if len(params_symb) == 1 else params_symb
     eq_vals_temp[2] = 1+((1/r_zx)*(((u_3*(1-p)*y)/(u_2+(1-p)*y))-u_4))
-    return dict(zip([x, y, z], eq_vals_temp))
+    return dict(zip([x, y, z], [0, y, z]))
+    # return dict(zip([x, y, z], eq_vals_temp))
 
 
 def interior(vars_dict, params_dict, eq_vals_temp, model_type="Proposed"):
@@ -46,4 +48,5 @@ def interior(vars_dict, params_dict, eq_vals_temp, model_type="Proposed"):
         eq_vals_temp[2] = 1+((1/r_zx)*(((u_3*(1-p)*y)/(u_2+(1-p)*y))-u_4))
         eq_vals_temp[0] = 1+phi_xy*y**2-phi_xz*eq_vals_temp[2]
         pass
-    return dict(zip([x, y, z], eq_vals_temp))
+    return dict(zip([x, y, z], [x, y, z]))
+    # return dict(zip([x, y, z], eq_vals_temp))
