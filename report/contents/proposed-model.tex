@@ -157,7 +157,7 @@ Even though we have shown that \myref[Model]{model:rayla-ephraim} will always be
     \begin{equation*}
         f_1 = y + \frac{u_1}{u_3}z
     \end{equation*}
-    The derivative of this function wirht respect to $t$ is:
+    The derivative of this function with respect to $t$ is:
     \begin{equation*}
         \diff[]{f_1}{t} = \diff[]{y}{t} + \frac{u_1}{u_3}\diff[]{z}{t}
     \end{equation*}
@@ -165,7 +165,6 @@ Even though we have shown that \myref[Model]{model:rayla-ephraim} will always be
         \diff[]{f_1}{t} &= \diff[]{y}{t} + \frac{u_1}{u_3}\diff[]{z}{t}\\
         \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}+\frac{u_1}{u_3}\left(r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\\
         \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}+\frac{r_{zx}u_1z\left(1-z\right)}{u_3}+\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}-\frac{u_1u_4z}{u_3}\\
-        \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)+\frac{r_{zx}u_1z\left(1-z\right)}{u_3}-\frac{u_1u_4z}{u_3}\\
-        \diff[]{f_1}{t} &< r_{yx}y\left(1-y+\varphi_{yx}x^2\right)+\frac{r_{zx}u_1z\left(1-z\right)}{u_3}
+        \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)+\frac{r_{zx}u_1}{u_3}z\left(1-z\right)-\frac{u_1u_4z}{u_3}
     \end{align*}
 \end{proof}
