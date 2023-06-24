@@ -633,7 +633,8 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 	
-	utils.my_plot(sol_z, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_z)
+	utils.my_plot(sol_z, title, xaxis, yaxis, legend_dict)
+	# utils.my_plot(sol_z, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_z)
 end
 
 # ╔═╡ 01d76dbb-b853-4774-b9f3-04109b5e74b5
@@ -655,7 +656,8 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 	
-	utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_xy)
+	utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict)
+	# utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_xy)
 end
 
 # ╔═╡ 4891b616-2415-4c63-8ee1-5cf05b9e1319
@@ -677,7 +679,8 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_xz)
+	utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict)
+	# utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_xz)
 end
 
 # ╔═╡ 2d77daef-3784-4b6c-a478-091b9b78397a
@@ -699,7 +702,8 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	utils.my_plot(sol_yz, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_yz)
+	utils.my_plot(sol_yz, title, xaxis, yaxis, legend_dict)
+	# utils.my_plot(sol_yz, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_yz)
 end
 
 # ╔═╡ 30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
@@ -712,7 +716,7 @@ let
 	param_vals_xyz = collect(values(params_dict))
 	param_vals_xyz = [0.403, 1.96, 0.358, 1.489, 0.086, 0.62, 0.406, 0.194, 0.542, 1.336]
 	
-	param_vals_xyz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
+	# param_vals_xyz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
 	
 	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xyz))
 	
@@ -722,7 +726,8 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	utils.my_plot(sol_xyz, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_xyz)
+	utils.my_plot(sol_xyz, title, xaxis, yaxis, legend_dict)
+	# utils.my_plot(sol_xyz, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_xyz)
 end
 
 # ╔═╡ 79af8a82-cf55-4e34-9ee4-ecd74eaca803
@@ -744,7 +749,8 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	utils.my_plot(sol, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=collect(values(params_dict)))
+	utils.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	# utils.my_plot(sol, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=collect(values(params_dict)))
 end
 
 # ╔═╡ 629a0107-705e-4316-ab11-a7017ce4d5ab
@@ -2888,18 +2894,18 @@ version = "1.4.1+0"
 # ╟─dafd3320-ac82-485d-8d4e-41f07b8a8ff5
 # ╠═7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
 # ╟─01d76dbb-b853-4774-b9f3-04109b5e74b5
-# ╠═73dc6e38-2610-4bbe-82f4-12a4f87ee694
+# ╟─73dc6e38-2610-4bbe-82f4-12a4f87ee694
 # ╟─4891b616-2415-4c63-8ee1-5cf05b9e1319
-# ╠═47a19c48-b349-4324-852a-7d8c274a2b35
+# ╟─47a19c48-b349-4324-852a-7d8c274a2b35
 # ╟─2d77daef-3784-4b6c-a478-091b9b78397a
-# ╠═95c25479-b27f-4771-8e23-2da9d06a6097
+# ╟─95c25479-b27f-4771-8e23-2da9d06a6097
 # ╟─30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
-# ╠═af7c3889-862e-42d7-94dc-e187db2ddca0
+# ╟─af7c3889-862e-42d7-94dc-e187db2ddca0
 # ╟─79af8a82-cf55-4e34-9ee4-ecd74eaca803
 # ╟─75b2dc3d-b8ce-4db2-9b6c-c10bf81b53bd
-# ╠═516591f4-a8a5-46e6-9bf4-7e7653208d18
+# ╟─516591f4-a8a5-46e6-9bf4-7e7653208d18
 # ╟─629a0107-705e-4316-ab11-a7017ce4d5ab
-# ╠═4f73f30a-9083-4717-8f74-65318e4fadac
+# ╟─4f73f30a-9083-4717-8f74-65318e4fadac
 # ╟─1dfa0afd-8e8b-40f7-a51f-62b765b6fa35
 # ╟─3f14562d-7ef0-44a1-9549-c201134d9930
 # ╟─b17a7814-6b58-4ab1-b8fa-5add4b707598
