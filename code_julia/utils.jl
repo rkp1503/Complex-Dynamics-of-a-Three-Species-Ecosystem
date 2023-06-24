@@ -24,6 +24,7 @@ include("equilibria/interior.jl")
 import .interior
 
 const ITER_PARAMS = 1_000_000
+const ITER_DEBUG = 1_000_000
 const ITER = 1_000
 const MAX_VAL = 1e6
 const ROUND = 3
@@ -38,8 +39,7 @@ function solve_model(model, D, vars_dict, params_dict, t, tₘₐₓ)
     @named sys = ODESystem(model(D, vars_keys, params_keys), t, vars_keys, params_keys)
     sys = structural_simplify(sys)
     prob = ODEProblem(sys, vars_vals, (0.0, tₘₐₓ), params_vals, jac = true)
-    # return solve(prob, reltol=TOL_1, abstol=TOL_1)
-    return solve(prob, Rodas5P(), reltol=TOL_1, abstol=TOL_1)
+    return solve(prob, Rodas5P(), reltol=TOL_1, abstol=TOL_1; verbose=false)
 end;
 
 function my_plot(sol, title, xaxis, yaxis, legend_dict; detailed=false, param_vals=[], normalize=1)
@@ -132,6 +132,7 @@ function generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, eq
     numerical_differ_analytical = 0
     iteration = 1
     while true
+        println("Iteration: $(iteration)")
         params_keys = collect(keys(params_dict))
         params_vals = generate_parameters_helper(params_dict, eq_type)
         params_dict_temp = OrderedDict(zip(params_keys, params_vals))
@@ -153,12 +154,18 @@ function generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, eq
             sol_too_large += 1
         end
         iteration += 1
-        if iteration == ITER_PARAMS
-            break 
+        if debug
+            if iteration == ITER_DEBUG
+                break 
+            end
+        else
+            if iteration == ITER_PARAMS
+                break 
+            end
         end
     end
     if debug
-        return iteration, sol_too_large, numerical_differ_analytical
+        return sol_too_large, numerical_differ_analytical
     else
         println("Failed to find sutible parameters after $(iteration) iterations.")
         return nothing
@@ -236,7 +243,17 @@ function print_error(solution, parameters_dict, equilibrium_type)
     println("Numerical: ($(round(xₛₒₗ, digits=ROUND)), $(round(yₛₒₗ, digits=ROUND)), $(round(zₛₒₗ, digits=ROUND)))")
     E_x, E_y, E_z = get_analytical_solution(parameters_dict, equilibrium_type)
     println("Analytical: ($(round(E_x, digits=ROUND)), $(round(E_y, digits=ROUND)), $(round(E_z, digits=ROUND)))")
-    println("")
 end;
+
+function test_accuracy(model, D, vars_dict, params_dict, t, tₘₐₓ, eq_type)
+    debug_stuff = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, eq_type, debug=true)
+    sol_too_large, numerical_differ_analytical = debug_stuff
+    println("Equilibrium: $(eq_type)")
+    println("Number of Iterations: $(ITER_DEBUG)")
+    println("sol_too_large: $(sol_too_large)")
+    println("numerical_differ_analytical: $(numerical_differ_analytical)")
+    success_rate = 1-(sol_too_large+numerical_differ_analytical)/ITER_DEBUG
+    println("Success Rate: $(success_rate)")
+end
 
 end
