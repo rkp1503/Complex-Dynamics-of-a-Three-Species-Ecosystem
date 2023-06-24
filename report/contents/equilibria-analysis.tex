@@ -308,7 +308,7 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2-4u_3u_4\right)\right.\\
         &\left.-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
         &+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
-        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.c \right.\\
+        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.\right.\\
         &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
         Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
@@ -332,7 +332,7 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2-4u_3u_4\right)\right.\\
         &\left.-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
         &+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
-        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.c \right.\\
+        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.\right.\\
         &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
         Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
@@ -631,10 +631,10 @@ where
     The jacobian at the interior equilibrium is:
 
     \begin{equation}\label{matrix:jacobian-interior}
-        \textbf{J}\left(E_{xyz}\right) = \begin{bmatrix}
-            1-2x+\varphi_{xy}y^2-\varphi_{xz}z & 2\varphi_{xy}xy & -\varphi_{xz}x\\
-            2r_{yx}\varphi_{yx}xy & r_{yx}\left(1-2y+\varphi_{yx}x^2\right)-\frac{u_1u_2\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2} & -\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\\
-            0 & \frac{u_2u_3\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2} & r_{zx}\left(1-2z\right)+\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4
+        \textbf{J}\left(E_{yz}\right) = \begin{bmatrix}
+            j_{11} & j_{12} & j_{13}\\
+            j_{21} & j_{22} & j_{23}\\
+            0 & j_{32} & j_{33}
         \end{bmatrix}
     \end{equation}
 
