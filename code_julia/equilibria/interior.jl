@@ -14,7 +14,7 @@ function equilibrium_exist(param_vals)
     x, y, z = analytical_solution(param_vals)
     cond1 = (1+ϕ₁₂*y^2)/ϕ₁₃ > z
     cond2 = y > (u₂*(u₄-r₃₁))/((u₃-u₄+r₃₁)*(1-p))
-    cond3 = r₃₁*u₁*(u₄-r₃₁)*(1-p)+r₂₁*u₂*(ϕ₂₁*(ϕ₁₃*(r₃₁-u₄)-r₃₁)^2+r₃₁^2) < 0
+    cond3 = p*r₃₁^2*u₁-p*r₃₁*u₁*u₄+r₂₁*r₃₁^2*u₂*ϕ₁₃^2*ϕ₂₁-2*r₂₁*r₃₁^2*u₂*ϕ₁₃*ϕ₂₁+r₂₁*r₃₁^2*u₂*ϕ₂₁+r₂₁*r₃₁^2*u₂-2*r₂₁*r₃₁*u₂*u₄*ϕ₁₃^2*ϕ₂₁+2*r₂₁*r₃₁*u₂*u₄*ϕ₁₃*ϕ₂₁+r₂₁*u₂*u₄^2*ϕ₁₃^2*ϕ₂₁-r₃₁^2*u₁+r₃₁*u₁*u₄ < 0
     return all([cond1, cond2, cond3])
 end;
 
