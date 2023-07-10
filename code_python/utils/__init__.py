@@ -1,12 +1,9 @@
 """
-Author: Ramsey (Rayla) Phuc
-
-Alias: Rayla Kurosaki
+Author: Rayla Kurosaki
 
 GitHub: https://github.com/rkp1503
-
-Co-author: Ephraim Agyingi
 """
+
 
 # Built-in libraries/modules.
 import os
