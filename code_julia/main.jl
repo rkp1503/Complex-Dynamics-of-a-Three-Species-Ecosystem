@@ -9,7 +9,6 @@ using InteractiveUtils
 This block of code initializes this notebook by
 	1. Importing the packages necessary to run this notebook.
 	2. Generating a Table of Contents on the right hand side of the screen.
-	3. Initializing some global values.
 =============================================================================#
 begin
 	#=========================================================================
@@ -25,17 +24,12 @@ begin
 	#=========================================================================
 	Unregisted (custom) packages
 	=========================================================================#
-	include("./utils.jl")
-    import .utils
-
-	#=========================================================================
-	Global Values
-	=========================================================================#
-	dpw = 7      # days per week
-	dpm = 30     # days per month
-	dpy = 365    # days per year
-	dpd = 3_650  # days per decade
-	dpc = 36_500 # days per century
+	include("utils/ComputeData.jl")
+    import .ComputeData
+	include("utils/GenerateFigures.jl")
+    import .GenerateFigures
+	include("utils/ParameterAnalysis.jl")
+    import .ParameterAnalysis
 
 	#=========================================================================
 	Display a Table of Contents.
@@ -57,14 +51,12 @@ Co-Author: Ephraim Agyingi
 # ╔═╡ 2c5593ff-6683-476f-b007-a01ed022c1b1
 md"""
 ```
-add DifferentialEquations, ModelingToolkit, OrderedCollections, Plots, PlutoUI, Polynomials, Symbolics
+add DifferentialEquations, ModelingToolkit, OrderedCollections, Plots, PlutoUI, Polynomials
 ```
 """
 
 # ╔═╡ 95015822-5c1c-4a52-b682-4926a921687c
-md"""
-## Variables and Parameters
-"""
+md"""## Variables and Parameters"""
 
 # ╔═╡ 92ea7a8b-967d-47c5-8e7f-d2ec80071c20
 #=============================================================================
@@ -92,36 +84,32 @@ begin
 	ModelingToolkit.@parameters r₂₁, r₃₁, p, φ₁₂, φ₂₁, φ₁₃, u₁, u₂, u₃, u₄
 	params_dict = OrderedCollections.OrderedDict(
 		# Ratio of intrinsic growth rate of species Y to species X
-		r₂₁ => 0.5,
+		r₂₁ => 0.5, 
     	# Ratio of intrinsic growth rate of species Z to species X
-		# r₃₁ => 0.25,
-		r₃₁ => 0.12,
+		r₃₁ => 0.5,
     	# Refuge rate of species Y
-		# p => 0.4,
-		p => 0.3,
+		p => 0.6,
     	# Scaled inter-species mutualism coefficient of species Y on species X
-		# φ₁₂ => 0.4,
 		φ₁₂ => 0.6,
     	# Scaled inter-species mutualism coefficient of species X on species Y
-		# φ₂₁ => 0.1,
 		φ₂₁ => 0.15,
 		# Scaled commensal coefficient of species Z on species X
-		# φ₁₃ => 0.04,
 		φ₁₃ => 0.4,
 		# Scaled attack rate of species Z on species Y
-		# u₁ => 0.2,
 		u₁ => 0.6,
 		# Scaled half saturation constant for Holling type II function
-		# u₂ => 0.14,
 		u₂ => 0.08,
 		# Scaled conservation rate of species Y
 		u₃ => 0.5,
 		# Scaled death rate of species Z
-		# u₄ => 0.32009
 		u₄ => 0.5
 	)
+	params_keys = collect(keys(params_dict))
+	params_vals₂ = [0.7, 0.15, 0.4, 0.05, 0.5, 0.04, 0.7, 0.2, 0.5, 0.32]
+	params_dict₂ = OrderedCollections.OrderedDict(zip(params_keys, params_vals₂))
 	# Number of days to model.
-	tₘₐₓ = 500
+	tₘₐₓ = 1_000
+	tₘₐₓ_c = 10_000
 	#=========================================================================
 	Graph details the user can modify.
 	Dictionary values are ['Label', 'Line color']
@@ -147,123 +135,6 @@ begin
 		D(z) => 0
 	)
 end;
-
-# ╔═╡ ee4d84f6-858e-401f-821c-8a17c564ad35
-md"""## Previous Models"""
-
-# ╔═╡ 2d4534c9-239c-4c2d-b311-e903ed1c20c3
-md"""
-### Gakkhar's and Gupta's Model
-${
-\begin{align*}
-	\frac{\textrm{d}x}{\textrm{d}t} &= x\left[1-x-\beta_{12}y\right]+\delta xz\\
-	\frac{\textrm{d}y}{\textrm{d}t} &= ry\left[1-y-\beta_{21}x\right]-\frac{\left(1-p\right)yz}{w_1+\left(1-p\right)y}\\
-	\frac{\textrm{d}z}{\textrm{d}t} &= z\left[-w_2+\frac{w_3\left(1-p\right)y}{w_1+\left(1-p\right)y}\right]
-\end{align*}
-}$
-"""
-
-# ╔═╡ 70604282-c212-4df8-8c84-d7a5849edecc
-function model_gg(D, variables, parameters)
-	# Unpack variables
-	x, y, z = variables
-	# Unpack parameters
-	r, p, β₁₂, β₂₁, β, w₁, w₂, w₃ = parameters
-	equations = [
-		D(x) ~ x*(1-x-β₁₂*y)+β*x*z,
-		D(y) ~ r*y*(1-y-β₂₁*x)-(((1-p)*y*z)/(w₁+(1-p)*y)),
-		D(z) ~ z*(((w₃*(1-p)*y)/(w₁+(1-p)*y))-w₂)
-	]
-	return equations
-end;
-
-# ╔═╡ bcc0cf84-84a1-4c58-83f2-7e0ed17d0c06
-md""" #### Non-trivial Equilibrium"""
-
-# ╔═╡ 8045aed1-55b0-4e32-bb23-9642bcb51900
-sol_gg = let
-	ModelingToolkit.@parameters r p β₁₂ β₂₁ δ w₁ w₂ w₃
-
-	params_var = [r, p, β₁₂, β₂₁, δ, w₁, w₂, w₃]
-	set₁ = [0.5, 0.4, 0.4, 0.1, 0.04, 0.14, 0.32009, 0.5]
-	
-	params_dict_gg = OrderedCollections.OrderedDict(zip(params_var, set₁))
-	
-	sol_gg = utils.solve_model(model_gg, D, vars_dict, params_dict_gg, t, tₘₐₓ)
-	E_x, E_y, E_z = last(sol_gg.u)
-	println((E_x, E_y, E_z))
-	
-	sol_gg
-end;
-
-# ╔═╡ 51ac0b8d-254b-49c1-85a7-80513a6304d6
-md"""#### Time Evolution"""
-
-# ╔═╡ ec24948a-ed39-4d21-85a9-2592ed5c474c
-let
-	title = "Time Evolution of Each Species"
-	xaxis = "Time in Days"
-	yaxis = "Population size"
-
-	utils.my_plot(sol_gg, title, xaxis, yaxis, legend_dict)
-end
-
-# ╔═╡ d3ed6a0d-1451-431f-9567-2b6d083771b1
-md"""
-### Gayen's, Jana's, Kar's, and Panja's Model
-${
-\begin{align*}
-	\frac{\textrm{d}x}{\textrm{d}t} &= x\left[1-x-\gamma_{12}y^2\right]+\gamma xz\\
-	\frac{\textrm{d}y}{\textrm{d}t} &= ry\left[1-y-\gamma_{21}x^2\right]-\frac{\left(1-p\right)yz}{v_1+\left(1-p\right)y}\\
-	\frac{\textrm{d}z}{\textrm{d}t} &= z\left[-v_2+\frac{v_3\left(1-p\right)y}{v_1+\left(1-p\right)y}\right]
-\end{align*}
-}$
-"""
-
-# ╔═╡ c7f93709-6b1f-4f13-a6b7-15f85cf33b73
-function model_gjkp(D, variables, parameters)
-	# Unpack variables
-	x, y, z = variables
-	# Unpack parameters
-	r, p, γ₁₂, γ₂₁, γ, v₁, v₂, v₃ = parameters
-	equations = [
-		D(x) ~ x*(1-x-γ₁₂*y^2)+γ*x*z,
-		D(y) ~ r*y*(1-y-γ₂₁*x^2)-(((1-p)*y*z)/(v₁+(1-p)*y)),
-		D(z) ~ z*(((v₃*(1-p)*y)/(v₁+(1-p)*y))-v₂)
-	]
-	return equations
-end;
-
-# ╔═╡ f5488179-665f-49db-9052-407bfe77d034
-md"""#### Non-trivial Equilibrium"""
-
-# ╔═╡ 22c924b4-9116-4422-81d9-a2ac6355f854
-sol_gjkp = let
-	ModelingToolkit.@parameters r p γ₁₂ γ₂₁ γ v₁ v₂ v₃
-
-	params_var = [r, p, γ₁₂, γ₂₁, γ, v₁, v₂, v₃]
-	set₁ = [0.5, 0.4, 0.4, 0.1, 0.04, 0.14, 0.32009, 0.5]
-	
-	params_dict_gjkp = OrderedCollections.OrderedDict(zip(params_var, set₁))
-	
-	sol_gjkp = utils.solve_model(model_gjkp, D, vars_dict, params_dict_gjkp, t, tₘₐₓ)
-	E_x, E_y, E_z = last(sol_gjkp.u)
-	println((E_x, E_y, E_z))
-	
-	sol_gjkp
-end;
-
-# ╔═╡ ccab53b9-d3ae-4d02-95be-95b1ca33637c
-md"""#### Time Evolution"""
-
-# ╔═╡ 08e3c6fa-dc07-4279-a783-6cae9191e156
-let
-	title = "Time Evolution of Each Species"
-	xaxis = "Time in Days"
-	yaxis = "Population size"
-	
-	utils.my_plot(sol_gjkp, title, xaxis, yaxis, legend_dict)
-end
 
 # ╔═╡ 43595148-152f-46e4-b36d-4ccae72e315d
 md"""
@@ -293,7 +164,7 @@ end;
 
 # ╔═╡ 157dd6f0-e175-44ca-917d-5aadf65f70a1
 md"""
-### The Existence of Equilibria
+## The Existence of Equilibria
 ${
 \begin{align*}
 	0 &= x^*\left(1-x^*+\varphi_{xy}\left(y^*\right)^2\right)-\varphi_{xz}x^*z^*\\
@@ -305,93 +176,110 @@ ${
 
 # ╔═╡ 2898dd41-0747-4ebc-8e69-71f9898f708f
 md"""
-#### The trivial equilibrium
+#### The Trivial Equilibrium
 The trivial equilibrium $E_0 = \left(0,\ 0,\ 0\right)$ exists.
 """
 
 # ╔═╡ 65a9ebdb-a16f-4a4f-8f9d-bb4f7e2180eb
 md"""
-#### The $x$-axial equilibrium
+#### The $x$-Axial Equilibrium
 The $x$-axial equilibrium exists where $E_x = \left(1,\ 0,\ 0\right)$.
 """
 
 # ╔═╡ ac52aca6-61e0-42c2-89cc-dac5a1b42f6d
 md"""
-#### The $y$-axial equilibrium
+#### The $y$-Axial Equilibrium
 The $y$-axial equilibrium exists where $E_y = \left(0,\ 1,\ 0\right)$.
 """
 
 # ╔═╡ d88e3abf-358c-4d7a-b92b-fd2fdde1f862
 md"""
-#### The $z$-axial equilibrium
-
+#### The $z$-Axial Equilibrium
 The $z$-axial equilibrium $E_z=\left(0,\ 0,\ z^*\right)$ exist where
 
 ${
-z^* = 1-\frac{u_4}{r_{zx}}
+\begin{equation*}
+	z^* = 1-\frac{u_4}{r_{zx}}
+\end{equation*}
 }$
 
 provided that the following condition is satisfied:
 
 ${
-r_{zx} > u_4
+\begin{equation*}
+	r_{zx} > u_4
+\end{equation*}
 }$
 """
 
 # ╔═╡ 9138389a-1bf9-4500-bb39-4f78822b705b
 md"""
-#### The $xy$-boundary equilibrium
-
+#### The $xy$-Boundary Equilibrium
 The $xy$-boundary equilibrium $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where
 
 ${
-x^*=1+\varphi_{xy}\left(y^*\right)^2
+\begin{equation*}
+	x^*=1+\varphi_{xy}\left(y^*\right)^2
+\end{equation*}
 }$
 
 and $y^*$ is a positive solution to
 
 ${
-\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0
+\begin{equation*}
+	\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0
+\end{equation*}
 }$
 
-which can be acheived under the following condition for some $\beta\in\left(1, \infty\right)$
+which can be acheived under the following condition
 
 ${
-\varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
+\begin{equation*}
+	\varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
+\end{equation*}
 }$
+
+for some $\beta\in\left(1, \infty\right)$.
 """
 
 # ╔═╡ 469de768-454e-43fe-8cea-867ce81b8635
 md"""
-#### The $xz$-boundary equilibrium
-The $xz$-boundary equilibrium $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where 
+#### The $xz$-Boundary Equilibrium
+The $xz$-boundary equilibrium $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where
 
 ${
-x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad 
-z^*=1-\frac{u_4}{r_{zx}}
+\begin{equation*}
+	x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad
+	z^*=1-\frac{u_4}{r_{zx}}
+\end{equation*}
 }$
 
-provided that the conditions have been satisfied:
+provided that the conditions have been satisfied.
 
 ${
-\frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1,\quad
-r_{zx}>u_4
+\begin{equation*}
+	\frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1,\quad 
+	r_{zx}>u_4
+\end{equation*}
 }$
 """
 
 # ╔═╡ 346de199-7840-4ff7-960e-aed213f519c1
 md"""
-#### The $yz$-boundary equilibrium
-The $yz$-boundary equilibrium point $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
+#### The $yz$-Boundary Equilibrium
+The $yz$-boundary equilibrium $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
 
-${
-z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+${\begin{equation*}
+	z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+\end{equation*}
 }$
 
 and $y^*$ is a positive solution to 
 
 ${
-\frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}\left(u_2+\left(1-p\right)y^*\right)^2}=0
+\begin{equation*}
+	\frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}\left(u_2+\left(1-p\right)y^*\right)^2}=0
+\end{equation*}
 }$
 
 where:
@@ -408,25 +296,31 @@ ${
 provided that the following conditions are satisfied:
 
 ${
-y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-u_4+r_{zx}\right)\left(1-p\right)},\quad 
-1 > \frac{u_1\left(r_2-u_4\right)\left(1-p\right)}{r_{yx}r_{zx}u_2}
+\begin{equation*}
+	y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-u_4+r_{zx}\right)\left(1-p\right)},\quad 
+	1 > \frac{u_1\left(r_2-u_4\right)\left(1-p\right)}{r_{yx}r_{zx}u_2}
+\end{equation*}
 }$
 """
 
 # ╔═╡ 84f6ed77-bbc1-4831-8133-508454147f20
 md"""
-#### The interior equilibrium
-The interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
+#### The Interior Equilibrium
+The interior equilibrium $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
 
 ${
-x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad 
-z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+\begin{equation*}
+	x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad 
+	z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+\end{equation*}
 }$
 
 and $y^*$ is a positive solution to 
 
 ${
-\frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
+\begin{equation*}
+	\frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
+\end{equation*}
 }$
 
 where:
@@ -440,12 +334,11 @@ ${
 	&\left.+r_{zx}u_2^3\varphi_{xy}^2\varphi_{yx}\right)\\
 	Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
 	&\left.-2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}\right)\right)\\
-	Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2\right.\right.\\
-	&\left.\left.-4u_3u_4\right)-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2\\
+	Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2\right.\right.\\
+	&\left.\left.+3u_4^2-4u_3u_4\right)-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2\\
 	&-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
-	Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2\right.\right.\\
-	&\left.\left.-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)\right.\right.\\
-	&\left.\left.+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
+	Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}\right.\right.\right.\\
+	&\left.\left.\left.+1\right)+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
 	Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
 \end{align*}
 }$
@@ -453,21 +346,25 @@ ${
 provided that the following conditions are saitsfied:
 
 ${
-\frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad
-y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
-Y_0 < 0
+\begin{equation*}
+	\frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad
+	y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
+	Y_0 < 0
+\end{equation*}
 }$
 """
 
 # ╔═╡ 12d2aa23-b10e-4e9a-b36d-d35139b8c85e
 md"""
-### Stability analysis of Equilibria
+## Stability Analysis of Equilibria
 ${
-\textbf{J}\left(E_i\right)=\textbf{J}\left(x_i^*,\ y_i^*,\ z_i^*\right)=\begin{bmatrix}
-        j_{11} & j_{12} & j_{13}\\
-        j_{21} & j_{22} & j_{23}\\
-        0 & j_{32} & j_{33}
-    \end{bmatrix}
+\begin{equation*}
+	\textbf{J}\left(E_i\right)=\textbf{J}\left(x_i^*,\ y_i^*,\ z_i^*\right)=\begin{bmatrix}
+	        j_{11} & j_{12} & j_{13}\\
+	        j_{21} & j_{22} & j_{23}\\
+	        0 & j_{32} & j_{33}
+	    \end{bmatrix}
+\end{equation*}
 }$
 
 where
@@ -488,32 +385,31 @@ ${
 
 # ╔═╡ 70ff0be5-d743-4494-859c-32459fee8662
 md"""
-#### The trivial equilibrium
-
+#### The Trivial Equilibrium
 The trivial equilibrium $E_0$ is unstable.
 """
 
 # ╔═╡ ebc1c843-2c3f-40b3-8ae7-20d298078ece
 md"""
-#### The $x$-axial equilibrium
+#### The $x$-Axial Equilibrium
 The $x$-axial equilibrium $E_x$ is unstable.
 """
 
 # ╔═╡ 7fdb98e8-765a-46bd-98cf-6b784c8bbe1d
 md"""
-#### The $y$-axial equilibrium
+#### The $y$-Axial Equilibrium
 The $y$-axial equilibrium $E_y$ is unstable.
 """
 
 # ╔═╡ ccd855c9-c615-49cf-9474-0f563156f9ff
 md"""
-#### The $z$-axial equilibrium
+#### The $z$-Axial Equilibrium
 The $z$-axial equilibrium $E_z$ is locally stable when:
 
 ${
 \begin{equation*}
-	\frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} < 1,\quad 
-	\frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)} < 1,\quad 
+	\frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} < 1,\quad
+	\frac{u_4}{r_{zx}}+\frac{r_{yx}u_2}{u_1\left(1-p\right)} < 1,\quad
 	\frac{u_4}{r_{zx}} < \frac{1}{2}
 \end{equation*}
 }$
@@ -521,7 +417,7 @@ ${
 
 # ╔═╡ db843b09-9faa-4c02-9676-a42413db8a6c
 md"""
-#### The $xy$-boundary equilibrium
+#### The $xy$-Boundary Equilibrium
 The $xy$-boundary equilibrium $E_{xy}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$ where:
 
 ${
@@ -529,12 +425,10 @@ ${
 	C_2 &= -j_{11}-j_{22}-j_{33}\\
 	C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}\\
 	C_0 &= j_{33}\left(j_{12}j_{21}-j_{11}j_{22}\right)\\
-	j_{11} &= 1-2x+\varphi_{xy}\left(y\right)^2\\
+	j_{11} &= 1-2x+\varphi_{xy}\left(y^*\right)^2\\
 	j_{12} &= 2\varphi_{xy}x^*y^*\\
-	j_{13} &= -\varphi_{xz}x^*\\
 	j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
-	j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x\right)^2\right)\\
-	j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+	j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)\\
 	j_{33} &= r_{zx}+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
 \end{align*}
 }$
@@ -542,35 +436,28 @@ ${
 
 # ╔═╡ 00d43aff-6d46-4dd2-832f-6779d9a18b88
 md"""
-#### The $xz$-boundary equilibrium
+#### The $xz$-Boundary Equilibrium
 The $xz$-boundary equilibrium $E_{xz}$ is locally stable when:
 
 ${
 \begin{equation*}
-	z^* > \frac{1-2x^*}{\varphi_{xz}},\quad 
-	z^* > \frac{r_{yx}u_2\left(1+\varphi_{yx}\left(x^*\right)^2\right)}{u_1\left(1-p\right)},\quad 
-	z^* > \frac{r_{zx}-u_4}{2r_{zx}}
+	z^*>\frac{1-2x^*}{\varphi_{xz}},\quad
+	z^*>\frac{r_{yx}u_2\left(1+\varphi_{yx}\left(x^*\right)^2\right)}{u_1\left(1-p\right)},\quad 
+	z^*>\frac{r_{zx}-u_4}{2r_{zx}}
 \end{equation*}
 }$
 """
 
 # ╔═╡ ca2cfabe-5bf9-4180-a874-a7b52c6b99ff
 md"""
-#### The $yz$-boundary equilibrium
-The $yz$-boundary equilibrium $E_{yz}$ is locally stable when:
+#### The $yz$-Boundary Equilibrium
+The $yz$-boundary equilibrium $E_{yz}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$ where:
 
 ${
 \begin{align*}
-	0 &< -j_{11}-j_{22}-j_{33}\\
-	0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
-	0 &< j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)
-\end{align*}
-}$
-
-where
-
-${
-\begin{align*}
+	C_2 &= -j_{11}-j_{22}-j_{33}\\
+	C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
+	C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)\\
 	j_{11} &= 1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
 	j_{22} &= r_{yx}\left(1-2y^*\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
 	j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
@@ -582,21 +469,14 @@ ${
 
 # ╔═╡ 03ce581b-5750-4b97-85e9-0d06b5408b6d
 md"""
-#### The interior equilibrium
-The interior equilibrium $E_{xyz}$ is locally stable when:
+#### The Interior Equilibrium
+The interior equilibrium $E_{xyz}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$ where:
 
 ${
 \begin{align*}
-	0 &< -j_{11}-j_{22}-j_{33}\\
-	0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
-	0 &< j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)
-\end{align*}
-}$
-
-where
-
-${
-\begin{align*}
+	C_2 &< -j_{11}-j_{22}-j_{33}\\
+	C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
+	C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)\\
 	j_{11} &= 1-2x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
 	j_{12} &= 2\varphi_{xy}x^*y^*\\
 	j_{13} &= -\varphi_{xz}x^*\\
@@ -609,139 +489,109 @@ ${
 }$
 """
 
-# ╔═╡ 10cad625-39f0-4f0e-ac0b-3b241a1afe01
-md"""
-### Numerical analysis of Equilibria
-"""
+# ╔═╡ bc4f8424-b477-4c60-825b-52966eaf388a
+md"""## Numerical Simulations of Non-Interior Equilibria"""
 
 # ╔═╡ dafd3320-ac82-485d-8d4e-41f07b8a8ff5
-md"""
-#### The $z$-axial equilibrium
-"""
+md"""### The $z$-axial equilibrium $E_z$"""
 
 # ╔═╡ 7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
 let
 	param_vals_z = [0.007, 1.136, 0.874, 0.318, 0.416, 1.59, 1.655, 0.791, 0.994, 0.356]
 	
-	param_vals_z = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "z axial")
+	param_vals_z = ParameterAnalysis.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "z-axial")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_z))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_z))
 	
-	sol_z = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	sol_z = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 	
 	title = "Time Evolution of Each Species"
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 	
-	utils.my_plot(sol_z, title, xaxis, yaxis, legend_dict)
-	# utils.my_plot(sol_z, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_z)
+	GenerateFigures.my_plot(sol_z, title, xaxis, yaxis, legend_dict)
 end
 
 # ╔═╡ 01d76dbb-b853-4774-b9f3-04109b5e74b5
-md"""
-#### The $xy$-boundary equilibrium
-"""
+md"""### The $xy$-boundary equilibrium $E_{xy}$"""
 
 # ╔═╡ 73dc6e38-2610-4bbe-82f4-12a4f87ee694
 let
 	param_vals_xy = [0.049, 0.467, 0.645, 0.024, 0.163, 0.031, 0.31, 0.978, 0.9, 1.004]
 	
-	param_vals_xy = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xy boundary")
+	param_vals_xy = ParameterAnalysis.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xy-boundary")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xy))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_xy))
 	
-	sol_xy = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	sol_xy = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 
 	title = "Time Evolution of Each Species"
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 	
-	utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict)
-	# utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_xy)
+	GenerateFigures.my_plot(sol_xy, title, xaxis, yaxis, legend_dict)
 end
 
 # ╔═╡ 4891b616-2415-4c63-8ee1-5cf05b9e1319
-md"""
-#### The $xz$-boundary equilibrium
-"""
+md"""### The $xz$-boundary equilibrium $E_{xz}$"""
 
 # ╔═╡ 47a19c48-b349-4324-852a-7d8c274a2b35
 let
 	param_vals_xz = [0.199, 1.494, 0.482, 0.449, 0.993, 1.152, 1.671, 0.663, 1.556, 1.04]
 	
-	param_vals_xz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xz boundary")
+	param_vals_xz = ParameterAnalysis.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xz-boundary")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xz))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_xz))
 	
-	sol_xy = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	sol_xy = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 
 	title = "Time Evolution of Each Species"
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict)
-	# utils.my_plot(sol_xy, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_xz)
+	GenerateFigures.my_plot(sol_xy, title, xaxis, yaxis, legend_dict)
 end
 
 # ╔═╡ 2d77daef-3784-4b6c-a478-091b9b78397a
-md"""
-#### The $yz$-boundary equilibrium
-"""
+md"""### The $yz$-boundary equilibrium $E_{yz}$"""
 
 # ╔═╡ 95c25479-b27f-4771-8e23-2da9d06a6097
 let
 	param_vals_yz = [1.219, 0.452, 0.589, 0.047, 1.587, 1.908, 1.658, 1.812, 1.473, 0.289]
 	
-	param_vals_yz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz boundary")
+	param_vals_yz = ParameterAnalysis.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz-boundary")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_yz))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_yz))
 	
-	sol_yz = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	sol_yz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 	
 	title = "Time Evolution of Each Species"
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	utils.my_plot(sol_yz, title, xaxis, yaxis, legend_dict)
-	# utils.my_plot(sol_yz, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_yz)
+	GenerateFigures.my_plot(sol_yz, title, xaxis, yaxis, legend_dict)
 end
 
 # ╔═╡ 30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
-md"""
-#### The interior equilibrium
-"""
+md"""## Numerical Simulations of the interior equilibrium $E_{xyz}$"""
 
-# ╔═╡ af7c3889-862e-42d7-94dc-e187db2ddca0
-let
+# ╔═╡ 75b2dc3d-b8ce-4db2-9b6c-c10bf81b53bd
+md"""### Time Evolution of Each Species"""
+
+# ╔═╡ 79af8a82-cf55-4e34-9ee4-ecd74eaca803
+sol_xyz = let
 	param_vals_xyz = collect(values(params_dict))
-	param_vals_xyz = [0.403, 1.96, 0.358, 1.489, 0.086, 0.62, 0.406, 0.194, 0.542, 1.336]
 	
 	# param_vals_xyz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), param_vals_xyz))
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_xyz))
 	
-	sol_xyz = utils.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
-	
-	title = "Time Evolution of Each Species"
-	xaxis = "Time in Days"
-	yaxis = "Population size"
+	sol_xyz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 
-	utils.my_plot(sol_xyz, title, xaxis, yaxis, legend_dict)
-	# utils.my_plot(sol_xyz, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=param_vals_xyz)
-end
+	ParameterAnalysis.print_solutions(sol_xyz, params_dict_temp, "interior")
 
-# ╔═╡ 79af8a82-cf55-4e34-9ee4-ecd74eaca803
-sol = let
-	sol = utils.solve_model(model, D, vars_dict, params_dict, t, tₘₐₓ)
-	E_x, E_y, E_z = last(sol.u)
-	println((E_x, E_y, E_z))
-	sol
-end
-
-# ╔═╡ 75b2dc3d-b8ce-4db2-9b6c-c10bf81b53bd
-md"""
-#### Time evolution of each species
-"""
+	sol_xyz
+end;
 
 # ╔═╡ 516591f4-a8a5-46e6-9bf4-7e7653208d18
 let
@@ -749,69 +599,662 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	utils.my_plot(sol, title, xaxis, yaxis, legend_dict)
-	# utils.my_plot(sol, title, xaxis, yaxis, legend_dict, detailed=true, param_vals=collect(values(params_dict)))
+	GenerateFigures.my_plot(sol_xyz, title, xaxis, yaxis, legend_dict)
 end
 
-# ╔═╡ 629a0107-705e-4316-ab11-a7017ce4d5ab
-md"""
-#### 3D Phase Portrait
-"""
+# ╔═╡ 1659486c-fc1c-4dc6-ad87-40b46a232996
+md"""### Phase Diagrams"""
 
-# ╔═╡ 4f73f30a-9083-4717-8f74-65318e4fadac
-let
-	title = "3D Phase Portrait"
+# ╔═╡ d7a72185-a375-4375-b24c-a03804666106
+begin
 	xaxis = "Species X"
 	yaxis = "Species Y"
 	zaxis = "Species Z"
 	
-	utils.my_3D_phase_portrait(sol, title, xaxis, yaxis, zaxis)
+    sol_x = sol_xyz'[:, 1]
+    sol_y = sol_xyz'[:, 2]
+    sol_z = sol_xyz'[:, 3]
+	
+	GenerateFigures.my_phase_portraits(sol_xyz, "Species X", "Species Y", "Species Z")
 end
 
-# ╔═╡ 1dfa0afd-8e8b-40f7-a51f-62b765b6fa35
-md"""
-#### 2D Phase Portrait: Species X and Species Y
-"""
+# ╔═╡ 4f73f30a-9083-4717-8f74-65318e4fadac
+GenerateFigures.my_3D_phase_portrait(sol_xyz, "3D Phase Portrait", xaxis, yaxis, zaxis);
 
 # ╔═╡ 3f14562d-7ef0-44a1-9549-c201134d9930
-# let
-# 	title = "2D Phase Portrait: Species X and Species Y"
-# 	xaxis = "Species X"
-# 	yaxis = "Species Y"
-
-# 	utils.my_2D_phase_portrait(sol'[:, 1], sol'[:, 2], title, xaxis, yaxis)
-# 	# utils.my_phase_portrait(sol, title, xaxis, yaxis, (x, y))
-# end
-
-# ╔═╡ b17a7814-6b58-4ab1-b8fa-5add4b707598
-md"""
-#### 2D Phase Portrait: Species X and Species Z
-"""
+GenerateFigures.my_2D_phase_portrait(sol_x, sol_y, "Species X and Y", xaxis, yaxis);
 
 # ╔═╡ d79ea54d-9211-40ea-8c30-14c78e0b418e
-# let
-# 	title = "2D Phase Portrait: Species X and Species Z"
-# 	xaxis = "Species X"
-# 	yaxis = "Species Z"
-
-# 	utils.my_2D_phase_portrait(sol'[:, 1], sol'[:, 3], title, xaxis, yaxis)
-# 	# utils.my_phase_portrait(sol, title, xaxis, yaxis, (x, z))
-# end
-
-# ╔═╡ 9ad67942-1d2f-438e-b38f-9e5a8d2b7eb7
-md"""
-#### 2D Phase Portrait: Species Y and Species Z
-"""
+GenerateFigures.my_2D_phase_portrait(sol_x, sol_z, "Species X and Z", xaxis, zaxis);
 
 # ╔═╡ 11e77b07-9b09-4dd8-a9e5-7e1ceb612507
-# let
-# 	title = "2D Phase Portrait: Species Y and Species Z"
-# 	xaxis = "Species Y"
-# 	yaxis = "Species Z"
+GenerateFigures.my_2D_phase_portrait(sol_y, sol_z, "Species Y and Z", yaxis, zaxis);
 
-# 	utils.my_2D_phase_portrait(sol'[:, 2], sol'[:, 3], title, xaxis, yaxis)
-# 	# utils.my_phase_portrait(sol, title, xaxis, yaxis, (y, z))
-# end
+# ╔═╡ 648d8050-1b99-45f5-a858-1676c92beb89
+md"""## Bifurcation Diagrams"""
+
+# ╔═╡ 00f77c47-1981-4011-ac79-4dbdca71a480
+md"""### Parameter $r_{yx}$"""
+
+# ╔═╡ a46c26e2-0c73-4669-a358-8dc9995ab649
+begin
+	param_var_b_r₂₁ = r₂₁
+	param_bounds_r₂₁ = [0.001, 1.391]
+	params_vals_b_r₂₁ = collect(values(params_dict₂))
+	params_vals_b_r₂₁[indexin(param_var_b_r₂₁, params_keys)[1]] = 0.5
+
+	data_r₂₁ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_r₂₁, param_bounds_r₂₁, params_vals_b_r₂₁)
+		
+	ComputeData.get_common_bounds(data_r₂₁)
+end;
+
+# ╔═╡ 202219a3-4d40-4cdc-bd94-898641020a31
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_r₂₁))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_r₂₁, collect(keys(vars_dict)), param_var_b_r₂₁, legend_dict)
+end;
+  ╠═╡ =#
+
+# ╔═╡ 768e0db0-c944-4932-be45-75fed09a2517
+let
+	params_vals_b = params_vals_b_r₂₁
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end;
+
+# ╔═╡ 74054af3-20e1-4564-ba78-5cb84d6ef2e4
+GenerateFigures.my_bifurcation_diagram(data_r₂₁[2], data_r₂₁[3], x, param_var_b_r₂₁, "black");
+
+# ╔═╡ cc787b00-a308-4535-92ec-b2002f01e10d
+GenerateFigures.my_bifurcation_diagram(data_r₂₁[5], data_r₂₁[6], y, param_var_b_r₂₁, "red");
+
+# ╔═╡ 0461fcf2-8440-4343-ade6-26d454f3ab62
+GenerateFigures.my_bifurcation_diagram(data_r₂₁[8], data_r₂₁[9], z, param_var_b_r₂₁, "blue");
+
+# ╔═╡ 92ef6009-19db-4965-b7a6-ace522e4c270
+md"""### Parameter $r_{zx}$"""
+
+# ╔═╡ 333968ba-4e73-48cf-a98f-0b55d78c0151
+begin
+	param_var_b_r₃₁ = r₃₁
+	param_bounds_r₃₁ = [0.196, 10.0]
+	params_vals_b_r₃₁ = collect(values(params_dict))
+	params_vals_b_r₃₁[indexin(param_var_b_r₃₁, params_keys)[1]] = 0.35
+
+	data_r₃₁ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_r₃₁, param_bounds_r₃₁, params_vals_b_r₃₁)
+	
+	ComputeData.get_common_bounds(data_r₃₁)
+end;
+
+# ╔═╡ 566f121d-4d50-4e1d-9450-4d6e6a775b7a
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_r₃₁))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_r₃₁, collect(keys(vars_dict)), param_var_b_r₃₁, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ 5a5b214c-cb98-465a-8f46-e713f4521345
+let
+	params_vals_b = params_vals_b_r₃₁
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end;
+
+# ╔═╡ 48139dc3-7644-49f1-873a-cbd5f3ef7f0c
+GenerateFigures.my_bifurcation_diagram(data_r₃₁[2], data_r₃₁[3], x, param_var_b_r₃₁, "black");
+
+# ╔═╡ 8747060e-d7e5-4804-88cb-a38fa096ed8b
+GenerateFigures.my_bifurcation_diagram(data_r₃₁[5], data_r₃₁[6], y, param_var_b_r₃₁, "red");
+
+# ╔═╡ 06733475-09be-45fd-9247-2180ad2df137
+GenerateFigures.my_bifurcation_diagram(data_r₃₁[8], data_r₃₁[9], z, param_var_b_r₃₁, "blue");
+
+# ╔═╡ e3001a20-5df9-480c-aef4-334b2f3e37e4
+md"""### Parameter $p$"""
+
+# ╔═╡ fcea995e-ddb8-47c7-be41-1fff3c53420b
+#=╠═╡
+begin
+	param_var_b_p = p
+	param_bounds_p = [0.0, 0.91]
+	params_vals_b_p = collect(values(params_dict))
+	params_vals_b_p[indexin(param_var_b_p, params_keys)[1]] = 0.1
+
+	data_p = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_p, param_bounds_p, params_vals_b_p)
+		
+	ComputeData.get_common_bounds(data_p)
+end;
+  ╠═╡ =#
+
+# ╔═╡ 3031ffa6-60ac-4732-a60a-6258384368ca
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_p))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_p, collect(keys(vars_dict)), param_var_b_p, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ ceda727c-8191-4f9b-bf5b-ccfa350905bb
+# ╠═╡ disabled = true
+#=╠═╡
+let
+	params_vals_b = params_vals_b_p
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end;
+  ╠═╡ =#
+
+# ╔═╡ a88fdc5f-098e-41d1-ae77-67d48564a5dc
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_p[2], data_p[3], x, param_var_b_p, "black");
+  ╠═╡ =#
+
+# ╔═╡ fbbbfa21-876d-47b0-b703-1f924cd2df13
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_p[5], data_p[6], y, param_var_b_p, "red");
+  ╠═╡ =#
+
+# ╔═╡ ef836f46-e68b-4936-845b-5b4c8761677f
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_p[8], data_p[9], z, param_var_b_p, "blue");
+  ╠═╡ =#
+
+# ╔═╡ ddc255c7-c888-4c1b-8d3a-d7a879f39de3
+md"""### Parameter $\varphi_{xy}$"""
+
+# ╔═╡ 50172e15-9a8c-483e-ba2d-7f3bde5b7cc7
+# ╠═╡ disabled = true
+#=╠═╡
+begin
+	param_var_b_φ₁₂ = φ₁₂
+	param_bounds_φ₁₂ = [0.0, 0.18]
+	params_vals_b_φ₁₂ = collect(values(params_dict₂))
+	params_vals_b_φ₁₂[indexin(param_var_b_φ₁₂, params_keys)[1]] = 0.15
+
+	data_φ₁₂ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_φ₁₂, param_bounds_φ₁₂, params_vals_b_φ₁₂)
+
+	ComputeData.get_common_bounds(data_φ₁₂)
+end;
+  ╠═╡ =#
+
+# ╔═╡ 8a03faa3-e574-41df-83b3-1f8cd112ad3e
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_φ₁₂))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_φ₁₂, collect(keys(vars_dict)), param_var_b_φ₁₂, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ ae96eb7b-b4f6-417e-b990-4dd6a4eef688
+# ╠═╡ disabled = true
+#=╠═╡
+let
+	params_vals_b = params_vals_b_φ₁₂
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ eebfe670-aa4e-4c8d-8407-fdaf49e706bf
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_φ₁₂[2], data_φ₁₂[3], x, param_var_b_φ₁₂, "black")
+  ╠═╡ =#
+
+# ╔═╡ c52cfb3e-7276-4508-a368-80d790300ac2
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_φ₁₂[5], data_φ₁₂[6], y, param_var_b_φ₁₂, "red")
+  ╠═╡ =#
+
+# ╔═╡ 35cbc60b-8b66-45cc-bdac-004473a38df0
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_φ₁₂[8], data_φ₁₂[9], z, param_var_b_φ₁₂, "blue")
+  ╠═╡ =#
+
+# ╔═╡ cc874bbf-a756-41bf-a9f3-9a2b6e893dae
+md"""### Parameter $\varphi_{yx}$"""
+
+# ╔═╡ b0217026-bfc2-44b6-a052-656999655bfc
+# ╠═╡ disabled = true
+#=╠═╡
+begin
+	param_var_b_φ₂₁ = φ₂₁
+	param_bounds_φ₂₁ = [0.0, 0.44]
+	params_vals_b_φ₂₁ = collect(values(params_dict))
+	params_vals_b_φ₂₁[indexin(param_var_b_φ₂₁, params_keys)[1]] = 0.43
+
+	data_φ₂₁ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_φ₂₁, param_bounds_φ₂₁, params_vals_b_φ₂₁)
+
+	ComputeData.get_common_bounds(data_φ₂₁)
+end;
+  ╠═╡ =#
+
+# ╔═╡ 45579b2b-3e39-4c30-a962-126c919ccd08
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_φ₂₁))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_φ₂₁, collect(keys(vars_dict)), param_var_b_φ₂₁, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ 9c804875-55a3-4bfe-be3b-1b1ebe7aaa3b
+# ╠═╡ disabled = true
+#=╠═╡
+let
+	params_vals_b = params_vals_b_φ₂₁
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ dd2d6749-99c5-40f8-9fb8-5f7f05c14e1d
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_φ₂₁[2], data_φ₂₁[3], x, param_var_b_φ₂₁, "black")
+  ╠═╡ =#
+
+# ╔═╡ a4a24d7a-6164-4b30-b7f8-ab5ec5259ef2
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_φ₂₁[5], data_φ₂₁[6], y, param_var_b_φ₂₁, "red")
+  ╠═╡ =#
+
+# ╔═╡ fa400376-4302-4338-a098-30eb7a841f7a
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_φ₂₁[8], data_φ₂₁[9], z, param_var_b_φ₂₁, "blue")
+  ╠═╡ =#
+
+# ╔═╡ 00b659d4-0505-461b-87c4-7f8fd76ca3ab
+md"""### Parameter $\varphi_{xz}$"""
+
+# ╔═╡ 4dfa935b-53b7-4661-91c5-3d9e639bf66c
+# ╠═╡ disabled = true
+#=╠═╡
+begin
+	param_var_b_φ₁₃ = φ₁₃
+	param_bounds_φ₁₃ = [0.0, 10.0]
+	param_bounds_φ₁₃ = [0.0, 2.5]
+	params_vals_b_φ₁₃ = collect(values(params_dict₂))
+	params_vals_b_φ₁₃[indexin(param_var_b_φ₁₃, params_keys)[1]] = 0.5
+
+	data_φ₁₃ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_φ₁₃, param_bounds_φ₁₃, params_vals_b_φ₁₃)
+
+	ComputeData.get_common_bounds(data_φ₁₃)
+end;
+  ╠═╡ =#
+
+# ╔═╡ f002fa01-5f2e-4c54-8619-ff04b1f2e9f7
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_φ₁₃))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_φ₁₃, collect(keys(vars_dict)), param_var_b_φ₁₃, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ 41f92e3f-2b0e-4866-9e46-64fceed6d675
+# ╠═╡ disabled = true
+#=╠═╡
+let
+	params_vals_b = params_vals_b_φ₁₃
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ 88da6932-205e-447c-a252-ae4791198ae4
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_φ₁₃[2], data_φ₁₃[3], x, param_var_b_φ₁₃, "black")
+  ╠═╡ =#
+
+# ╔═╡ f7cf06c4-c06d-470c-9cab-3d5e69ca2645
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(daφ₁₃a_p[5], data_φ₁₃[6], y, param_var_b_φ₁₃, "red")
+  ╠═╡ =#
+
+# ╔═╡ f6703f5e-012e-4a88-bed2-89cb2a9cd0dd
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_φ₁₃[8], data_φ₁₃[9], z, param_var_b_φ₁₃, "blue")
+  ╠═╡ =#
+
+# ╔═╡ 99432cf2-9200-4f71-86fe-d88f34313544
+md"""### Parameter $u_1$"""
+
+# ╔═╡ 1bd4bd3c-1768-4c19-99c9-07126e9a39c4
+# ╠═╡ disabled = true
+#=╠═╡
+begin
+	param_var_b_u₁ = u₁
+	param_bounds_u₁ = [0.0, 10.0]
+	param_bounds_u₁ = [0.0, 1.0]
+	params_vals_b_u₁ = collect(values(params_dict₂))
+	params_vals_b_u₁[indexin(param_var_b_u₁, params_keys)[1]] = 0.8
+
+	data_u₁ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_u₁, param_bounds_u₁, params_vals_b_u₁)
+
+	ComputeData.get_common_bounds(data_u₁)
+end;
+  ╠═╡ =#
+
+# ╔═╡ 239ac2b8-2a35-430b-a266-25fd4b164199
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_u₁))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_u₁, collect(keys(vars_dict)), param_var_b_u₁, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ 49174008-25c1-4be5-a51d-939645932cc3
+# ╠═╡ disabled = true
+#=╠═╡
+let
+	params_vals_b = params_vals_b_u₁
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ 3c8f1684-8d40-4f2f-8161-8e6b0a451426
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₁[2], data_u₁[3], x, param_var_b_u₁, "black")
+  ╠═╡ =#
+
+# ╔═╡ 38eac398-6f6d-4abd-abab-68a7f7d220b5
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₁[5], data_u₁[6], y, param_var_b_u₁, "red")
+  ╠═╡ =#
+
+# ╔═╡ 4c112a58-1965-4616-a7e2-d66cdce6a755
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₁[8], data_u₁[9], z, param_var_b_u₁, "blue")
+  ╠═╡ =#
+
+# ╔═╡ baa8147a-08e5-4d4e-a33f-d766980af97b
+md"""### Parameter $u_2$"""
+
+# ╔═╡ 1c458bc6-6232-4aa7-9f2f-6c2f1709f047
+# ╠═╡ disabled = true
+#=╠═╡
+begin
+	param_var_b_u₂ = u₂
+	param_bounds_u₂ = [0.0, 0.6]
+	params_vals_b_u₂ = collect(values(params_dict))
+	params_vals_b_u₂[indexin(param_var_b_u₂, params_keys)[1]] = 0.04
+
+	data_u₂ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_u₂, param_bounds_u₂, params_vals_b_u₂)
+
+	ComputeData.get_common_bounds(data_u₂)
+end;
+  ╠═╡ =#
+
+# ╔═╡ ff56ca6d-9de3-43e2-8281-86f50ab20211
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_u₂))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_u₂, collect(keys(vars_dict)), param_var_b_u₂, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ e2d555dc-4059-4baf-ab42-dc0d77ea99d8
+# ╠═╡ disabled = true
+#=╠═╡
+let
+	params_vals_b = params_vals_b_u₂
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ bf42fc0c-dda6-4522-b14f-563558cc36b4
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₂[2], data_u₂[3], x, param_var_b_u₂, "black")
+  ╠═╡ =#
+
+# ╔═╡ a0702e5d-597d-4867-899c-40b6fbdea1b1
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₂[5], data_u₂[6], y, param_var_b_u₂, "red")
+  ╠═╡ =#
+
+# ╔═╡ 966c8d24-7076-4807-95b2-85bab69943b1
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₂[8], data_u₂[9], z, param_var_b_u₂, "blue")
+  ╠═╡ =#
+
+# ╔═╡ 79b9fc91-2f3e-4da5-87db-28845c175397
+md"""### Parameter $u_3$"""
+
+# ╔═╡ f5f115e7-efcc-403b-ab91-98ac77534e6d
+# ╠═╡ disabled = true
+#=╠═╡
+begin
+	param_var_b_u₃ = u₃
+	param_bounds_u₃ = [0.0, 10.0]
+	param_bounds_u₃ = [0.0, 0.55]
+	params_vals_b_u₃ = collect(values(params_dict₂))
+	params_vals_b_u₃[indexin(param_var_b_u₃, params_keys)[1]] = 0.75
+
+	data_u₃ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_u₃, param_bounds_u₃, params_vals_b_u₃)
+
+	ComputeData.get_common_bounds(data_u₃)
+end;
+  ╠═╡ =#
+
+# ╔═╡ c92e7768-53ff-4a16-b5ef-f147734d9a25
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_u₃))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_u₃, collect(keys(vars_dict)), param_var_b_u₃, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ 3a4fb433-b5b0-49d1-8d72-e219032d591c
+# ╠═╡ disabled = true
+#=╠═╡
+let
+	params_vals_b = params_vals_b_u₃
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ 6473338a-7090-4fb1-8e1b-f885d792321e
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₃[2], data_u₃[3], x, param_var_b_u₃, "black")
+  ╠═╡ =#
+
+# ╔═╡ acd65a7b-2233-4ab5-b72f-ac85ae7abce6
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₃[5], data_u₃[6], y, param_var_b_u₃, "red")
+  ╠═╡ =#
+
+# ╔═╡ fd361460-d62c-427c-89fa-292213bba5d6
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₃[8], data_u₃[9], z, param_var_b_u₃, "blue")
+  ╠═╡ =#
+
+# ╔═╡ ecd0f05c-d2ba-43bf-ad42-2c3d1082492a
+md"""### Parameter $u_4$"""
+
+# ╔═╡ d03eb32f-bcb2-497e-afe2-a02c87cd61a4
+# ╠═╡ disabled = true
+#=╠═╡
+begin
+	param_var_b_u₄ = u₄
+	param_bounds_u₄ = [0.0, 10.0]
+	param_bounds_u₄ = [0.0, 0.35]
+	params_vals_b_u₄ = collect(values(params_dict₂))
+	params_vals_b_u₄[indexin(param_var_b_u₄, params_keys)[1]] = 0.14
+
+	data_u₄ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_u₄, param_bounds_u₄, params_vals_b_u₄)
+
+	ComputeData.get_common_bounds(data_u₄)
+end;
+  ╠═╡ =#
+
+# ╔═╡ 183e6fb2-08bd-4b9e-8125-f1d6df718e56
+#=╠═╡
+let
+    params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_u₄))
+
+    sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+
+	GenerateFigures.my_bifurcation_diagrams(sol, data_u₄, collect(keys(vars_dict)), param_var_b_u₄, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ 79c0cbcc-9cc7-485d-b495-b52bbc9991ca
+# ╠═╡ disabled = true
+#=╠═╡
+let
+	params_vals_b = params_vals_b_u₄
+	
+	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, params_vals_b))
+	
+	sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	
+	title = "Time Evolution of Each Species"
+	xaxis = "Time in Days"
+	yaxis = "Population size"
+
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+end
+  ╠═╡ =#
+
+# ╔═╡ eae3ebd2-aece-4a9d-9777-24c156428d22
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₄[2], data_u₄[3], x, param_var_b_u₄, "black")
+  ╠═╡ =#
+
+# ╔═╡ 5fed496c-c109-4b20-867a-e49f7cf5a54b
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₄[5], data_u₄[6], y, param_var_b_u₄, "red")
+  ╠═╡ =#
+
+# ╔═╡ cecd92e6-3f3f-46f2-a0b6-81c7ee9cdd50
+# ╠═╡ disabled = true
+#=╠═╡
+GenerateFigures.my_bifurcation_diagram(data_u₄[8], data_u₄[9], z, param_var_b_u₄, "blue")
+  ╠═╡ =#
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -2375,9 +2818,9 @@ weakdeps = ["OffsetArrays", "StaticArrays"]
 
 [[deps.StaticArrays]]
 deps = ["LinearAlgebra", "Random", "StaticArraysCore", "Statistics"]
-git-tree-sha1 = "8982b3607a212b070a5e46eea83eb62b4744ae12"
+git-tree-sha1 = "832afbae2a45b4ae7e831f86965469a24d1d8a83"
 uuid = "90137ffa-7385-5640-81b9-e52037218182"
-version = "1.5.25"
+version = "1.5.26"
 
 [[deps.StaticArraysCore]]
 git-tree-sha1 = "6b7ba252635a5eff6a0b0664a41ee140a1c9e72a"
@@ -2857,19 +3300,6 @@ version = "1.4.1+0"
 # ╟─2c5593ff-6683-476f-b007-a01ed022c1b1
 # ╟─95015822-5c1c-4a52-b682-4926a921687c
 # ╠═92ea7a8b-967d-47c5-8e7f-d2ec80071c20
-# ╟─ee4d84f6-858e-401f-821c-8a17c564ad35
-# ╟─2d4534c9-239c-4c2d-b311-e903ed1c20c3
-# ╠═70604282-c212-4df8-8c84-d7a5849edecc
-# ╟─bcc0cf84-84a1-4c58-83f2-7e0ed17d0c06
-# ╟─8045aed1-55b0-4e32-bb23-9642bcb51900
-# ╟─51ac0b8d-254b-49c1-85a7-80513a6304d6
-# ╟─ec24948a-ed39-4d21-85a9-2592ed5c474c
-# ╟─d3ed6a0d-1451-431f-9567-2b6d083771b1
-# ╠═c7f93709-6b1f-4f13-a6b7-15f85cf33b73
-# ╟─f5488179-665f-49db-9052-407bfe77d034
-# ╟─22c924b4-9116-4422-81d9-a2ac6355f854
-# ╟─ccab53b9-d3ae-4d02-95be-95b1ca33637c
-# ╟─08e3c6fa-dc07-4279-a783-6cae9191e156
 # ╟─43595148-152f-46e4-b36d-4ccae72e315d
 # ╠═46bc4906-a2b1-4025-843f-09f3d0e226b4
 # ╟─157dd6f0-e175-44ca-917d-5aadf65f70a1
@@ -2890,9 +3320,9 @@ version = "1.4.1+0"
 # ╟─00d43aff-6d46-4dd2-832f-6779d9a18b88
 # ╟─ca2cfabe-5bf9-4180-a874-a7b52c6b99ff
 # ╟─03ce581b-5750-4b97-85e9-0d06b5408b6d
-# ╟─10cad625-39f0-4f0e-ac0b-3b241a1afe01
+# ╟─bc4f8424-b477-4c60-825b-52966eaf388a
 # ╟─dafd3320-ac82-485d-8d4e-41f07b8a8ff5
-# ╠═7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
+# ╟─7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
 # ╟─01d76dbb-b853-4774-b9f3-04109b5e74b5
 # ╟─73dc6e38-2610-4bbe-82f4-12a4f87ee694
 # ╟─4891b616-2415-4c63-8ee1-5cf05b9e1319
@@ -2900,17 +3330,85 @@ version = "1.4.1+0"
 # ╟─2d77daef-3784-4b6c-a478-091b9b78397a
 # ╟─95c25479-b27f-4771-8e23-2da9d06a6097
 # ╟─30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
-# ╟─af7c3889-862e-42d7-94dc-e187db2ddca0
-# ╟─79af8a82-cf55-4e34-9ee4-ecd74eaca803
 # ╟─75b2dc3d-b8ce-4db2-9b6c-c10bf81b53bd
+# ╟─79af8a82-cf55-4e34-9ee4-ecd74eaca803
 # ╟─516591f4-a8a5-46e6-9bf4-7e7653208d18
-# ╟─629a0107-705e-4316-ab11-a7017ce4d5ab
-# ╟─4f73f30a-9083-4717-8f74-65318e4fadac
-# ╟─1dfa0afd-8e8b-40f7-a51f-62b765b6fa35
-# ╟─3f14562d-7ef0-44a1-9549-c201134d9930
-# ╟─b17a7814-6b58-4ab1-b8fa-5add4b707598
+# ╟─1659486c-fc1c-4dc6-ad87-40b46a232996
+# ╠═d7a72185-a375-4375-b24c-a03804666106
+# ╠═4f73f30a-9083-4717-8f74-65318e4fadac
+# ╠═3f14562d-7ef0-44a1-9549-c201134d9930
 # ╟─d79ea54d-9211-40ea-8c30-14c78e0b418e
-# ╟─9ad67942-1d2f-438e-b38f-9e5a8d2b7eb7
-# ╟─11e77b07-9b09-4dd8-a9e5-7e1ceb612507
+# ╠═11e77b07-9b09-4dd8-a9e5-7e1ceb612507
+# ╟─648d8050-1b99-45f5-a858-1676c92beb89
+# ╟─00f77c47-1981-4011-ac79-4dbdca71a480
+# ╠═a46c26e2-0c73-4669-a358-8dc9995ab649
+# ╠═202219a3-4d40-4cdc-bd94-898641020a31
+# ╠═768e0db0-c944-4932-be45-75fed09a2517
+# ╠═74054af3-20e1-4564-ba78-5cb84d6ef2e4
+# ╠═cc787b00-a308-4535-92ec-b2002f01e10d
+# ╠═0461fcf2-8440-4343-ade6-26d454f3ab62
+# ╟─92ef6009-19db-4965-b7a6-ace522e4c270
+# ╠═333968ba-4e73-48cf-a98f-0b55d78c0151
+# ╠═566f121d-4d50-4e1d-9450-4d6e6a775b7a
+# ╠═5a5b214c-cb98-465a-8f46-e713f4521345
+# ╠═48139dc3-7644-49f1-873a-cbd5f3ef7f0c
+# ╠═8747060e-d7e5-4804-88cb-a38fa096ed8b
+# ╠═06733475-09be-45fd-9247-2180ad2df137
+# ╟─e3001a20-5df9-480c-aef4-334b2f3e37e4
+# ╠═fcea995e-ddb8-47c7-be41-1fff3c53420b
+# ╠═3031ffa6-60ac-4732-a60a-6258384368ca
+# ╠═ceda727c-8191-4f9b-bf5b-ccfa350905bb
+# ╠═a88fdc5f-098e-41d1-ae77-67d48564a5dc
+# ╠═fbbbfa21-876d-47b0-b703-1f924cd2df13
+# ╠═ef836f46-e68b-4936-845b-5b4c8761677f
+# ╟─ddc255c7-c888-4c1b-8d3a-d7a879f39de3
+# ╠═50172e15-9a8c-483e-ba2d-7f3bde5b7cc7
+# ╟─8a03faa3-e574-41df-83b3-1f8cd112ad3e
+# ╠═ae96eb7b-b4f6-417e-b990-4dd6a4eef688
+# ╠═eebfe670-aa4e-4c8d-8407-fdaf49e706bf
+# ╠═c52cfb3e-7276-4508-a368-80d790300ac2
+# ╠═35cbc60b-8b66-45cc-bdac-004473a38df0
+# ╟─cc874bbf-a756-41bf-a9f3-9a2b6e893dae
+# ╠═b0217026-bfc2-44b6-a052-656999655bfc
+# ╟─45579b2b-3e39-4c30-a962-126c919ccd08
+# ╠═9c804875-55a3-4bfe-be3b-1b1ebe7aaa3b
+# ╠═dd2d6749-99c5-40f8-9fb8-5f7f05c14e1d
+# ╠═a4a24d7a-6164-4b30-b7f8-ab5ec5259ef2
+# ╠═fa400376-4302-4338-a098-30eb7a841f7a
+# ╟─00b659d4-0505-461b-87c4-7f8fd76ca3ab
+# ╠═4dfa935b-53b7-4661-91c5-3d9e639bf66c
+# ╟─f002fa01-5f2e-4c54-8619-ff04b1f2e9f7
+# ╠═41f92e3f-2b0e-4866-9e46-64fceed6d675
+# ╠═88da6932-205e-447c-a252-ae4791198ae4
+# ╠═f7cf06c4-c06d-470c-9cab-3d5e69ca2645
+# ╠═f6703f5e-012e-4a88-bed2-89cb2a9cd0dd
+# ╟─99432cf2-9200-4f71-86fe-d88f34313544
+# ╠═1bd4bd3c-1768-4c19-99c9-07126e9a39c4
+# ╟─239ac2b8-2a35-430b-a266-25fd4b164199
+# ╠═49174008-25c1-4be5-a51d-939645932cc3
+# ╠═3c8f1684-8d40-4f2f-8161-8e6b0a451426
+# ╠═38eac398-6f6d-4abd-abab-68a7f7d220b5
+# ╠═4c112a58-1965-4616-a7e2-d66cdce6a755
+# ╟─baa8147a-08e5-4d4e-a33f-d766980af97b
+# ╠═1c458bc6-6232-4aa7-9f2f-6c2f1709f047
+# ╟─ff56ca6d-9de3-43e2-8281-86f50ab20211
+# ╠═e2d555dc-4059-4baf-ab42-dc0d77ea99d8
+# ╠═bf42fc0c-dda6-4522-b14f-563558cc36b4
+# ╠═a0702e5d-597d-4867-899c-40b6fbdea1b1
+# ╠═966c8d24-7076-4807-95b2-85bab69943b1
+# ╟─79b9fc91-2f3e-4da5-87db-28845c175397
+# ╠═f5f115e7-efcc-403b-ab91-98ac77534e6d
+# ╟─c92e7768-53ff-4a16-b5ef-f147734d9a25
+# ╠═3a4fb433-b5b0-49d1-8d72-e219032d591c
+# ╠═6473338a-7090-4fb1-8e1b-f885d792321e
+# ╠═acd65a7b-2233-4ab5-b72f-ac85ae7abce6
+# ╠═fd361460-d62c-427c-89fa-292213bba5d6
+# ╟─ecd0f05c-d2ba-43bf-ad42-2c3d1082492a
+# ╠═d03eb32f-bcb2-497e-afe2-a02c87cd61a4
+# ╟─183e6fb2-08bd-4b9e-8125-f1d6df718e56
+# ╠═79c0cbcc-9cc7-485d-b495-b52bbc9991ca
+# ╠═eae3ebd2-aece-4a9d-9777-24c156428d22
+# ╠═5fed496c-c109-4b20-867a-e49f7cf5a54b
+# ╠═cecd92e6-3f3f-46f2-a0b6-81c7ee9cdd50
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
