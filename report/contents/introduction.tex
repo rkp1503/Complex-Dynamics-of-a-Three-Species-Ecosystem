@@ -1,82 +1,62 @@
 % ----------------------------------------------------------------------------
-% Author: Ramsey (Rayla) Phuc
-% Alias: Rayla Kurosaki
+% Author: Rayla Kurosaki
 % GitHub: https://github.com/rkp1503
-% 
-% Co-author: Ephraim Agyingi
 % ----------------------------------------------------------------------------
-\chapter{Introduction}\label{ch:introduction}
-\section{Background}\label{sec:background}
-\lipsum[1]
-% In biology, there are many ecological systems that can be analyzed through mathematical modeling. Through mathematical modeling, one can determine the behavior of a complex ecological system. 
 
-\section{Examples of similar/previous works}
+\chapter{Introduction}\label{ch:introduction}
+In the vast realm of biological sciences, understanding the complex interplay of various phenomena is a formidable challenge. Nature's intricacies often defy direct observation and experimentation, necessitating the development of powerful tools that can unravel its hidden patterns. Enter mathematical models, a transformative approach that harnesses the language of mathematics to dissect, analyze, and predict the behavior of biological systems. These models serve as indispensable bridges between theoretical abstractions and empirical realities, enabling scientists to gain deeper insights into the fundamental principles that govern living organisms. By quantifying and formalizing biological processes, mathematical models offer a systematic framework to study intricate dynamics, investigate the consequences of different hypotheses, and guide experimental design. %This paper delves into the multifaceted world of mathematical modeling in biology, shedding light on its significance, challenges, and transformative potential in illuminating the mysteries of life itself.
+
+% \section{Examples of similar/previous works}
 \lipsum[1]
+
+% two species
+% \cite{GHOSH2017110, CHEN20122790, YU2012208167, HUANG2006672, AZIZALAOUI20031069, XIAO200614, SEN201212, CANTRELL2001206, CHEN20092905, CHEN2010246, KAR2005681, CHATTOPADHYAY1996287, KAR2003125}
+
+% three species
+% \cite{GAKKHAR201654, PANJA2022100153, MENG2014810, ALIDOUSTI2020109688, PEET2005491, SARWARDI2012133, PRIYADARSHI20133202, GAKKHAR2005105, GAKKHAR2007808, Mukherjee2013, Dhakne_Munde_2012, CHATTOPADHYAY200345, Panja_Mondal_2015, PANJA2017389, KHAJANCHI2017193, JANA2017350}
+
+% four species
+% \cite{JANA2021100942}
+
+% Beddington–DeAngelis functional response
+% \cite{CANTRELL2001206}
+
+% Crowley–Martin type functional response
+% \cite{MENG2014810}
+
+% Holling-type I functional response
+% \cite{JANA2021100942, Mukherjee2013, CHATTOPADHYAY200345}
+
+% Holling-type II functional response
+% \cite{GAKKHAR201654, PANJA2022100153, JANA2021100942, GHOSH2017110, YU2012208167, HUANG2006672, AZIZALAOUI20031069, CHEN2010246, SARWARDI2012133, PRIYADARSHI20133202, GAKKHAR2005105, GAKKHAR2007808, Mukherjee2013, CHATTOPADHYAY200345, Panja_Mondal_2015, JANA2017350}
+
+% Holling-type III functional response
+% \cite{CHATTOPADHYAY200345}
+
+% Leslie-Gower functional response
+% \cite{YU2012208167, AZIZALAOUI20031069, PRIYADARSHI20133202}
+
+% Monod-Haldane type functional response
+% \cite{ALIDOUSTI2020109688}
+
+% Ratio-dependent functional response
+% cite{XIAO200614, SEN201212, CANTRELL2001206, KHAJANCHI2017193}
+
+% Prey refuge
+% \cite{GAKKHAR201654, PANJA2022100153, GHOSH2017110, CHEN20122790, HUANG2006672, CHEN20092905, CHEN2010246, KAR2005681, SARWARDI2012133, Mukherjee2013, KHAJANCHI2017193, JANA2017350}
+
+% Harvesting
+% cite{XIAO200614, KAR2003125, PANJA2017389}
+
+% Allee effect
+% cite{SEN201212}
+
+
+% In this field, the most common system to model are models which involve two species. 
+
+% While the most common system to model are models which inviolve two species, there are models that extend the idea of modeling two species to three species.
+
 % Some instances of mathematical modeling being used in ecological systems are the model proposed by Lotka and Volterra~\cite{book:9781461416852}, Rosenzweig-MacArthur~\cite{article:10.1086/282272}, and Hassell~\cite{book:9780691209968}. All of which involved two species. However, mathematical modeling is not limited to modeling two species in an ecological system. There have been mathematical models proposed by authors who consider a system of three species~\cite{article:1476-945X,article:0025-5564,doi:10.1080/02286203.2020.1839168}.
 
-\section{Summary of paper}
-\lipsum[1]
-
-% \section{Gakkhar's and Gupta's Model}\label{sec:model-gakkhar-gupta}
-% In this section, we will go over the model that was discussed in the paper written by Gakkhar and Gupta~\cite{GAKKHAR201654}. Gakkhar and Gupta wanted to build a model of three species $X$, $Y$, $Z$ which contains three different types of species interactions. Namely nonlinear competition, predation, and commensalism. To start off constructing their original model, They have made some assumptions about each species and how they interact with each other.
-
-% Species $X$ grows logistically with an intrinsic growth rate $r_1 > 0$ and a carrying capacity $K_1 > 0$. Species $Y$ grows logistically with an intrinsic growth rate $r_2 > 0$ and a carrying capacity $K_2 > 0$. Species $X$ and $Y$ are in a competition relationship, which will directly impact each species in some way. To represent this, they let $\alpha_{12} > 0$ be the inter-species competition coefficient where species $X$ is being affected by species $Y$ and $\alpha_{21} > 0$ be the inter-species competition coefficient where species $Y$ is being affected by species $X$. Species $Y$ and $Z$ are in a predation relationship where species $Z$ preys on species $Y$ with the Holling type II response. Species $Z$ preys on species $Y$ with an attack rate of $a$. As a result of this, a proportion $0 \leq p \leq 1$ of species $Y$ will take refuge and will try to avoid any contact with species $Z$ while some of species $Y$ will move into species $Z$ with a conservation rate of $c$. Species $Z$ dies at a rate of $e$. Species $X$ and $Z$ are in a commensalism relationship where species $Z$ is the host of species $X$ and species $X$ is the commensal of species $Z$. In this relationship, species $Z$ is helping species $X$ at a rate $\delta_{13} \geq 0$, which the authors called the commensal coefficient.
-
-% Note that for species $A$ and $B$, if $\alpha_{ba} < 1$, this means that the effect of species $B$ on species $A$ is less than the effect of species $A$ on its own species. If $\alpha_{ba} > 1$, then effect of species $B$ on species $A$ is greater than the effect of species $A$ on its own species. With the assumptions Gakkhar and Gupta have made, they have constructed the system of equations that accurately describes the behavior of this ecosystem:
-
-% \begin{subequations}\label{model:gakkhar-gupta-d}
-%     \begin{align}
-%         \diff[]{X}{T} &= r_1X\left[1-\frac{X}{K_1}-\frac{\alpha_{12}Y}{K_1}\right]+\delta_{13}XZ \label{eq:gakkhar-gupta-d-x}\\
-%         \diff[]{Y}{T} &= r_2Y\left[1-\frac{Y}{K_2}-\frac{\alpha_{21}X}{K_2}\right]-\frac{a\left(1-p\right)YZ}{b+\left(1-p\right)Y} \label{eq:gakkhar-gupta-d-y}\\
-%         \diff[]{Z}{T} &= Z\left[-e+\frac{ac\left(1-p\right)Y}{b+\left(1-p\right)Y}\right] \label{eq:gakkhar-gupta-d-z}
-%     \end{align}
-% \end{subequations}
-
-% with the initial conditions $X(0) \geq 0,\ Y(0) \geq 0,\ Z(0) \geq 0$. Then Gakkhar and Gupta have used the following substitutions:
-
-% \begin{gather*}
-%     t-r_1T,\ x=\frac{X}{K_1},\ y=\frac{Y}{K_2},\ z=\frac{aZ}{r_1K_2},\ w_1=\frac{b}{K_2},\ w_2=\frac{e}{r_1},\ w_3=\frac{ac}{r_1},\ r=\frac{r_2}{r_1},\ \beta_{12}=\frac{\alpha_{12}K_1}{K_2},\ \delta=\frac{\delta_{13}K_2}{K_1}
-% \end{gather*}
-
-% to non-dimensionalized their model, which takes the form:
-
-% \begin{subequations}\label{model:gakkhar-gupta}
-%     \begin{align}
-%         \diff[]{x}{t} &= x\left[1-x-\beta_{12}y\right]+\delta xz \label{eq:gakkhar-gupta-x}\\
-%         \diff[]{y}{t} &= ry\left[1-y-\beta_{21}x\right]-\frac{\left(1-p\right)yz}{w_1+\left(1-p\right)y} \label{eq:gakkhar-gupta-y}\\
-%         \diff[]{Z}{T} &= z\left[-w_2+\frac{w_3\left(1-p\right)y}{w_1+\left(1-p\right)y}\right] \label{eq:gakkhar-gupta-z}
-%     \end{align}
-% \end{subequations}
-
-% with the initial conditions $x(0) \geq 0,\ y(0) \geq 0,\ z(0) \geq 0$.
-
-
-% \section{Gayen's, Jana's, Kar's, and Panja's Model}\label{sec:model-gayen-jana-kar-panja}
-% In this section, we will go over the model that was discussed in the paper written by Gayen, Jana, Kar, and Panja~\cite{PANJA2022100153}. The authors have started with the same assumptions Gakkhar and Gupta have made and thus Gayen, Jana, Kar, and Panja were able to construct \myref[Model]{model:gakkhar-gupta-d}. After reconstructing this model, they have decided to add another assumption in order to slightly change the model. Gayen, Jana, Kar, and Panja noticed that \myref[Model]{model:gakkhar-gupta-d} assumes species $X$ and species $Y$ are negatively affected in a linear fashion. Gayen, Jana, Kar, and Panja thinks it makes more sense if those species were impacted nonlinearly. With this new assumption, the system of equations that accurately describes the behavior of this ecosystem are:
-
-% \begin{subequations}\label{model:gayen-jana-kar-panja-d}
-%     \begin{align}
-%         \diff[]{X}{T} &= r_1X\left[1-\frac{X}{K_1}-\frac{\alpha_{12}Y^2}{K_1}\right]+\delta_{13}XZ \label{eq:gayen-jana-kar-panja-d-x}\\
-%         \diff[]{Y}{T} &= r_2Y\left[1-\frac{Y}{K_2}-\frac{\alpha_{21}X^2}{K_2}\right]-\frac{a\left(1-p\right)YZ}{b+\left(1-p\right)Y} \label{eq:gayen-jana-kar-panja-d-y}\\
-%         \diff[]{Z}{T} &= Z\left[-e+\frac{ac\left(1-p\right)Y}{b+\left(1-p\right)Y}\right] \label{eq:gayen-jana-kar-panja-d-z}
-%     \end{align}
-% \end{subequations}
-
-% with the initial conditions $X(0) \geq 0,\ Y(0) \geq 0,\ Z(0) \geq 0$. Then Gayen, Jana, Kar, and Panja have used the following substitutions:
-
-% \begin{gather*}
-%     t-r_1T,\ x=\frac{X}{K_1},\ y=\frac{Y}{K_2},\ z=\frac{aZ}{r_1K_2},\ \gamma_{12}=\frac{\alpha_{12}K_2^2}{K_1},\\
-%     \gamma=\frac{\delta_{13}K_2}{a},\ r=\frac{r_2}{r_1},\ \gamma_{21}=\frac{\alpha_{21}K_1^2}{K_2},\ v_1=\frac{b}{K_2}.\ v_2=\frac{e}{r_1},\ v_3=\frac{ac}{r_1}
-% \end{gather*}
-
-% to non-dimensionalized their model, which takes the form:
-
-% \begin{subequations}\label{model:gayen-jana-kar-panja}
-%     \begin{align}
-%         \diff[]{x}{t} &= x\left[1-x-\gamma_{12}y^2\right]+\gamma xz \label{eq:gayen-jana-kar-panja-x}\\
-%         \diff[]{y}{t} &= ry\left[1-y-\gamma_{21}x^2\right]-\frac{\left(1-p\right)yz}{v_1+\left(1-p\right)y} \label{eq:gayen-jana-kar-panja-y}\\
-%         \diff[]{Z}{T} &= z\left[-v_2+\frac{v_3\left(1-p\right)y}{v_1+\left(1-p\right)y}\right] \label{eq:gayen-jana-kar-panja-z}
-%     \end{align}
-% \end{subequations}
-
-% with the initial conditions $x(0) \geq 0,\ y(0) \geq 0,\ z(0) \geq 0$.
+% \section{Summary of paper}
+In this paper, we will consider a biological system that involves three species with each pairing of species have an unique interaction. In particular, we will study an ecosystem which involves predation, non-linear mutualism, and amensalism. The pairing of species that are in a predation interaction incorporrates the Holling type II functional response and refuge into consideration.  
