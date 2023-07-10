@@ -1,14 +1,12 @@
 % ----------------------------------------------------------------------------
-% Author: Ramsey (Rayla) Phuc
-% Alias: Rayla Kurosaki
+% Author: Rayla Kurosaki
 % GitHub: https://github.com/rkp1503
-% 
-% Co-author: Ephraim Agyingi
 % ----------------------------------------------------------------------------
+
 \chapter{Equilibria analysis}\label{ch:equilibria-analysis}
 In \myref[Chapter]{ch:proposed-model}, we have modified some of the assumptions the previous authors have made to create \myref[Model]{model:rayla-ephraim}. In addition, we have proved that \myref[Model]{model:rayla-ephraim} only has non-negative solutions for any set of non-negative initial conditions via \myref[Theorem]{thm:positiveness}. In this chapter, we will identify, classify, and determine the stability of all the equilibria points that exists in \myref[Model]{model:rayla-ephraim}. 
 
-\section{Identifying Equilibria}
+\section{Identifying Equilibria}\label{sec:identifying-equilibria}
 We will start by identifying all the equilibria of \myref[Model]{model:rayla-ephraim}, which is done by setting all the equations equal to 0 and solving for each variable~\cite{Strogatz9780813349107}. Thus, we have to solve for $x^*,\ y^*,\ z^*$ in the following system of equations:
 \begin{subequations}\label{system:model-0}
     \begin{align}
@@ -18,15 +16,15 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \end{align}
 \end{subequations}
 
-\begin{theorem}\label{thm:eq-trivial-exist}
+\begin{theorem}\label{thm:trivial-exist}
     The trivial equilibrium point $E_0=\left(0,\ 0,\ 0\right)$ always exist.
 \end{theorem}
 \begin{proof}
     The trivial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*=y^*=z^*=0$. Plugging in $x^*=0,\ y^*=0,\ z^*=0$ into \myref[System]{system:model-0}, we can see that each equation reduces to $0=0$. Thus, we have proved that the trivial equilibrium point $E_0=\left(0,\ 0,\ 0\right)$ always exist.
 \end{proof}
 
-\begin{theorem}\label{thm:eq-axial-x-exist}
-    The $x$-axial equilibrium point $E_x=\left(1,\ 0,\ 0\right)$ always exist.
+\begin{theorem}\label{thm:axial-x-exist}
+    The $x$-axial equilibrium $E_x=\left(1,\ 0,\ 0\right)$ always exist.
 \end{theorem}
 \begin{proof}
     The $x$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*\neq0$ and $y^*=z^*=0$. Since we are dealing with populations, we should not consider values where $x^*<0$. Thus, a more appropriate constraint is $x^*>0$. Plugging in $y^*=0,\ z^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-y} and \myref[Equation]{eq:model-0-z} reduces to $0=0$ while \myref[Equation]{eq:model-0-x} reduces to
@@ -36,19 +34,19 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     which has solutions $x^*=\left\{0,1\right\}$. With the constraint $x^*>0$, we have proved that the $x$-axial equilibrium point $E_x=\left(1,\ 0,\ 0\right)$ always exist.
 \end{proof}
 
-\begin{theorem}\label{thm:eq-axial-y-exist}
-    The $y$-axial equilibrium point $E_y=\left(0,\ 1,\ 0\right)$ always exist.
+\begin{theorem}\label{thm:axial-y-exist}
+    The $y$-axial equilibrium $E_y=\left(0,\ 1,\ 0\right)$ always exist.
 \end{theorem}
 \begin{proof}
     The $y$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $y^*>0$ and $x^*=z^*=0$. Plugging in $x^*=0,\ z^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-x} and \myref[Equation]{eq:model-0-z} reduces to $0=0$ while \myref[Equation]{eq:model-0-y} reduces to
     \begin{equation*}
         r_{yx}y^*\left(1-y^*\right)=0
     \end{equation*}
-    which has solutions $y^*=\left\{0,1\right\}$. With the cosntraint $y^*>0$, we have proved that the $y$-axial equilibrium point $E_y=\left(0,\ 1,\ 0\right)$ always exist.
+    which has solutions $y^*=\left\{0,1\right\}$. With the constraint $y^*>0$, we have proved that the $y$-axial equilibrium point $E_y=\left(0,\ 1,\ 0\right)$ always exist.
 \end{proof}
 
-\begin{theorem}\label{thm:eq-axial-z-exist}
-    The $z$-axial equilibrium point $E_z=\left(0,\ 0,\ z^*\right)$ exist where
+\begin{theorem}\label{thm:axial-z-exist}
+    The $z$-axial equilibrium $E_z=\left(0,\ 0,\ z^*\right)$ exist where
     \begin{equation*}
         z^* = 1-\frac{u_4}{r_{zx}}
     \end{equation*}
@@ -76,12 +74,12 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \end{equation*}
 \end{proof}
 
-\begin{theorem}\label{thm:eq-boundary-xy-exist}
-    The $xy$-boundary equilibrium point $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where $x^*=1+\varphi_{xy}\left(y^*\right)^2$ and $y^*$ is a positive solution to
+\begin{theorem}\label{thm:boundary-xy-exist}
+    The $xy$-boundary equilibrium $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where $x^*=1+\varphi_{xy}\left(y^*\right)^2$ and $y^*$ is a positive solution to
     \begin{equation*}
         \varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0
     \end{equation*}
-    which can be acheived under the following condition
+    which can be achieved under the following condition
     \begin{equation*}
         \varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
     \end{equation*}
@@ -111,15 +109,15 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \begin{equation*}
         \varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0
     \end{equation*}
-    which can be acheived under the following condition
+    which can be achieved under the following condition
     \begin{equation*}
         \varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
     \end{equation*}
     for some $\beta\in\left(1, \infty\right)$.
 \end{proof}
 
-\begin{theorem}\label{thm:eq-boundary-xz-exist}
-    The $xz$-boundary equilibrium point $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where
+\begin{theorem}\label{thm:boundary-xz-exist}
+    The $xz$-boundary equilibrium $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where
     \begin{equation*}
         x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad
         z^*=1-\frac{u_4}{r_{zx}}
@@ -161,8 +159,8 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \end{equation*}
 \end{proof}
 
-\begin{theorem}\label{thm:eq-boundary-yz-exist}
-    The $yz$-boundary equilibrium point $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
+\begin{theorem}\label{thm:boundary-yz-exist}
+    The $yz$-boundary equilibrium $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
     \begin{equation*}
         z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
     \end{equation*}
@@ -236,8 +234,8 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \end{equation*}
 \end{proof}
 
-\begin{theorem}\label{thm:eq-interior-exist}
-    The interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
+\begin{theorem}\label{thm:interior-exist}
+    The interior equilibrium $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
     \begin{equation*}
         x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad 
         z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
@@ -261,7 +259,7 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
         Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
-    provided that the following conditions are saitsfied:
+    provided that the following conditions are satisfied:
     \begin{equation*}
         \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad
         y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
@@ -336,7 +334,7 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
         &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
         Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
-    provided that the following conditions are saitsfied:
+    provided that the following conditions are satisfied:
     \begin{equation*}
         \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad
         y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
@@ -344,9 +342,7 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \end{equation*}
 \end{proof}
 
-\section{Classifying Equilibria}
-\section{Bifurcation Analysis}
-\section{Stability Analysis}
+\section{Stability Analysis}\label{sec:stability-analysis}
 In order to compute the stability of these equilibrium points, we will use linear stability analysis~\cite{Strogatz9780813349107} and the Routh-Hurwitz stability criterion~\cite{YANG2002615621}. Both methods requires the Jacobian of \myref[Model]{model:rayla-ephraim}, which is:
 \begin{equation}\label{matrix:jacobian-model}
     \textbf{J}\left(E\right) = \begin{bmatrix}
@@ -367,7 +363,7 @@ where
     j_{33} &= r_{zx}\left(1-2z\right)+\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4
 \end{align*}
 
-\begin{theorem}\label{thm:eq-trivial-stability}
+\begin{theorem}\label{thm:trivial-stability}
     The trivial equilibrium $E_0$ is unstable.
 \end{theorem}
 \begin{proof}
@@ -382,7 +378,7 @@ where
     The eigenvalues of \myref[Matrix]{matrix:jacobian-trivial} are $\lambda=\left\{1,\ r_{yx},\ r_{xz}-u_4\right\}$. Here we can see that the eigenvalue $\lambda_1=1$ is positive, thus proving that the trivial equilibrium is unstable.
 \end{proof}
 
-\begin{theorem}\label{thm:eq-axial-x-stability}
+\begin{theorem}\label{thm:axial-x-stability}
     The $x$-axial equilibrium $E_x$ is unstable.
 \end{theorem}
 \begin{proof}
@@ -397,7 +393,7 @@ where
     The eigenvalues of \myref[Matrix]{matrix:jacobian-axial-x} are $\lambda=\left\{-1,\ r_{yx}\left(\varphi_{yx}+1\right),\ r_{xz}-u_4\right\}$. Here we can see that the eigenvalue $\lambda_2=r_{yx}\left(\varphi_{yx}+1\right)$ is positive, thus proving that the $x$-axial equilibrium is unstable.
 \end{proof}
 
-\begin{theorem}\label{thm:eq-axial-y-stability}
+\begin{theorem}\label{thm:axial-y-stability}
     The $y$-axial equilibrium $E_y$ is unstable.
 \end{theorem}
 \begin{proof}
@@ -416,7 +412,7 @@ where
     Here we can see that the eigenvalue $\lambda_1=1+\varphi_{xy}y^2$ is positive, thus proving that the $y$-axial equilibrium is unstable.
 \end{proof}
 
-\begin{theorem}\label{thm:eq-axial-z-stability}
+\begin{theorem}\label{thm:axial-z-stability}
     The $z$-axial equilibrium $E_z$ is locally stable when:
     \begin{equation*}
         \frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} < 1,\quad
@@ -443,7 +439,7 @@ where
     \end{equation*}
 \end{proof}
 
-\begin{theorem}\label{thm:eq-boundary-xy-stability}
+\begin{theorem}\label{thm:boundary-xy-stability}
     The $xy$-boundary equilibrium $E_{xy}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$ where:
     \begin{align*}
         C_2 &= -j_{11}-j_{22}-j_{33}\\
@@ -498,10 +494,12 @@ where
     \end{align*}
 \end{proof}
 
-\begin{theorem}\label{thm:eq-boundary-xz-stability}
+\begin{theorem}\label{thm:boundary-xz-stability}
     The $xz$-boundary equilibrium $E_{xz}$ is locally stable when:
     \begin{equation*}
-        z^*>\frac{1-2x^*}{\varphi_{xz}},\ z^*>\frac{r_{yx}u_2\left(1+\varphi_{yx}\left(x^*\right)^2\right)}{u_1\left(1-p\right)},\ z^*>\frac{r_{zx}-u_4}{2r_{zx}}
+        z^*>\frac{1-2x^*}{\varphi_{xz}},\quad
+        z^*>\frac{r_{yx}u_2\left(1+\varphi_{yx}\left(x^*\right)^2\right)}{u_1\left(1-p\right)},\quad
+        z^*>\frac{r_{zx}-u_4}{2r_{zx}}
     \end{equation*}
 \end{theorem}
 \begin{proof}
@@ -532,18 +530,12 @@ where
     \end{equation*}
 \end{proof}
 
-\begin{theorem}\label{thm:eq-boundary-yz-stability}
-    The $yz$-boundary equilibrium $E_{yz}$ is locally stable when:
-
+\begin{theorem}\label{thm:boundary-yz-stability}
+    The $yz$-boundary equilibrium $E_{yz}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$ where:
     \begin{align*}
-        0 &< -j_{11}-j_{22}-j_{33}\\
-        0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
-        0 &< j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)
-    \end{align*}
-
-    where
-    
-    \begin{align*}
+        C_2 &= -j_{11}-j_{22}-j_{33}\\
+        C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
+        C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)\\
         j_{11} &= 1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
         j_{22} &= r_{yx}\left(1-2y^*\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
         j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
@@ -605,18 +597,12 @@ where
     \end{align*}
 \end{proof}
 
-\begin{theorem}\label{thm:eq-interior-stability}
-    The interior equilibrium $E_{xyz}$ is locally stable when:
-
+\begin{theorem}\label{thm:interior-stability}
+    The interior equilibrium $E_{xyz}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$ where:
     \begin{align*}
-        0 &< -j_{11}-j_{22}-j_{33}\\
-        0 &< j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
-        0 &< j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)
-    \end{align*}
-
-    where
-    
-    \begin{align*}
+        C_2 &< -j_{11}-j_{22}-j_{33}\\
+        C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
+        C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)\\
         j_{11} &= 1-2x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
         j_{12} &= 2\varphi_{xy}x^*y^*\\
         j_{13} &= -\varphi_{xz}x^*\\
@@ -687,4 +673,18 @@ where
     \end{align*}
 \end{proof}
 
-\section{Limit Cycle Analysis}
+% \section{Bifurcation and Limit Cycle Analysis}\label{sec:bifurcation-and-limit-cycle-analysis}
+% \lipsum[1]
+% \begin{theorem}\label{thm:interior-bifurcation}
+    
+% \end{theorem}
+% \begin{proof}
+    
+% \end{proof}
+
+% \begin{theorem}\label{thm:interior:limit-cycle}
+    
+% \end{theorem}
+% \begin{proof}
+    
+% \end{proof}
