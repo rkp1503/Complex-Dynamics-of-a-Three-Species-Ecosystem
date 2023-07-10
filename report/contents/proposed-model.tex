@@ -1,21 +1,19 @@
 % ----------------------------------------------------------------------------
-% Author: Ramsey (Rayla) Phuc
-% Alias: Rayla Kurosaki
+% Author: Rayla Kurosaki
 % GitHub: https://github.com/rkp1503
-% 
-% Co-author: Ephraim Agyingi
 % ----------------------------------------------------------------------------
-\chapter{Proposed Model}\label{ch:proposed-model}
-In this chapter, we will breifly introduce the desired problem to model and make some assumptions. Then we will construct a non-dimensionalized model from the assumptions. Finally, we will show some important properties the model has.
 
-\section{Problem Statement and Assumptions}
+\chapter{Proposed Model}\label{ch:proposed-model}
+In this chapter, we will briefly introduce the desired problem to model and make some assumptions. Then we will construct a non-dimensionalized model from the assumptions. Finally, we will show some important properties the model has.
+
+\section{Problem Statement and Assumptions}\label{sec:problem-statement-and-assumptions}
 Consider an ecosystem which involves three species, $X,\ Y,\ Z$. Species $X,\ Y,\ Z$ grows logistically at their respective intrinsic growth rate $r_x>0,\ r_y>0,\ r_z>0$ with their respective carrying capacity $K_x>0,\ K_y>0,\ K_z>0$ and species $Z$ dies at a rate of $e$. We will also assume that each pairing of species has a unique interaction with one another. In particular, we will model an ecosystem where mutualism, predation, and amensalism are present. % Provide a real life example of this type of interaction if possible.
 
-We will assume that species $X,\ Y$ are in a non-linear mutualism relationship. Members from both species will interact with one another that will help both species in some way. As a result, each species will be affected by one another in some way. To illustrate this, we will let $\alpha_{xy} > 0$ be the inter-species mutualism coefficient where species $X$ is being affected by species $Y$ and $\alpha_{yx} > 0$ be the inter-species mutualism coefficient where species $Y$ is being affected by species $X$.
+We will assume that species $X,\ Y$ are in a non-linear mutualism relationship. Members from both species will interact with one another that will help both species in some way. As a result, each species will be affected by one another in some way. To illustrate this, we will let $\alpha_{xy} > 0$ be the interspecies mutualism coefficient where species $X$ is being affected by species $Y$ and $\alpha_{yx} > 0$ be the interspecies mutualism coefficient where species $Y$ is being affected by species $X$.
 
-We will assume that species $Y,\ Z$ are in a predation relationship where species $Z$ preys on species $Y$ with the Holling type II response and with an attack rate of $a$. As a result of this, a proportion $0 \leq p \leq 1$ of species $Y$ will take refuge into species $Z$ with a conservation rate of $c$. 
+We will assume that species $Y,\ Z$ are in a predation relationship where species $Z$ preys on species $Y$ with the Holling type II response and with an attack rate of $a > 0$. As a result of this, a proportion $0 \leq p \leq 1$ of species $Y$ will take refuge into species $Z$ with a conservation rate of $c > 0$. 
 
-We will assume that species $X,\ Z$ are in an amensalism relationship where species $X$ is the species being detrimented and species $Z$ will remain unaffected. In this relationship, species $X$ is begin detrimented at a rate of $\delta_{xz} \geq 0$, which we will call the amensalism coefficient. 
+We will assume that species $X,\ Z$ are in an amensalism relationship where species $X$ is the species being negatively affected and species $Z$ will remain unaffected. In this relationship, species $X$ is being negatively affected at a rate of $\delta_{xz} > 0$, which we will call the amensalism coefficient.
 
 \section{Building the Model of this Ecosystem}\label{sec:building-the-model-of-this-ecosystem}
 With these assumptions, the governing system of equations that accurately describes this type of ecosystem are:
@@ -51,11 +49,11 @@ we can simplify and non-dimensionalize \myref[Model]{model:rayla-ephraim-d}. Thi
 
 with the initial conditions $x(0) \geq 0,\ y(0) \geq 0,\ z(0) \geq 0$.
 
-\section{Unique properties of the Proposed Model}
+\section{Unique Properties of the Proposed Model}\label{sec:unique-properties-of-the-proposed-model}
 When creating a model that encapsulates an ecosystem, we need to make sure that it makes sense. In biology, a negative population does not make sense. To show that \myref[Model]{model:rayla-ephraim} makes sense, we will need to show that for any non-negative starting populations, \myref[Model]{model:rayla-ephraim} will provide a non-negative solution. This is shown in \myref[Theorem]{thm:positiveness}.
 
 \begin{theorem}\label{thm:positiveness}
-    For any set of intiial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} only has non-negative solutions.
+    For any set of initial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} only has non-negative solutions.
 \end{theorem}
 \begin{proof}
     Starting with \myref[Equation]{eq:rayla-ephraim-x}, we can factor out an $x$:
@@ -78,7 +76,7 @@ When creating a model that encapsulates an ecosystem, we need to make sure that 
     \begin{equation*}
         x(\tau) = x(0)\ \exp{\int_0^\tau \left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}}
     \end{equation*}
-    Note that on the right hand side, we have an exponential function. Since $x(0) > 0$, this means that will never be negative. Thus, we can conclude that $x(\tau) \geq 0$. From \myref[Equation]{eq:rayla-ephraim-y}, we can factor out an $y$:
+    Note that we have an exponential function on the right hand side. Since $x(0) > 0$, this means that the exponential function will always be positive. Thus, we can conclude that $x(\tau) \geq 0$. We can factor out an $y$ in \myref[Equation]{eq:rayla-ephraim-y}:
     \begin{equation*}
         \diff[]{y}{t} = y\left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)
     \end{equation*}
@@ -98,7 +96,7 @@ When creating a model that encapsulates an ecosystem, we need to make sure that 
     \begin{equation*}
         y(\tau) = y(0)\ \exp{\int_0^\tau \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}}
     \end{equation*}
-    Note that on the right hand side, we have an exponential function. Since $y(0) > 0$, this means that will never be negative. Thus, we can conclude that $y(\tau) \geq 0$. From \myref[Equation]{eq:rayla-ephraim-z}, we can factor out an $z$:
+    Note that we have an exponential function on the right hand side. Since $y(0) > 0$, this means that the exponential function will always be positive. Thus, we can conclude that $y(\tau) \geq 0$. We can factor out an $z$ in \myref[Equation]{eq:rayla-ephraim-z}:
     \begin{equation*}
         \diff[]{z}{t} = z\left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)
     \end{equation*}
@@ -118,26 +116,16 @@ When creating a model that encapsulates an ecosystem, we need to make sure that 
     \begin{equation*}
         z(\tau) = z(0)\ \exp{\int_0^\tau \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}}
     \end{equation*}
-    Note that on the right hand side, we have an exponential function. Since $z(0) > 0$, this means that will never be negative. Thus, we can conclude that $z(\tau) \geq 0$. Since we have shown that $x(\tau) \geq 0,\ y(\tau) \geq 0,\ z(\tau) \geq 0$ for some time $\tau > 0$, this implies that \myref[Model]{model:rayla-ephraim} will have non-negative solutions for non-negative initial conditions.
+    Note that we have an exponential function on the right hand side. Since $z(0) > 0$, this means that the exponential function will always be positive. Thus, we can conclude that $z(\tau) \geq 0$. Since we have shown that $x(\tau) \geq 0,\ y(\tau) \geq 0,\ z(\tau) \geq 0$ for some time $\tau > 0$, this implies that \myref[Model]{model:rayla-ephraim} will always have non-negative solutions for non-negative initial conditions.
 \end{proof}
 
-Even though we have shown that \myref[Model]{model:rayla-ephraim} will always be non-negative for any set of non-negative initial conditions though \myref[Theorem]{thm:positiveness}, that is not enough to show that \myref[Model]{model:rayla-ephraim} makes sense. Populations have not just a lower limit, but also an upper limit. A population cannot just grow infinitely in size. After some time, a population will get to the point where it cannot grow any further. Thus, we will need to show that out model is uniformly boundeded. This is shown in \myref[Theorem]{thm:bounded}.
+Even though we have shown that \myref[Model]{model:rayla-ephraim} will always be non-negative for any set of non-negative initial conditions though \myref[Theorem]{thm:positiveness}, that is not enough to show that \myref[Model]{model:rayla-ephraim} makes sense. Populations not only exist, but they also have an upper limit. A population cannot just grow infinitely in size. After some time, a population will stop growing in size. Thus, we will need to show that our model is uniformly bounded. This is shown in \myref[Theorem]{thm:bounded}.
 
 \begin{theorem}\label{thm:bounded}
-    For any set of initial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} is bounded above uniformly.
+    For any set of initial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} is uniformly bounded above.
 \end{theorem}
 \begin{proof}
-    % \begin{align*}
-    %     V &= ax^2+by^2+cz^2\\
-    %     \diff[]{V}{t} &= 2a\diff[]{x}{t}+2b\diff[]{y}{t}+2c\diff[]{z}{t}\\
-    %     \diff[]{V}{t} &= 2a\left(x\left(1-x+\varphi_{xy}y^2\right)-\varphi_{xz}xz\right)\\
-    %     & +2b\left(r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}\right)\\
-    %     & +2c\left(r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\\
-    %     \diff[]{V}{t} &= 2ax-2ax^2+2a\varphi_{xy}xy^2-2a\varphi_{xz}xz+2br_{yx}y-2br_{yx}y^2+2br_{yx}\varphi_{yx}x^2y-\frac{2bu_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}+2cr_{zx}z\\
-    %     &-2cr_{zx}z^2+\frac{2cu_3\left(1-p\right)yz}{u_2+\left(1-p\right)y}-2cu_4z
-    %     % &= 2a\left(x\left(1-x+\varphi_{xy}y^2\right)-\varphi_{xz}xz\right)+2b\left(r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}\right)+2c\left(r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)
-    % \end{align*}
-    Here, we will start by placing an upper bound for \myref[Equation]{eq:rayla-ephraim-d-z}:
+    We will start by placing an upper bound for \myref[Equation]{eq:rayla-ephraim-z}:
     \begin{equation*}
         \diff[]{z}{t} \leq r_{zx}z\left(1-z\right)+z\left(u_3-u_4\right)
     \end{equation*}
@@ -145,26 +133,42 @@ Even though we have shown that \myref[Model]{model:rayla-ephraim} will always be
     \begin{equation*}
         \frac{1}{z\left(u_3-u_4+r_{zx}-r_{zx}z\right)}\ \opdiff{z} \leq \opdiff{t}
     \end{equation*}
-    Interating both sides, we obtain the following inequality:
+    Integrating both sides, we can solve for $z(t)$ to obtain the following inequality:
     \begin{equation*}
-        z(t) < \frac{\left(u_3-u_4+r_{zx}\right)z_0}{\exp{\left(u_4-u_3-r_{zx}\right)t}+r_{zx}z_0}
+        z(t) < \frac{\left(u_3-u_4+r_{zx}\right)z_0}{\left(u_3-u_4+r_{zx}-r_{zx}z_0\right)e^{-\left(u_3-u_4+r_{zx}\right)t}+r_{zx}z_0}
     \end{equation*}
     from which we can conclude that:
     \begin{equation*}
-        \lim_{t\to\infty} \frac{\left(u_3-u_4+r_{zx}\right)z_0}{\exp{\left(u_4-u_3-r_{zx}\right)t}+r_{zx}z_0} = 1+\frac{u_3-u_4}{r_{zx}}
+        \lim_{t\to\infty} \frac{\left(u_3-u_4+r_{zx}\right)z_0}{\left(u_3-u_4+r_{zx}-r_{zx}z_0\right)e^{-\left(u_3-u_4+r_{zx}\right)t}+r_{zx}z_0} = 1+\frac{u_3-u_4}{r_{zx}}
     \end{equation*}
-    thus proving that $z$ is bounded above uniformly. Now consider the following function:
-    \begin{equation*}
-        f_1 = y + \frac{u_1}{u_3}z
-    \end{equation*}
-    The derivative of this function with respect to $t$ is:
-    \begin{equation*}
-        \diff[]{f_1}{t} = \diff[]{y}{t} + \frac{u_1}{u_3}\diff[]{z}{t}
-    \end{equation*}
+    thus proving that $z$ is bounded above. With this, we can place an upper bound for \myref[Equation]{eq:rayla-ephraim-y}:
     \begin{align*}
-        \diff[]{f_1}{t} &= \diff[]{y}{t} + \frac{u_1}{u_3}\diff[]{z}{t}\\
-        \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}+\frac{u_1}{u_3}\left(r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\\
-        \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}+\frac{r_{zx}u_1z\left(1-z\right)}{u_3}+\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}-\frac{u_1u_4z}{u_3}\\
-        \diff[]{f_1}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)+\frac{r_{zx}u_1}{u_3}z\left(1-z\right)-\frac{u_1u_4z}{u_3}
+        \diff[]{y}{t} &< r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\left(1+\frac{u_3-u_4}{r_{zx}}\right)\\
+        \diff[]{y}{t} &< r_{yx}y\left(1-y+\varphi_{yx}x^2\right)
     \end{align*}
+    Suppose $x$ is bounded with a maximum value of $P$. Then we have:
+    \begin{equation*}
+        \diff[]{y}{t} < r_{yx}y\left(1-y+\varphi_{yx}P^2\right)
+    \end{equation*}
+    Solving for $y(t)$ yields:
+    \begin{equation*}
+        y(t) < \frac{\left(1+\varphi_{yx}P^2\right)}{1+\left(\frac{1+\varphi_{yx}P^2}{y_0}-1\right)\exp{-r_{yx}\left(1+\varphi_{yx}P^2\right)t}}
+    \end{equation*}
+    from which we can conclude that:
+    \begin{equation*}
+        \lim_{t\to\infty} \frac{\left(1+\varphi_{yx}P^2\right)}{1+\left(\frac{1+\varphi_{yx}P^2}{y_0}-1\right)\exp{-r_{yx}\left(1+\varphi_{yx}P^2\right)t}} = 1+\varphi_{yx}P^2
+    \end{equation*}
+    thus proving that $y$ is bounded above if $x$ is bounded above with a maximum value of $P$. Suppose $y$ is bounded with a maximum value of $Q$. Then we can place an upper bound for \myref[Equation]{eq:rayla-ephraim-x}:
+    \begin{equation*}
+        \diff[]{x}{t} < x\left(1-x+\varphi_{xy}Q^2\right)
+    \end{equation*}
+    where the solution to this inequality is:
+    \begin{equation*}
+        x(t) < \frac{1+\varphi_{xy}Q^2}{1+\left(\frac{1+\varphi_{xy}Q^2}{x_0}-1\right)e^{-\left(1+\varphi_{xy}Q^2\right)t}}
+    \end{equation*}
+    from which we can conclude that:
+    \begin{equation*}
+        \lim_{t\to\infty} \frac{1+\varphi_{xy}Q^2}{1+\left(\frac{1+\varphi_{xy}Q^2}{x_0}-1\right)e^{-\left(1+\varphi_{xy}Q^2\right)t}} = 1+\varphi_{xy}Q^2
+    \end{equation*}
+    thus proving that $x$ is bounded above if $y$ is bounded above with a maximum value of $Q$. With this, we have shown that for any set of initial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} is uniformly bounded above.
 \end{proof}
