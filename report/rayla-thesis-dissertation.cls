@@ -1,8 +1,7 @@
-%-----------------------------------------------------------------------------
-% Author: Ramsey (Rayla) Phuc
-% Alias: Rayla Kurosaki
+% ----------------------------------------------------------------------------
+% Author: Rayla Kurosaki
 % GitHub: https://github.com/rkp1503
-%-----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{rayla-thesis-dissertation}[Rayla's Thesis and Dissertation Class]
 \LoadClass[twoside]{report}
