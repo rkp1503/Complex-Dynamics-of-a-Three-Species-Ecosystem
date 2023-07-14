@@ -496,80 +496,68 @@ md"""## Numerical Simulations of Non-Interior Equilibria"""
 md"""### The $z$-axial equilibrium $E_z$"""
 
 # ╔═╡ 7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
-let
+begin
 	param_vals_z = [0.007, 1.136, 0.874, 0.318, 0.416, 1.59, 1.655, 0.791, 0.994, 0.356]
 	
 	param_vals_z = ParameterAnalysis.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "z-axial")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_z))
+	params_dict_temp_z = OrderedCollections.OrderedDict(zip(params_keys, param_vals_z))
 	
-	sol_z = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	sol_z = ComputeData.solve_model(model, D, vars_dict, params_dict_temp_z, t, tₘₐₓ)
+
+	title_te = "Time Evolution of Each Species"
+	x_axis_te = "Time in Days"
+	y_axis_te = "Population Density"
 	
-	title = "Time Evolution of Each Species"
-	xaxis = "Time in Days"
-	yaxis = "Population size"
-	
-	GenerateFigures.my_plot(sol_z, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol_z, title_te, x_axis_te, y_axis_te, legend_dict)
 end
 
 # ╔═╡ 01d76dbb-b853-4774-b9f3-04109b5e74b5
 md"""### The $xy$-boundary equilibrium $E_{xy}$"""
 
 # ╔═╡ 73dc6e38-2610-4bbe-82f4-12a4f87ee694
-let
+begin
 	param_vals_xy = [0.049, 0.467, 0.645, 0.024, 0.163, 0.031, 0.31, 0.978, 0.9, 1.004]
 	
 	param_vals_xy = ParameterAnalysis.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xy-boundary")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_xy))
+	params_dict_temp_xy = OrderedCollections.OrderedDict(zip(params_keys, param_vals_xy))
 	
-	sol_xy = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
-
-	title = "Time Evolution of Each Species"
-	xaxis = "Time in Days"
-	yaxis = "Population size"
+	sol_xy = ComputeData.solve_model(model, D, vars_dict, params_dict_temp_xy, t, tₘₐₓ)
 	
-	GenerateFigures.my_plot(sol_xy, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol_xy, title_te, x_axis_te, y_axis_te, legend_dict)
 end
 
 # ╔═╡ 4891b616-2415-4c63-8ee1-5cf05b9e1319
 md"""### The $xz$-boundary equilibrium $E_{xz}$"""
 
 # ╔═╡ 47a19c48-b349-4324-852a-7d8c274a2b35
-let
+begin
 	param_vals_xz = [0.199, 1.494, 0.482, 0.449, 0.993, 1.152, 1.671, 0.663, 1.556, 1.04]
 	
 	param_vals_xz = ParameterAnalysis.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "xz-boundary")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_xz))
+	params_dict_temp_xz = OrderedCollections.OrderedDict(zip(params_keys, param_vals_xz))
 	
-	sol_xy = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	sol_xz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp_xz, t, tₘₐₓ)
 
-	title = "Time Evolution of Each Species"
-	xaxis = "Time in Days"
-	yaxis = "Population size"
-
-	GenerateFigures.my_plot(sol_xy, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol_xz, title_te, x_axis_te, y_axis_te, legend_dict)
 end
 
 # ╔═╡ 2d77daef-3784-4b6c-a478-091b9b78397a
 md"""### The $yz$-boundary equilibrium $E_{yz}$"""
 
 # ╔═╡ 95c25479-b27f-4771-8e23-2da9d06a6097
-let
+begin
 	param_vals_yz = [1.219, 0.452, 0.589, 0.047, 1.587, 1.908, 1.658, 1.812, 1.473, 0.289]
 	
 	param_vals_yz = ParameterAnalysis.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz-boundary")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_yz))
+	params_dict_temp_yz = OrderedCollections.OrderedDict(zip(params_keys, param_vals_yz))
 	
-	sol_yz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
-	
-	title = "Time Evolution of Each Species"
-	xaxis = "Time in Days"
-	yaxis = "Population size"
+	sol_yz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp_yz, t, tₘₐₓ)
 
-	GenerateFigures.my_plot(sol_yz, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol_yz, title_te, x_axis_te, y_axis_te, legend_dict)
 end
 
 # ╔═╡ 30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
@@ -579,27 +567,16 @@ md"""## Numerical Simulations of the interior equilibrium $E_{xyz}$"""
 md"""### Time Evolution of Each Species"""
 
 # ╔═╡ 79af8a82-cf55-4e34-9ee4-ecd74eaca803
-sol_xyz = let
+begin
 	param_vals_xyz = collect(values(params_dict))
 	
-	# param_vals_xyz = utils.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "interior")
+	# param_vals_xyz = ParameterAnalysis.generate_parameters(model, D, vars_dict, params_dict, t, tₘₐₓ, "yz-boundary")
 	
-	params_dict_temp = OrderedCollections.OrderedDict(zip(params_keys, param_vals_xyz))
+	params_dict_temp_xyz = OrderedCollections.OrderedDict(zip(params_keys, param_vals_xyz))
 	
-	sol_xyz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
+	sol_xyz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp_xyz, t, tₘₐₓ)
 
-	ParameterAnalysis.print_solutions(sol_xyz, params_dict_temp, "interior")
-
-	sol_xyz
-end;
-
-# ╔═╡ 516591f4-a8a5-46e6-9bf4-7e7653208d18
-let
-	title = "Time Evolution of Each Species"
-	xaxis = "Time in Days"
-	yaxis = "Population size"
-
-	GenerateFigures.my_plot(sol_xyz, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol_xyz, title_te, x_axis_te, y_axis_te, legend_dict)
 end
 
 # ╔═╡ 1659486c-fc1c-4dc6-ad87-40b46a232996
@@ -607,28 +584,24 @@ md"""### Phase Diagrams"""
 
 # ╔═╡ d7a72185-a375-4375-b24c-a03804666106
 begin
-	xaxis = "Species X"
-	yaxis = "Species Y"
-	zaxis = "Species Z"
-	
-    sol_x = sol_xyz'[:, 1]
-    sol_y = sol_xyz'[:, 2]
-    sol_z = sol_xyz'[:, 3]
-	
+	pp_data_x = sol_xyz'[:, 1]
+	pp_data_y = sol_xyz'[:, 2]
+	pp_data_z = sol_xyz'[:, 3]
+
 	GenerateFigures.my_phase_portraits(sol_xyz, "Species X", "Species Y", "Species Z")
 end
 
 # ╔═╡ 4f73f30a-9083-4717-8f74-65318e4fadac
-GenerateFigures.my_3D_phase_portrait(sol_xyz, "3D Phase Portrait", xaxis, yaxis, zaxis);
+GenerateFigures.my_3D_phase_portrait(sol_xyz, "3D Phase Portrait", "Species X", "Species Y", "Species Z")
 
 # ╔═╡ 3f14562d-7ef0-44a1-9549-c201134d9930
-GenerateFigures.my_2D_phase_portrait(sol_x, sol_y, "Species X and Y", xaxis, yaxis);
+GenerateFigures.my_2D_phase_portrait(pp_data_x, pp_data_y, "Species X and Y", "Species X", "Species Y")
 
 # ╔═╡ d79ea54d-9211-40ea-8c30-14c78e0b418e
-GenerateFigures.my_2D_phase_portrait(sol_x, sol_z, "Species X and Z", xaxis, zaxis);
+GenerateFigures.my_2D_phase_portrait(pp_data_x, pp_data_z, "Species X and Z", "Species X", "Species Z")
 
 # ╔═╡ 11e77b07-9b09-4dd8-a9e5-7e1ceb612507
-GenerateFigures.my_2D_phase_portrait(sol_y, sol_z, "Species Y and Z", yaxis, zaxis);
+GenerateFigures.my_2D_phase_portrait(pp_data_y, pp_data_z, "Species Y and Z", "Species Y", "Species Z")
 
 # ╔═╡ 648d8050-1b99-45f5-a858-1676c92beb89
 md"""## Bifurcation Diagrams"""
@@ -639,25 +612,26 @@ md"""### Parameter $r_{yx}$"""
 # ╔═╡ a46c26e2-0c73-4669-a358-8dc9995ab649
 begin
 	param_var_b_r₂₁ = r₂₁
-	param_bounds_r₂₁ = [0.001, 1.391]
+	param_bounds_r₂₁ = [0, 10]
+	param_bounds_r₂₁ = [0, 5]
+	param_bounds_r₂₁ = [0, 1]
 	params_vals_b_r₂₁ = collect(values(params_dict₂))
 	params_vals_b_r₂₁[indexin(param_var_b_r₂₁, params_keys)[1]] = 0.5
 
 	data_r₂₁ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_r₂₁, param_bounds_r₂₁, params_vals_b_r₂₁)
 		
-	ComputeData.get_common_bounds(data_r₂₁)
+	# ComputeData.get_common_bounds(data_r₂₁)
+	println("Bifurcation value: $(param_var_b_r₂₁) ≈ 0.66")
 end;
 
 # ╔═╡ 202219a3-4d40-4cdc-bd94-898641020a31
-#=╠═╡
 let
     params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_r₂₁))
 
     sol = ComputeData.solve_model(model, D, vars_dict, params_dict_temp, t, tₘₐₓ)
 
 	GenerateFigures.my_bifurcation_diagrams(sol, data_r₂₁, collect(keys(vars_dict)), param_var_b_r₂₁, legend_dict)
-end;
-  ╠═╡ =#
+end
 
 # ╔═╡ 768e0db0-c944-4932-be45-75fed09a2517
 let
@@ -672,16 +646,16 @@ let
 	yaxis = "Population size"
 
 	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
-end;
+end
 
 # ╔═╡ 74054af3-20e1-4564-ba78-5cb84d6ef2e4
-GenerateFigures.my_bifurcation_diagram(data_r₂₁[2], data_r₂₁[3], x, param_var_b_r₂₁, "black");
+GenerateFigures.my_bifurcation_diagram(data_r₂₁[2], data_r₂₁[3], x, param_var_b_r₂₁, "black")
 
 # ╔═╡ cc787b00-a308-4535-92ec-b2002f01e10d
-GenerateFigures.my_bifurcation_diagram(data_r₂₁[5], data_r₂₁[6], y, param_var_b_r₂₁, "red");
+GenerateFigures.my_bifurcation_diagram(data_r₂₁[5], data_r₂₁[6], y, param_var_b_r₂₁, "red")
 
 # ╔═╡ 0461fcf2-8440-4343-ade6-26d454f3ab62
-GenerateFigures.my_bifurcation_diagram(data_r₂₁[8], data_r₂₁[9], z, param_var_b_r₂₁, "blue");
+GenerateFigures.my_bifurcation_diagram(data_r₂₁[8], data_r₂₁[9], z, param_var_b_r₂₁, "blue")
 
 # ╔═╡ 92ef6009-19db-4965-b7a6-ace522e4c270
 md"""### Parameter $r_{zx}$"""
@@ -689,17 +663,18 @@ md"""### Parameter $r_{zx}$"""
 # ╔═╡ 333968ba-4e73-48cf-a98f-0b55d78c0151
 begin
 	param_var_b_r₃₁ = r₃₁
-	param_bounds_r₃₁ = [0.196, 10.0]
+	param_bounds_r₃₁ = [0.0, 10.0]
+	param_bounds_r₃₁ = [0.133, 0.6155]
 	params_vals_b_r₃₁ = collect(values(params_dict))
 	params_vals_b_r₃₁[indexin(param_var_b_r₃₁, params_keys)[1]] = 0.35
 
 	data_r₃₁ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_r₃₁, param_bounds_r₃₁, params_vals_b_r₃₁)
 	
-	ComputeData.get_common_bounds(data_r₃₁)
+	# ComputeData.get_common_bounds(data_r₃₁)
+	println("Bifurcation value: $(param_var_b_r₃₁) ≈ {0.29, 0.47}")
 end;
 
 # ╔═╡ 566f121d-4d50-4e1d-9450-4d6e6a775b7a
-#=╠═╡
 let
     params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_r₃₁))
 
@@ -707,7 +682,6 @@ let
 
 	GenerateFigures.my_bifurcation_diagrams(sol, data_r₃₁, collect(keys(vars_dict)), param_var_b_r₃₁, legend_dict)
 end
-  ╠═╡ =#
 
 # ╔═╡ 5a5b214c-cb98-465a-8f46-e713f4521345
 let
@@ -722,36 +696,34 @@ let
 	yaxis = "Population size"
 
 	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
-end;
+end
 
 # ╔═╡ 48139dc3-7644-49f1-873a-cbd5f3ef7f0c
-GenerateFigures.my_bifurcation_diagram(data_r₃₁[2], data_r₃₁[3], x, param_var_b_r₃₁, "black");
+GenerateFigures.my_bifurcation_diagram(data_r₃₁[2], data_r₃₁[3], x, param_var_b_r₃₁, "black")
 
 # ╔═╡ 8747060e-d7e5-4804-88cb-a38fa096ed8b
-GenerateFigures.my_bifurcation_diagram(data_r₃₁[5], data_r₃₁[6], y, param_var_b_r₃₁, "red");
+GenerateFigures.my_bifurcation_diagram(data_r₃₁[5], data_r₃₁[6], y, param_var_b_r₃₁, "red")
 
 # ╔═╡ 06733475-09be-45fd-9247-2180ad2df137
-GenerateFigures.my_bifurcation_diagram(data_r₃₁[8], data_r₃₁[9], z, param_var_b_r₃₁, "blue");
+GenerateFigures.my_bifurcation_diagram(data_r₃₁[8], data_r₃₁[9], z, param_var_b_r₃₁, "blue")
 
 # ╔═╡ e3001a20-5df9-480c-aef4-334b2f3e37e4
 md"""### Parameter $p$"""
 
 # ╔═╡ fcea995e-ddb8-47c7-be41-1fff3c53420b
-#=╠═╡
 begin
 	param_var_b_p = p
-	param_bounds_p = [0.0, 0.91]
+	param_bounds_p = [0, 0.9476]
 	params_vals_b_p = collect(values(params_dict))
 	params_vals_b_p[indexin(param_var_b_p, params_keys)[1]] = 0.1
 
 	data_p = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_p, param_bounds_p, params_vals_b_p)
-		
-	ComputeData.get_common_bounds(data_p)
+	
+	# ComputeData.get_common_bounds(data_p)
+	println("Bifurcation value: $(param_var_b_p) ≈ 0.36")
 end;
-  ╠═╡ =#
 
 # ╔═╡ 3031ffa6-60ac-4732-a60a-6258384368ca
-#=╠═╡
 let
     params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_p))
 
@@ -759,11 +731,8 @@ let
 
 	GenerateFigures.my_bifurcation_diagrams(sol, data_p, collect(keys(vars_dict)), param_var_b_p, legend_dict)
 end
-  ╠═╡ =#
 
 # ╔═╡ ceda727c-8191-4f9b-bf5b-ccfa350905bb
-# ╠═╡ disabled = true
-#=╠═╡
 let
 	params_vals_b = params_vals_b_p
 	
@@ -776,47 +745,34 @@ let
 	yaxis = "Population size"
 
 	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
-end;
-  ╠═╡ =#
+end
 
 # ╔═╡ a88fdc5f-098e-41d1-ae77-67d48564a5dc
-# ╠═╡ disabled = true
-#=╠═╡
-GenerateFigures.my_bifurcation_diagram(data_p[2], data_p[3], x, param_var_b_p, "black");
-  ╠═╡ =#
+GenerateFigures.my_bifurcation_diagram(data_p[2], data_p[3], x, param_var_b_p, "black")
 
 # ╔═╡ fbbbfa21-876d-47b0-b703-1f924cd2df13
-# ╠═╡ disabled = true
-#=╠═╡
-GenerateFigures.my_bifurcation_diagram(data_p[5], data_p[6], y, param_var_b_p, "red");
-  ╠═╡ =#
+GenerateFigures.my_bifurcation_diagram(data_p[5], data_p[6], y, param_var_b_p, "red")
 
 # ╔═╡ ef836f46-e68b-4936-845b-5b4c8761677f
-# ╠═╡ disabled = true
-#=╠═╡
-GenerateFigures.my_bifurcation_diagram(data_p[8], data_p[9], z, param_var_b_p, "blue");
-  ╠═╡ =#
+GenerateFigures.my_bifurcation_diagram(data_p[8], data_p[9], z, param_var_b_p, "blue")
 
 # ╔═╡ ddc255c7-c888-4c1b-8d3a-d7a879f39de3
 md"""### Parameter $\varphi_{xy}$"""
 
 # ╔═╡ 50172e15-9a8c-483e-ba2d-7f3bde5b7cc7
-# ╠═╡ disabled = true
-#=╠═╡
 begin
 	param_var_b_φ₁₂ = φ₁₂
-	param_bounds_φ₁₂ = [0.0, 0.18]
+	param_bounds_φ₁₂ = [0.0, 0.187]
 	params_vals_b_φ₁₂ = collect(values(params_dict₂))
 	params_vals_b_φ₁₂[indexin(param_var_b_φ₁₂, params_keys)[1]] = 0.15
 
 	data_φ₁₂ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_φ₁₂, param_bounds_φ₁₂, params_vals_b_φ₁₂)
 
-	ComputeData.get_common_bounds(data_φ₁₂)
+	# ComputeData.get_common_bounds(data_φ₁₂)
+	println("Bifurcation value: $(param_var_b_φ₁₂) ≈ 0.125")
 end;
-  ╠═╡ =#
 
 # ╔═╡ 8a03faa3-e574-41df-83b3-1f8cd112ad3e
-#=╠═╡
 let
     params_dict_temp = OrderedCollections.OrderedDict(zip(collect(keys(params_dict)), params_vals_b_φ₁₂))
 
@@ -824,11 +780,8 @@ let
 
 	GenerateFigures.my_bifurcation_diagrams(sol, data_φ₁₂, collect(keys(vars_dict)), param_var_b_φ₁₂, legend_dict)
 end
-  ╠═╡ =#
 
 # ╔═╡ ae96eb7b-b4f6-417e-b990-4dd6a4eef688
-# ╠═╡ disabled = true
-#=╠═╡
 let
 	params_vals_b = params_vals_b_φ₁₂
 	
@@ -842,25 +795,15 @@ let
 
 	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
 end
-  ╠═╡ =#
 
 # ╔═╡ eebfe670-aa4e-4c8d-8407-fdaf49e706bf
-# ╠═╡ disabled = true
-#=╠═╡
 GenerateFigures.my_bifurcation_diagram(data_φ₁₂[2], data_φ₁₂[3], x, param_var_b_φ₁₂, "black")
-  ╠═╡ =#
 
 # ╔═╡ c52cfb3e-7276-4508-a368-80d790300ac2
-# ╠═╡ disabled = true
-#=╠═╡
 GenerateFigures.my_bifurcation_diagram(data_φ₁₂[5], data_φ₁₂[6], y, param_var_b_φ₁₂, "red")
-  ╠═╡ =#
 
 # ╔═╡ 35cbc60b-8b66-45cc-bdac-004473a38df0
-# ╠═╡ disabled = true
-#=╠═╡
 GenerateFigures.my_bifurcation_diagram(data_φ₁₂[8], data_φ₁₂[9], z, param_var_b_φ₁₂, "blue")
-  ╠═╡ =#
 
 # ╔═╡ cc874bbf-a756-41bf-a9f3-9a2b6e893dae
 md"""### Parameter $\varphi_{yx}$"""
@@ -876,7 +819,8 @@ begin
 
 	data_φ₂₁ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_φ₂₁, param_bounds_φ₂₁, params_vals_b_φ₂₁)
 
-	ComputeData.get_common_bounds(data_φ₂₁)
+	# ComputeData.get_common_bounds(data_φ₂₁)
+	println("Bifurcation value: $(param_var_b_φ₂₁) ≈ ")
 end;
   ╠═╡ =#
 
@@ -942,7 +886,8 @@ begin
 
 	data_φ₁₃ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_φ₁₃, param_bounds_φ₁₃, params_vals_b_φ₁₃)
 
-	ComputeData.get_common_bounds(data_φ₁₃)
+	# ComputeData.get_common_bounds(data_φ₁₃)
+	println("Bifurcation value: $(param_var_b_φ₁₃) ≈ ")
 end;
   ╠═╡ =#
 
@@ -1008,7 +953,8 @@ begin
 
 	data_u₁ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_u₁, param_bounds_u₁, params_vals_b_u₁)
 
-	ComputeData.get_common_bounds(data_u₁)
+	# ComputeData.get_common_bounds(data_u₁)
+	println("Bifurcation value: $(param_var_b_u₁) ≈ ")
 end;
   ╠═╡ =#
 
@@ -1073,7 +1019,8 @@ begin
 
 	data_u₂ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_u₂, param_bounds_u₂, params_vals_b_u₂)
 
-	ComputeData.get_common_bounds(data_u₂)
+	# ComputeData.get_common_bounds(data_u₂)
+	println("Bifurcation value: $(param_var_b_u₂) ≈ ")
 end;
   ╠═╡ =#
 
@@ -1139,7 +1086,8 @@ begin
 
 	data_u₃ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_u₃, param_bounds_u₃, params_vals_b_u₃)
 
-	ComputeData.get_common_bounds(data_u₃)
+	# ComputeData.get_common_bounds(data_u₃)
+	println("Bifurcation value: $(param_var_b_u₃) ≈ ")
 end;
   ╠═╡ =#
 
@@ -1205,7 +1153,8 @@ begin
 
 	data_u₄ = ComputeData.get_bifurcation_data(model, D, vars_dict, params_keys, t, tₘₐₓ_c, param_var_b_u₄, param_bounds_u₄, params_vals_b_u₄)
 
-	ComputeData.get_common_bounds(data_u₄)
+	# ComputeData.get_common_bounds(data_u₄)
+	println("Bifurcation value: $(param_var_b_u₄) ≈ ")
 end;
   ╠═╡ =#
 
@@ -3331,84 +3280,83 @@ version = "1.4.1+0"
 # ╟─95c25479-b27f-4771-8e23-2da9d06a6097
 # ╟─30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
 # ╟─75b2dc3d-b8ce-4db2-9b6c-c10bf81b53bd
-# ╟─79af8a82-cf55-4e34-9ee4-ecd74eaca803
-# ╟─516591f4-a8a5-46e6-9bf4-7e7653208d18
+# ╠═79af8a82-cf55-4e34-9ee4-ecd74eaca803
 # ╟─1659486c-fc1c-4dc6-ad87-40b46a232996
-# ╠═d7a72185-a375-4375-b24c-a03804666106
-# ╠═4f73f30a-9083-4717-8f74-65318e4fadac
-# ╠═3f14562d-7ef0-44a1-9549-c201134d9930
+# ╟─d7a72185-a375-4375-b24c-a03804666106
+# ╟─4f73f30a-9083-4717-8f74-65318e4fadac
+# ╟─3f14562d-7ef0-44a1-9549-c201134d9930
 # ╟─d79ea54d-9211-40ea-8c30-14c78e0b418e
-# ╠═11e77b07-9b09-4dd8-a9e5-7e1ceb612507
+# ╟─11e77b07-9b09-4dd8-a9e5-7e1ceb612507
 # ╟─648d8050-1b99-45f5-a858-1676c92beb89
 # ╟─00f77c47-1981-4011-ac79-4dbdca71a480
 # ╠═a46c26e2-0c73-4669-a358-8dc9995ab649
-# ╠═202219a3-4d40-4cdc-bd94-898641020a31
-# ╠═768e0db0-c944-4932-be45-75fed09a2517
-# ╠═74054af3-20e1-4564-ba78-5cb84d6ef2e4
-# ╠═cc787b00-a308-4535-92ec-b2002f01e10d
-# ╠═0461fcf2-8440-4343-ade6-26d454f3ab62
+# ╟─202219a3-4d40-4cdc-bd94-898641020a31
+# ╟─768e0db0-c944-4932-be45-75fed09a2517
+# ╟─74054af3-20e1-4564-ba78-5cb84d6ef2e4
+# ╟─cc787b00-a308-4535-92ec-b2002f01e10d
+# ╟─0461fcf2-8440-4343-ade6-26d454f3ab62
 # ╟─92ef6009-19db-4965-b7a6-ace522e4c270
 # ╠═333968ba-4e73-48cf-a98f-0b55d78c0151
-# ╠═566f121d-4d50-4e1d-9450-4d6e6a775b7a
-# ╠═5a5b214c-cb98-465a-8f46-e713f4521345
-# ╠═48139dc3-7644-49f1-873a-cbd5f3ef7f0c
-# ╠═8747060e-d7e5-4804-88cb-a38fa096ed8b
-# ╠═06733475-09be-45fd-9247-2180ad2df137
+# ╟─566f121d-4d50-4e1d-9450-4d6e6a775b7a
+# ╟─5a5b214c-cb98-465a-8f46-e713f4521345
+# ╟─48139dc3-7644-49f1-873a-cbd5f3ef7f0c
+# ╟─8747060e-d7e5-4804-88cb-a38fa096ed8b
+# ╟─06733475-09be-45fd-9247-2180ad2df137
 # ╟─e3001a20-5df9-480c-aef4-334b2f3e37e4
 # ╠═fcea995e-ddb8-47c7-be41-1fff3c53420b
-# ╠═3031ffa6-60ac-4732-a60a-6258384368ca
-# ╠═ceda727c-8191-4f9b-bf5b-ccfa350905bb
-# ╠═a88fdc5f-098e-41d1-ae77-67d48564a5dc
-# ╠═fbbbfa21-876d-47b0-b703-1f924cd2df13
-# ╠═ef836f46-e68b-4936-845b-5b4c8761677f
+# ╟─3031ffa6-60ac-4732-a60a-6258384368ca
+# ╟─ceda727c-8191-4f9b-bf5b-ccfa350905bb
+# ╟─a88fdc5f-098e-41d1-ae77-67d48564a5dc
+# ╟─fbbbfa21-876d-47b0-b703-1f924cd2df13
+# ╟─ef836f46-e68b-4936-845b-5b4c8761677f
 # ╟─ddc255c7-c888-4c1b-8d3a-d7a879f39de3
 # ╠═50172e15-9a8c-483e-ba2d-7f3bde5b7cc7
 # ╟─8a03faa3-e574-41df-83b3-1f8cd112ad3e
-# ╠═ae96eb7b-b4f6-417e-b990-4dd6a4eef688
-# ╠═eebfe670-aa4e-4c8d-8407-fdaf49e706bf
-# ╠═c52cfb3e-7276-4508-a368-80d790300ac2
-# ╠═35cbc60b-8b66-45cc-bdac-004473a38df0
+# ╟─ae96eb7b-b4f6-417e-b990-4dd6a4eef688
+# ╟─eebfe670-aa4e-4c8d-8407-fdaf49e706bf
+# ╟─c52cfb3e-7276-4508-a368-80d790300ac2
+# ╟─35cbc60b-8b66-45cc-bdac-004473a38df0
 # ╟─cc874bbf-a756-41bf-a9f3-9a2b6e893dae
 # ╠═b0217026-bfc2-44b6-a052-656999655bfc
 # ╟─45579b2b-3e39-4c30-a962-126c919ccd08
-# ╠═9c804875-55a3-4bfe-be3b-1b1ebe7aaa3b
-# ╠═dd2d6749-99c5-40f8-9fb8-5f7f05c14e1d
-# ╠═a4a24d7a-6164-4b30-b7f8-ab5ec5259ef2
-# ╠═fa400376-4302-4338-a098-30eb7a841f7a
+# ╟─9c804875-55a3-4bfe-be3b-1b1ebe7aaa3b
+# ╟─dd2d6749-99c5-40f8-9fb8-5f7f05c14e1d
+# ╟─a4a24d7a-6164-4b30-b7f8-ab5ec5259ef2
+# ╟─fa400376-4302-4338-a098-30eb7a841f7a
 # ╟─00b659d4-0505-461b-87c4-7f8fd76ca3ab
 # ╠═4dfa935b-53b7-4661-91c5-3d9e639bf66c
 # ╟─f002fa01-5f2e-4c54-8619-ff04b1f2e9f7
-# ╠═41f92e3f-2b0e-4866-9e46-64fceed6d675
-# ╠═88da6932-205e-447c-a252-ae4791198ae4
-# ╠═f7cf06c4-c06d-470c-9cab-3d5e69ca2645
-# ╠═f6703f5e-012e-4a88-bed2-89cb2a9cd0dd
+# ╟─41f92e3f-2b0e-4866-9e46-64fceed6d675
+# ╟─88da6932-205e-447c-a252-ae4791198ae4
+# ╟─f7cf06c4-c06d-470c-9cab-3d5e69ca2645
+# ╟─f6703f5e-012e-4a88-bed2-89cb2a9cd0dd
 # ╟─99432cf2-9200-4f71-86fe-d88f34313544
 # ╠═1bd4bd3c-1768-4c19-99c9-07126e9a39c4
 # ╟─239ac2b8-2a35-430b-a266-25fd4b164199
-# ╠═49174008-25c1-4be5-a51d-939645932cc3
-# ╠═3c8f1684-8d40-4f2f-8161-8e6b0a451426
-# ╠═38eac398-6f6d-4abd-abab-68a7f7d220b5
-# ╠═4c112a58-1965-4616-a7e2-d66cdce6a755
+# ╟─49174008-25c1-4be5-a51d-939645932cc3
+# ╟─3c8f1684-8d40-4f2f-8161-8e6b0a451426
+# ╟─38eac398-6f6d-4abd-abab-68a7f7d220b5
+# ╟─4c112a58-1965-4616-a7e2-d66cdce6a755
 # ╟─baa8147a-08e5-4d4e-a33f-d766980af97b
 # ╠═1c458bc6-6232-4aa7-9f2f-6c2f1709f047
-# ╟─ff56ca6d-9de3-43e2-8281-86f50ab20211
-# ╠═e2d555dc-4059-4baf-ab42-dc0d77ea99d8
-# ╠═bf42fc0c-dda6-4522-b14f-563558cc36b4
-# ╠═a0702e5d-597d-4867-899c-40b6fbdea1b1
-# ╠═966c8d24-7076-4807-95b2-85bab69943b1
+# ╠═ff56ca6d-9de3-43e2-8281-86f50ab20211
+# ╟─e2d555dc-4059-4baf-ab42-dc0d77ea99d8
+# ╟─bf42fc0c-dda6-4522-b14f-563558cc36b4
+# ╟─a0702e5d-597d-4867-899c-40b6fbdea1b1
+# ╟─966c8d24-7076-4807-95b2-85bab69943b1
 # ╟─79b9fc91-2f3e-4da5-87db-28845c175397
 # ╠═f5f115e7-efcc-403b-ab91-98ac77534e6d
 # ╟─c92e7768-53ff-4a16-b5ef-f147734d9a25
-# ╠═3a4fb433-b5b0-49d1-8d72-e219032d591c
-# ╠═6473338a-7090-4fb1-8e1b-f885d792321e
-# ╠═acd65a7b-2233-4ab5-b72f-ac85ae7abce6
-# ╠═fd361460-d62c-427c-89fa-292213bba5d6
+# ╟─3a4fb433-b5b0-49d1-8d72-e219032d591c
+# ╟─6473338a-7090-4fb1-8e1b-f885d792321e
+# ╟─acd65a7b-2233-4ab5-b72f-ac85ae7abce6
+# ╟─fd361460-d62c-427c-89fa-292213bba5d6
 # ╟─ecd0f05c-d2ba-43bf-ad42-2c3d1082492a
 # ╠═d03eb32f-bcb2-497e-afe2-a02c87cd61a4
 # ╟─183e6fb2-08bd-4b9e-8125-f1d6df718e56
-# ╠═79c0cbcc-9cc7-485d-b495-b52bbc9991ca
-# ╠═eae3ebd2-aece-4a9d-9777-24c156428d22
-# ╠═5fed496c-c109-4b20-867a-e49f7cf5a54b
-# ╠═cecd92e6-3f3f-46f2-a0b6-81c7ee9cdd50
+# ╟─79c0cbcc-9cc7-485d-b495-b52bbc9991ca
+# ╟─eae3ebd2-aece-4a9d-9777-24c156428d22
+# ╟─5fed496c-c109-4b20-867a-e49f7cf5a54b
+# ╟─cecd92e6-3f3f-46f2-a0b6-81c7ee9cdd50
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
