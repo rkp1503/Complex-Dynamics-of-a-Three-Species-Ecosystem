@@ -242,22 +242,17 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \end{equation*}
     and $y^*$ is a positive solution to 
     \begin{equation*}
-        \frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
+        \frac{Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
     \end{equation*}
     where:
     \begin{align*}
-        Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
-        Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
-        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3r_{zx}u_2^2\varphi_{xy}\right)\left(1-p\right)\\
-        Y_4 &= r_{yx}r_{zx}\left(-r_{zx}\left(1-p\right)^3-2\varphi_{xy}\varphi_{yx}u_2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)-3r_{zx}\right)\left(1-p\right)^2+r_{zx}u_2^3\varphi_{xy}^2\varphi_{yx}\right)\\
-        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
-        &\left.-2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}\right)\right)\\
-        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2-4u_3u_4\right)\right.\\
-        &\left.-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
-        &+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
-        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.\right.\\
-        &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
-        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
+        Y_6 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^2\\
+        Y_5 &= 2r_{yx}r_{zx}^2u_2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(u_4-u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)\\
+        Y_3 &= r_{yx}r_{zx}\left(1-p\right)\left(-r_{zx}\left(1-p\right)+2u_2\varphi_{xy}\varphi_{yx}\left(2r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(2u_4-u_3\right)\right)\right)\\
+        Y_2 &= r_{yx}\left(\left(\varphi_{yx}\left(r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(u_4-u_3\right)\right)^2+r_{zx}^2\right)\left(1-p\right)^2-2r_{zx}^2u_2\left(1-p\right)+2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(r_{zx}\left(1-\varphi_{xz}\right)+u_4\varphi_{xz}\right)\right)\\
+        Y_1 &= r_{zx}u_1\left(u_4-u_3-r_{zx}\right)\left(1-p\right)^2+2r_{yx}u_2\left(r_{zx}^2\left(\varphi_{yx}\left(\varphi_{xz}-1\right)^2+1\right)+\varphi_{xz}\varphi_{yx}\left(-u_4\left(2r_{zx}\left(\varphi_{xz}-1\right)+\varphi_{xz}u_3\right)+r_{zx}u_3\left(\varphi_{xz}-1\right)+\varphi_{xz}u_4^2\right)\right)\left(1-p\right)-r_{yx}r_{zx}^2u_2^2\\
+        Y_0 &= u_2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
     provided that the following conditions are satisfied:
     \begin{equation*}
@@ -293,22 +288,17 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \end{equation*}
     We can then plug in our equations for $x^*$ and $z^*$ into \myref[Equation]{eq:interior-y} to get the following equation in $y^*$:
     \begin{equation}\label{eq:interior-Y}
-        \frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
+        \frac{Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
     \end{equation}
     where
     \begin{align*}
-        Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
-        Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
-        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3r_{zx}u_2^2\varphi_{xy}\right)\left(1-p\right)\\
-        Y_4 &= r_{yx}r_{zx}\left(-r_{zx}\left(1-p\right)^3-2\varphi_{xy}\varphi_{yx}u_2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)-3r_{zx}\right)\left(1-p\right)^2+r_{zx}u_2^3\varphi_{xy}^2\varphi_{yx}\right)\\
-        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
-        &\left.-2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}\right)\right)\\
-        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2-4u_3u_4\right)\right.\\
-        &\left.-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
-        &+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
-        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.\right.\\
-        &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
-        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
+        Y_6 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^2\\
+        Y_5 &= 2r_{yx}r_{zx}^2u_2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(u_4-u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)\\
+        Y_3 &= r_{yx}r_{zx}\left(1-p\right)\left(-r_{zx}\left(1-p\right)+2u_2\varphi_{xy}\varphi_{yx}\left(2r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(2u_4-u_3\right)\right)\right)\\
+        Y_2 &= r_{yx}\left(\left(\varphi_{yx}\left(r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(u_4-u_3\right)\right)^2+r_{zx}^2\right)\left(1-p\right)^2-2r_{zx}^2u_2\left(1-p\right)+2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(r_{zx}\left(1-\varphi_{xz}\right)+u_4\varphi_{xz}\right)\right)\\
+        Y_1 &= r_{zx}u_1\left(u_4-u_3-r_{zx}\right)\left(1-p\right)^2+2r_{yx}u_2\left(r_{zx}^2\left(\varphi_{yx}\left(\varphi_{xz}-1\right)^2+1\right)+\varphi_{xz}\varphi_{yx}\left(-u_4\left(2r_{zx}\left(\varphi_{xz}-1\right)+\varphi_{xz}u_3\right)+r_{zx}u_3\left(\varphi_{xz}-1\right)+\varphi_{xz}u_4^2\right)\right)\left(1-p\right)-r_{yx}r_{zx}^2u_2^2\\
+        Y_0 &= u_2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
     It will be difficult to find an analytical solution for $y^*$ in terms of the parameters. Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:interior-Y}. Since all of the coefficients of \myref[Equation]{eq:interior-Y} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}. By Descartes' rule of signs, we can say that \myref[Equation]{eq:interior-Y} will have at least one positive solution if $Y_0<0$. Thus we have proved that the interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
     \begin{equation*}
@@ -317,22 +307,17 @@ We will start by identifying all the equilibria of \myref[Model]{model:rayla-eph
     \end{equation*}
     and $y^*$ is a positive solution to 
     \begin{equation*}
-        \frac{Y_7\left(y^*\right)^7+Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
+        \frac{Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
     \end{equation*}
     where:
     \begin{align*}
-        Y_7 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^3\\
-        Y_6 &= 3r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}u_2\left(1-p\right)^2\\
-        Y_5 &= -r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)\left(1-p\right)^2-3r_{zx}u_2^2\varphi_{xy}\right)\left(1-p\right)\\
-        Y_4 &= r_{yx}r_{zx}\left(-r_{zx}\left(1-p\right)^3-2\varphi_{xy}\varphi_{yx}u_2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)-3r_{zx}\right)\left(1-p\right)^2+r_{zx}u_2^3\varphi_{xy}^2\varphi_{yx}\right)\\
-        Y_3 &= r_{yx}\left(1-p\right)\left(\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}+u_3-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\left(1-p\right)^2-3r_{zx}^2u_2\left(1-p\right)\right.\\
-        &\left.-2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+u_3\right)-3r_{zx}\right)\right)\\
-        Y_2 &= r_{zx}u_1\left(u_4-r_{zx}-u_3\right)\left(1-p\right)^3+r_{yx}u_2\left(\varphi_{yx}\varphi_{xz}^2\left(3r_{zx}^2+2r_{zx}\left(2u_3-3u_4\right)+u_3^2+3u_4^2-4u_3u_4\right)\right.\\
-        &\left.-2r_{zx}\varphi_{yx}\varphi_{xz}\left(3\left(r_{zx}-u_4\right)+2u_3\right)+3r_{zx}^2\left(\varphi_{yx}+1\right)\right)\left(1-p\right)^2-3r_{yx}r_{zx}^2u_2^2\left(1-p\right)\\
-        &+2r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}u_2^3\left(r_{zx}-\varphi_{xz}\left(r_{zx}-u_4\right)\right)\\
-        Y_1 &= -u_2\left(r_{zx}u_1\left(2\left(r_{zx}-u_4\right)+u_3\right)\left(1-p\right)^2+r_{yx}u_2\left(-3\varphi_{yx}\varphi_{xz}^2u_4^2-3r_{zx}^2\left(\left(1-\varphi_{xz}\right)^2\varphi_{yx}+1\right)\right.\right.\\
-        &\left.\left.+6r_{zx}\varphi_{yx}\varphi_{xz}u_4\left(\varphi_{xz}-1\right)+2\varphi_{xz}\varphi_{yx}u_3\left(\varphi_{xz}\left(u_4-r_{zx}\right)+r_{zx}\right)\right)\left(1-p\right)+r_{yx}r_{zx}^2u_2^2 \right)\\
-        Y_0 &= u_2^2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
+        Y_6 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^2\\
+        Y_5 &= 2r_{yx}r_{zx}^2u_2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(u_4-u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)\\
+        Y_3 &= r_{yx}r_{zx}\left(1-p\right)\left(-r_{zx}\left(1-p\right)+2u_2\varphi_{xy}\varphi_{yx}\left(2r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(2u_4-u_3\right)\right)\right)\\
+        Y_2 &= r_{yx}\left(\left(\varphi_{yx}\left(r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(u_4-u_3\right)\right)^2+r_{zx}^2\right)\left(1-p\right)^2-2r_{zx}^2u_2\left(1-p\right)+2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(r_{zx}\left(1-\varphi_{xz}\right)+u_4\varphi_{xz}\right)\right)\\
+        Y_1 &= r_{zx}u_1\left(u_4-u_3-r_{zx}\right)\left(1-p\right)^2+2r_{yx}u_2\left(r_{zx}^2\left(\varphi_{yx}\left(\varphi_{xz}-1\right)^2+1\right)+\varphi_{xz}\varphi_{yx}\left(-u_4\left(2r_{zx}\left(\varphi_{xz}-1\right)+\varphi_{xz}u_3\right)+r_{zx}u_3\left(\varphi_{xz}-1\right)+\varphi_{xz}u_4^2\right)\right)\left(1-p\right)-r_{yx}r_{zx}^2u_2^2\\
+        Y_0 &= u_2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
     \end{align*}
     provided that the following conditions are satisfied:
     \begin{equation*}
