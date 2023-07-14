@@ -24,93 +24,71 @@ function solve_model(model, D, variables_dict, parameters_dict, t, tₘₐₓ)
     return solve(prob, Rodas5P(), reltol=TOL_SOLUTION, abstol=TOL_SOLUTION; verbose=false)
 end;
 
-function get_bifurcation_data(model, D, variables_dict, parameters, t, tₘₐₓ, bifurcation_parameter, parameter_bounds, parameter_values; data_points=10_000)
+function get_bifurcation_data(model, D, variables_dict, parameters, t, tₘₐₓ, bifurcation_parameter, parameter_bounds, parameter_values; data_points=10_000, debug=true)
 	parameters_dict = OrderedDict(zip(parameters, parameter_values))
 	x_arr_t, x_arr_s, x_arr_u = [], [], []
 	y_arr_t, y_arr_s, y_arr_u = [], [], []
 	z_arr_t, z_arr_s, z_arr_u = [], [], []
 	prev_x, prev_y, prev_z = "", "", ""
 	curr_x, curr_y, curr_z = "", "", ""
-	stability_change_values = []
     bifurcation_values = range(parameter_bounds[1], parameter_bounds[2], length=1+data_points)
 	for bifurcation_value in bifurcation_values
 		parameters_dict[bifurcation_parameter] = bifurcation_value
 		solutions = solve_model(model, D, variables_dict, parameters_dict, t, tₘₐₓ)
-		n_start = floor(Int, length(solutions.t)*0.9)
+		n_start = floor(Int, length(solutions.t)*0.95)
 		x_min, x_max = extrema(solutions'[:, 1][n_start:end])
 		y_min, y_max = extrema(solutions'[:, 2][n_start:end])
 		z_min, z_max = extrema(solutions'[:, 3][n_start:end])
-		if (abs(x_min-x_max) < 1/data_points)
-			curr_x = "Stable"
-			if (0 < x_min < SOL_MAX)
-				push!(x_arr_t, [bifurcation_value, x_min])
+		if ((1/data_points <= x_min < SOL_MAX) && (1/data_points <= x_max < SOL_MAX))
+			push!(x_arr_t, [bifurcation_value, x_min])
+			push!(x_arr_t, [bifurcation_value, x_max])
+			if (abs(x_min-x_max) <= 1/data_points)
+				curr_x = "Stable"
                 push!(x_arr_s, [bifurcation_value, x_min])
-			end
-			if (0 < x_max < SOL_MAX)
-				push!(x_arr_t, [bifurcation_value, x_max])
                 push!(x_arr_s, [bifurcation_value, x_max])
-			end
-		else
-			curr_x = "Unstable"
-			if (0 < x_min < SOL_MAX)
-				push!(x_arr_t, [bifurcation_value, x_min])
+			else
+				curr_x = "Unstable"
                 push!(x_arr_u, [bifurcation_value, x_min])
-			end
-			if (0 < x_max < SOL_MAX)
-				push!(x_arr_t, [bifurcation_value, x_max])
                 push!(x_arr_u, [bifurcation_value, x_max])
 			end
 		end
-		if (abs(y_min-y_max) < 1/data_points)
-			curr_y = "Stable"
-			if (0 < y_min < SOL_MAX)
-				push!(y_arr_t, [bifurcation_value, y_min])
+		if ((1/data_points <= y_min < SOL_MAX) && (1/data_points <= y_max < SOL_MAX))
+			push!(y_arr_t, [bifurcation_value, y_min])
+			push!(y_arr_t, [bifurcation_value, y_max])
+			if (abs(y_min-y_max) <= 1/data_points)
+				curr_y = "Stable"
                 push!(y_arr_s, [bifurcation_value, y_min])
-			end
-			if (0 < y_max < SOL_MAX)
-				push!(y_arr_t, [bifurcation_value, y_max])
                 push!(y_arr_s, [bifurcation_value, y_max])
-			end
-		else
-			curr_y = "Unstable"
-			if (0 < y_min < SOL_MAX)
-				push!(y_arr_t, [bifurcation_value, y_min])
+			else
+				curr_y = "Unstable"
                 push!(y_arr_u, [bifurcation_value, y_min])
-			end
-			if (0 < y_max < SOL_MAX)
-				push!(y_arr_t, [bifurcation_value, y_max])
                 push!(y_arr_u, [bifurcation_value, y_max])
 			end
 		end
-		if (abs(z_min-z_max) < 1/data_points)
-			curr_z = "Stable"
-			if (0 < z_min < SOL_MAX)
-				push!(z_arr_t, [bifurcation_value, z_min])
+		if ((1/data_points <= z_min < SOL_MAX) && (1/data_points <= z_max < SOL_MAX))
+			push!(z_arr_t, [bifurcation_value, z_min])
+			push!(z_arr_t, [bifurcation_value, z_max])
+			if (abs(z_min-z_max) <= 1/data_points)
+				curr_z = "Stable"
                 push!(z_arr_s, [bifurcation_value, z_min])
-			end
-			if (0 < z_max < SOL_MAX)
-				push!(z_arr_t, [bifurcation_value, z_max])
                 push!(z_arr_s, [bifurcation_value, z_max])
-			end
-		else
-			curr_z = "Unstable"
-			if (0 < z_min < SOL_MAX)
-				push!(z_arr_t, [bifurcation_value, z_min])
+			else
+				curr_z = "Unstable"
                 push!(z_arr_u, [bifurcation_value, z_min])
-			end
-			if (0 < z_max < SOL_MAX)
-				push!(z_arr_t, [bifurcation_value, z_max])
                 push!(z_arr_u, [bifurcation_value, z_max])
 			end
 		end
-		if (curr_x == curr_y == curr_z) && (curr_x != prev_x)
-			if prev_x != ""
-				println("$(prev_x) -> $(curr_x): $(bifurcation_value)")
-				push!(stability_change_values, bifurcation_value)
+		if debug
+			if (curr_x == curr_y == curr_z) && (curr_x != prev_x)
+				if prev_x == ""
+					println("Start -> $(curr_x): $(bifurcation_value)")
+				else
+					println("$(prev_x) -> $(curr_x): $(bifurcation_value)")
+				end
+				prev_x = curr_x
+				prev_y = curr_y
+				prev_z = curr_z
 			end
-			prev_x = curr_x
-			prev_y = curr_y
-			prev_z = curr_z
 		end
 	end
     x_arr_t = reformat_data(x_arr_t)
@@ -122,7 +100,6 @@ function get_bifurcation_data(model, D, variables_dict, parameters, t, tₘₐ�
 	z_arr_t = reformat_data(z_arr_t)
     z_arr_s = reformat_data(z_arr_s)
     z_arr_u = reformat_data(z_arr_u)
-	# println(stability_change_values)
     return (x_arr_t, x_arr_s, x_arr_u, y_arr_t, y_arr_s, y_arr_u, z_arr_t, z_arr_s, z_arr_u)
 end;
 
@@ -156,21 +133,13 @@ function approximate_bounds(model, D, variables_dict, parameters_dict, t, tₘ�
 end;
 
 function get_common_bounds(data)
-	a = findmax([findmin(data[1][:, 1])[1], findmin(data[4][:, 1])[1], findmin(data[7][:, 1])[1]])[1]
-	b = findmin([findmax(data[1][:, 1])[1], findmax(data[4][:, 1])[1], findmax(data[7][:, 1])[1]])[1]
-    println("Full Bounds: [$(a), $(b)]")
-	a = findmax([findmin(data[2][:, 1])[1], findmin(data[5][:, 1])[1], findmin(data[8][:, 1])[1]])[1]
-	b = findmin([findmax(data[2][:, 1])[1], findmax(data[5][:, 1])[1], findmax(data[8][:, 1])[1]])[1]
-    println("Stable Bounds: [$(a), $(b)]")
-	a = findmax([findmin(data[3][:, 1])[1], findmin(data[6][:, 1])[1], findmin(data[9][:, 1])[1]])[1]
-	b = findmin([findmax(data[3][:, 1])[1], findmax(data[6][:, 1])[1], findmax(data[9][:, 1])[1]])[1]
-    println("Unstable Bounds: [$(a), $(b)]")
+	stable_lst = intersect(data[2][:, 1], data[5][:, 1], data[8][:, 1])
+	unstable_lst = intersect(data[3][:, 1], data[6][:, 1], data[9][:, 1])
+	full_lst = union(stable_lst, unstable_lst)
+    println("Full Bounds: [$(findmin(full_lst)[1]), $(findmax(full_lst)[1])]")
+    println("Stable Bounds: [$(findmin(stable_lst)[1]), $(findmax(stable_lst)[1])]")
+    println("Unstable Bounds: [$(findmin(unstable_lst)[1]), $(findmax(unstable_lst)[1])]")
     return nothing
-end;
-
-
-function compute_bifurcation_points(data)
-	
 end;
 
 end
