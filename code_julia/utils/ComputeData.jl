@@ -24,7 +24,7 @@ function solve_model(model, D, variables_dict, parameters_dict, t, tₘₐₓ)
     return solve(prob, Rodas5P(), reltol=TOL_SOLUTION, abstol=TOL_SOLUTION; verbose=false)
 end;
 
-function get_bifurcation_data(model, D, variables_dict, parameters, t, tₘₐₓ, bifurcation_parameter, parameter_bounds, parameter_values; data_points=10_000, debug=true)
+function get_bifurcation_data(model, D, variables_dict, parameters, t, tₘₐₓ, bifurcation_parameter, parameter_bounds, parameter_values; data_points=10_000, debug=false)
 	parameters_dict = OrderedDict(zip(parameters, parameter_values))
 	x_arr_t, x_arr_s, x_arr_u = [], [], []
 	y_arr_t, y_arr_s, y_arr_u = [], [], []
@@ -78,17 +78,17 @@ function get_bifurcation_data(model, D, variables_dict, parameters, t, tₘₐ�
                 push!(z_arr_u, [bifurcation_value, z_max])
 			end
 		end
-		if debug
-			if (curr_x == curr_y == curr_z) && (curr_x != prev_x)
+		if (curr_x == curr_y == curr_z) && (curr_x != prev_x)
+			if debug
 				if prev_x == ""
 					println("Start -> $(curr_x): $(bifurcation_value)")
 				else
 					println("$(prev_x) -> $(curr_x): $(bifurcation_value)")
 				end
-				prev_x = curr_x
-				prev_y = curr_y
-				prev_z = curr_z
 			end
+			prev_x = curr_x
+			prev_y = curr_y
+			prev_z = curr_z
 		end
 	end
     x_arr_t = reformat_data(x_arr_t)
@@ -107,7 +107,7 @@ function reformat_data(data)
     if data == []
 		return []
 	else
-		return return permutedims(reshape(hcat(data...), (length(data[1]), length(data))))
+		return permutedims(reshape(hcat(data...), (length(data[1]), length(data))))
 	end
 end;
 
