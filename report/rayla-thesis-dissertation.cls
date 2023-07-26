@@ -95,7 +95,7 @@
 % Custom referencing
 %-----------------------------------------------------------------------------
 \DeclareRobustCommand{\myref}[2][]{%
-    \ifthenelse{\equal{#1}{Equation} \OR \equal{#1}{System} \OR \equal{#1}{Model} \OR \equal{#1}{Matrix} \OR \equal{#1}{Theorem}}
+    \ifthenelse{\equal{#1}{Equation} \OR \equal{#1}{System} \OR \equal{#1}{Model} \OR \equal{#1}{Matrix} \OR \equal{#1}{Theorem} \OR \equal{#1}{Parameters} \OR \equal{#1}{parameters}}
     {#1~\eqref{#2}}
     {#1~\ref{#2}}%
 }
