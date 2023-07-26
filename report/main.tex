@@ -1,64 +1,156 @@
-% ----------------------------------------------------------------------------
-% Author: Rayla Kurosaki
-% GitHub: https://github.com/rkp1503
-% ----------------------------------------------------------------------------
-\documentclass{rayla-thesis-dissertation}
-\usepackage{rayla-math-style}
+% interacttfssample.tex
+% v1.05 - August 2017
 
-% ----------------------------------------------------------------------------
-% Project Information
-% ----------------------------------------------------------------------------
-\myUniversity{Rochester Institute of Technology}
-\myCollege{College of Science}
-\myDepartment{School of Mathematics and Statistics}
-\myLogo{rit_logo.png}
-% \myLogo{logo.eps}
-\myTitle{Complex Dynamics of a Three Species Ecosystem}
-\myName{Ramsey (Rayla) Phuc}
-\myAdvisor{Dr. Ephraim Agyingi}
-\submissionDate{\today}
+\documentclass[]{interact}
 
-% ---------------------------------------------------------------------------- 
-% Start of Document
-% ----------------------------------------------------------------------------
+\usepackage{epstopdf}% To incorporate .eps illustrations using PDFLaTeX, etc.
+\usepackage[caption=false]{subfig}% Support for small, `sub' figures and tables
+%\usepackage[nolists,tablesfirst]{endfloat}% To `separate' figures and tables from text if required
+
+%\usepackage[doublespacing]{setspace}% To produce a `double spaced' document if required
+%\setlength\parindent{24pt}% To increase paragraph indentation when line spacing is doubled
+%\setlength\bibindent{2em}% To increase hanging indent in bibliography when line spacing is doubled
+
+\usepackage[numbers,sort&compress]{natbib}% Citation support using natbib.sty
+\bibpunct[, ]{[}{]}{,}{n}{,}{,}% Citation support using natbib.sty
+\renewcommand\bibfont{\fontsize{10}{12}\selectfont}% Bibliography support using natbib.sty
+
+\theoremstyle{plain}% Theorem-like structures provided by amsthm.sty
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{notation}{Notation}
+
+\allowdisplaybreaks
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{float}
+\renewcommand{\ln}[1]{\ensuremath{\text{ln}\abs{#1}}}
+\newcommand{\abs}[1]{\ensuremath{\left| #1 \right|}}
+\renewcommand{\exp}[1]{\ensuremath{\text{exp}\left( #1 \right)}}
+\newcommand{\diff}[3][]{
+    \ifthenelse
+    {\equal{#1}{}}
+    {\ensuremath{\frac{\opdiff{#2}}{\opdiff{#3}}}}
+    {\ensuremath{\frac{\mathrm{d}^{#1}#2}{\mathrm{d}#3^{#1}}}}
+    }
+\newcommand{\opdiff}[1]{\ensuremath{\mathrm{d}#1}}
+\newcommand{\myref}[2][]{%
+    \ifthenelse{\equal{#1}{Equation} \OR \equal{#1}{System} \OR \equal{#1}{Model} \OR \equal{#1}{Matrix} \OR \equal{#1}{Theorem} \OR \equal{#1}{Parameters} \OR \equal{#1}{parameters}}
+    {#1~\eqref{#2}}
+    {#1~\ref{#2}}%
+}
+\graphicspath{{figures/eps/}}
+\numberwithin{equation}{section}
+
 \begin{document}
 
-    \maketitle
+\articletype{}% Specify the article type or omit as appropriate
 
-    \newpage
-    \tableofcontents
+\title{Complex Dynamics of a Three Species Ecosystem}
 
-    % ------------------------------------------------------------------------
-    % Abstract
-    % ------------------------------------------------------------------------
-    \begin{abstract}
-        \lipsum[1]
-        % This paper investigates the dynamics of a model system by modifying key assumptions to explore alternative ecological interactions. The original model, outlined in the paper \cite{GAKKHAR201654}, initially assumes a competition interaction between species $X$ and $Y$. However, we consider the implications of assuming a mutualism interaction instead. Additionally, we modify the assumption of a commensalism interaction between species $X$ and $Z$ to examine the consequences of an amensalism interaction. Furthermore, the model is expanded by assuming a logistic growth pattern for species Z. Through these modifications, we determine the new equilibrium points and conduct a comprehensive analysis of their characteristics. Numerical computations are performed to assess the stability or instability of the newly derived equilibrium points. The obtained results offer valuable insights into the dynamics and stability of the modified model, shedding light on the consequences of mutualism and amensalism interactions in the examined ecological system. This research contributes to a deeper understanding of the interrelationships between species interactions and population dynamics in ecological systems.
-    \end{abstract}
+\author{
+\name{Ramsey "Rayla" Phuc\textsuperscript{a} and Ephraim Agyingi\textsuperscript{a}}
+\affil{\textsuperscript{a}Department of Mathematics and Statistics, Rochester Institute of Technology, USA}
+}
 
-    % ------------------------------------------------------------------------
-    % Body
-    % ------------------------------------------------------------------------
-    \input{contents/introduction.tex}
-    \input{contents/proposed-model.tex}
-    \input{contents/equilibria-analysis.tex}
-    % \input{contents/numerical-simulations.tex}
+\maketitle
 
-    % ------------------------------------------------------------------------
-    % Bibliography
-    % ------------------------------------------------------------------------
-    \newpage
-    % \nocite{*}
-    \printbibliography[heading=bibintoc, title={Bibliography}]
-    % Filter by type
-    % \printbibliography[heading=subbibintoc,title={Articles},type=article]
-    % \printbibliography[heading=subbibintoc,title={Books},type=book]
+\begin{abstract}
+This paper investigates the dynamics of an ecological system of three species with three different interactions, those being mutualism, amensalism, and non-linear competition. We determine the equilibrium points and conduct a comprehensive analysis of their characteristics. Numerical computations are performed to assess the stability or instability of the newly derived equilibrium points. The obtained results offer valuable insights into the dynamics and stability of the modified model, shedding light on the consequences of mutualism and amensalism interactions in the examined ecological system. This research contributes to a deeper understanding of the interrelationships between species interactions and population dynamics in ecological systems.
+\end{abstract}
 
-    % ------------------------------------------------------------------------
-    % Appendix
-    % ------------------------------------------------------------------------
-    % \newpage
-    % \appendix
-    % \input{appendices/figures.tex}
+\begin{keywords}
+Mutualism; Amensalism; Non-Linear Competition; Holling-Type II Response; Refuge; Hopf Bifurcation
+\end{keywords}
+
+
+\input{contents/introduction}
+
+\input{contents/proposed-model}
+
+\input{contents/equilibria-analysis}
+
+\input{contents/numerical-simulations}
+
+\bibliographystyle{tfs}
+\bibliography{main.bib}
+
+\newpage
+\appendix
+\input{contents/appendix}
 
 \end{document}
+
+
+% % ----------------------------------------------------------------------------
+% % Author: Rayla Kurosaki
+% % GitHub: https://github.com/rkp1503
+% % ----------------------------------------------------------------------------
+% \documentclass{rayla-thesis-dissertation}
+% \usepackage{rayla-math-style}
+
+% % ----------------------------------------------------------------------------
+% % Project Information
+% % ----------------------------------------------------------------------------
+% \myUniversity{Rochester Institute of Technology}
+% \myCollege{College of Science}
+% \myDepartment{School of Mathematics and Statistics}
+% \myLogo{rit_logo.png}
+% % \myLogo{logo.eps}
+% \myTitle{Complex Dynamics of a Three Species Ecosystem}
+% \myName{Ramsey "Rayla" Phuc}
+% \myAdvisor{Dr. Ephraim Agyingi}
+% \submissionDate{\today}
+
+% % ---------------------------------------------------------------------------- 
+% % Start of Document
+% % ----------------------------------------------------------------------------
+% \begin{document}
+
+%     \maketitle
+
+%     \newpage
+%     \tableofcontents
+
+%     % ------------------------------------------------------------------------
+%     % Abstract
+%     % ------------------------------------------------------------------------
+%     \begin{abstract}
+%         This paper investigates the dynamics of an ecological system of three species with three different interactions, those being mutualism, amensalism, and competition. We determine the equilibrium points and conduct a comprehensive analysis of their characteristics. Numerical computations are performed to assess the stability or instability of the newly derived equilibrium points. The obtained results offer valuable insights into the dynamics and stability of the modified model, shedding light on the consequences of mutualism and amensalism interactions in the examined ecological system. This research contributes to a deeper understanding of the interrelationships between species interactions and population dynamics in ecological systems.
+%     \end{abstract}
+
+%     % ------------------------------------------------------------------------
+%     % Body
+%     % ------------------------------------------------------------------------
+%     \input{contents/introduction.tex}
+%     \input{contents/proposed-model.tex}
+%     \input{contents/equilibria-analysis.tex}
+%     \input{contents/numerical-simulations.tex}
+
+%     % ------------------------------------------------------------------------
+%     % Bibliography
+%     % ------------------------------------------------------------------------
+%     \newpage
+%     % \nocite{*}
+%     \printbibliography[heading=bibintoc, title={Bibliography}]
+%     % Filter by type
+%     % \printbibliography[heading=subbibintoc,title={Articles},type=article]
+%     % \printbibliography[heading=subbibintoc,title={Books},type=book]
+
+%     % ------------------------------------------------------------------------
+%     % Appendix
+%     % ------------------------------------------------------------------------
+%     \newpage
+%     \appendix
+%     \input{contents/appendix.tex}
+
+% \end{document}
