@@ -612,8 +612,7 @@ md"""### Parameter $r_{yx}$"""
 # ╔═╡ a46c26e2-0c73-4669-a358-8dc9995ab649
 begin
 	param_var_b_r₂₁ = r₂₁
-	param_bounds_r₂₁ = [0, 10]
-	# param_bounds_r₂₁ = [0, 1]
+	param_bounds_r₂₁ = [0, 1]
 	params_vals_b_r₂₁ = collect(values(params_dict₂))
 	params_vals_b_r₂₁[indexin(param_var_b_r₂₁, params_keys)[1]] = 0.5
 
@@ -661,10 +660,7 @@ md"""### Parameter $r_{zx}$"""
 # ╔═╡ 333968ba-4e73-48cf-a98f-0b55d78c0151
 begin
 	param_var_b_r₃₁ = r₃₁
-	param_bounds_r₃₁ = [0, 10]
-	param_bounds_r₃₁ = [0.0, 0.6155]
-	param_bounds_r₃₁ = [0.0, 0.133]
-	# param_bounds_r₃₁ = [0.133, 0.6155]
+	param_bounds_r₃₁ = [0.133, 0.6155]
 	params_vals_b_r₃₁ = collect(values(params_dict))
 	params_vals_b_r₃₁[indexin(param_var_b_r₃₁, params_keys)[1]] = 0.35
 
@@ -712,8 +708,7 @@ md"""### Parameter $p$"""
 # ╔═╡ fcea995e-ddb8-47c7-be41-1fff3c53420b
 begin
 	param_var_b_p = p
-	param_bounds_p = [0, 1]
-	# param_bounds_p = [0, 0.9476]
+	param_bounds_p = [0, 0.9476]
 	params_vals_b_p = collect(values(params_dict))
 	params_vals_b_p[indexin(param_var_b_p, params_keys)[1]] = 0.1
 
@@ -761,8 +756,7 @@ md"""### Parameter $\varphi_{xy}$"""
 # ╔═╡ 50172e15-9a8c-483e-ba2d-7f3bde5b7cc7
 begin
 	param_var_b_φ₁₂ = φ₁₂
-	param_bounds_φ₁₂ = [0, 10]
-	# param_bounds_φ₁₂ = [0.0, 0.187]
+	param_bounds_φ₁₂ = [0.0, 0.187]
 	params_vals_b_φ₁₂ = collect(values(params_dict₂))
 	params_vals_b_φ₁₂[indexin(param_var_b_φ₁₂, params_keys)[1]] = 0.15
 
@@ -810,8 +804,7 @@ md"""### Parameter $\varphi_{yx}$"""
 # ╔═╡ b0217026-bfc2-44b6-a052-656999655bfc
 begin
 	param_var_b_φ₂₁ = φ₂₁
-	param_bounds_φ₂₁ = [0, 10]
-	# param_bounds_φ₂₁ = [0.0, 0.444]
+	param_bounds_φ₂₁ = [0.0, 0.444]
 	params_vals_b_φ₂₁ = collect(values(params_dict))
 	params_vals_b_φ₂₁[indexin(param_var_b_φ₂₁, params_keys)[1]] = 0.43
 
@@ -860,8 +853,7 @@ md"""### Parameter $\varphi_{xz}$"""
 # ╔═╡ 4dfa935b-53b7-4661-91c5-3d9e639bf66c
 begin
 	param_var_b_φ₁₃ = φ₁₃
-	param_bounds_φ₁₃ = [0, 10]
-	# param_bounds_φ₁₃ = [0, 2.252]
+	param_bounds_φ₁₃ = [0, 2.252]
 	params_vals_b_φ₁₃ = collect(values(params_dict₂))
 	params_vals_b_φ₁₃[indexin(param_var_b_φ₁₃, params_keys)[1]] = 0.5
 
@@ -909,8 +901,7 @@ md"""### Parameter $u_1$"""
 # ╔═╡ 1bd4bd3c-1768-4c19-99c9-07126e9a39c4
 begin
 	param_var_b_u₁ = u₁
-	param_bounds_u₁ = [0, 10]
-	# param_bounds_u₁ = [0, 1]
+	param_bounds_u₁ = [0, 1]
 	params_vals_b_u₁ = collect(values(params_dict₂))
 	params_vals_b_u₁[indexin(param_var_b_u₁, params_keys)[1]] = 0.8
 
@@ -958,8 +949,7 @@ md"""### Parameter $u_2$"""
 # ╔═╡ 1c458bc6-6232-4aa7-9f2f-6c2f1709f047
 begin
 	param_var_b_u₂ = u₂
-	param_bounds_u₂ = [0, 10]
-	# param_bounds_u₂ = [0.0354, 0.611]
+	param_bounds_u₂ = [0.0354, 0.611]
 	# param_bounds_u₂ = [0.0354, 0.1]
 	params_vals_b_u₂ = collect(values(params_dict))
 	params_vals_b_u₂[indexin(param_var_b_u₂, params_keys)[1]] = 0.04
@@ -1008,9 +998,7 @@ md"""### Parameter $u_3$"""
 # ╔═╡ f5f115e7-efcc-403b-ab91-98ac77534e6d
 begin
 	param_var_b_u₃ = u₃
-	param_bounds_u₃ = [0, 10]
-	# param_bounds_u₃ = [0.208, 10]
-	# param_bounds_u₃ = [0.208, 3]
+	param_bounds_u₃ = [0.208, 3]
 	params_vals_b_u₃ = collect(values(params_dict₂))
 	params_vals_b_u₃[indexin(param_var_b_u₃, params_keys)[1]] = 0.75
 
@@ -1058,8 +1046,7 @@ md"""### Parameter $u_4$"""
 # ╔═╡ d03eb32f-bcb2-497e-afe2-a02c87cd61a4
 begin
 	param_var_b_u₄ = u₄
-	param_bounds_u₄ = [0, 10]
-	# param_bounds_u₄ = [0.078, 0.55]
+	param_bounds_u₄ = [0.078, 0.55]
 	params_vals_b_u₄ = collect(values(params_dict₂))
 	params_vals_b_u₄[indexin(param_var_b_u₄, params_keys)[1]] = 0.3
 
