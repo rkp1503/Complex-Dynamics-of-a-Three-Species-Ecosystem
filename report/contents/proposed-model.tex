@@ -28,15 +28,7 @@ With these assumptions, the governing system of equations that accurately descri
     \end{align}
 \end{subequations}
 
-with the initial conditions $X(0) \geq 0,\ Y(0) \geq 0,\ Z(0) \geq 0$. Then using the following substitutions:
-
-\begin{gather*}
-    X=K_xx,\ Y=K_yy,\ Z=K_zz,\ T=\frac{1}{r_x}t,\ r_{yx}=\frac{r_y}{r_x},\ r_{zx}=\frac{r_z}{r_x}\\
-    \varphi_{xy}=\frac{\alpha_{xy}K_y^2}{K_x},\ \varphi_{yx}=\frac{\alpha_{yx}K_x^2}{K_y},\ \varphi_{xz}=\frac{\delta_{xz}K_z}{r_x}\\
-    u_1=\frac{aK_z}{r_xK_y},\ u_2=\frac{b}{K_y},\ u_3=\frac{ac}{r_x},\ u_4=\frac{e}{r_x}
-\end{gather*}
-
-we can simplify and non-dimensionalize \myref[Model]{model:rayla-ephraim-d}. This gives us the following model we will work on throughout this paper:
+with the initial conditions $X(0) \geq 0,\ Y(0) \geq 0,\ Z(0) \geq 0$. Then using the following substitutions $X=K_xx,\ Y=K_yy,\ Z=K_zz,\ T=\frac{1}{r_x}t,\ r_{yx}=\frac{r_y}{r_x},\ r_{zx}=\frac{r_z}{r_x},\ \varphi_{xy}=\frac{\alpha_{xy}K_y^2}{K_x},\ \varphi_{yx}=\frac{\alpha_{yx}K_x^2}{K_y},\ \varphi_{xz}=\frac{\delta_{xz}K_z}{r_x},\ u_1=\frac{aK_z}{r_xK_y},\ u_2=\frac{b}{K_y},\ u_3=\frac{ac}{r_x},\ u_4=\frac{e}{r_x}$, we can simplify and non-dimensionalize \myref[Model]{model:rayla-ephraim-d}. This gives us the following model we will work on throughout this paper:
 \begin{subequations}\label{model:rayla-ephraim}
     \begin{align}
         \diff[]{x}{t} &= x\left(1-x+\varphi_{xy}y^2\right)-\varphi_{xz}xz
