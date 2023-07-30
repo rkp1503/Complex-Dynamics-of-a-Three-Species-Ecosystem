@@ -89,9 +89,9 @@ begin
 		r₃₁ => 0.5,
     	# Refuge rate of species Y
 		p => 0.6,
-    	# Scaled inter-species mutualism coefficient of species Y on species X
+    	# Scaled interspecies mutualism coefficient of species Y on species X
 		φ₁₂ => 0.6,
-    	# Scaled inter-species mutualism coefficient of species X on species Y
+    	# Scaled interspecies mutualism coefficient of species X on species Y
 		φ₂₁ => 0.15,
 		# Scaled commensal coefficient of species Z on species X
 		φ₁₃ => 0.4,
@@ -509,7 +509,7 @@ begin
 	x_axis_te = "Time in Days"
 	y_axis_te = "Population Density"
 	
-	GenerateFigures.my_plot(sol_z, title_te, x_axis_te, y_axis_te, legend_dict)
+	GenerateFigures.my_plot(sol_z, title_te, x_axis_te, y_axis_te, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 01d76dbb-b853-4774-b9f3-04109b5e74b5
@@ -525,7 +525,7 @@ begin
 	
 	sol_xy = ComputeData.solve_model(model, D, vars_dict, params_dict_temp_xy, t, tₘₐₓ)
 	
-	GenerateFigures.my_plot(sol_xy, title_te, x_axis_te, y_axis_te, legend_dict)
+	GenerateFigures.my_plot(sol_xy, title_te, x_axis_te, y_axis_te, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 4891b616-2415-4c63-8ee1-5cf05b9e1319
@@ -541,7 +541,7 @@ begin
 	
 	sol_xz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp_xz, t, tₘₐₓ)
 
-	GenerateFigures.my_plot(sol_xz, title_te, x_axis_te, y_axis_te, legend_dict)
+	GenerateFigures.my_plot(sol_xz, title_te, x_axis_te, y_axis_te, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 2d77daef-3784-4b6c-a478-091b9b78397a
@@ -557,7 +557,7 @@ begin
 	
 	sol_yz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp_yz, t, tₘₐₓ)
 
-	GenerateFigures.my_plot(sol_yz, title_te, x_axis_te, y_axis_te, legend_dict)
+	GenerateFigures.my_plot(sol_yz, title_te, x_axis_te, y_axis_te, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
@@ -576,7 +576,7 @@ begin
 	
 	sol_xyz = ComputeData.solve_model(model, D, vars_dict, params_dict_temp_xyz, t, tₘₐₓ)
 
-	GenerateFigures.my_plot(sol_xyz, title_te, x_axis_te, y_axis_te, legend_dict)
+	GenerateFigures.my_plot(sol_xyz, title_te, x_axis_te, y_axis_te, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 1659486c-fc1c-4dc6-ad87-40b46a232996
@@ -592,16 +592,16 @@ begin
 end
 
 # ╔═╡ 4f73f30a-9083-4717-8f74-65318e4fadac
-GenerateFigures.my_3D_phase_portrait(sol_xyz, "3D Phase Portrait", "Species X", "Species Y", "Species Z")
+GenerateFigures.my_3D_phase_portrait(sol_xyz, "3D Phase Portrait", "Species X", "Species Y", "Species Z"; detailed_fig=true)
 
 # ╔═╡ 3f14562d-7ef0-44a1-9549-c201134d9930
-GenerateFigures.my_2D_phase_portrait(pp_data_x, pp_data_y, "Species X and Y", "Species X", "Species Y")
+GenerateFigures.my_2D_phase_portrait(pp_data_x, pp_data_y, "Species X and Y", "Species X", "Species Y"; detailed_fig=true)
 
 # ╔═╡ d79ea54d-9211-40ea-8c30-14c78e0b418e
-GenerateFigures.my_2D_phase_portrait(pp_data_x, pp_data_z, "Species X and Z", "Species X", "Species Z")
+GenerateFigures.my_2D_phase_portrait(pp_data_x, pp_data_z, "Species X and Z", "Species X", "Species Z"; detailed_fig=true)
 
 # ╔═╡ 11e77b07-9b09-4dd8-a9e5-7e1ceb612507
-GenerateFigures.my_2D_phase_portrait(pp_data_y, pp_data_z, "Species Y and Z", "Species Y", "Species Z")
+GenerateFigures.my_2D_phase_portrait(pp_data_y, pp_data_z, "Species Y and Z", "Species Y", "Species Z"; detailed_fig=true)
 
 # ╔═╡ 648d8050-1b99-45f5-a858-1676c92beb89
 md"""## Bifurcation Diagrams"""
@@ -642,17 +642,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 74054af3-20e1-4564-ba78-5cb84d6ef2e4
-GenerateFigures.my_bifurcation_diagram(data_r₂₁[2], data_r₂₁[3], x, param_var_b_r₂₁, "black")
+GenerateFigures.my_bifurcation_diagram(data_r₂₁[2], data_r₂₁[3], x, param_var_b_r₂₁, "black"; detailed_fig=true)
 
 # ╔═╡ cc787b00-a308-4535-92ec-b2002f01e10d
-GenerateFigures.my_bifurcation_diagram(data_r₂₁[5], data_r₂₁[6], y, param_var_b_r₂₁, "red")
+GenerateFigures.my_bifurcation_diagram(data_r₂₁[5], data_r₂₁[6], y, param_var_b_r₂₁, "red"; detailed_fig=true)
 
 # ╔═╡ 0461fcf2-8440-4343-ade6-26d454f3ab62
-GenerateFigures.my_bifurcation_diagram(data_r₂₁[8], data_r₂₁[9], z, param_var_b_r₂₁, "blue")
+GenerateFigures.my_bifurcation_diagram(data_r₂₁[8], data_r₂₁[9], z, param_var_b_r₂₁, "blue"; detailed_fig=true)
 
 # ╔═╡ 92ef6009-19db-4965-b7a6-ace522e4c270
 md"""### Parameter $r_{zx}$"""
@@ -690,17 +690,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 48139dc3-7644-49f1-873a-cbd5f3ef7f0c
-GenerateFigures.my_bifurcation_diagram(data_r₃₁[2], data_r₃₁[3], x, param_var_b_r₃₁, "black")
+GenerateFigures.my_bifurcation_diagram(data_r₃₁[2], data_r₃₁[3], x, param_var_b_r₃₁, "black"; detailed_fig=true)
 
 # ╔═╡ 8747060e-d7e5-4804-88cb-a38fa096ed8b
-GenerateFigures.my_bifurcation_diagram(data_r₃₁[5], data_r₃₁[6], y, param_var_b_r₃₁, "red")
+GenerateFigures.my_bifurcation_diagram(data_r₃₁[5], data_r₃₁[6], y, param_var_b_r₃₁, "red"; detailed_fig=true)
 
 # ╔═╡ 06733475-09be-45fd-9247-2180ad2df137
-GenerateFigures.my_bifurcation_diagram(data_r₃₁[8], data_r₃₁[9], z, param_var_b_r₃₁, "blue")
+GenerateFigures.my_bifurcation_diagram(data_r₃₁[8], data_r₃₁[9], z, param_var_b_r₃₁, "blue"; detailed_fig=true)
 
 # ╔═╡ e3001a20-5df9-480c-aef4-334b2f3e37e4
 md"""### Parameter $p$"""
@@ -738,17 +738,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ a88fdc5f-098e-41d1-ae77-67d48564a5dc
-GenerateFigures.my_bifurcation_diagram(data_p[2], data_p[3], x, param_var_b_p, "black")
+GenerateFigures.my_bifurcation_diagram(data_p[2], data_p[3], x, param_var_b_p, "black"; detailed_fig=true)
 
 # ╔═╡ fbbbfa21-876d-47b0-b703-1f924cd2df13
-GenerateFigures.my_bifurcation_diagram(data_p[5], data_p[6], y, param_var_b_p, "red")
+GenerateFigures.my_bifurcation_diagram(data_p[5], data_p[6], y, param_var_b_p, "red"; detailed_fig=true)
 
 # ╔═╡ ef836f46-e68b-4936-845b-5b4c8761677f
-GenerateFigures.my_bifurcation_diagram(data_p[8], data_p[9], z, param_var_b_p, "blue")
+GenerateFigures.my_bifurcation_diagram(data_p[8], data_p[9], z, param_var_b_p, "blue"; detailed_fig=true)
 
 # ╔═╡ ddc255c7-c888-4c1b-8d3a-d7a879f39de3
 md"""### Parameter $\varphi_{xy}$"""
@@ -786,17 +786,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ eebfe670-aa4e-4c8d-8407-fdaf49e706bf
-GenerateFigures.my_bifurcation_diagram(data_φ₁₂[2], data_φ₁₂[3], x, param_var_b_φ₁₂, "black")
+GenerateFigures.my_bifurcation_diagram(data_φ₁₂[2], data_φ₁₂[3], x, param_var_b_φ₁₂, "black"; detailed_fig=true)
 
 # ╔═╡ c52cfb3e-7276-4508-a368-80d790300ac2
-GenerateFigures.my_bifurcation_diagram(data_φ₁₂[5], data_φ₁₂[6], y, param_var_b_φ₁₂, "red")
+GenerateFigures.my_bifurcation_diagram(data_φ₁₂[5], data_φ₁₂[6], y, param_var_b_φ₁₂, "red"; detailed_fig=true)
 
 # ╔═╡ 35cbc60b-8b66-45cc-bdac-004473a38df0
-GenerateFigures.my_bifurcation_diagram(data_φ₁₂[8], data_φ₁₂[9], z, param_var_b_φ₁₂, "blue")
+GenerateFigures.my_bifurcation_diagram(data_φ₁₂[8], data_φ₁₂[9], z, param_var_b_φ₁₂, "blue"; detailed_fig=true)
 
 # ╔═╡ cc874bbf-a756-41bf-a9f3-9a2b6e893dae
 md"""### Parameter $\varphi_{yx}$"""
@@ -835,17 +835,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ dd2d6749-99c5-40f8-9fb8-5f7f05c14e1d
-GenerateFigures.my_bifurcation_diagram(data_φ₂₁[2], data_φ₂₁[3], x, param_var_b_φ₂₁, "black")
+GenerateFigures.my_bifurcation_diagram(data_φ₂₁[2], data_φ₂₁[3], x, param_var_b_φ₂₁, "black"; detailed_fig=true)
 
 # ╔═╡ a4a24d7a-6164-4b30-b7f8-ab5ec5259ef2
-GenerateFigures.my_bifurcation_diagram(data_φ₂₁[5], data_φ₂₁[6], y, param_var_b_φ₂₁, "red")
+GenerateFigures.my_bifurcation_diagram(data_φ₂₁[5], data_φ₂₁[6], y, param_var_b_φ₂₁, "red"; detailed_fig=true)
 
 # ╔═╡ fa400376-4302-4338-a098-30eb7a841f7a
-GenerateFigures.my_bifurcation_diagram(data_φ₂₁[8], data_φ₂₁[9], z, param_var_b_φ₂₁, "blue")
+GenerateFigures.my_bifurcation_diagram(data_φ₂₁[8], data_φ₂₁[9], z, param_var_b_φ₂₁, "blue"; detailed_fig=true)
 
 # ╔═╡ 00b659d4-0505-461b-87c4-7f8fd76ca3ab
 md"""### Parameter $\varphi_{xz}$"""
@@ -883,17 +883,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 88da6932-205e-447c-a252-ae4791198ae4
-GenerateFigures.my_bifurcation_diagram(data_φ₁₃[2], data_φ₁₃[3], x, param_var_b_φ₁₃, "black")
+GenerateFigures.my_bifurcation_diagram(data_φ₁₃[2], data_φ₁₃[3], x, param_var_b_φ₁₃, "black"; detailed_fig=true)
 
 # ╔═╡ f7cf06c4-c06d-470c-9cab-3d5e69ca2645
-GenerateFigures.my_bifurcation_diagram(data_φ₁₃[5], data_φ₁₃[6], y, param_var_b_φ₁₃, "red")
+GenerateFigures.my_bifurcation_diagram(data_φ₁₃[5], data_φ₁₃[6], y, param_var_b_φ₁₃, "red"; detailed_fig=true)
 
 # ╔═╡ f6703f5e-012e-4a88-bed2-89cb2a9cd0dd
-GenerateFigures.my_bifurcation_diagram(data_φ₁₃[8], data_φ₁₃[9], z, param_var_b_φ₁₃, "blue")
+GenerateFigures.my_bifurcation_diagram(data_φ₁₃[8], data_φ₁₃[9], z, param_var_b_φ₁₃, "blue"; detailed_fig=true)
 
 # ╔═╡ 99432cf2-9200-4f71-86fe-d88f34313544
 md"""### Parameter $u_1$"""
@@ -931,17 +931,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 3c8f1684-8d40-4f2f-8161-8e6b0a451426
-GenerateFigures.my_bifurcation_diagram(data_u₁[2], data_u₁[3], x, param_var_b_u₁, "black")
+GenerateFigures.my_bifurcation_diagram(data_u₁[2], data_u₁[3], x, param_var_b_u₁, "black"; detailed_fig=true)
 
 # ╔═╡ 38eac398-6f6d-4abd-abab-68a7f7d220b5
-GenerateFigures.my_bifurcation_diagram(data_u₁[5], data_u₁[6], y, param_var_b_u₁, "red")
+GenerateFigures.my_bifurcation_diagram(data_u₁[5], data_u₁[6], y, param_var_b_u₁, "red"; detailed_fig=true)
 
 # ╔═╡ 4c112a58-1965-4616-a7e2-d66cdce6a755
-GenerateFigures.my_bifurcation_diagram(data_u₁[8], data_u₁[9], z, param_var_b_u₁, "blue")
+GenerateFigures.my_bifurcation_diagram(data_u₁[8], data_u₁[9], z, param_var_b_u₁, "blue"; detailed_fig=true)
 
 # ╔═╡ baa8147a-08e5-4d4e-a33f-d766980af97b
 md"""### Parameter $u_2$"""
@@ -980,17 +980,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ bf42fc0c-dda6-4522-b14f-563558cc36b4
-GenerateFigures.my_bifurcation_diagram(data_u₂[2], data_u₂[3], x, param_var_b_u₂, "black")
+GenerateFigures.my_bifurcation_diagram(data_u₂[2], data_u₂[3], x, param_var_b_u₂, "black"; detailed_fig=true)
 
 # ╔═╡ a0702e5d-597d-4867-899c-40b6fbdea1b1
-GenerateFigures.my_bifurcation_diagram(data_u₂[5], data_u₂[6], y, param_var_b_u₂, "red")
+GenerateFigures.my_bifurcation_diagram(data_u₂[5], data_u₂[6], y, param_var_b_u₂, "red"; detailed_fig=true)
 
 # ╔═╡ 966c8d24-7076-4807-95b2-85bab69943b1
-GenerateFigures.my_bifurcation_diagram(data_u₂[8], data_u₂[9], z, param_var_b_u₂, "blue")
+GenerateFigures.my_bifurcation_diagram(data_u₂[8], data_u₂[9], z, param_var_b_u₂, "blue"; detailed_fig=true)
 
 # ╔═╡ 79b9fc91-2f3e-4da5-87db-28845c175397
 md"""### Parameter $u_3$"""
@@ -1028,17 +1028,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ 6473338a-7090-4fb1-8e1b-f885d792321e
-GenerateFigures.my_bifurcation_diagram(data_u₃[2], data_u₃[3], x, param_var_b_u₃, "black")
+GenerateFigures.my_bifurcation_diagram(data_u₃[2], data_u₃[3], x, param_var_b_u₃, "black"; detailed_fig=true)
 
 # ╔═╡ acd65a7b-2233-4ab5-b72f-ac85ae7abce6
-GenerateFigures.my_bifurcation_diagram(data_u₃[5], data_u₃[6], y, param_var_b_u₃, "red")
+GenerateFigures.my_bifurcation_diagram(data_u₃[5], data_u₃[6], y, param_var_b_u₃, "red"; detailed_fig=true)
 
 # ╔═╡ fd361460-d62c-427c-89fa-292213bba5d6
-GenerateFigures.my_bifurcation_diagram(data_u₃[8], data_u₃[9], z, param_var_b_u₃, "blue")
+GenerateFigures.my_bifurcation_diagram(data_u₃[8], data_u₃[9], z, param_var_b_u₃, "blue"; detailed_fig=true)
 
 # ╔═╡ ecd0f05c-d2ba-43bf-ad42-2c3d1082492a
 md"""### Parameter $u_4$"""
@@ -1076,17 +1076,17 @@ let
 	xaxis = "Time in Days"
 	yaxis = "Population size"
 
-	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict)
+	GenerateFigures.my_plot(sol, title, xaxis, yaxis, legend_dict; detailed_fig=true)
 end
 
 # ╔═╡ eae3ebd2-aece-4a9d-9777-24c156428d22
-GenerateFigures.my_bifurcation_diagram(data_u₄[2], data_u₄[3], x, param_var_b_u₄, "black")
+GenerateFigures.my_bifurcation_diagram(data_u₄[2], data_u₄[3], x, param_var_b_u₄, "black"; detailed_fig=true)
 
 # ╔═╡ 5fed496c-c109-4b20-867a-e49f7cf5a54b
-GenerateFigures.my_bifurcation_diagram(data_u₄[5], data_u₄[6], y, param_var_b_u₄, "red")
+GenerateFigures.my_bifurcation_diagram(data_u₄[5], data_u₄[6], y, param_var_b_u₄, "red"; detailed_fig=true)
 
 # ╔═╡ cecd92e6-3f3f-46f2-a0b6-81c7ee9cdd50
-GenerateFigures.my_bifurcation_diagram(data_u₄[8], data_u₄[9], z, param_var_b_u₄, "blue")
+GenerateFigures.my_bifurcation_diagram(data_u₄[8], data_u₄[9], z, param_var_b_u₄, "blue"; detailed_fig=true)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -3154,7 +3154,7 @@ version = "1.4.1+0"
 # ╟─03ce581b-5750-4b97-85e9-0d06b5408b6d
 # ╟─bc4f8424-b477-4c60-825b-52966eaf388a
 # ╟─dafd3320-ac82-485d-8d4e-41f07b8a8ff5
-# ╠═7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
+# ╟─7d0c4e18-8b68-4d8d-9503-ebf8a28c55d1
 # ╟─01d76dbb-b853-4774-b9f3-04109b5e74b5
 # ╟─73dc6e38-2610-4bbe-82f4-12a4f87ee694
 # ╟─4891b616-2415-4c63-8ee1-5cf05b9e1319
@@ -3163,7 +3163,7 @@ version = "1.4.1+0"
 # ╟─95c25479-b27f-4771-8e23-2da9d06a6097
 # ╟─30dc2257-5d9c-4e6b-915f-b6e2659cf8bb
 # ╟─75b2dc3d-b8ce-4db2-9b6c-c10bf81b53bd
-# ╠═79af8a82-cf55-4e34-9ee4-ecd74eaca803
+# ╟─79af8a82-cf55-4e34-9ee4-ecd74eaca803
 # ╟─1659486c-fc1c-4dc6-ad87-40b46a232996
 # ╟─d7a72185-a375-4375-b24c-a03804666106
 # ╟─4f73f30a-9083-4717-8f74-65318e4fadac
@@ -3176,7 +3176,7 @@ version = "1.4.1+0"
 # ╟─202219a3-4d40-4cdc-bd94-898641020a31
 # ╟─768e0db0-c944-4932-be45-75fed09a2517
 # ╟─74054af3-20e1-4564-ba78-5cb84d6ef2e4
-# ╠═cc787b00-a308-4535-92ec-b2002f01e10d
+# ╟─cc787b00-a308-4535-92ec-b2002f01e10d
 # ╟─0461fcf2-8440-4343-ade6-26d454f3ab62
 # ╟─92ef6009-19db-4965-b7a6-ace522e4c270
 # ╠═333968ba-4e73-48cf-a98f-0b55d78c0151
