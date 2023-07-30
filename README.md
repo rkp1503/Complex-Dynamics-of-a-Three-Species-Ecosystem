@@ -29,7 +29,7 @@
         <div>
             <h2 id="abstract">Abstract</h2>
             <p>
-                WIP
+                Understanding the intricate interactions within ecosystems is vital for comprehending the delicate balance that sustains life on our planet. This paper is concerned with modeling an ecosystem characterized by the simultaneous occurrence of amensalism, mutualism, and predation, exploring the interplay between these ecological relationships and their impact on species diversity and community stability. The model formulated is shown to admit only positive solutions that are also bounded. We determine the equilibrium points, conduct a comprehensive analysis of their stability and numerical computations of the proposed model are provided. Further, numerical simulations that demonstrated the existence of a Hopf bifurcation about the interior equilibrium point for several parameter values are also provided.
             </p>
         </div>
         <!-- BUILT WITH -->
