@@ -9,11 +9,11 @@ In this section, we will briefly introduce the desired problem to model and make
 \subsection{Problem Statement and Assumptions}\label{subsec:problem-statement-and-assumptions}
 Consider an ecosystem which involves three species, $X,\ Y,\ Z$. Species $X,\ Y,\ Z$ grows logistically at their respective intrinsic growth rate $r_x>0,\ r_y>0,\ r_z>0$ with their respective carrying capacity $K_x>0,\ K_y>0,\ K_z>0$ and species $Z$ dies at a rate of $e$. We will also assume that each pairing of species has a unique interaction with one another. In particular, we will model an ecosystem where mutualism, predation, and amensalism are present.
 
-We will assume that species $X,\ Y$ are in a non-linear mutualism relationship. Members from both species will interact with one another that will help both species in some way. As a result, each species will be affected by one another in some way. To illustrate this, we will let $\alpha_{xy} > 0$ be the interspecies mutualism coefficient where species $X$ is being affected by species $Y$ and $\alpha_{yx} > 0$ be the interspecies mutualism coefficient where species $Y$ is being affected by species $X$.
+We will assume that species $X,\ Y$ are in a non-linear mutualism relationship. Members from both species will interact with one another that will help both species in some way. As a result, each species will be affected by one another in some way. To illustrate this, we will let $\alpha_{xy}>0$ be the interspecies mutualism coefficient where species $X$ is being affected by species $Y$ and $\alpha_{yx}>0$ be the interspecies mutualism coefficient where species $Y$ is being affected by species $X$.
 
-We will assume that species $Y,\ Z$ are in a predation relationship where species $Z$ preys on species $Y$ with the Holling type II response and with an attack rate of $a > 0$. As a result of this, a proportion $0 \leq p \leq 1$ of species $Y$ will take refuge into species $Z$ with a conservation rate of $c > 0$. 
+We will assume that species $Y,\ Z$ are in a predation relationship where species $Z$ preys on species $Y$ with the Holling type II response and with an attack rate of $a>0$. As a result of this, a proportion $0\leq p\leq 1$ of species $Y$ will take refuge into species $Z$ with a conservation rate of $c>0$. 
 
-We will assume that species $X,\ Z$ are in an amensalism relationship where species $X$ is the species being negatively affected and species $Z$ will remain unaffected. In this relationship, species $X$ is being negatively affected at a rate of $\delta_{xz} > 0$, which we will call the amensalism coefficient.
+We will assume that species $X,\ Z$ are in an amensalism relationship where species $X$ is the species being negatively affected and species $Z$ will remain unaffected. In this relationship, species $X$ is being negatively affected at a rate of $\delta_{xz}>0$, which we will call the amensalism coefficient.
 
 \subsection{Building the Model of this Ecosystem}\label{subsec:building-the-model-of-this-ecosystem}
 With these assumptions, the governing system of equations that accurately describes this type of ecosystem are:
@@ -28,7 +28,11 @@ With these assumptions, the governing system of equations that accurately descri
     \end{align}
 \end{subequations}
 
-with the initial conditions $X(0) \geq 0,\ Y(0) \geq 0,\ Z(0) \geq 0$. Then using the following substitutions $X=K_xx,\ Y=K_yy,\ Z=K_zz,\ T=\frac{1}{r_x}t,\ r_{yx}=\frac{r_y}{r_x},\ r_{zx}=\frac{r_z}{r_x},\ \varphi_{xy}=\frac{\alpha_{xy}K_y^2}{K_x},\ \varphi_{yx}=\frac{\alpha_{yx}K_x^2}{K_y},\ \varphi_{xz}=\frac{\delta_{xz}K_z}{r_x},\ u_1=\frac{aK_z}{r_xK_y},\ u_2=\frac{b}{K_y},\ u_3=\frac{ac}{r_x},\ u_4=\frac{e}{r_x}$, we can simplify and non-dimensionalize \myref[Model]{model:rayla-ephraim-d}. This gives us the following model we will work on throughout this paper:
+with the initial conditions $X(0)\geq 0,\ Y(0)\geq 0,\ Z(0)\geq 0$. 
+
+We remark here that each species in the ecosystem described by the above model has multiple sources of resources and therefore will independently grow logistically. As such, the predation species $Z$ should not be strictly construed of as a predator in the real sense since it does not solely depend on species $Y$ for its existence. The niche ecosystem given by \myref[Model]{model:rayla-ephraim-d} can also be related to the interaction between the coral reefs and fishing by humans. In this system, fishes and the corals do enjoy a mutual relationship. However, overfishing that reduces the numbers of grazing fish that keep corals clean of algal overgrowth will negatively impact the corals. Aside from overfishing, global warming that is attributed to carbon dioxide emission by humans also negatively impacts the growth of corals.
+
+Then using the following substitutions $X=K_xx,\ Y=K_yy,\ Z=K_zz,\ T=\frac{1}{r_x}t,\ r_{yx}=\frac{r_y}{r_x},\ r_{zx}=\frac{r_z}{r_x},\ \varphi_{xy}=\frac{\alpha_{xy}K_y^2}{K_x},\ \varphi_{yx}=\frac{\alpha_{yx}K_x^2}{K_y},\ \varphi_{xz}=\frac{\delta_{xz}K_z}{r_x},\ u_1=\frac{aK_z}{r_xK_y},\ u_2=\frac{b}{K_y},\ u_3=\frac{ac}{r_x},\ u_4=\frac{e}{r_x}$, we can simplify and non-dimensionalize \myref[Model]{model:rayla-ephraim-d}. This gives us the following model we will work on throughout this paper:
 \begin{subequations}\label{model:rayla-ephraim}
     \begin{align}
         \diff[]{x}{t} &= x\left(1-x+\varphi_{xy}y^2\right)-\varphi_{xz}xz
@@ -40,30 +44,30 @@ with the initial conditions $X(0) \geq 0,\ Y(0) \geq 0,\ Z(0) \geq 0$. Then usin
     \end{align}
 \end{subequations}
 
-with the initial conditions $x(0) \geq 0,\ y(0) \geq 0,\ z(0) \geq 0$.
+with the initial conditions $x(0)\geq 0,\ y(0)\geq 0,\ z(0)\geq 0$.
 
 \subsection{Unique Properties of the Proposed Model}\label{subsec:unique-properties-of-the-proposed-model}
 When creating a model that encapsulates an ecosystem, we need to make sure that it makes sense. In biology, a negative population does not make sense. To show that \myref[Model]{model:rayla-ephraim} makes sense, we will need to show that for any non-negative starting populations, \myref[Model]{model:rayla-ephraim} will provide a non-negative solution. This is shown in \myref[Theorem]{thm:positiveness}.
 
 \begin{theorem}\label{thm:positiveness}
-    For any set of initial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} only has non-negative solutions.
+    For any set of initial conditions $x(0)=x_0,\ y(0)=y_0,\ z(0)=z_0$ where $x_0>0,\ y_0>0,\ z_0>0$, \myref[Model]{model:rayla-ephraim} only has non-negative solutions.
 \end{theorem}
 \begin{proof}
     Starting with \myref[Equation]{eq:rayla-ephraim-x}, we can factor out an $x$:
     \begin{equation*}
-        \diff[]{x}{t} = x\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)
+        \diff[]{x}{t}=x\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)
     \end{equation*}
     From here, we can perform separation of variables:
     \begin{equation*}
-        \frac{1}{x}\ \opdiff{x} = \left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
+        \frac{1}{x}\ \opdiff{x}=\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
     \end{equation*}
     We can then integrate both sides from $t=0$ to $t=\tau$ for some time $\tau>0$:
     \begin{equation*}
-        \int_0^\tau \frac{1}{x}\ \opdiff{x} = \int_0^\tau \left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
+        \int_0^\tau\frac{1}{x}\ \opdiff{x}=\int_0^\tau\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
     \end{equation*}
     The left hand side evaluates to:
     \begin{equation*}
-        \ln{x(\tau)}-\ln{x(0)} = \int_0^\tau \left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
+        \ln{x(\tau)}-\ln{x(0)}=\int_0^\tau\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
     \end{equation*}
     Solving for $x(\tau)$ yields:
     \begin{equation*}
@@ -122,7 +126,7 @@ Even though we have shown that \myref[Model]{model:rayla-ephraim} will always be
     \begin{equation*}
         \diff[]{z}{t} \leq r_{zx}z\left(1-z\right)+z\left(u_3-u_4\right)
     \end{equation*}
-    From here, we can perform separation of variables:\
+    From here, we can perform separation of variables:
     \begin{equation*}
         \frac{1}{z\left(u_3-u_4+r_{zx}-r_{zx}z\right)}\ \opdiff{z} \leq \opdiff{t}
     \end{equation*}
