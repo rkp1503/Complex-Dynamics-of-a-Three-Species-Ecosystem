@@ -2,10 +2,10 @@
 % Author: Rayla Kurosaki
 % GitHub: https://github.com/rkp1503
 % ----------------------------------------------------------------------------
-
 \section{Numerical Simulations}\label{sec:numerical_simulations}
-In \myref[Section]{sec:equilibria-analysis}, we used mathematical analysis to compute the equilibria that exists in \myref[Model]{model:rayla-ephraim} and determined the conditions for stability of each one. In this section, we will support and verify the stable equilibria determined in \myref[Section]{sec:equilibria-analysis} through numerical simulations. We will also show the existence of a hopf bifurcation for the interior equilibrium through numerical simulations.
-
+In \myref[Section]{sec:equilibria-analysis}, we used mathematical analysis to compute the equilibria that exists in \myref[Model]{model:rayla-ephraim} and determined the conditions for stability of each one.
+In this section, we will support and verify the stable equilibria determined in \myref[Section]{sec:equilibria-analysis} through numerical simulations.
+We will also show the existence of a hopf bifurcation for the interior equilibrium through numerical simulations.
 \begin{figure}[H]
     \centering
     \subfloat[$z$-axial equilibrium with the set of parameters~\eqref{params:axial-z}]{%
@@ -19,7 +19,6 @@ In \myref[Section]{sec:equilibria-analysis}, we used mathematical analysis to co
     \caption{Showing the stability of non-interior equilibria for different set of parameters.}
     \label{fig:semi-trivial-equilibria-plots}
 \end{figure}
-
 \subsection{The $z$-axial equilibrium}\label{subsec:numsim_z_axial_equilibrium}
 By \myref[Theorem]{thm:axial-z-exist} and \myref[Theorem]{thm:axial-z-stability}, we know that the $z$-axial equilibrium
 \begin{equation*}
@@ -56,10 +55,11 @@ To satisfy the conditions above, lets consider the following set of parameters:
         \end{aligned}
     \end{dcases}
 \end{equation}
-Under this set of parameter values, the $z$-axial equilibrium is $E_z=(0,0,0.6866)$. This is further supported by \myref[Figure]{fig:axial-z}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
-
+Under this set of parameter values, the $z$-axial equilibrium is $E_z=(0,0,0.6866)$.
+This is further supported by \myref[Figure]{fig:axial-z}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
 \subsection{The $xy$-boundary equilibrium}\label{subsec:numsim_xy_boundary_equilibrium}
-By \myref[Theorem]{thm:boundary-xy-exist} we know that the $xy$-boundary equilibrium $E_{xy}=\left(x^*,y^*,0\right)$ exists and \myref[Theorem]{thm:boundary-xy-stability} guarantees its stability under appropriate conditions. To satisfy the conditions in \myref[Theorem]{thm:boundary-xy-exist} and \myref[Theorem]{thm:boundary-xy-stability}, we will let $\beta=11$ and consider the following set of parameters:
+By \myref[Theorem]{thm:boundary-xy-exist} we know that the $xy$-boundary equilibrium $E_{xy}=\left(x^*,y^*,0\right)$ exists and \myref[Theorem]{thm:boundary-xy-stability} guarantees its stability under appropriate conditions.
+To satisfy the conditions in \myref[Theorem]{thm:boundary-xy-exist} and \myref[Theorem]{thm:boundary-xy-stability}, we will let $\beta=11$ and consider the following set of parameters:
 \begin{equation}\label{params:boundary-xy}
     \begin{dcases}
         \begin{aligned}
@@ -84,10 +84,11 @@ By \myref[Theorem]{thm:boundary-xy-exist} we know that the $xy$-boundary equilib
         \end{aligned}
     \end{dcases}
 \end{equation}
-Under this set of parameter values, the $xy$-boundary equilibrium is $E_{xy}=(1.0331,1.174,0)$. This is further supported by \myref[Figure]{fig:boundary-xy}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
-
+Under this set of parameter values, the $xy$-boundary equilibrium is $E_{xy}=(1.0331,1.174,0)$.
+This is further supported by \myref[Figure]{fig:boundary-xy}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
 \subsection{The $xz$-boundary equilibrium}\label{subsec:numsim_xz_boundary_equilibrium}
-By \myref[Theorem]{thm:boundary-xz-exist} and \myref[Theorem]{thm:boundary-xz-stability}, we know that the $xz$-boundary equilibrium $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist and is locally stable under certain conditions. To satisfy these conditions, lets consider the following set of parameters:
+By \myref[Theorem]{thm:boundary-xz-exist} and \myref[Theorem]{thm:boundary-xz-stability}, we know that the $xz$-boundary equilibrium $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist and is locally stable under certain conditions.
+To satisfy these conditions, lets consider the following set of parameters:
 \begin{equation}\label{params:boundary-xz}
     \begin{dcases}
         \begin{aligned}
@@ -112,10 +113,11 @@ By \myref[Theorem]{thm:boundary-xz-exist} and \myref[Theorem]{thm:boundary-xz-st
         \end{aligned}
     \end{dcases}
 \end{equation}
-Under this set of parameter values, the $xz$-boundary equilibrium is $E_{xz}=(0.6499,0,0.3039)$. This is further supported by \myref[Figure]{fig:boundary-xz}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
-
+Under this set of parameter values, the $xz$-boundary equilibrium is $E_{xz}=(0.6499,0,0.3039)$.
+This is further supported by \myref[Figure]{fig:boundary-xz}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
 \subsection{The $yz$-boundary equilibrium}\label{subsec:numsim_yz_boundary_equilibrium}
-We also established through \myref[Theorem]{thm:boundary-yz-exist} and \myref[Theorem]{thm:boundary-yz-stability} that the $yz$-boundary equilibrium $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists and is locally stable respectively, subject to the conditions prescribed in the theorems. To satisfy the conditions in \myref[Theorem]{thm:boundary-yz-exist} and \myref[Theorem]{thm:boundary-yz-stability}, lets consider the following set of parameters:
+We also established through \myref[Theorem]{thm:boundary-yz-exist} and \myref[Theorem]{thm:boundary-yz-stability} that the $yz$-boundary equilibrium $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists and is locally stable respectively, subject to the conditions prescribed in the theorems.
+To satisfy the conditions in \myref[Theorem]{thm:boundary-yz-exist} and \myref[Theorem]{thm:boundary-yz-stability}, lets consider the following set of parameters:
 \begin{equation}\label{params:boundary-yz}
     \begin{dcases}
         \begin{aligned}
@@ -140,11 +142,12 @@ We also established through \myref[Theorem]{thm:boundary-yz-exist} and \myref[Th
         \end{aligned}
     \end{dcases}
 \end{equation}
-Under this set of parameter values, the $yz$-boundary equilibrium is $E_{yz}=(0,0.7773,0.8491)$. This is further supported by \myref[Figure]{fig:boundary-yz}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
-
+Under this set of parameter values, the $yz$-boundary equilibrium is $E_{yz}=(0,0.7773,0.8491)$.
+This is further supported by \myref[Figure]{fig:boundary-yz}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
 \subsection{The interior equilibrium}\label{subsec:numsim_interior_equilibrium}
 Finally, in \myref[Theorem]{thm:boundary-yz-exist} and \myref[Theorem]{thm:boundary-yz-stability}, respectively, the existence and stability
-of the interior equilibrium $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ were established under various sets of conditions. To ensure that the interior equilibrium exist and is stable, lets consider the following set of parameters:
+of the interior equilibrium $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ were established under various sets of conditions.
+To ensure that the interior equilibrium exist and is stable, lets consider the following set of parameters:
 \begin{equation}\label{params:interior-a}
     \begin{dcases}
         \begin{aligned}
@@ -169,11 +172,97 @@ of the interior equilibrium $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ were establis
         \end{aligned}
     \end{dcases}
 \end{equation}
-Under this set of parameter values, the interior equilibrium is $E_{xyz}=(0.9099,0.0599,0.2305)$. This is further supported by the four figures in \myref[Figure]{fig:nontrivial-equilibria-plots} where \myref[Figure]{fig:time-evolution} shows the time evolution of each Species, \myref[Figure]{fig:phase-plane-3d} shows the phase portrait, and \myref[Figure]{fig:phase-plane-xy}, \myref[Figure]{fig:phase-plane-xz}, and \myref[Figure]{fig:phase-plane-yz} are phase planes when numerically solving \myref[Model]{model:rayla-ephraim}.
+Under this set of parameter values, the interior equilibrium is $E_{xyz}=(0.9099,0.0599,0.2305)$.
+This is further supported by the four figures in \myref[Figure]{fig:nontrivial-equilibria-plots} where \myref[Figure]{fig:time-evolution} shows the time evolution of each Species, \myref[Figure]{fig:phase-plane-3d} shows the phase portrait, and \myref[Figure]{fig:phase-plane-xy}, \myref[Figure]{fig:phase-plane-xz}, and \myref[Figure]{fig:phase-plane-yz} are phase planes when numerically solving \myref[Model]{model:rayla-ephraim}.
 
-For \myref[Model]{model:rayla-ephraim}, we can numerically show that a hopf bifurcation exists for each parameter. Starting with $r_{zx}$, we will plot the time evolution of the ecosystem at $r_{zx}=0.35$ to show that the ecosystem expresses an oscillatory behavior as shown in \myref[Figure]{fig:bifurcation-r_zx-xyz}. Then, we will generate a bifurcation diagram for Species $X,\ Y,\ Z$ over a set interval of $r_{zx}$, expressed in \myref[Figure]{fig:bifurcation-r_zx-x}, \myref[Figure]{fig:bifurcation-r_zx-y}, \myref[Figure]{fig:bifurcation-r_zx-z} respectively. For $r_{zx}$, the interval is $r_{zx}\in(0.133,0.6155)$. From the bifurcation diagrams, we can see that the ecosystem undergoes 2 changes. Denoting the stable solutions for Species $X,\ Y,\ Z$ in black, red, and blue respectively and denoting the unstable solutions in green, we can see that the ecosystem starts off in a stable state and then becomes unstable when $r_{zx}\approx 0.29$. From here, this behavior is maintained until $r_{zx}\approx 0.47$ where it transitions back to a stable state. Thus, we can say that for the set of \myref[parameters]{params:interior-a}, the ecosystem maintains a stable equilibrium when $r_{zx}\in(0.29,0.47)$ and displays an oscillatory behavior when $r_{zx}\in(0.133,0.29)$ and $r_{zx}\in(0.47,0.6155)$.
+\begin{figure}[H]
+    \centering
+    \subfloat[Stability of the interior equilibrium.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-time-evolution}\label{fig:time-evolution}}}\hspace{5pt}
+    \subfloat[3D phase portrait.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-pp-xyz}\label{fig:phase-plane-3d}}}\hspace{5pt}
+    \subfloat[$xy$-phase plane.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-pp-xy}\label{fig:phase-plane-xy}}}\hspace{5pt}
+    \subfloat[$xz$-phase plane.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-pp-xz}\label{fig:phase-plane-xz}}}\hspace{5pt}
+    \subfloat[$yz$-phase plane.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-pp-yz}\label{fig:phase-plane-yz}}}
+    \caption{Different types of plots to show the behavior of \myref[Model]{model:rayla-ephraim} under the set of \myref[parameters]{params:interior-a}.}
+    \label{fig:nontrivial-equilibria-plots}
+\end{figure}
 
-We can repeat this process using the same set of parameters to show that a hopf bifurcation exists for $p$, $\varphi_{yx}$, and $u_2$. For $p$, the ecosystem undergoes a hopf bifurcation at $p\approx 0.371$, shown in \myref[Figure]{fig:bifurcation-p}. For $\varphi_{yx}$, the ecosystem undergoes a hopf bifurcation at $p\approx 0.387$, shown in \myref[Figure]{fig:bifurcation-phi_yx}. For $u_2$, the ecosystem undergoes a hopf bifurcation at $u_2\approx 0.051$, shown in \myref[Figure]{fig:bifurcation-u_2}. For the other parameters $r_{yx},\ \varphi_{xy},\ \varphi_{xz},\ u_1,\ u_3,\ u_4$, we will consider the set of \myref[parameters]{params:interior-b}. Applying the above procedure to these parameters, we can conclude that the ecosystem undergoes a hopf bifurcation at $r_{yx}\approx 0.66,\ \varphi_{xy}\approx 0.125,\ \varphi_{xz}\approx\{0.402,1.342\},\ u_1\approx 0.728,\ u_3\approx\{0.511,2.501\},\ u_4\approx\{0.122,0.314\}$, depicted in \myref[Figure]{fig:bifurcation-r_yx}, \myref[Figure]{fig:bifurcation-phi_xz}, \myref[Figure]{fig:bifurcation-u_1}, \myref[Figure]{fig:bifurcation-u_3}, \myref[Figure]{fig:bifurcation-u_4} respectively.
+For \myref[Model]{model:rayla-ephraim}, we can numerically show that a hopf bifurcation exists for each parameter.
+Starting with $r_{zx}$, we will plot the time evolution of the ecosystem at $r_{zx}=0.35$ to show that the ecosystem expresses an oscillatory behavior as shown in \myref[Figure]{fig:bifurcation-r_zx-xyz}.
+Then, we will generate a bifurcation diagram for Species $X,\ Y,\ Z$ over a set interval of $r_{zx}$, expressed in \myref[Figure]{fig:bifurcation-r_zx-x}, \myref[Figure]{fig:bifurcation-r_zx-y}, \myref[Figure]{fig:bifurcation-r_zx-z} respectively.
+For $r_{zx}$, the interval is $r_{zx}\in(0.133,0.6155)$.
+From the bifurcation diagrams, we can see that the ecosystem undergoes 2 changes.
+Denoting the stable solutions for Species $X,\ Y,\ Z$ in black, red, and blue respectively and denoting the unstable solutions in green, we can see that the ecosystem starts off in a stable state and then becomes unstable when $r_{zx}\approx 0.29$.
+From here, this behavior is maintained until $r_{zx}\approx 0.47$ where it transitions back to a stable state.
+Thus, we can say that for the set of \myref[parameters]{params:interior-a}, the ecosystem maintains a stable equilibrium when $r_{zx}\in(0.29,0.47)$ and displays an oscillatory behavior when $r_{zx}\in(0.133,0.29)$ and $r_{zx}\in(0.47,0.6155)$.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $r_{zx}=0.35$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_zx}\label{fig:bifurcation-r_zx-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_zx-x}\label{fig:bifurcation-r_zx-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_zx-y}\label{fig:bifurcation-r_zx-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_zx-z}\label{fig:bifurcation-r_zx-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $r_{zx}$ under the set of \myref[parameters]{params:interior-a} and bifurcation diagrams of each species with respect to $r_{zx}$.}
+    \label{fig:bifurcation-r_zx}
+\end{figure}
+
+We can repeat this process using the same set of parameters to show that a hopf bifurcation exists for $p$, $\varphi_{yx}$, and $u_2$.
+For $p$, the ecosystem undergoes a hopf bifurcation at $p\approx 0.371$, shown in \myref[Figure]{fig:bifurcation-p}.
+For $\varphi_{yx}$, the ecosystem undergoes a hopf bifurcation at $p\approx 0.387$, shown in \myref[Figure]{fig:bifurcation-phi_yx}.
+For $u_2$, the ecosystem undergoes a hopf bifurcation at $u_2\approx 0.051$, shown in \myref[Figure]{fig:bifurcation-u_2}.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $p=0.1$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-p}\label{fig:bifurcation-p-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-p-x}\label{fig:bifurcation-p-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-p-y}\label{fig:bifurcation-p-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-p-z}\label{fig:bifurcation-p-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $p$ under the set of \myref[parameters]{params:interior-a} and bifurcation diagrams of each species with respect to $p$.}
+    \label{fig:bifurcation-p}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $\varphi_{yx}=0.43$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_yx}\label{fig:bifurcation-phi_yx-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_yx-x}\label{fig:bifurcation-phi_yx-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_yx-y}\label{fig:bifurcation-phi_yx-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_yx-z}\label{fig:bifurcation-phi_yx-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $\varphi_{yx}$ under the set of \myref[parameters]{params:interior-a} and bifurcation diagrams of each species with respect to $\varphi_{yx}$.}
+    \label{fig:bifurcation-phi_yx}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $u_2=0.04$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_2}\label{fig:bifurcation-u_2-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_2-x}\label{fig:bifurcation-u_2-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_2-y}\label{fig:bifurcation-u_2-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_2-z}\label{fig:bifurcation-u_2-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $u_2$ under the set of \myref[parameters]{params:interior-a} and bifurcation diagrams of each species with respect to $u_2$.}
+    \label{fig:bifurcation-u_2}
+\end{figure}
+
+For the other parameters $r_{yx},\ \varphi_{xy},\ \varphi_{xz},\ u_1,\ u_3,\ u_4$, we will consider the set of \myref[parameters]{params:interior-b}.
+Applying the above procedure to these parameters, we can conclude that the ecosystem undergoes a hopf bifurcation at $r_{yx}\approx 0.66,\ \varphi_{xy}\approx 0.125,\ \varphi_{xz}\approx\{0.402,1.342\},\ u_1\approx 0.728,\ u_3\approx\{0.511,2.501\},\ u_4\approx\{0.122,0.314\}$, depicted in \myref[Figure]{fig:bifurcation-r_yx}, \myref[Figure]{fig:bifurcation-phi_xz}, \myref[Figure]{fig:bifurcation-u_1}, \myref[Figure]{fig:bifurcation-u_3}, \myref[Figure]{fig:bifurcation-u_4} respectively.
 \begin{equation}\label{params:interior-b}
     \begin{dcases}
         \begin{aligned}
@@ -199,4 +288,93 @@ We can repeat this process using the same set of parameters to show that a hopf 
     \end{dcases}
 \end{equation}
 
-Similar to the case of varying $r_{zx}$, it can be clearly seen that the simulations given in \myref[Figure]{fig:bifurcation-phi_xz}, \myref[Figure]{fig:bifurcation-u_3} and \myref[Figure]{fig:bifurcation-u_4} show the interior equilibrium undergoing two Hopf bifurcations for each of the parameters indicated. In particular, we observe that increasing values of $r_{zx}$ and $u_3$ beyond the ranges provided will lead to the collapse of species $Y$. These are other bifurcations where the interior equilibrium changes into the xz-boundary equilibrium.  The model’s prediction of the eventual collapse of the $Y$ species given a further increase in the values of $r_{zx}$ and $u_3$ is as expected since these are the parameters associated with, respectively,  the growth rate and attack rate of species $Z$ that is preying on $Y$. We also observed that further increase in the value of the amensalism parameter $varphi_{xz}$ will lead to the demise of species $X$ and  as a consequence, the interior equilibrium will collapse into yz-boundary equilibrium. Another bifurcation we observed is that a further increase in the value of the parameter $u_4$ that is related to the decay rate of species $Z$ will lead to its eradication and the interior equilibrium will become the xy-boundary equilibrium. 
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $r_{yx}=0.5$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_yx}\label{fig:bifurcation-r_yx-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_yx-x}\label{fig:bifurcation-r_yx-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_yx-y}\label{fig:bifurcation-r_yx-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_yx-z}\label{fig:bifurcation-r_yx-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $r_{yx}$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $r_{yx}$.}
+    \label{fig:bifurcation-r_yx}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $\varphi_{xy}=0.15$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xy}\label{fig:bifurcation-phi_xy-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xy-x}\label{fig:bifurcation-phi_xy-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xy-y}\label{fig:bifurcation-phi_xy-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xy-z}\label{fig:bifurcation-phi_xy-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $\varphi_{xy}$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $\varphi_{xy}$.}
+    \label{fig:bifurcation-phi_xy}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $\varphi_{xz}=0.5$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xz}\label{fig:bifurcation-phi_xz-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xz-x}\label{fig:bifurcation-phi_xz-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xz-y}\label{fig:bifurcation-phi_xz-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xz-z}\label{fig:bifurcation-phi_xz-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $\varphi_{xz}$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $\varphi_{xz}$.}
+    \label{fig:bifurcation-phi_xz}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $u_1=0.8$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_1}\label{fig:bifurcation-u_1-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_1-x}\label{fig:bifurcation-u_1-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_1-y}\label{fig:bifurcation-u_1-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_1-z}\label{fig:bifurcation-u_1-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $u_1$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $u_1$.}
+    \label{fig:bifurcation-u_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $u_3=0.75$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_3}\label{fig:bifurcation-u_3-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_3-x}\label{fig:bifurcation-u_3-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_3-y}\label{fig:bifurcation-u_3-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_3-z}\label{fig:bifurcation-u_3-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $u_3$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $u_3$.}
+    \label{fig:bifurcation-u_3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $u_4=0.3$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_4}\label{fig:bifurcation-u_4-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_4-x}\label{fig:bifurcation-u_4-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_4-y}\label{fig:bifurcation-u_4-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_4-z}\label{fig:bifurcation-u_4-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $u_4$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $u_4$.}
+    \label{fig:bifurcation-u_4}
+\end{figure}
+
+Similar to the case of varying $r_{zx}$, it can be clearly seen that the simulations given in \myref[Figure]{fig:bifurcation-phi_xz}, \myref[Figure]{fig:bifurcation-u_3} and \myref[Figure]{fig:bifurcation-u_4} show the interior equilibrium undergoing two Hopf bifurcations for each of the parameters indicated.
+In particular, we observe that increasing values of $r_{zx}$ and $u_3$ beyond the ranges provided will lead to the collapse of species $Y$.
+These are other bifurcations where the interior equilibrium changes into the $xz$-boundary equilibrium.
+The model's prediction of the eventual collapse of the $Y$ species given a further increase in the values of $r_{zx}$ and $u_3$ is as expected since these are the parameters associated with, respectively,  the growth rate and attack rate of species $Z$ that is preying on $Y$.
+We also observed that further increase in the value of the amensalism parameter $\varphi_{xz}$ will lead to the demise of species $X$ and  as a consequence, the interior equilibrium will collapse into $yz$-boundary equilibrium.
+Another bifurcation we observed is that a further increase in the value of the parameter $u_4$ that is related to the decay rate of species $Z$ will lead to its eradication and the interior equilibrium will become the $xy$-boundary equilibrium.
