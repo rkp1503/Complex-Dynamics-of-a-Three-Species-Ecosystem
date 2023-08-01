@@ -197,7 +197,11 @@ Thus, we have to solve for $x^*,\ y^*,\ z^*$ in the following system of equation
     Solving for $x^*$ in \myref[Equation]{eq:interior-x} yields $x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*$ which is positive when $\frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*$.
     Next, solving for $z^*$ in \myref[Equation]{eq:interior-z} yields:
     \begin{equation*}
-        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)\text{ which is positive if }y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)}.
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+    which is positive if
+    \begin{equation*}
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)}.
     \end{equation*}
     We can then plug in our equations for $x^*$ and $z^*$ into \myref[Equation]{eq:interior-y} to get \myref[Equation]{eq:interior-Y} in $y^*$.
     It will be difficult to find an analytical solution for $y^*$ in terms of the parameters.
@@ -287,16 +291,22 @@ where
     The jacobian at the $z$-axial equilibrium is:
     \begin{equation}\label{matrix:jacobian-axial-z}
         \textbf{J}\left(E_z\right) = \begin{bmatrix}
-            1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right) & 0 & 0\\
-            0 & r_{yx}-\frac{u_1\left(1-p\right)}{u_2}\left(1-\frac{u_4}{r_{zx}}\right) & 0\\
-            0 & \frac{u_3\left(1-p\right)}{u_2}\left(1-\frac{u_4}{r_{zx}}\right) & r_{zx}\left(1-2\left(1-\frac{u_4}{r_{zx}}\right)\right)
+            1-\varphi_{xz}z^* & 0 & 0\\
+            0 & r_{yx}-\frac{1}{u_2}\left(u_1\left(1-p\right)z^*\right) & 0\\
+            0 & \frac{1}{u_2}\left(u_3\left(1-p\right)z^*\right) & r_{zx}\left(1-2z^*\right)
         \end{bmatrix}
     \end{equation}
+    where $z^*=1-\frac{u_4}{r_{zx}}$.
     The eigenvalues of \myref[Matrix]{matrix:jacobian-axial-z} are:
     \begin{equation*}
-        \lambda=\left\{1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\ r_{yx}-\frac{u_1\left(1-p\right)}{u_2}\left(1-\frac{u_4}{r_{zx}}\right),\ r_{zx}\left(1-2\left(1-\frac{u_4}{r_{zx}}\right)\right)\right\}
+        \lambda=\left\{1-\varphi_{xz}z^*,\ r_{yx}-\frac{1}{u_2}\left(u_1\left(1-p\right)z^*\right),\ r_{zx}\left(1-2z^*\right)\right\}
     \end{equation*}
     With these eigenvalues, this means that the $z$-axial equilibrium $E_z$ is locally stable when:
+    % \begin{equation*}
+    %     z^* > \frac{1}{\varphi_{xz}},\quad 
+    %     z^* > \frac{r_{yx}u_2}{u_1\left(1-p\right)},\quad 
+    %     z^* > \frac{1}{2}
+    % \end{equation*}
     \begin{equation*}
         \frac{u_4}{r_{zx}} < 1-\frac{1}{\varphi_{xz}},\quad
         \frac{u_4}{r_{zx}} < 1-\frac{r_{yx}u_2}{u_1\left(1-p\right)},\quad
@@ -357,7 +367,7 @@ where
         j_{32} &= \frac{u_3\left(1-p\right)z^*}{u_2}\\
         j_{33} &= r_{zx}\left(1-2z^*\right)-u_4
     \end{align*}
-    The eigenvalues of \myref[Matrix]{matrix:jacobian-boundary-xz} are$\lambda=\left\{j_{11},\ j_{22},\ j_{33}\right\}$.
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-boundary-xz} are $\lambda=\left\{j_{11},\ j_{22},\ j_{33}\right\}$.
     With these eigenvalues, this means that the $xz$-boundary equilibrium $E_{xz}$ is locally stable when:
     \begin{equation*}
         \frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1,\quad
