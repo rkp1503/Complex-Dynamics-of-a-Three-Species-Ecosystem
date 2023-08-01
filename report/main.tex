@@ -50,7 +50,6 @@
 }
 \graphicspath{{figures/eps/}}
 \numberwithin{equation}{section}
-\newenvironment{myparagraph}{\par}{}
 
 \begin{document}
 
@@ -59,25 +58,1103 @@
 \title{Dynamics of Amensalism, Mutualism, and Predation in a Three Species Complex Ecosystem}
 
 \author{
-\name{Ramsey "Rayla" Phuc and Ephraim O. Agyingi}
+\name{Ramsey "Rayla" Phuc\thanks{CONTACT Ramsey "Rayla" Phuc. Email: rxp8578@rit.edu} and Ephraim O. Agyingi\thanks{CONTACT Ephraim O. Agyingi. Email: eoasma@rit.edu}}
 \affil{Department of Mathematics and Statistics, Rochester Institute of Technology, USA}
 }
 
 \maketitle
 
 \begin{abstract}
-    Understanding the intricate interactions within ecosystems is vital for comprehending the delicate balance that sustains life on our planet. This paper is concerned with modeling an ecosystem characterized by the simultaneous occurrence of amensalism, mutualism, and predation, exploring the interplay between these ecological relationships and their impact on species diversity and community stability. The model formulated is shown to admit only positive solutions that are also bounded. We determine the equilibrium points, conduct a comprehensive analysis of their stability and numerical computations of the proposed model are provided. Further, numerical simulations that demonstrated the existence of a Hopf bifurcation about the interior equilibrium point for several parameter values are also provided.
+    Understanding the intricate interactions within ecosystems is vital for comprehending the delicate balance that sustains life on our planet.
+    This paper is concerned with modeling an ecosystem characterized by the simultaneous occurrence of amensalism, mutualism, and predation, exploring the interplay between these ecological relationships and their impact on species diversity and community stability.
+    The model formulated is shown to admit only positive solutions that are also bounded.
+    We determine the equilibrium points, conduct a comprehensive analysis of their stability and numerical computations of the proposed model are provided.
+    Further, numerical simulations that demonstrated the existence of a Hopf bifurcation about the interior equilibrium point for several parameter values are also provided.
 \end{abstract}
 
 \begin{keywords}
-Mutualism; Amensalism; Non-Linear Competition; Holling-Type II Response; Refuge; Hopf Bifurcation
+Mutualism; Amensalism; Predation; Hopf Bifurcation
 \end{keywords}
 
-\input{contents/introduction}
-\input{contents/proposed-model}
-\input{contents/equilibria-analysis}
-\input{contents/numerical-simulations}
-\input{contents/conclusion}
+% \input{contents/introduction}
+% \input{contents/proposed-model}
+% \input{contents/equilibria-analysis}
+% \input{contents/numerical-simulations}
+% \input{contents/conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}\label{sec:introduction}
+The natural world is a complex web of interactions between organisms, where the survival and prosperity of one species often depend on its relationship with others.
+In a dynamic ecosystem, like the one under consideration, the intricate dance of mutualism, amensalism, and predation shapes the delicate balance of life.
+Mutualism, the symbiotic relationship in which two species benefit from each other's presence, plays a pivotal role in maintaining stability and promoting biodiversity in the ecosystem under scrutiny.
+In contrast, amensalism, an asymmetrical relationship wherein one species is harmed while the other remains unaffected, introduces a contrasting dynamic.
+Furthermore, the presence of predation, a fundamental aspect of natural selection, adds a layer of complexity to this ecosystem's interplay.
+The interaction between predator and prey dictates population dynamics, influencing not only the abundance of species but also regulating trophic cascades and maintaining ecological equilibrium.
+
+Modeling an ecosystem that incorporates mutualism, amensalism, and predation is a multifaceted endeavor, demanding a comprehensive understanding of the intricate relationships and interactions between species.
+The process involves constructing mathematical equations and simulations to represent the dynamics of these ecological associations.
+To model mutualism, factors such as resource exchange and fitness benefits must be quantified for the participating species.
+Incorporating amensalism entails accounting for the interaction effects of competing organisms.
+Predation modeling necessitates defining predator-prey interactions, predator foraging behavior, and prey population dynamics.
+By integrating these elements into a cohesive model, we can gain invaluable insights into the stability, resilience, and overall functioning of the ecosystem.
+Such models are crucial for predicting the consequences of disturbances or perturbations, as well as for formulating effective conservation strategies to safeguard these vital ecological processes.
+
+There have been a plethora of models created to analyze the dynamics of such ecosystems.
+There are models which considers two species~\cite{GHOSH2017110, CHEN20122790, YU2012208167, HUANG2006672, AZIZALAOUI20031069, XIAO200614, SEN201212, CANTRELL2001206, CHEN20092905, CHEN2010246, KAR2005681, CHATTOPADHYAY1996287, KAR2003125}, three species~\cite{GAKKHAR201654, PANJA2022100153, MENG2014810, ALIDOUSTI2020109688, PEET2005491, SARWARDI2012133, PRIYADARSHI20133202, GAKKHAR2005105, GAKKHAR2007808, Mukherjee2013, DHAKNEMUNDE2012, CHATTOPADHYAY200345, PANJAMONDAL2015, PANJA2017389, KHAJANCHI2017193, JANA2017350} and four species~\cite{JANA2021100942}.
+Some of these models incorporate a functional response in their model, which include the Beddington–DeAngelis functional response~\cite{CANTRELL2001206}, the Crowley–Martin type functional response~\cite{MENG2014810}, the Holling-type I functional response~\cite{JANA2021100942, Mukherjee2013, CHATTOPADHYAY200345}, the Holling-type II functional response~\cite{GAKKHAR201654, PANJA2022100153, JANA2021100942, GHOSH2017110, YU2012208167, HUANG2006672, AZIZALAOUI20031069, CHEN2010246, SARWARDI2012133, PRIYADARSHI20133202, GAKKHAR2005105, GAKKHAR2007808, Mukherjee2013, CHATTOPADHYAY200345, PANJAMONDAL2015, JANA2017350}, the Holling-type III functional response~\cite{CHATTOPADHYAY200345}, the Leslie-Gower functional response~\cite{YU2012208167, AZIZALAOUI20031069, PRIYADARSHI20133202}, the Monod-Haldane type functional response~\cite{ALIDOUSTI2020109688}, and the Ratio-dependent functional response~\cite{XIAO200614, SEN201212, CANTRELL2001206, KHAJANCHI2017193}.
+Some models consider prey refuge~\cite{GAKKHAR201654, PANJA2022100153, GHOSH2017110, CHEN20122790, HUANG2006672, CHEN20092905, CHEN2010246, KAR2005681, SARWARDI2012133, Mukherjee2013, KHAJANCHI2017193, JANA2017350}, harvesting~\cite{XIAO200614, KAR2003125, PANJA2017389}, and the Allee effect~\cite{SEN201212}.
+
+In this paper, we will consider a biological system that involves three species with each pairing of species have a unique interaction.
+In particular, we will study an ecosystem which involves predation, non-linear mutualism, and amensalism.
+The pairing of species that are in a predation interaction incorporates the Holling type II functional response and refuge into consideration.
+An example of the ecosystem under consideration is the relationship between the drongo (a bird), the meerkat (a small mongoose) found in southern Africa, and predators (such as jackals).
+The drongo and the meerkat are mostly in a mutualistic relationship, where the bird helps the mammal by giving a warning cry whenever a predator is near.
+The meerkat often drops its food when running into its burrow for refuge to avoid the predator and the drongo swoops down to get the food, a win-win for all.
+In this example, the relationship between the predator and the drongo is amensalism in that the bird is not its source of food.
+The overpresence of the predator will keep scaring the meerkats into hiding and thus less time for foraging which in turn negatively affects the drongo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proposed Model}\label{sec:proposed-model}
+In this section, we will briefly introduce the desired problem to model and make some assumptions.
+Then we will construct a non-dimensionalized model from the assumptions.
+Finally, we will show some important properties the model has.
+
+\subsection{Problem Statement and Assumptions}\label{subsec:problem-statement-and-assumptions}
+Consider an ecosystem which involves three species, $X,\ Y,\ Z$.
+Species $X,\ Y,\ Z$ grows logistically at their respective intrinsic growth rate $r_x>0,\ r_y>0,\ r_z>0$ with their respective carrying capacity $K_x>0,\ K_y>0,\ K_z>0$ and species $Z$ dies at a rate of $e$.
+We will also assume that each pairing of species has a unique interaction with one another.
+In particular, we will model an ecosystem where mutualism, predation, and amensalism are present.
+
+We will assume that species $X,\ Y$ are in a non-linear mutualism relationship.
+Members from both species will interact with one another that will help both species in some way.
+As a result, each species will be affected by one another in some way.
+To illustrate this, we will let $\alpha_{xy}>0$ be the interspecies mutualism coefficient where species $X$ is being affected by species $Y$ and $\alpha_{yx}>0$ be the interspecies mutualism coefficient where species $Y$ is being affected by species $X$.
+
+We will assume that species $Y,\ Z$ are in a predation relationship where species $Z$ preys on species $Y$ with the Holling type II response and with an attack rate of $a>0$.
+As a result of this, a proportion $0\leq p\leq 1$ of species $Y$ will take refuge into species $Z$ with a conservation rate of $c>0$.
+
+We will assume that species $X,\ Z$ are in an amensalism relationship where species $X$ is the species being negatively affected and species $Z$ will remain unaffected.
+In this relationship, species $X$ is being negatively affected at a rate of $\delta_{xz}>0$, which we will call the amensalism coefficient.
+
+\subsection{Building the Model of this Ecosystem}\label{subsec:building-the-model-of-this-ecosystem}
+With these assumptions, the governing system of equations that accurately describes this type of ecosystem are:
+\begin{subequations}\label{model:rayla-ephraim-d}
+    \begin{align}
+        \diff[]{X}{T} &= r_xX\left(1-\frac{X}{K_x}+\frac{\alpha_{xy}Y^2}{K_x}\right)-\delta_{xz}XZ
+        \label{eq:rayla-ephraim-d-x}\\
+        \diff[]{Y}{T} &= r_yY\left(1-\frac{Y}{K_y}+\frac{\alpha_{yx}X^2}{K_y}\right)-\frac{a\left(1-p\right)YZ}{b+\left(1-p\right)Y}
+        \label{eq:rayla-ephraim-d-y}\\
+        \diff[]{Z}{T} &= r_zZ\left(1-\frac{Z}{K_z}\right)+Z\left(\frac{ac\left(1-p\right)Y}{b+\left(1-p\right)Y}-e\right)
+        \label{eq:rayla-ephraim-d-z}
+    \end{align}
+\end{subequations}
+with the initial conditions $X(0)\geq 0,\ Y(0)\geq 0,\ Z(0)\geq 0$.
+
+We remark here that each species in the ecosystem described by the above model has multiple sources of resources and therefore will independently grow logistically.
+As such, the predation species $Z$ should not be strictly construed of as a predator in the real sense since it does not solely depend on species $Y$ for its existence.
+The niche ecosystem given by \myref[Model]{model:rayla-ephraim-d} can also be related to the interaction between the coral reefs and fishing by humans.
+In this system, fishes and the corals do enjoy a mutual relationship.
+However, overfishing that reduces the numbers of grazing fish that keep corals clean of algal overgrowth will negatively impact the corals.
+Aside from overfishing, global warming that is attributed to carbon dioxide emission by humans also negatively impacts the growth of corals.
+
+Then using the following substitutions $X=K_xx,\ Y=K_yy,\ Z=K_zz,\ T=\frac{1}{r_x}t,\ r_{yx}=\frac{r_y}{r_x},\ r_{zx}=\frac{r_z}{r_x},\ \varphi_{xy}=\frac{\alpha_{xy}K_y^2}{K_x},\ \varphi_{yx}=\frac{\alpha_{yx}K_x^2}{K_y},\ \varphi_{xz}=\frac{\delta_{xz}K_z}{r_x},\ u_1=\frac{aK_z}{r_xK_y},\ u_2=\frac{b}{K_y},\ u_3=\frac{ac}{r_x},\ u_4=\frac{e}{r_x}$, we can simplify and non-dimensionalize \myref[Model]{model:rayla-ephraim-d}.
+This gives us the following model we will work on throughout this paper:
+\begin{subequations}\label{model:rayla-ephraim}
+    \begin{align}
+        \diff[]{x}{t} &= x\left(1-x+\varphi_{xy}y^2\right)-\varphi_{xz}xz
+        \label{eq:rayla-ephraim-x}\\
+        \diff[]{y}{t} &= r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)yz}{u_2+\left(1-p\right)y}
+        \label{eq:rayla-ephraim-y}\\
+        \diff[]{z}{t} &= r_{zx}z\left(1-z\right)+z\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)
+        \label{eq:rayla-ephraim-z}
+    \end{align}
+\end{subequations}
+with the initial conditions $x(0)\geq 0,\ y(0)\geq 0,\ z(0)\geq 0$.
+
+\subsection{Unique Properties of the Proposed Model}\label{subsec:unique-properties-of-the-proposed-model}
+When creating a model that encapsulates an ecosystem, we need to make sure that it makes sense.
+In biology, a negative population does not make sense.
+To show that \myref[Model]{model:rayla-ephraim} makes sense, we will need to show that for any non-negative starting populations, \myref[Model]{model:rayla-ephraim} will provide a non-negative solution.
+This is shown in \myref[Theorem]{thm:positiveness}.
+
+\begin{theorem}\label{thm:positiveness}
+    For any set of initial conditions $x(0)=x_0,\ y(0)=y_0,\ z(0)=z_0$ where $x_0>0,\ y_0>0,\ z_0>0$, \myref[Model]{model:rayla-ephraim} only has non-negative solutions.
+\end{theorem}
+\begin{proof}
+    Starting with \myref[Equation]{eq:rayla-ephraim-x}, we can factor out an $x$:
+    \begin{equation*}
+        \diff[]{x}{t}=x\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)
+    \end{equation*}
+    From here, we can perform separation of variables:
+    \begin{equation*}
+        \frac{1}{x}\ \opdiff{x}=\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
+    \end{equation*}
+    We can then integrate both sides from $t=0$ to $t=\tau$ for some time $\tau>0$:
+    \begin{equation*}
+        \int_0^\tau\frac{1}{x}\ \opdiff{x}=\int_0^\tau\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
+    \end{equation*}
+    The left hand side evaluates to:
+    \begin{equation*}
+        \ln{x(\tau)}-\ln{x(0)}=\int_0^\tau\left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}
+    \end{equation*}
+    Solving for $x(\tau)$ yields:
+    \begin{equation*}
+        x(\tau) = x(0)\ \exp{\int_0^\tau \left(1-x+\varphi_{xy}y^2-\varphi_{xz}z\right)\ \opdiff{t}}
+    \end{equation*}
+    Note that we have an exponential function on the right hand side.
+    Since $x(0) > 0$, this means that the exponential function will always be positive.
+    Thus, we can conclude that $x(\tau) \geq 0$.
+    % We can factor out an $y$ in \myref[Equation]{eq:rayla-ephraim-y}:
+    % \begin{equation*}
+    %     \diff[]{y}{t} = y\left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)
+    % \end{equation*}
+    % From here, we can perform separation of variables:
+    % \begin{equation*}
+    %     \frac{1}{y}\ \opdiff{y} = \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}
+    % \end{equation*}
+    % We can then integrate both sides from 0 to $\tau$:
+    % \begin{equation*}
+    %     \int_0^\tau \frac{1}{y}\ \opdiff{y} = \int_0^\tau \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}
+    % \end{equation*}
+    % The left hand side evaluates to:
+    % \begin{equation*}
+    %     \ln{y(\tau)}-\ln{y(0)} = \int_0^\tau \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}
+    % \end{equation*}
+    % Solving for $x(\tau)$ yields:
+    % \begin{equation*}
+    %     y(\tau) = y(0)\ \exp{\int_0^\tau \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}}
+    % \end{equation*}
+    % Note that we have an exponential function on the right hand side.
+    % Since $y(0) > 0$, this means that the exponential function will always be positive.
+    % Thus, we can conclude that $y(\tau) \geq 0$.
+    % We can factor out an $z$ in \myref[Equation]{eq:rayla-ephraim-z}:
+    % \begin{equation*}
+    %     \diff[]{z}{t} = z\left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)
+    % \end{equation*}
+    % From here, we can perform separation of variables:
+    % \begin{equation*}
+    %     \frac{1}{z}\ \opdiff{z} = \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}
+    % \end{equation*}
+    % We can then integrate both sides from 0 to $\tau$:
+    % \begin{equation*}
+    %     \int_0^\tau \frac{1}{z}\ \opdiff{z} = \int_0^\tau \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}
+    % \end{equation*}
+    % The left hand side evaluates to:
+    % \begin{equation*}
+    %     \ln{z(\tau)}-\ln{z(0)} = \int_0^\tau \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}
+    % \end{equation*}
+    % Solving for $x(\tau)$ yields:
+    % \begin{equation*}
+    %     z(\tau) = z(0)\ \exp{\int_0^\tau \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}}
+    % \end{equation*}
+    % Note that we have an exponential function on the right hand side.
+    % Since $z(0) > 0$, this means that the exponential function will always be positive.
+    % Thus, we can conclude that $z(\tau) \geq 0$.
+    Similarly, we can say that
+    \begin{align*}
+        y(\tau) &= y(0)\ \exp{\int_0^\tau \left(r_{yx}\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)z}{u_2+\left(1-p\right)y}\right)\ \opdiff{t}}\\
+        z(\tau) &= z(0)\ \exp{\int_0^\tau \left(r_{zx}\left(1-z\right)+\left(\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4\right)\right)\ \opdiff{t}}
+    \end{align*}
+    and conclude that $y(\tau) \geq 0,\ z(\tau) \geq 0$.
+    Since we have shown that $x(\tau) \geq 0,\ y(\tau) \geq 0,\ z(\tau) \geq 0$ for some time $\tau > 0$, this implies that \myref[Model]{model:rayla-ephraim} will always have non-negative solutions for non-negative initial conditions.
+\end{proof}
+    Even though we have shown that \myref[Model]{model:rayla-ephraim} will always be non-negative for any set of non-negative initial conditions though \myref[Theorem]{thm:positiveness}, that is not enough to show that \myref[Model]{model:rayla-ephraim} makes sense.
+    Populations not only exist, but they also have an upper limit.
+    A population cannot just grow infinitely in size.
+    After some time, a population will stop growing in size.
+    Thus, we will need to show that our model is uniformly bounded.
+    This is shown in \myref[Theorem]{thm:bounded}.
+
+\begin{theorem}\label{thm:bounded}
+    For any set of initial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} is uniformly bounded above.
+\end{theorem}
+\begin{proof}
+    We will start by placing an upper bound for \myref[Equation]{eq:rayla-ephraim-z}:
+    \begin{equation*}
+        \diff[]{z}{t} \leq r_{zx}z\left(1-z\right)+z\left(u_3-u_4\right)
+    \end{equation*}
+    From here, we can perform separation of variables:
+    \begin{equation*}
+        \frac{1}{z\left(u_3-u_4+r_{zx}-r_{zx}z\right)}\ \opdiff{z} \leq \opdiff{t}
+    \end{equation*}
+    Integrating both sides, we can solve for $z(t)$ to obtain the following inequality:
+    \begin{equation*}
+        z(t) < \frac{\left(u_3-u_4+r_{zx}\right)z_0}{\left(u_3-u_4+r_{zx}-r_{zx}z_0\right)e^{-\left(u_3-u_4+r_{zx}\right)t}+r_{zx}z_0}
+    \end{equation*}
+    from which we can conclude that:
+    \begin{equation*}
+        \lim_{t\to\infty} \frac{\left(u_3-u_4+r_{zx}\right)z_0}{\left(u_3-u_4+r_{zx}-r_{zx}z_0\right)e^{-\left(u_3-u_4+r_{zx}\right)t}+r_{zx}z_0} = 1+\frac{u_3-u_4}{r_{zx}}
+    \end{equation*}
+    thus proving that $z$ is bounded above.
+    With this, we can place an upper bound for \myref[Equation]{eq:rayla-ephraim-y}:
+    \begin{align*}
+        \diff[]{y}{t}&<r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\left(1+\frac{u_3-u_4}{r_{zx}}\right)\\
+        \diff[]{y}{t}&<r_{yx}y\left(1-y+\varphi_{yx}x^2\right)
+    \end{align*}
+    Suppose $x$ is bounded with a maximum value of $P$.
+    Then we have:
+    \begin{equation*}
+        \diff[]{y}{t}<r_{yx}y\left(1-y+\varphi_{yx}P^2\right)
+    \end{equation*}
+    Solving for $y(t)$ yields:
+    \begin{equation*}
+        y(t)<\frac{\left(1+\varphi_{yx}P^2\right)}{1+\left(\frac{1+\varphi_{yx}P^2}{y_0}-1\right)\exp{-r_{yx}\left(1+\varphi_{yx}P^2\right)t}}
+    \end{equation*}
+    from which we can conclude that:
+    \begin{equation*}
+        \lim_{t\to\infty}\frac{\left(1+\varphi_{yx}P^2\right)}{1+\left(\frac{1+\varphi_{yx}P^2}{y_0}-1\right)\exp{-r_{yx}\left(1+\varphi_{yx}P^2\right)t}}=1+\varphi_{yx}P^2
+    \end{equation*}
+    thus proving that $y$ is bounded above if $x$ is bounded above with a maximum value of $P$.
+    % Suppose $y$ is bounded with a maximum value of $Q$.
+    % Then we can place an upper bound for \myref[Equation]{eq:rayla-ephraim-x}:
+    % \begin{equation*}
+    %     \diff[]{x}{t} < x\left(1-x+\varphi_{xy}Q^2\right)
+    % \end{equation*}
+    % where the solution to this inequality is:
+    % \begin{equation*}
+    %     x(t) < \frac{1+\varphi_{xy}Q^2}{1+\left(\frac{1+\varphi_{xy}Q^2}{x_0}-1\right)e^{-\left(1+\varphi_{xy}Q^2\right)t}}
+    % \end{equation*}
+    % from which we can conclude that:
+    % \begin{equation*}
+    %     \lim_{t\to\infty} \frac{1+\varphi_{xy}Q^2}{1+\left(\frac{1+\varphi_{xy}Q^2}{x_0}-1\right)e^{-\left(1+\varphi_{xy}Q^2\right)t}} = 1+\varphi_{xy}Q^2
+    % \end{equation*}
+    % thus proving that $x$ is bounded above if $y$ is bounded above with a maximum value of $Q$.
+    Similarly, we can say that $x$ is bounded above if $y$ is bounded above with a maximum value of $Q$.
+    With this, we have shown that for any set of initial conditions $x(0)=x_0,\ y(0)=y_0,\ z(0)=z_0$ where $x_0>0,\ y_0>0,\ z_0>0$, \myref[Model]{model:rayla-ephraim} is uniformly bounded above.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equilibria analysis}\label{sec:equilibria-analysis}
+In \myref[Section]{sec:proposed-model}, we have constructed \myref[Model]{model:rayla-ephraim} based on our initial assumptions.
+In addition, we have proved that \myref[Model]{model:rayla-ephraim} only has non-negative solutions for any set of non-negative initial conditions via \myref[Theorem]{thm:positiveness} and is bounded via \myref[Theorem]{thm:bounded}.
+In this section, we will identify all the equilibrium points that exists and determine the conditions for stability in \myref[Model]{model:rayla-ephraim}.
+
+\subsection{Identifying Equilibria}\label{subsec:identifying-equilibria}
+We will start by identifying all the equilibria of \myref[Model]{model:rayla-ephraim}, which is done by setting all the equations equal to 0 and solving for each variable~\cite{Strogatz9780813349107}.
+Thus, we have to solve for $x^*,\ y^*,\ z^*$ in the following system of equations:
+\begin{subequations}\label{system:model-0}
+    \begin{align}
+        0 &= x^*\left(1-x^*+\varphi_{xy}\left(y^*\right)^2\right)-\varphi_{xz}x^*z^* \label{eq:model-0-x}\\
+        0 &= r_{yx}y^*\left(1-y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1\left(1-p\right)y^*z^*}{u_2+\left(1-p\right)y^*} \label{eq:model-0-y}\\
+        0 &= r_{zx}z^*\left(1-z^*\right)+z^*\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right) \label{eq:model-0-z}
+    \end{align}
+\end{subequations}
+\begin{theorem}\label{thm:trivial-exist}
+    The trivial equilibrium point $E_0=\left(0,\ 0,\ 0\right)$ always exist.
+\end{theorem}
+\begin{proof}
+    The trivial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*=y^*=z^*=0$.
+    Plugging in $x^*=0,\ y^*=0,\ z^*=0$ into \myref[System]{system:model-0}, we can see that each equation reduces to $0=0$.
+    Thus, we have proved that the trivial equilibrium point $E_0=\left(0,\ 0,\ 0\right)$ always exist.
+\end{proof}
+\begin{theorem}\label{thm:axial-x-exist}
+    The $x$-axial equilibrium $E_x=\left(1,\ 0,\ 0\right)$ always exist.
+\end{theorem}
+\begin{proof}
+    The $x$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*\neq0$ and $y^*=z^*=0$.
+    Since we are dealing with populations, we should not consider values where $x^*<0$.
+    Thus, a more appropriate constraint is $x^*>0$.
+    Plugging in $y^*=0,\ z^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-y} and \myref[Equation]{eq:model-0-z} reduces to $0=0$ while \myref[Equation]{eq:model-0-x} reduces to $x^*\left(1-x^*\right)=0$ which has solutions $x^*=\left\{0,1\right\}$.
+    With the constraint $x^*>0$, we have proved that the $x$-axial equilibrium point $E_x=\left(1,\ 0,\ 0\right)$ always exist.
+\end{proof}
+\begin{theorem}\label{thm:axial-y-exist}
+    The $y$-axial equilibrium $E_y=\left(0,\ 1,\ 0\right)$ always exist.
+\end{theorem}
+\begin{proof}
+    The $y$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $y^*>0$ and $x^*=z^*=0$.
+    Plugging in $x^*=0,\ z^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-x} and \myref[Equation]{eq:model-0-z} reduces to $0=0$ while \myref[Equation]{eq:model-0-y} reduces to $r_{yx}y^*\left(1-y^*\right)=0$ which has solutions $y^*=\left\{0,1\right\}$.
+    With the constraint $y^*>0$, we have proved that the $y$-axial equilibrium point $E_y=\left(0,\ 1,\ 0\right)$ always exist.
+\end{proof}
+\begin{theorem}\label{thm:axial-z-exist}
+    The $z$-axial equilibrium $E_z=\left(0,\ 0,\ z^*\right)$ exist where $z^* = 1-\frac{u_4}{r_{zx}}$ provided that the condition $r_{zx} > u_4$ is satisfied.
+\end{theorem}
+\begin{proof}
+    The $z$-axial equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $z^*>0$ and $x^*=y^*=0$.
+    Plugging in $x^*=0,\ y^*=0$ into \myref[System]{system:model-0}, we can see that both \myref[Equation]{eq:model-0-x} and \myref[Equation]{eq:model-0-y} reduces to $0=0$ while \myref[Equation]{eq:model-0-z} reduces to $r_{zx}z^*\left(1-z^*\right)-u_4z^*=0$ which has solutions $z^*=\left\{0,1-\frac{u_4}{r_{zx}}\right\}$.
+    With the constraint $z^*>0$, we have proved that the $z$-axial equilibrium point $E_z=\left(0,\ 0,\ z^*\right)$ exist where $z^* = 1-\frac{u_4}{r_{zx}}$ provided that the condition $r_{zx} > u_4$ is satisfied.
+\end{proof}
+\begin{theorem}\label{thm:boundary-xy-exist}
+    The $xy$-boundary equilibrium $E_{xy}=\left(x^*,\ y^*,\ 0\right)$ exist where $x^*=1+\varphi_{xy}\left(y^*\right)^2$ and $y^*$ is a positive solution to \\
+    $\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0$ which can be achieved under the condition $\varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}$ for some $\beta\in\left(1, \infty\right)$.
+\end{theorem}
+\begin{proof}
+    The $xy$-boundary equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*>0,\ y^*>0$ and $z^*=0$.
+    Plugging in $z^*=0$ into \myref[System]{system:model-0}, we can see that \myref[Equation]{eq:model-0-z} reduces to $0=0$ which leaves us with the following system to solve:
+    \begin{subequations}\label{system:xy-boundary}
+        \begin{align}
+            0 &= 1-x^*+\varphi_{xy}\left(y^*\right)^2 \label{eq:xy-boundary-x}\\
+            0 &= 1-y^*+\varphi_{yx}\left(x^*\right)^2 \label{eq:xy-boundary-y}
+        \end{align}
+    \end{subequations}
+    Solving for $x^*$ in \myref[Equation]{eq:xy-boundary-x} we obtain $x^*=1+\varphi_{xy}\left(y^*\right)^2$.
+    We can plug this into \myref[Equation]{eq:xy-boundary-y} to obtain the following equation in terms of $y^*$:
+    \begin{equation*}
+        \varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1=0
+    \end{equation*}
+    There is no nice, closed-form solution for $y^*$, but it is sufficient to show that a positive solution $y^*>0$ exists.
+    First, lets treat the equation above as a function of $y^*$:
+    \begin{equation*}
+        f\left(y^*\right)=\varphi_{xy}^2\varphi_{yx}\left(y^*\right)^4+2\varphi_{xy}\varphi_{yx}\left(y^*\right)^2-y^*+\varphi_{yx}+1
+    \end{equation*}
+    Note that $f\left(y^*\right)$ is continuous for all $y^*>0$ and $f(0)=\varphi_{yx}+1>0$.
+    By the Intermediate Value Theorem~\cite{STEWART9781337613927}, we can say that there exist a value $\beta\in\left(0,\infty\right)$ such that $f(\beta)=0$.
+    Thus, a solution to $f\left(y^*\right)=0$ exists if for some $\beta\in\left(0,\infty\right)$, $f\left(\beta\right)<0$, or:
+    \begin{equation}\label{eq:xy-eq-condition}
+        \varphi_{yx}<\frac{\beta-1}{\left(\varphi_{xy}\beta^2+1\right)^2}
+    \end{equation}
+    Note that if $\beta\in(0, 1]$, then the right hand side of \myref[Equation]{eq:xy-eq-condition} will be negative implying that $\varphi_{yx}<0$.
+    However, since all parameters are positive, we cannot have $\beta$ fall in this range.
+    Therefore, we know that $\beta\in\left(1,\infty\right)$.
+    This concludes the proof.
+\end{proof}
+\begin{theorem}\label{thm:boundary-xz-exist}
+    The $xz$-boundary equilibrium $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist where
+    \begin{equation*}
+        x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right),\quad
+        z^*=1-\frac{u_4}{r_{zx}}
+    \end{equation*}
+    provided that the conditions $\frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1$ and $r_{zx}>u_4$ are satisfied.
+\end{theorem}
+\begin{proof}
+    The $xz$-boundary equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*>0,\ z^*>0$ and $y^*=0$.
+    Plugging in $y^*=0$ into \myref[System]{system:model-0}, we can see that \myref[Equation]{eq:model-0-y} reduces to $0=0$ which leaves us with the following system to solve:
+    \begin{subequations}\label{system:xz-boundary}
+        \begin{align}
+            0 &= 1-x^*-\varphi_{xz}z^* \label{eq:xz-boundary-x}\\
+            0 &= r_{zx}\left(1-z^*\right)-u_4 \label{eq:xz-boundary-z}
+        \end{align}
+    \end{subequations}
+    Solving for $z^*$ in \myref[Equation]{eq:xz-boundary-z} we obtain $z^*=1-\frac{u_4}{r_{zx}}$.
+    Here, we know that $z^*>0$ so this solution we found implies $r_{zx}>u_4$.
+    We can plug this solution of $z^*$ into \myref[Equation]{eq:xz-boundary-x} and solve for $x^*$, which yields $x^*=1-\varphi_{xz}\left(1-\frac{u_4}{r_{zx}}\right)$.
+    Since $x^*>0$, this implies that $\frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1$.
+    This concludes the proof.
+\end{proof}
+\begin{theorem}\label{thm:boundary-yz-exist}
+    The $yz$-boundary equilibrium $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists where
+    \begin{equation*}
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+    and $y^*$ is a positive solution to 
+    \begin{equation}\label{eq:yz-Y-vars}
+        \frac{Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}\left(u_2+\left(1-p\right)y^*\right)^2}=0
+    \end{equation}
+    where:
+    \begin{align*}
+        Y_3 &= -r_{yx}r_{zx}\left(1-p\right)^2\\
+        Y_2 &= r_{yx}r_{zx}\left(1-p\right)\left(\left(1-p\right)-2u_2\right)\\
+        Y_1 &= u_1\left(u_4-u_3-r_{zx}\right)\left(1-p\right)^2+r_{yx}r_{zx}u_2\left(2\left(1-p\right)-u_2\right)\\
+        Y_0 &= u_2\left(r_{yx}r_{zx}u_2+u_1\left(u_4-r_2\right)\left(1-p\right)\right)
+    \end{align*}
+    provided that the following conditions are satisfied:
+    \begin{equation*}
+        y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-u_4+r_{zx}\right)\left(1-p\right)},\quad \text{and} \quad 1 > \frac{u_1\left(r_2-u_4\right)\left(1-p\right)}{r_{yx}r_{zx}u_2}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    The $yz$-boundary equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $y^*>0,\ z^*>0$ and $x^*=0$.
+    Plugging in $x^*=0$ into \myref[System]{system:model-0}, we can see that \myref[Equation]{eq:model-0-x} reduces to $0=0$ which leaves us with the following system to solve:
+    \begin{subequations}\label{system:yz-boundary}
+        \begin{align}
+            0 &= r_{yx}\left(1-y^*\right)-\frac{u_1\left(1-p\right)z^*}{u_2+\left(1-p\right)y^*} \label{eq:yz-boundary-y}\\
+            0 &= r_{zx}\left(1-z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4 \label{eq:yz-boundary-z}
+        \end{align}
+    \end{subequations}
+    Solving for $z^*$ in \myref[Equation]{eq:yz-boundary-z}, we get
+    \begin{equation*}
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right).
+    \end{equation*}
+    The value of $z^*$ is positive when
+    \begin{equation*}
+        y^* > \frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-u_4+r_{zx}\right)\left(1-p\right)}.
+    \end{equation*}
+    We can then substitute this value of $z^*$ into \myref[Equation]{eq:yz-boundary-y} to obtain \myref[Equation]{eq:yz-Y-vars} in $y^*$.
+    It will be difficult to find an analytical solution for $y^*$ in terms of the parameters.
+    Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:yz-Y-vars}.
+    Since all the coefficients of \myref[Equation]{eq:yz-Y-vars} are non-zero, then we can use Descartes' rule of signs~\cite{WANG2004525526}.
+    By Descartes' rule of signs, we can say that \myref[Equation]{eq:yz-Y-vars} will have at least one positive solution if $Y_0>0$, or $1 > \frac{u_1\left(r_2-u_4\right)\left(1-p\right)}{r_{yx}r_{zx}u_2}$.
+    Thus, we have proved that the $yz$-boundary equilibrium point $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists.
+\end{proof}
+\begin{theorem}\label{thm:interior-exist}
+    The interior equilibrium $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists where
+    \begin{equation*}
+        x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*,\quad 
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+    and $y^*$ is a positive solution to 
+    \begin{equation}\label{eq:interior-Y}
+        \frac{Y_6\left(y^*\right)^6+Y_5\left(y^*\right)^5+Y_4\left(y^*\right)^4+Y_3\left(y^*\right)^3+Y_2\left(y^*\right)^2+Y_1y^*+Y_0}{r_{zx}^2\left(u_2+\left(1-p\right)y^*\right)^3}=0
+    \end{equation}
+    where:
+    \begin{align*}
+        Y_6 &= r_{yx}r_{zx}^2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)^2\\
+        Y_5 &= 2r_{yx}r_{zx}^2u_2\varphi_{xy}^2\varphi_{yx}\left(1-p\right)\\
+        Y_4 &= r_{yx}r_{zx}\varphi_{xy}\varphi_{yx}\left(2\left(r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(u_4-u_3\right)\right)\left(1-p\right)^2+r_{zx}u_2^2\varphi_{xy}\right)\\
+        Y_3 &= r_{yx}r_{zx}\left(1-p\right)\left(-r_{zx}\left(1-p\right)+2u_2\varphi_{xy}\varphi_{yx}\left(2r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(2u_4-u_3\right)\right)\right)\\
+        Y_2 &= r_{yx}\left(\left(\varphi_{yx}\left(r_{zx}\left(1-\varphi_{xz}\right)+\varphi_{xz}\left(u_4-u_3\right)\right)^2+r_{zx}^2\right)\left(1-p\right)^2-2r_{zx}^2u_2\left(1-p\right)\right.\\
+        &\left.+2r_{zx}\varphi_{xy}\varphi_{yx}u_2^2\left(r_{zx}\left(1-\varphi_{xz}\right)+u_4\varphi_{xz}\right)\right)\\
+        Y_1 &= r_{zx}u_1\left(u_4-u_3-r_{zx}\right)\left(1-p\right)^2+2r_{yx}u_2\left(r_{zx}^2\left(\varphi_{yx}\left(\varphi_{xz}-1\right)^2+1\right)\right.\\
+        &\left.+\varphi_{xz}\varphi_{yx}\left(-u_4\left(2r_{zx}\left(\varphi_{xz}-1\right)+\varphi_{xz}u_3\right)+r_{zx}u_3\left(\varphi_{xz}-1\right)+\varphi_{xz}u_4^2\right)\right)\left(1-p\right)\\
+        &-r_{yx}r_{zx}^2u_2^2\\
+        Y_0 &= u_2\left(r_{zx}u_1\left(u_4-r_{zx}\right)\left(1-p\right)+r_{yx}u_2\left(\varphi_{yx}\left(\varphi_{xz}\left(r_{zx}-u_4\right)-r_{zx}\right)^2+r_{zx}^2\right)\right)
+    \end{align*}
+    provided that the following conditions are satisfied:
+    \begin{equation*}
+        \frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*,\quad
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)},\quad
+        Y_0 < 0
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    The interior equilibrium point is an equilibrium point $E=\left(x^*,\ y^*,\ z^*\right)$ where $x^*>0,\ y^*>0,\ z^*>0$.
+    Essentially, we are solving \myref[Model]{model:rayla-ephraim} for non-trivial solutions.
+    We can reduce the model to:
+    \begin{subequations}\label{system:interior}
+        \begin{align}
+            0 &= 1-x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^* \label{eq:interior-x}\\
+            0 &= r_{yx}\left(1-y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1\left(1-p\right)z^*}{u_2+\left(1-p\right)y^*} \label{eq:interior-y}\\
+            0 &= r_{zx}\left(1-z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4 \label{eq:interior-z}
+        \end{align}
+    \end{subequations}
+    Solving for $x^*$ in \myref[Equation]{eq:interior-x} yields $x^*=1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*$ which is positive when $\frac{1+\varphi_{xy}\left(y^*\right)^2}{\varphi_{xz}}>z^*$.
+    Next, solving for $z^*$ in \myref[Equation]{eq:interior-z} yields:
+    \begin{equation*}
+        z^*=1+\frac{1}{r_{zx}}\left(\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4\right)
+    \end{equation*}
+    which is positive if
+    \begin{equation*}
+        y^*>\frac{u_2\left(u_4-r_{zx}\right)}{\left(u_3-\left(u_4-r_{zx}\right)\right)\left(1-p\right)}.
+    \end{equation*}
+    We can then plug in our equations for $x^*$ and $z^*$ into \myref[Equation]{eq:interior-y} to get \myref[Equation]{eq:interior-Y} in $y^*$.
+    It will be difficult to find an analytical solution for $y^*$ in terms of the parameters.
+    Instead, we will show that there exist a $y^*>0$ that satisfies \myref[Equation]{eq:interior-Y}.
+    Since all the coefficients of \myref[Equation]{eq:interior-Y} are non-zero, we can use Descartes' rule of signs~\cite{WANG2004525526}.
+    By Descartes' rule of signs, we can say that \myref[Equation]{eq:interior-Y} will have at least one positive solution if $Y_0<0$.
+    Thus, we have proved that the interior equilibrium point $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ exists.
+\end{proof}
+\subsection{Stability Analysis}\label{subsec:stability-analysis}
+In order to compute the stability of these equilibrium points, we will use linear stability analysis~\cite{Strogatz9780813349107} and the Routh-Hurwitz stability criterion~\cite{YANG2002615621}.
+Both methods require the Jacobian of \myref[Model]{model:rayla-ephraim}, which is:
+\begin{equation}\label{matrix:jacobian-model}
+    \textbf{J}\left(E\right) = \begin{bmatrix}
+        j_{11} & j_{12} & j_{13}\\
+        j_{21} & j_{22} & j_{23}\\
+        0 & j_{32} & j_{33}
+    \end{bmatrix}
+\end{equation}
+where
+\begin{align*}
+    j_{11} &= 1-2x+\varphi_{xy}y^2-\varphi_{xz}z\\
+    j_{12} &= 2\varphi_{xy}xy\\
+    j_{13} &= -\varphi_{xz}x\\
+    j_{21} &= 2r_{yx}\varphi_{yx}xy\\
+    j_{22} &= r_{yx}\left(1-2y+\varphi_{yx}x^2\right)-\frac{u_1u_2\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2}\\
+    j_{23} &= -\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\\
+    j_{32} &= \frac{u_2u_3\left(1-p\right)z}{\left(u_2+\left(1-p\right)y\right)^2}\\
+    j_{33} &= r_{zx}\left(1-2z\right)+\frac{u_3\left(1-p\right)y}{u_2+\left(1-p\right)y}-u_4
+\end{align*}
+\begin{theorem}\label{thm:trivial-stability}
+    The trivial equilibrium $E_0$ is unstable.
+\end{theorem}
+\begin{proof}
+    The jacobian at the trivial equilibrium is:
+    \begin{equation}\label{matrix:jacobian-trivial}
+        \textbf{J}\left(E_0\right) = \begin{bmatrix}
+            1 & 0 & 0\\
+            0 & r_{yx} & 0\\
+            0 & 0 & r_{xz}-u_4
+        \end{bmatrix}
+    \end{equation}
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-trivial} are $\lambda=\left\{1,\ r_{yx},\ r_{xz}-u_4\right\}$.
+    Here we can see that the eigenvalue $\lambda_1=1$ is positive, thus proving that the trivial equilibrium $E_0$ is unstable.
+\end{proof}
+\begin{theorem}\label{thm:axial-x-stability}
+    The $x$-axial equilibrium $E_x$ is unstable.
+\end{theorem}
+\begin{proof}
+    The jacobian at the $x$-axial equilibrium is:
+    \begin{equation}\label{matrix:jacobian-axial-x}
+        \textbf{J}\left(E_x\right) = \begin{bmatrix}
+            -1 & 0 & -\varphi_{xz}\\
+            0 & r_{yx}\left(\varphi_{yx}+1\right) & 0\\
+            0 & 0 & r_{xz}-u_4
+        \end{bmatrix}
+    \end{equation}
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-axial-x} are $\lambda=\left\{-1,\ r_{yx}\left(\varphi_{yx}+1\right),\ r_{xz}-u_4\right\}$.
+    Here we can see that the eigenvalue $\lambda_2=r_{yx}\left(\varphi_{yx}+1\right)$ is positive, thus proving that the $x$-axial equilibrium $E_x$ is unstable.
+\end{proof}
+\begin{theorem}\label{thm:axial-y-stability}
+    The $y$-axial equilibrium $E_y$ is unstable.
+\end{theorem}
+\begin{proof}
+    The jacobian at the $y$-axial equilibrium is:
+    \begin{equation}\label{matrix:jacobian-axial-y}
+        \textbf{J}\left(E_y\right) = \begin{bmatrix}
+            1+\varphi_{xy} & 0 & 0\\
+            0 & -r_{yx} & -\frac{u_1\left(1-p\right)}{u_2+\left(1-p\right)}\\
+            0 & 0 & r_{zx}+\frac{u_3\left(1-p\right)}{u_2+\left(1-p\right)}-u_4
+        \end{bmatrix}
+    \end{equation}
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-axial-y} are:
+    \begin{equation*}
+        \lambda=\left\{1+\varphi_{xy},\ -r_{yx},\ r_{zx}+\frac{u_3\left(1-p\right)}{u_2+\left(1-p\right)}-u_4\right\}
+    \end{equation*}
+    Here we can see that the eigenvalue $\lambda_1=1+\varphi_{xy}y^2$ is positive, thus proving that the $y$-axial equilibrium $E_y$ is unstable.
+\end{proof}
+\begin{theorem}\label{thm:axial-z-stability}
+    The $z$-axial equilibrium $E_z$ is locally stable when:
+    \begin{equation*}
+        \frac{u_4}{r_{zx}} < 1-\frac{1}{\varphi_{xz}},\quad
+        \frac{u_4}{r_{zx}} < 1-\frac{r_{yx}u_2}{u_1\left(1-p\right)},\quad
+        \frac{u_4}{r_{zx}} < \frac{1}{2}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the $z$-axial equilibrium is:
+    \begin{equation}\label{matrix:jacobian-axial-z}
+        \textbf{J}\left(E_z\right) = \begin{bmatrix}
+            1-\varphi_{xz}z^* & 0 & 0\\
+            0 & r_{yx}-\frac{1}{u_2}\left(u_1\left(1-p\right)z^*\right) & 0\\
+            0 & \frac{1}{u_2}\left(u_3\left(1-p\right)z^*\right) & r_{zx}\left(1-2z^*\right)
+        \end{bmatrix}
+    \end{equation}
+    where $z^*=1-\frac{u_4}{r_{zx}}$.
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-axial-z} are:
+    \begin{equation*}
+        \lambda=\left\{1-\varphi_{xz}z^*,\ r_{yx}-\frac{1}{u_2}\left(u_1\left(1-p\right)z^*\right),\ r_{zx}\left(1-2z^*\right)\right\}
+    \end{equation*}
+    With these eigenvalues, this means that the $z$-axial equilibrium $E_z$ is locally stable when:
+    % \begin{equation*}
+    %     z^* > \frac{1}{\varphi_{xz}},\quad 
+    %     z^* > \frac{r_{yx}u_2}{u_1\left(1-p\right)},\quad 
+    %     z^* > \frac{1}{2}
+    % \end{equation*}
+    \begin{equation*}
+        \frac{u_4}{r_{zx}} < 1-\frac{1}{\varphi_{xz}},\quad
+        \frac{u_4}{r_{zx}} < 1-\frac{r_{yx}u_2}{u_1\left(1-p\right)},\quad
+        \frac{u_4}{r_{zx}} < \frac{1}{2}
+    \end{equation*}
+\end{proof}
+\begin{theorem}\label{thm:boundary-xy-stability}
+    The $xy$-boundary equilibrium $E_{xy}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$ where:
+    \begin{align*}
+        C_2 &= -j_{11}-j_{22}-j_{33}\\
+        C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}\\
+        C_0 &= j_{33}\left(j_{12}j_{21}-j_{11}j_{22}\right)\\
+        j_{11} &= 1-2x+\varphi_{xy}\left(y^*\right)^2\\
+        j_{12} &= 2\varphi_{xy}x^*y^*\\
+        j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)\\
+        j_{33} &= r_{zx}+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the $xy$-boundary equilibrium in terms of $x^*$ and $y^*$ is:
+    \begin{equation}\label{matrix:jacobian-boundary-xy}
+        \textbf{J}\left(E_{xy}\right) = \begin{bmatrix}
+            j_{11} & j_{12} & 0\\
+            j_{21} & j_{22} & j_{23}\\
+            0 & 0 & j_{33}
+        \end{bmatrix}
+    \end{equation}
+    where the elements of the matrix are as stated in the statement of the theorem.
+    The characteristic equation to \myref[Matrix]{matrix:jacobian-boundary-xy} is:
+    \begin{equation*}\label{eq:char-eq-xy}
+        \lambda^3+C_2\lambda^2+C_1\lambda+C_0=0
+    \end{equation*}
+    where the coefficients $C_0,\ C_1$, and $C_2$ are as listed in the statement of theorem.
+    By the Routh-Hurwitz stability criterion, the $xy$-boundary equilibrium $E_{xy}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$.
+\end{proof}
+\begin{theorem}\label{thm:boundary-xz-stability}
+    The $xz$-boundary equilibrium $E_{xz}$ is locally stable when:
+    \begin{equation*}
+        \frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1,\quad
+        \frac{u_4}{r_{zx}}+\frac{2}{\varphi_{xz}}+\frac{u_1\left(r_{zx}-u_4\right)\left(1-p\right)}{r_{yx}\varphi_{yx}\varphi_{xz}^2u_2\left(r_{zx}-u_4\right)}-\frac{r_{yx}r_{zx}u_2\left(\varphi_{yx}+1\right)}{r_{yx}\varphi_{yx}\varphi_{xz}^2u_2\left(r_{zx}-u_4\right)} > 1
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the $xz$-boundary equilibrium in terms of $x^*$ and $z^*$ is:
+    \begin{equation}\label{matrix:jacobian-boundary-xz}
+        \textbf{J}\left(E_{xz}\right) = \begin{bmatrix}
+            j_{11} & 0 & j_{13}\\
+            0 & j_{22} & 0\\
+            0 & j_{32} & j_{33}
+        \end{bmatrix}
+    \end{equation}
+    where
+    \begin{align*}
+        j_{11} &= 1-2x^*-\varphi_{xz}z^*\\
+        j_{13} &= -\varphi_{xz}x^*\\
+        j_{22} &= r_{yx}\left(1+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1\left(1-p\right)z^*}{u_2}\\
+        j_{32} &= \frac{u_3\left(1-p\right)z^*}{u_2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)-u_4
+    \end{align*}
+    The eigenvalues of \myref[Matrix]{matrix:jacobian-boundary-xz} are $\lambda=\left\{j_{11},\ j_{22},\ j_{33}\right\}$.
+    With these eigenvalues, this means that the $xz$-boundary equilibrium $E_{xz}$ is locally stable when:
+    \begin{equation*}
+        \frac{u_4}{r_{zx}}+\frac{1}{\varphi_{xz}} > 1,\quad
+        \frac{u_4}{r_{zx}}+\frac{2}{\varphi_{xz}}+\frac{u_1\left(r_{zx}-u_4\right)\left(1-p\right)}{r_{yx}\varphi_{yx}\varphi_{xz}^2u_2\left(r_{zx}-u_4\right)}-\frac{r_{yx}r_{zx}u_2\left(\varphi_{yx}+1\right)}{r_{yx}\varphi_{yx}\varphi_{xz}^2u_2\left(r_{zx}-u_4\right)} > 1
+    \end{equation*}
+\end{proof}
+\begin{theorem}\label{thm:boundary-yz-stability}
+    The $yz$-boundary equilibrium $E_{yz}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$ where:
+    \begin{align*}
+        C_2 &= -j_{11}-j_{22}-j_{33}\\
+        C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{23}j_{32}\\
+        C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)\\
+        j_{11} &= 1+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+        j_{22} &= r_{yx}\left(1-2y^*\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y\right)^2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the $yz$-boundary equilibrium in terms of $y^*$ and $z^*$ is:
+    \begin{equation}\label{matrix:jacobian-boundary-yz}
+        \textbf{J}\left(E_{yz}\right) = \begin{bmatrix}
+            j_{11} & 0 & 0\\
+            0 & j_{22} & j_{23}\\
+            0 & j_{32} & j_{33}
+        \end{bmatrix}
+    \end{equation}
+    where the elements of the matrix are as given in the statement of the theorem.
+    The characteristic equation to \myref[Matrix]{matrix:jacobian-boundary-xy} is:
+    \begin{equation*}\label{eq:char-eq-yz}
+        \lambda^3+C_2\lambda^2+C_1\lambda+C_0=0
+    \end{equation*}
+    where the coefficients $C_0,\ C_1$, and $C_2$ are as listed in the statement of theorem.
+    By the Routh-Hurwitz stability criterion, the $yz$-boundary equilibrium $E_{yz}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$.
+\end{proof}
+\begin{theorem}\label{thm:interior-stability}
+    The interior equilibrium $E_{xyz}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$ where:
+    \begin{align*}
+        C_2 &= -j_{11}-j_{22}-j_{33}\\
+        C_1 &= j_{11}j_{22}+j_{11}j_{33}+j_{22}j_{33}-j_{12}j_{21}-j_{23}j_{32}\\
+        C_0 &= j_{11}\left(j_{23}j_{32}-j_{22}j_{33}\right)+j_{21}\left(j_{12}j_{33}-j_{13}j_{32}\right)\\
+        j_{11} &= 1-2x^*+\varphi_{xy}\left(y^*\right)^2-\varphi_{xz}z^*\\
+        j_{12} &= 2\varphi_{xy}x^*y^*\\
+        j_{13} &= -\varphi_{xz}x^*\\
+        j_{21} &= 2r_{yx}\varphi_{yx}x^*y^*\\
+        j_{22} &= r_{yx}\left(1-2y^*+\varphi_{yx}\left(x^*\right)^2\right)-\frac{u_1u_2\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{23} &= -\frac{u_1\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}\\
+        j_{32} &= \frac{u_2u_3\left(1-p\right)z^*}{\left(u_2+\left(1-p\right)y^*\right)^2}\\
+        j_{33} &= r_{zx}\left(1-2z^*\right)+\frac{u_3\left(1-p\right)y^*}{u_2+\left(1-p\right)y^*}-u_4
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    The jacobian at the interior equilibrium is:
+    \begin{equation}\label{matrix:jacobian-interior}
+        \textbf{J}\left(E_{yz}\right) = \begin{bmatrix}
+            j_{11} & j_{12} & j_{13}\\
+            j_{21} & j_{22} & j_{23}\\
+            0 & j_{32} & j_{33}
+        \end{bmatrix}
+    \end{equation}
+    where the elements of the matrix are as given in the statement of the theorem.
+    The characteristic equation to \myref[Matrix]{matrix:jacobian-interior} is:
+    \begin{equation*}\label{eq:char-eq-interior}
+        \lambda^3+C_2\lambda^2+C_1\lambda+C_0=0
+    \end{equation*}
+    where the coefficients $C_0,\ C_1$, and $C_2$ are as listed in the statement of theorem.
+    By the Routh-Hurwitz stability criterion, the interior equilibrium $E_{xyz}$ is locally stable when $C_2>0,\ C_1>0,\ C_0>0,\ C_2C_1>C_0$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Numerical Simulations}\label{sec:numerical_simulations}
+In \myref[Section]{sec:equilibria-analysis}, we used mathematical analysis to compute the equilibria that exists in \myref[Model]{model:rayla-ephraim} and determined the conditions for stability of each one.
+In this section, we will support and verify the stable equilibria determined in \myref[Section]{sec:equilibria-analysis} through numerical simulations.
+We will also show the existence of a hopf bifurcation for the interior equilibrium through numerical simulations.
+\begin{figure}[H]
+    \centering
+    \subfloat[$z$-axial equilibrium with the set of parameters~\eqref{params:axial-z}]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-axial-z}\label{fig:axial-z}}}\hspace{5pt}
+    \subfloat[$xy$-boundary equilibrium with the set of parameters~\eqref{params:boundary-xy}]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-boundary-xy}\label{fig:boundary-xy}}}\hspace{5pt}
+    \subfloat[$xz$-boundary equilibrium with the set of parameters~\eqref{params:boundary-xz}]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-boundary-xz}\label{fig:boundary-xz}}}\hspace{5pt}
+    \subfloat[$yz$-boundary equilibrium with the set of parameters~\eqref{params:boundary-yz}]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-boundary-yz}\label{fig:boundary-yz}}}
+    \caption{Showing the stability of non-interior equilibria for different set of parameters.}
+    \label{fig:semi-trivial-equilibria-plots}
+\end{figure}
+\subsection{The $z$-axial equilibrium}\label{subsec:numsim_z_axial_equilibrium}
+By \myref[Theorem]{thm:axial-z-exist} and \myref[Theorem]{thm:axial-z-stability}, we know that the $z$-axial equilibrium
+\begin{equation*}
+    E_z=\left(0,0,\frac{r_2-v_2}{\gamma_{31}r_2}\right)
+\end{equation*}
+exists if the condition $r_{zx} > u_4$ is satisfied and is stable if the following conditions are satisfied:
+\begin{equation*}
+    \frac{u_4}{r_{zx}} < 1-\frac{1}{\varphi_{xz}},\quad
+    \frac{u_4}{r_{zx}} < 1-\frac{r_{yx}u_2}{u_1\left(1-p\right)},\quad
+    \frac{u_4}{r_{zx}} < \frac{1}{2}
+\end{equation*}
+To satisfy the conditions above, lets consider the following set of parameters:
+\begin{equation}\label{params:axial-z}
+    \begin{dcases}
+        \begin{aligned}
+            r_{yx} &= 0.007\\
+            r_{zx} &= 1.136\\
+            p &= 0.874
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \varphi_{xy} &= 0.318\\
+            \varphi_{yx} &= 0.416\\
+            \varphi_{xz} &= 1.59
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            u_1 &= 1.655\\
+            u_2 &= 0.791\\
+            u_3 &= 0.994\\
+            u_4 &= 0.356
+        \end{aligned}
+    \end{dcases}
+\end{equation}
+Under this set of parameter values, the $z$-axial equilibrium is $E_z=(0,0,0.6866)$.
+This is further supported by \myref[Figure]{fig:axial-z}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
+\subsection{The $xy$-boundary equilibrium}\label{subsec:numsim_xy_boundary_equilibrium}
+By \myref[Theorem]{thm:boundary-xy-exist} we know that the $xy$-boundary equilibrium $E_{xy}=\left(x^*,y^*,0\right)$ exists and \myref[Theorem]{thm:boundary-xy-stability} guarantees its stability under appropriate conditions.
+To satisfy the conditions in \myref[Theorem]{thm:boundary-xy-exist} and \myref[Theorem]{thm:boundary-xy-stability}, we will let $\beta=11$ and consider the following set of parameters:
+\begin{equation}\label{params:boundary-xy}
+    \begin{dcases}
+        \begin{aligned}
+            r_{yx} &= 0.049\\
+            r_{zx} &= 0.467\\
+            p &= 0.645
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \varphi_{xy} &= 0.024\\
+            \varphi_{yx} &= 0.163\\
+            \varphi_{xz} &= 0.031
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            u_1 &= 0.31\\
+            u_2 &= 0.978\\
+            u_3 &= 0.9\\
+            u_4 &= 1.004
+        \end{aligned}
+    \end{dcases}
+\end{equation}
+Under this set of parameter values, the $xy$-boundary equilibrium is $E_{xy}=(1.0331,1.174,0)$.
+This is further supported by \myref[Figure]{fig:boundary-xy}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
+\subsection{The $xz$-boundary equilibrium}\label{subsec:numsim_xz_boundary_equilibrium}
+By \myref[Theorem]{thm:boundary-xz-exist} and \myref[Theorem]{thm:boundary-xz-stability}, we know that the $xz$-boundary equilibrium $E_{xz}=\left(x^*,\ 0,\ z^*\right)$ exist and is locally stable under certain conditions.
+To satisfy these conditions, lets consider the following set of parameters:
+\begin{equation}\label{params:boundary-xz}
+    \begin{dcases}
+        \begin{aligned}
+            r_{yx} &= 0.199\\
+            r_{zx} &= 1.494\\
+            p &= 0.482
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \varphi_{xy} &= 0.449\\
+            \varphi_{yx} &= 0.993\\
+            \varphi_{xz} &= 1.152
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            u_1 &= 1.671\\
+            u_2 &= 0.663\\
+            u_3 &= 1.556\\
+            u_4 &= 1.04
+        \end{aligned}
+    \end{dcases}
+\end{equation}
+Under this set of parameter values, the $xz$-boundary equilibrium is $E_{xz}=(0.6499,0,0.3039)$.
+This is further supported by \myref[Figure]{fig:boundary-xz}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
+\subsection{The $yz$-boundary equilibrium}\label{subsec:numsim_yz_boundary_equilibrium}
+We also established through \myref[Theorem]{thm:boundary-yz-exist} and \myref[Theorem]{thm:boundary-yz-stability} that the $yz$-boundary equilibrium $E_{yz}=\left(0,\ y^*,\ z^*\right)$ exists and is locally stable respectively, subject to the conditions prescribed in the theorems.
+To satisfy the conditions in \myref[Theorem]{thm:boundary-yz-exist} and \myref[Theorem]{thm:boundary-yz-stability}, lets consider the following set of parameters:
+\begin{equation}\label{params:boundary-yz}
+    \begin{dcases}
+        \begin{aligned}
+            r_{yx} &= 1.219\\
+            r_{zx} &= 0.452\\
+            p &= 0.589
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \varphi_{xy} &= 0.047\\
+            \varphi_{yx} &= 1.587\\
+            \varphi_{xz} &= 1.908
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            u_1 &= 1.658\\
+            u_2 &= 1.812\\
+            u_3 &= 1.473\\
+            u_4 &= 0.289
+        \end{aligned}
+    \end{dcases}
+\end{equation}
+Under this set of parameter values, the $yz$-boundary equilibrium is $E_{yz}=(0,0.7773,0.8491)$.
+This is further supported by \myref[Figure]{fig:boundary-yz}, which is the result of numerically solving \myref[Model]{model:rayla-ephraim}.
+\subsection{The interior equilibrium}\label{subsec:numsim_interior_equilibrium}
+Finally, in \myref[Theorem]{thm:boundary-yz-exist} and \myref[Theorem]{thm:boundary-yz-stability}, respectively, the existence and stability
+of the interior equilibrium $E_{xyz}=\left(x^*,\ y^*,\ z^*\right)$ were established under various sets of conditions.
+To ensure that the interior equilibrium exist and is stable, lets consider the following set of parameters:
+\begin{equation}\label{params:interior-a}
+    \begin{dcases}
+        \begin{aligned}
+            r_{yx} &= 0.5\\
+            r_{zx} &= 0.5\\
+            p &= 0.6
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \varphi_{xy} &= 0.6\\
+            \varphi_{yx} &= 0.15\\
+            \varphi_{xz} &= 0.4
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            u_1 &= 0.6\\
+            u_2 &= 0.08\\
+            u_3 &= 0.5\\
+            u_4 &= 0.5
+        \end{aligned}
+    \end{dcases}
+\end{equation}
+Under this set of parameter values, the interior equilibrium is $E_{xyz}=(0.9099,0.0599,0.2305)$.
+This is further supported by the four figures in \myref[Figure]{fig:nontrivial-equilibria-plots} where \myref[Figure]{fig:time-evolution} shows the time evolution of each Species, \myref[Figure]{fig:phase-plane-3d} shows the phase portrait, and \myref[Figure]{fig:phase-plane-xy}, \myref[Figure]{fig:phase-plane-xz}, and \myref[Figure]{fig:phase-plane-yz} are phase planes when numerically solving \myref[Model]{model:rayla-ephraim}.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Stability of the interior equilibrium.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-time-evolution}\label{fig:time-evolution}}}\hspace{5pt}
+    \subfloat[3D phase portrait.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-pp-xyz}\label{fig:phase-plane-3d}}}\hspace{5pt}
+    \subfloat[$xy$-phase plane.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-pp-xy}\label{fig:phase-plane-xy}}}\hspace{5pt}
+    \subfloat[$xz$-phase plane.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-pp-xz}\label{fig:phase-plane-xz}}}\hspace{5pt}
+    \subfloat[$yz$-phase plane.]{%
+    \resizebox*{6.5cm}{!}{\includegraphics{equilibrium-interior-pp-yz}\label{fig:phase-plane-yz}}}
+    \caption{Different types of plots to show the behavior of \myref[Model]{model:rayla-ephraim} under the set of \myref[parameters]{params:interior-a}.}
+    \label{fig:nontrivial-equilibria-plots}
+\end{figure}
+
+For \myref[Model]{model:rayla-ephraim}, we can numerically show that a hopf bifurcation exists for each parameter.
+Starting with $r_{zx}$, we will plot the time evolution of the ecosystem at $r_{zx}=0.35$ to show that the ecosystem expresses an oscillatory behavior as shown in \myref[Figure]{fig:bifurcation-r_zx-xyz}.
+Then, we will generate a bifurcation diagram for Species $X,\ Y,\ Z$ over a set interval of $r_{zx}$, expressed in \myref[Figure]{fig:bifurcation-r_zx-x}, \myref[Figure]{fig:bifurcation-r_zx-y}, \myref[Figure]{fig:bifurcation-r_zx-z} respectively.
+For $r_{zx}$, the interval is $r_{zx}\in(0.133,0.6155)$.
+From the bifurcation diagrams, we can see that the ecosystem undergoes 2 changes.
+Denoting the stable solutions for Species $X,\ Y,\ Z$ in black, red, and blue respectively and denoting the unstable solutions in green, we can see that the ecosystem starts off in a stable state and then becomes unstable when $r_{zx}\approx 0.29$.
+From here, this behavior is maintained until $r_{zx}\approx 0.47$ where it transitions back to a stable state.
+Thus, we can say that for the set of \myref[parameters]{params:interior-a}, the ecosystem maintains a stable equilibrium when $r_{zx}\in(0.29,0.47)$ and displays an oscillatory behavior when $r_{zx}\in(0.133,0.29)$ and $r_{zx}\in(0.47,0.6155)$.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $r_{zx}=0.35$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_zx}\label{fig:bifurcation-r_zx-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_zx-x}\label{fig:bifurcation-r_zx-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_zx-y}\label{fig:bifurcation-r_zx-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_zx-z}\label{fig:bifurcation-r_zx-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $r_{zx}$ under the set of \myref[parameters]{params:interior-a} and bifurcation diagrams of each species with respect to $r_{zx}$.}
+    \label{fig:bifurcation-r_zx}
+\end{figure}
+
+We can repeat this process using the same set of parameters to show that a hopf bifurcation exists for $p$, $\varphi_{yx}$, and $u_2$.
+For $p$, the ecosystem undergoes a hopf bifurcation at $p\approx 0.371$, shown in \myref[Figure]{fig:bifurcation-p}.
+For $\varphi_{yx}$, the ecosystem undergoes a hopf bifurcation at $p\approx 0.387$, shown in \myref[Figure]{fig:bifurcation-phi_yx}.
+For $u_2$, the ecosystem undergoes a hopf bifurcation at $u_2\approx 0.051$, shown in \myref[Figure]{fig:bifurcation-u_2}.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $p=0.1$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-p}\label{fig:bifurcation-p-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-p-x}\label{fig:bifurcation-p-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-p-y}\label{fig:bifurcation-p-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-p-z}\label{fig:bifurcation-p-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $p$ under the set of \myref[parameters]{params:interior-a} and bifurcation diagrams of each species with respect to $p$.}
+    \label{fig:bifurcation-p}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $\varphi_{yx}=0.43$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_yx}\label{fig:bifurcation-phi_yx-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_yx-x}\label{fig:bifurcation-phi_yx-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_yx-y}\label{fig:bifurcation-phi_yx-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_yx-z}\label{fig:bifurcation-phi_yx-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $\varphi_{yx}$ under the set of \myref[parameters]{params:interior-a} and bifurcation diagrams of each species with respect to $\varphi_{yx}$.}
+    \label{fig:bifurcation-phi_yx}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $u_2=0.04$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_2}\label{fig:bifurcation-u_2-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_2-x}\label{fig:bifurcation-u_2-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_2-y}\label{fig:bifurcation-u_2-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{7cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_2-z}\label{fig:bifurcation-u_2-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $u_2$ under the set of \myref[parameters]{params:interior-a} and bifurcation diagrams of each species with respect to $u_2$.}
+    \label{fig:bifurcation-u_2}
+\end{figure}
+
+For the other parameters $r_{yx},\ \varphi_{xy},\ \varphi_{xz},\ u_1,\ u_3,\ u_4$, we will consider the set of \myref[parameters]{params:interior-b}.
+Applying the above procedure to these parameters, we can conclude that the ecosystem undergoes a hopf bifurcation at $r_{yx}\approx 0.66,\ \varphi_{xy}\approx 0.125,\ \varphi_{xz}\approx\{0.402,1.342\},\ u_1\approx 0.728,\ u_3\approx\{0.511,2.501\},\ u_4\approx\{0.122,0.314\}$, depicted in \myref[Figure]{fig:bifurcation-r_yx}, \myref[Figure]{fig:bifurcation-phi_xz}, \myref[Figure]{fig:bifurcation-u_1}, \myref[Figure]{fig:bifurcation-u_3}, \myref[Figure]{fig:bifurcation-u_4} respectively.
+\begin{equation}\label{params:interior-b}
+    \begin{dcases}
+        \begin{aligned}
+            r_{yx} &= 0.5\\
+            r_{zx} &= 0.5\\
+            p &= 0.6
+        \end{aligned}
+    \end{dcases},\quad 
+    \begin{dcases}
+        \begin{aligned}
+            \varphi_{xy} &= 0.6\\
+            \varphi_{yx} &= 0.15\\
+            \varphi_{xz} &= 0.4
+        \end{aligned}
+    \end{dcases},\quad
+    \begin{dcases}
+        \begin{aligned}
+            u_1 &= 0.6\\
+            u_2 &= 0.08\\
+            u_3 &= 0.5\\
+            u_4 &= 0.5
+        \end{aligned}
+    \end{dcases}
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $r_{yx}=0.5$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_yx}\label{fig:bifurcation-r_yx-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_yx-x}\label{fig:bifurcation-r_yx-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_yx-y}\label{fig:bifurcation-r_yx-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-r_yx-z}\label{fig:bifurcation-r_yx-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $r_{yx}$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $r_{yx}$.}
+    \label{fig:bifurcation-r_yx}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $\varphi_{xy}=0.15$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xy}\label{fig:bifurcation-phi_xy-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xy-x}\label{fig:bifurcation-phi_xy-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xy-y}\label{fig:bifurcation-phi_xy-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xy-z}\label{fig:bifurcation-phi_xy-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $\varphi_{xy}$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $\varphi_{xy}$.}
+    \label{fig:bifurcation-phi_xy}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $\varphi_{xz}=0.5$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xz}\label{fig:bifurcation-phi_xz-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xz-x}\label{fig:bifurcation-phi_xz-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xz-y}\label{fig:bifurcation-phi_xz-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-phi_xz-z}\label{fig:bifurcation-phi_xz-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $\varphi_{xz}$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $\varphi_{xz}$.}
+    \label{fig:bifurcation-phi_xz}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $u_1=0.8$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_1}\label{fig:bifurcation-u_1-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_1-x}\label{fig:bifurcation-u_1-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_1-y}\label{fig:bifurcation-u_1-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_1-z}\label{fig:bifurcation-u_1-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $u_1$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $u_1$.}
+    \label{fig:bifurcation-u_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $u_3=0.75$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_3}\label{fig:bifurcation-u_3-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_3-x}\label{fig:bifurcation-u_3-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_3-y}\label{fig:bifurcation-u_3-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_3-z}\label{fig:bifurcation-u_3-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $u_3$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $u_3$.}
+    \label{fig:bifurcation-u_3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Time Evolution of each species where $u_4=0.3$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_4}\label{fig:bifurcation-u_4-xyz}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $X$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_4-x}\label{fig:bifurcation-u_4-x}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Y$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_4-y}\label{fig:bifurcation-u_4-y}}}\hspace{5pt}
+    \subfloat[Bifurcation diagram of Species $Z$]{%
+    \resizebox*{4.9cm}{!}{\includegraphics{equilibrium-interior-bifurcation-u_4-z}\label{fig:bifurcation-u_4-z}}}
+    \caption{Time evolution of \myref[Model]{model:rayla-ephraim} at a specific value for $u_4$ under the set of \myref[parameters]{params:interior-b} and bifurcation diagrams of each species with respect to $u_4$.}
+    \label{fig:bifurcation-u_4}
+\end{figure}
+
+Similar to the case of varying $r_{zx}$, it can be clearly seen that the simulations given in \myref[Figure]{fig:bifurcation-phi_xz}, \myref[Figure]{fig:bifurcation-u_3} and \myref[Figure]{fig:bifurcation-u_4} show the interior equilibrium undergoing two Hopf bifurcations for each of the parameters indicated.
+In particular, we observe that increasing values of $r_{zx}$ and $u_3$ beyond the ranges provided will lead to the collapse of species $Y$.
+These are other bifurcations where the interior equilibrium changes into the $xz$-boundary equilibrium.
+The model's prediction of the eventual collapse of the $Y$ species given a further increase in the values of $r_{zx}$ and $u_3$ is as expected since these are the parameters associated with, respectively,  the growth rate and attack rate of species $Z$ that is preying on $Y$.
+We also observed that further increase in the value of the amensalism parameter $\varphi_{xz}$ will lead to the demise of species $X$ and  as a consequence, the interior equilibrium will collapse into $yz$-boundary equilibrium.
+Another bifurcation we observed is that a further increase in the value of the parameter $u_4$ that is related to the decay rate of species $Z$ will lead to its eradication and the interior equilibrium will become the $xy$-boundary equilibrium.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}\label{sec:conclusion}
+In this paper, we have constructed a mathematical model that models a three species ecosystem which involves predation, non-linear mutualism, and amensalism.
+We have shown that the model is bounded and always yield positive solutions.
+We have analytically shown that eight, unique equilibrium points exist and determined the conditions of stability for each equilibrium point.
+To further support these results, we have done some numerical simunlations for each stable equilibrium point.
+For the interior equilbrium, we have shown the existence of hopf bifurcations for each parameter through numerical simulations.
 
 \bibliographystyle{tfs}
 \bibliography{main.bib}
