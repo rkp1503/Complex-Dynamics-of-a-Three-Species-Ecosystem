@@ -176,21 +176,21 @@ This is shown in \myref[Theorem]{thm:positiveness}.
     thus proving that $z$ is bounded above.
     With this, we can place an upper bound for \myref[Equation]{eq:rayla-ephraim-y}:
     \begin{align*}
-        \diff[]{y}{t} &< r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\left(1+\frac{u_3-u_4}{r_{zx}}\right)\\
-        \diff[]{y}{t} &< r_{yx}y\left(1-y+\varphi_{yx}x^2\right)
+        \diff[]{y}{t}&<r_{yx}y\left(1-y+\varphi_{yx}x^2\right)-\frac{u_1\left(1-p\right)y}{u_2+\left(1-p\right)y}\left(1+\frac{u_3-u_4}{r_{zx}}\right)\\
+        \diff[]{y}{t}&<r_{yx}y\left(1-y+\varphi_{yx}x^2\right)
     \end{align*}
     Suppose $x$ is bounded with a maximum value of $P$.
     Then we have:
     \begin{equation*}
-        \diff[]{y}{t} < r_{yx}y\left(1-y+\varphi_{yx}P^2\right)
+        \diff[]{y}{t}<r_{yx}y\left(1-y+\varphi_{yx}P^2\right)
     \end{equation*}
     Solving for $y(t)$ yields:
     \begin{equation*}
-        y(t) < \frac{\left(1+\varphi_{yx}P^2\right)}{1+\left(\frac{1+\varphi_{yx}P^2}{y_0}-1\right)\exp{-r_{yx}\left(1+\varphi_{yx}P^2\right)t}}
+        y(t)<\frac{\left(1+\varphi_{yx}P^2\right)}{1+\left(\frac{1+\varphi_{yx}P^2}{y_0}-1\right)\exp{-r_{yx}\left(1+\varphi_{yx}P^2\right)t}}
     \end{equation*}
     from which we can conclude that:
     \begin{equation*}
-        \lim_{t\to\infty} \frac{\left(1+\varphi_{yx}P^2\right)}{1+\left(\frac{1+\varphi_{yx}P^2}{y_0}-1\right)\exp{-r_{yx}\left(1+\varphi_{yx}P^2\right)t}} = 1+\varphi_{yx}P^2
+        \lim_{t\to\infty}\frac{\left(1+\varphi_{yx}P^2\right)}{1+\left(\frac{1+\varphi_{yx}P^2}{y_0}-1\right)\exp{-r_{yx}\left(1+\varphi_{yx}P^2\right)t}}=1+\varphi_{yx}P^2
     \end{equation*}
     thus proving that $y$ is bounded above if $x$ is bounded above with a maximum value of $P$.
     % Suppose $y$ is bounded with a maximum value of $Q$.
@@ -207,6 +207,6 @@ This is shown in \myref[Theorem]{thm:positiveness}.
     %     \lim_{t\to\infty} \frac{1+\varphi_{xy}Q^2}{1+\left(\frac{1+\varphi_{xy}Q^2}{x_0}-1\right)e^{-\left(1+\varphi_{xy}Q^2\right)t}} = 1+\varphi_{xy}Q^2
     % \end{equation*}
     % thus proving that $x$ is bounded above if $y$ is bounded above with a maximum value of $Q$.
-    Similarly, we can say that $x$ is bounded above if $y$ is bounded above with a maximum value of $Q$. 
-    With this, we have shown that for any set of initial conditions $x(0) = x_0,\ y(0) = y_0,\ z(0) = z_0$ where $x_0 > 0,\ y_0 > 0,\ z_0 > 0$, \myref[Model]{model:rayla-ephraim} is uniformly bounded above.
+    Similarly, we can say that $x$ is bounded above if $y$ is bounded above with a maximum value of $Q$.
+    With this, we have shown that for any set of initial conditions $x(0)=x_0,\ y(0)=y_0,\ z(0)=z_0$ where $x_0>0,\ y_0>0,\ z_0>0$, \myref[Model]{model:rayla-ephraim} is uniformly bounded above.
 \end{proof}
